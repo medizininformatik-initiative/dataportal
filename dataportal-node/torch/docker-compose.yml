@@ -9,7 +9,7 @@ services:
         - "${TORCH_DATA_VOLUME:-triangle-torch-data-store}:/app/output"
   torch:
     restart: unless-stopped
-    image: ghcr.io/medizininformatik-initiative/torch:1.0.0-alpha.11
+    image: ghcr.io/medizininformatik-initiative/torch:1.0.0-alpha.12
     ports:
       - ${TORCH_PORT:-127.0.0.1:8086}:8080
     environment:
@@ -33,6 +33,7 @@ services:
       TORCH_FHIR_PAGE_COUNT: ${TORCH_FHIR_PAGE_COUNT:-500}
       TORCH_FHIR_MAX_CONNECTIONS: ${TORCH_FHIR_MAX_CONNECTIONS:-5}
       TORCH_MAXCONCURRENCY: ${TORCH_MAXCONCURRENCY:-4}
+      SPRING_CODEC_MAX_IN_MEMORY_SIZE: 100MB
       # Other
       LOG_LEVEL: ${TORCH_LOG_LEVEL:-info}
       

@@ -1,0 +1,32 @@
+services:
+  terminology-server:
+    image: samply/blaze:1.1.2
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail -s http://localhost:8080/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    environment:
+      ENFORCE_REFERENTIAL_INTEGRITY: ${TERMINOLOGY_SERVER_ENFORCE_REFERENTIAL_INTEGRITY:-true}
+      BASE_URL: ${TERMINOLOGY_SERVER_BASE_URL:-http://terminology-server:8080}
+      LOG_LEVEL: ${TERMINOLOGY_SERVER_LOG_LEVEL:-info}
+      JAVA_TOOL_OPTIONS: ${TERMINOLOGY_SERVER_JVM_ARGS:--Xmx8g}
+      CQL_EXPR_CACHE_SIZE: ${TERMINOLOGY_SERVER_CQL_EXPR_CACHE_SIZE:-128}
+      DB_BLOCK_CACHE_SIZE: ${TERMINOLOGY_SERVER_BLOCK_CACHE_SIZE:-2048}
+      DB_RESOURCE_CACHE_SIZE: ${TERMINOLOGY_SERVER_DB_RESOURCE_CACHE_SIZE:-1000000}
+      ENABLE_TERMINOLOGY_SERVICE: true
+      ENABLE_TERMINOLOGY_LOINC: true
+      ENABLE_TERMINOLOGY_SNOMED_CT: false
+      SNOMED_CT_RELEASE_PATH: "/app/sct-release"
+      TERMINOLOGY_SERVICE_GRAPH_CACHE_SIZE: ${TERMINOLOGY_SERVER_DB_RESOURCE_CACHE_SIZE:-100000}
+  
+    ports:
+    - ${PORT_TERMINOLOGY_SERVER_LOCALHOST:-127.0.0.1:8082}:8080
+    restart: unless-stopped
+    volumes:
+    - "blaze-terminology-data:/app/data"
+    - "./sct-release:/app/sct-release"
+
+volumes:
+  blaze-terminology-data:
