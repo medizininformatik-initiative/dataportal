@@ -1,12 +1,26 @@
 #!/usr/bin/env sh
 
-COMPOSE_PROJECT=${FEASIBILITY_COMPOSE_PROJECT:-feasibility-deploy}
+COMPOSE_PROJECT=${FEASIBILITY_COMPOSE_PROJECT:-dataportal-node}
 BASE_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit 1 ; pwd -P )"
 CERT_FILE=${CERT_FILE:-$BASE_DIR/auth/cert.pem}
 KEY_FILE=${KEY_FILE:-$BASE_DIR/auth/cert.key}
 TRUST_STORE_FILE=${KEY_FILE:-$BASE_DIR/auth/trust-store.p12}
 
 
+
+# Terminology Server
+if [ -f "$BASE_DIR/terminology-server/.env" ] && grep -qE '^TERMINOLOGY_SERVER_ENABLED=true\s*$' "$BASE_DIR/terminology-server/.env"; then
+    if [ ! -f "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf" ]; then
+        cp "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf.template" "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf"
+    fi
+    COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/terminology-server/docker-compose.yml up -d
+else
+    if [ -f "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf" ]; then
+        rm "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf"
+    fi
+fi
+
+# Fhir Server (Blaze) with frontend and keycloak
 if [ -f "$BASE_DIR/fhir-server/.env" ] && grep -qE '^FHIR_SERVER_FRONTEND_KEYCLOAK_ENABLED=true\s*$' "$BASE_DIR/fhir-server/.env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/keycloak.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/keycloak.conf.template" "$BASE_DIR/rev-proxy/conf.d/keycloak.conf"
@@ -17,6 +31,8 @@ else
         rm "$BASE_DIR/rev-proxy/conf.d/keycloak.conf"
     fi
 fi
+
+
 if [ -f "$CERT_FILE" ] && [ -f "$KEY_FILE" ]; then
     if [ -f "$TRUST_STORE_FILE" ]; then
         COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/rev-proxy/docker-compose.yml up -d
@@ -30,6 +46,7 @@ else
     exit 1
 fi
 
+# FLARE
 if [ -f "$BASE_DIR/flare/.env" ] && grep -qE '^FLARE_ENABLED=true\s*$' "$BASE_DIR/flare/.env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/flare.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/flare.conf.template" "$BASE_DIR/rev-proxy/conf.d/flare.conf"
@@ -41,6 +58,7 @@ else
     fi
 fi
 
+# TORCH
 if [ -f "$BASE_DIR/torch/.env" ] && grep -qE '^TORCH_ENABLED=true\s*$' "$BASE_DIR/torch/.env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/torch.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/torch.conf.template" "$BASE_DIR/rev-proxy/conf.d/torch.conf"

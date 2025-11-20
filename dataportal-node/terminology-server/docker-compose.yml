@@ -1,6 +1,6 @@
 services:
   terminology-server:
-    image: samply/blaze:1.1.2
+    image: samply/blaze:1.2.0
     healthcheck:
       test: ["CMD-SHELL", "curl --fail -s http://localhost:8080/health"]
       interval: 5s
@@ -14,11 +14,9 @@ services:
       JAVA_TOOL_OPTIONS: ${TERMINOLOGY_SERVER_JVM_ARGS:--Xmx8g}
       CQL_EXPR_CACHE_SIZE: ${TERMINOLOGY_SERVER_CQL_EXPR_CACHE_SIZE:-128}
       DB_BLOCK_CACHE_SIZE: ${TERMINOLOGY_SERVER_BLOCK_CACHE_SIZE:-2048}
-      DB_RESOURCE_CACHE_SIZE: ${TERMINOLOGY_SERVER_DB_RESOURCE_CACHE_SIZE:-1000000}
       ENABLE_TERMINOLOGY_SERVICE: true
       ENABLE_TERMINOLOGY_LOINC: true
-      ENABLE_TERMINOLOGY_SNOMED_CT: false
-      SNOMED_CT_RELEASE_PATH: "/app/sct-release"
+      ENABLE_TERMINOLOGY_SNOMED_CT: ${ENABLE_TERMINOLOGY_SNOMED_CT:-false}
       TERMINOLOGY_SERVICE_GRAPH_CACHE_SIZE: ${TERMINOLOGY_SERVER_DB_RESOURCE_CACHE_SIZE:-100000}
   
     ports:
@@ -26,7 +24,7 @@ services:
     restart: unless-stopped
     volumes:
     - "blaze-terminology-data:/app/data"
-    - "./sct-release:/app/sct-release"
+    - "./terminology-data/sct-release:/app/sct-release"
 
 volumes:
   blaze-terminology-data:

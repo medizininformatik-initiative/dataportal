@@ -8,3 +8,5 @@ torch/queries/*
 !torch/queries/example-crtdl.json
 !torch/queries/README.md
 output
+
+terminology-server/sct-release
