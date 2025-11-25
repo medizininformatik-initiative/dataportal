@@ -69,3 +69,17 @@ else
         rm "$BASE_DIR/rev-proxy/conf.d/torch.conf"
     fi
 fi
+
+
+# FHIR Pseudonymizer (DIMP)
+if [ -f "$BASE_DIR/fhir-pseudonymizer/.env" ] && grep -qE '^DIMP_ENABLED=true\s*$' "$BASE_DIR/fhir-pseudonymizer/.env"; then
+    if [ ! -f "$BASE_DIR/rev-proxy/conf.d/fhir-pseudonymizer.conf" ]; then
+        cp "$BASE_DIR/rev-proxy/conf.d/fhir-pseudonymizer.conf.template" "$BASE_DIR/rev-proxy/conf.d/fhir-pseudonymizer.conf"
+    fi
+    COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/fhir-pseudonymizer/docker-compose.vfps.yml up -d
+    COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/fhir-pseudonymizer/docker-compose.yml up -d
+else
+    if [ -f "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf" ]; then
+        rm "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf"
+    fi
+fi

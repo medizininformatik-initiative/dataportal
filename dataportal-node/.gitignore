@@ -8,5 +8,8 @@ torch/queries/*
 !torch/queries/example-crtdl.json
 !torch/queries/README.md
 output
+aether/queries/*
+!aether/queries/example-crtdl.json
 
 terminology-server/sct-release
+aether/jobs
