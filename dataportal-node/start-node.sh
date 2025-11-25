@@ -79,7 +79,19 @@ if [ -f "$BASE_DIR/fhir-pseudonymizer/.env" ] && grep -qE '^DIMP_ENABLED=true\s*
     COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/fhir-pseudonymizer/docker-compose.vfps.yml up -d
     COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/fhir-pseudonymizer/docker-compose.yml up -d
 else
-    if [ -f "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf" ]; then
-        rm "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf"
+    if [ -f "$BASE_DIR/rev-proxy/conf.d/fhir-pseudonymizer.conf" ]; then
+        rm "$BASE_DIR/rev-proxy/conf.d/fhir-pseudonymizer.conf"
+    fi
+fi
+
+# FHIR Flattener
+if [ -f "$BASE_DIR/fhir-flattener/.env" ] && grep -qE '^FLATTENING_ENABLED=true\s*$' "$BASE_DIR/fhir-flattener/.env"; then
+    if [ ! -f "$BASE_DIR/rev-proxy/conf.d/fhir-flattener.conf" ]; then
+        cp "$BASE_DIR/rev-proxy/conf.d/fhir-flattener.conf.template" "$BASE_DIR/rev-proxy/conf.d/fhir-flattener.conf"
+    fi
+    COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/fhir-flattener/docker-compose.yml up -d
+else
+    if [ -f "$BASE_DIR/rev-proxy/conf.d/fhir-flattener.conf" ]; then
+        rm "$BASE_DIR/rev-proxy/conf.d/fhir-flattener.conf"
     fi
 fi
