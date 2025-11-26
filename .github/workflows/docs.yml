@@ -6,6 +6,7 @@ on:
       - 'docs/**'
     branches:
       - main
+      - 160-restructure-deploy-repository
     tags:
       - 'v*.*.*'
   pull_request:

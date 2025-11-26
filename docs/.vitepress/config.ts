@@ -1,8 +1,9 @@
-import {withMermaid} from "vitepress-plugin-mermaid";
+import { withMermaid } from "vitepress-plugin-mermaid";
 
 export default withMermaid({
     title: 'Dataportal',
     description: 'Dataportal Documentation',
+    ignoreDeadLinks: true,
     base: process.env.DOCS_BASE || '',
     appearance: true,
     lastUpdated: true,
@@ -15,7 +16,7 @@ export default withMermaid({
         },
 
         socialLinks: [
-            {icon: 'github', link: 'https://github.com/medizininformatik-initiative/dataportal'}
+            { icon: 'github', link: 'https://github.com/medizininformatik-initiative/dataportal' }
         ],
 
         footer: {
@@ -31,7 +32,7 @@ export default withMermaid({
         },
 
         nav: [
-            {text: 'Home', link: '/'}
+            { text: 'Home', link: '/' }
         ],
 
         sidebar: [
@@ -46,38 +47,32 @@ export default withMermaid({
                 activeMatch: '^/$'
             },
             {
-                text: 'Getting Started',
-                link: '/getting-started',
-                activeMatch: '^/getting-started'
+                text: 'Architecture',
+                link: '/architecture.md',
+                activeMatch: '^/$'
             },
             {
-                text: 'Documentation',
-                link: '/documentation',
+                text: 'Data Portal',
+                link: '/data-portal/overview.md',
                 items: [
-                    {text: 'Configuration', link: '/configuration'},
-                    {text: 'API', link: '/api/api'},
+                    { text: 'Overview', link: '/data-portal/overview.md' },
+                ]
+            },
+            {
+                text: 'Data Node',
+                link: '/data-node/overview.md',
+                items: [
+                    { text: 'Overview', link: '/data-node/overview.md' },
+                    { text: 'Architecture', link: '/data-node/architecture.md' },
+                    { text: 'DUP Pipeline', link: '/data-node/dup-pipeline.md' },
                     {
-                        text: 'CRTDL', link: '/crtdl/crtdl',
+                        text: 'Use',
+                        link: '/data-node/use.md',
                         items: [
-                            {text: 'Filter', link: '/crtdl/filter'},
-                            {text: 'Consent Key', link: '/crtdl/consent-key'}
+                            { text: 'fhir-data-evaluator', link: '/data-node/fhir-data-evaluator.md' },
+                            { text: 'aether', link: '/data-node/aether.md' }
                         ]
-
                     },
-                    {
-                        text: 'Implementation',
-                        link: '/implementation/implementation-overview',
-                        items: [
-                            {text: 'Consent', link: '/implementation/consent'},
-                            {text: 'Direct Loading', link: '/implementation/direct-load'},
-                            {text: 'Must Have Checking', link: '/implementation/must-have'},
-                            {text: 'Cascading Delete', link: '/implementation/cascading-delete'},
-                            {text: 'Reference Resolve', link: '/implementation/reference-resolve'},
-                            {text: 'Redaction', link: '/implementation/redaction'},
-                            {text: 'Data Extraction', link: '/implementation/data-extraction'}
-                        ]
-                    }
-
                 ]
             }
         ]

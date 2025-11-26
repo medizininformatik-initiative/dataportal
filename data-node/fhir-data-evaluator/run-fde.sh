@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ONTOLOGY_VERSION="3.9.2"
+ONTOLOGY_VERSION=${ONTOLOGY_VERSION:-3.9.2}
 
 BASE_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit 1 ; pwd -P )"
 
@@ -15,11 +15,17 @@ if [[ $FDE_REPORT_TYPE == "cdsCodingAvailability" ]]; then
     MEASURE_FILE="Measure-CdsCodingAvailability.fhir"
     FDE_PROJECT_IDENTIFIER_VALUE=fdpg-data-availability-report
     FDE_PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT=fdpg-data-availability-report-obfuscated
-else
+
+elif [[ "$FDE_REPORT_TYPE" == "DseElementAvailability" ]]; then
     MEASURE_FILE="Measure-DseElementAvailability.fhir"
-    FDE_PROJECT_IDENTIFIER_VALUE=fdpg-data-broad-availability-report
-    FDE_PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT=fdpg-data-broad-availability-report-obfuscated
+    FDE_PROJECT_IDENTIFIER_VALUE="fdpg-data-element-availability-report"
+    FDE_PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT=fdpg-data-element-availability-report-obfuscated
+
+else
+    echo "Unknown FDE_REPORT_TYPE: $FDE_REPORT_TYPE"
+    exit 1
 fi
+
 
 # Create measure directory if it doesn't exist
 mkdir -p "${BASE_DIR}/${MEASURE_DIR}"
