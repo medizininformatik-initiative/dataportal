@@ -1,5 +1,6 @@
 # Additional Information for Blaze
 
+TODO - (has to be updated)
 
 ## Adding custom Search Parameters and re-indexing Blaze
 

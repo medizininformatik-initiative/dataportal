@@ -47,6 +47,11 @@ export default withMermaid({
                 activeMatch: '^/$'
             },
             {
+                text: 'Services compatibility matrix',
+                link: '/compatibility-matrix.md',
+                activeMatch: '^/$'
+            },
+            {
                 text: 'Architecture',
                 link: '/architecture.md',
                 activeMatch: '^/$'
@@ -56,6 +61,8 @@ export default withMermaid({
                 link: '/data-portal/overview.md',
                 items: [
                     { text: 'Overview', link: '/data-portal/overview.md' },
+                    { text: 'Architecture', link: '/data-portal/architecture.md' },
+                    { text: 'Example Deployment', link: '/data-portal/example-deployment.md' },
                 ]
             },
             {
@@ -64,6 +71,7 @@ export default withMermaid({
                 items: [
                     { text: 'Overview', link: '/data-node/overview.md' },
                     { text: 'Architecture', link: '/data-node/architecture.md' },
+                    { text: 'Example Deployment', link: '/data-node/example-deployment.md' },
                     { text: 'DUP Pipeline', link: '/data-node/dup-pipeline.md' },
                     {
                         text: 'Use',

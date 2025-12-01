@@ -2,7 +2,7 @@
 
 The portal and triangle can be run locally for testing purposes.
 
-Follow the instructions provided in the [README](./README.md#setting-up-the-feasibility-triangle) and insert the
+Follow the instructions provided in the [README](./README.md#setting-up-the-example-data-node) and insert the
 following instructions between step 4 and step 5:
 
 ### Step 4.5 - Generate Self-Signed Certificates

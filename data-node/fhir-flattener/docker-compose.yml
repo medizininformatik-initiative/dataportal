@@ -1,6 +1,6 @@
 services:
   fhir-flattener:
-    image: ghcr.io/medizininformatik-initiative/fhir-flattener:0.1.0-alpha.1
+    image: ghcr.io/medizininformatik-initiative/fhir-flattener:0.1.0-alpha.2
     restart: unless-stopped
     working_dir: /app
     ports:

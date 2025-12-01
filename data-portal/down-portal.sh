@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-COMPOSE_PROJECT=${FEASIBILITY_COMPOSE_PROJECT:-feasibility-deploy}
+COMPOSE_PROJECT=${DATA_PORTAL_COMPOSE_PROJECT:-dataportal}
 
 BASE_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit 1 ; pwd -P )"
 

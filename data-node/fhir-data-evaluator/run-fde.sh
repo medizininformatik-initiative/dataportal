@@ -5,7 +5,7 @@ ONTOLOGY_VERSION=${ONTOLOGY_VERSION:-3.9.2}
 BASE_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit 1 ; pwd -P )"
 
 
-COMPOSE_PROJECT=${FEASIBILITY_COMPOSE_PROJECT:-feasibility-deploy}
+COMPOSE_PROJECT=${DATA_PORTAL_COMPOSE_PROJECT:-dataportal}
 DOWNLOAD_URL="https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/download/v${ONTOLOGY_VERSION}/availability.zip"
 MEASURE_DIR="${BASE_DIR}/measure"
 FDE_REPORT_TYPE=${FDE_REPORT_TYPE:-cdsCodingAvailability}

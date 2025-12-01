@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 export COMPOSE_IGNORE_ORPHANS=True
-COMPOSE_PROJECT=codex-deploy
+COMPOSE_PROJECT=${DATA_PORTAL_COMPOSE_PROJECT:-dataportal}
 
 BASE_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit 1 ; pwd -P )"
 

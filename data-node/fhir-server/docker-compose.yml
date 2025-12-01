@@ -7,20 +7,8 @@ services:
       timeout: 5s
       retries: 3
       start_period: 60s
-    environment:
-      ENFORCE_REFERENTIAL_INTEGRITY: ${FHIR_SERVER_ENFORCE_REFERENTIAL_INTEGRITY:-true}
-      EXTERN_TERMINOLOGY_SERVICE_URL: ${FHIR_SERVER_EXTERN_TERMINOLOGY_SERVICE_URL:-http://terminology-server:8080/fhir}"
-      BASE_URL: ${FHIR_SERVER_BASE_URL:-http://fhir-server:8080}
-      LOG_LEVEL: ${FHIR_SERVER_LOG_LEVEL:-info}
-      JAVA_TOOL_OPTIONS: ${BLAZE_JVM_ARGS:--Xmx4g}
-      CQL_EXPR_CACHE_SIZE: ${BLAZE_CQL_EXPR_CACHE_SIZE:-128}
-      DB_BLOCK_CACHE_SIZE: ${BLAZE_BLOCK_CACHE_SIZE:-256}
-      DB_RESOURCE_CACHE_SIZE: ${BLAZE_DB_RESOURCE_CACHE_SIZE:-2000000}
-      DB_SEARCH_PARAM_BUNDLE: "/app/custom-search-parameters.json"
-      ENABLE_ADMIN_API: "true"
-      OPENID_PROVIDER_URL: ${FHIR_SERVER_OPENID_PROVIDER_URL}
-      OPENID_CLIENT_TRUST_STORE: "/app/trust-store.p12"
-      OPENID_CLIENT_TRUST_STORE_PASS: ${FHIR_SERVER_OPENID_CLIENT_TRUST_STORE_PASS:-insecure}
+    env_file:
+      - .env
     ports:
     - ${PORT_FHIR_SERVER_LOCALHOST:-127.0.0.1:8081}:8080
     extra_hosts:
@@ -29,7 +17,7 @@ services:
     volumes:
     - "./custom-search-parameters.json:/app/custom-search-parameters.json:ro"
     - "blaze-data:/app/data"
-    - "${FHIR_SERVER_OPENID_CLIENT_TRUST_STORE:-../auth/trust-store.p12}:/app/trust-store.p12"
+    - "${LOCAL_OPENID_CLIENT_TRUST_STORE:-../auth/trust-store.p12}:/app/trust-store.p12"
 
   fhir-server-frontend:
     image: samply/blaze-frontend:1.2.0
@@ -38,16 +26,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 3
-    environment:
-      ORIGIN: ${FHIR_SERVER_FRONTEND_ORIGIN:-https://fhir.localhost:444}
-      BACKEND_BASE_URL: ${FHIR_SERVER_BASE_URL:-http://fhir-server:8080}
-      AUTH_CLIENT_ID: ${FHIR_SERVER_FRONTEND_AUTH_CLIENT_ID:-account}
-      AUTH_CLIENT_SECRET: ${FHIR_SERVER_FRONTEND_AUTH_CLIENT_SECRET:-insecure}
-      AUTH_ISSUER: ${FHIR_SERVER_OPENID_PROVIDER_URL:-https://auth.localhost:444/realms/blaze}
-      AUTH_SECRET: ${FHIR_SERVER_FRONTEND_AUTH_SECRET:-insecure}
-      PROTOCOL_HEADER: "X-Forwarded-Proto"
-      HOST_HEADER: "X-Forwarded-Host"
-      NODE_EXTRA_CA_CERTS: "/app/cert.pem"
+    env_file:
+      - .env
     ports:
     - ${PORT_FHIR_SERVER_FRONTEND_LOCALHOST:-127.0.0.1:8300}:3000
     extra_hosts:

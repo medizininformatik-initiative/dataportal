@@ -1,3 +1,3 @@
 # Data Node Architecture
 
-TODO - Add Architecture diagram here
+![Data Node Architecture](../drawio/dataportal-data-node-architecture.png)

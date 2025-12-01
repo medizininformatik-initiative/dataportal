@@ -3,9 +3,9 @@ services:
     image: postgres:17-alpine
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${FEASIBILITY_KC_DB:-keycloakdb}
-      POSTGRES_USER: ${FEASIBILITY_KC_DB_USER:-keycloakdbuser}
-      POSTGRES_PASSWORD: ${FEASIBILITY_KC_DB_PW:-keycloakdbpw}
+      POSTGRES_DB: ${KC_DB_URL_DB:-keycloakdb}
+      POSTGRES_USER: ${KC_DB_USERNAME:-keycloakdbuser}
+      POSTGRES_PASSWORD: ${KC_DB_PASSWORD:-keycloakdbpw}
     healthcheck:
       test: [ "CMD-SHELL", "sh -c 'pg_isready -U ${DB_USER} -d ${DB_NAME}'" ]
       interval: 30s
@@ -13,29 +13,19 @@ services:
       retries: 5
       start_period: 80s
     volumes:
-      - "feasibility-auth-db:/var/lib/postgresql/data"
+      - "dataportal-auth-db:/var/lib/postgresql/data"
 
   auth:
     image: quay.io/keycloak/keycloak:26.3.1
     command: ["start", "--import-realm"]
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
       KC_DB: postgres
-      KC_DB_URL: "jdbc:postgresql://auth-db:5432/${FEASIBILITY_KC_DB:-keycloakdb}"
-      KC_DB_USERNAME: ${FEASIBILITY_KC_DB_USER:-keycloakdbuser}
-      KC_DB_PASSWORD: ${FEASIBILITY_KC_DB_PW:-keycloakdbpw}
-      KC_BOOTSTRAP_ADMIN_USERNAME: ${FEASIBILITY_KC_ADMIN_USER:-}
-      KC_BOOTSTRAP_ADMIN_PASSWORD: ${FEASIBILITY_KC_ADMIN_PW:-}
-      KC_HTTP_RELATIVE_PATH:  ${FEASIBILITY_KC_HTTP_RELATIVE_PATH:-/auth}
-      KC_HOSTNAME: ${FEASIBILITY_KC_HOSTNAME_URL:-https://auth.localhost}
-      KC_HOSTNAME_ADMIN: ${FEASIBILITY_KC_HOSTNAME_ADMIN_URL:-https://auth.localhost}
-      KC_LOG_LEVEL: ${FEASIBILITY_KC_LOG_LEVEL:-info}
-      KC_HEALTH_ENABLED: ${FEASIBILITY_KC_HEALTH_ENABLED:-true}
-      KC_METRICS_ENABLED: ${FEASIBILITY_KC_METRICS_ENABLED:-true}
-      KC_PROXY_HEADERS: ${FEASIBILITY_KC_PROXY_HEADERS:-xforwarded}
-      KC_HTTP_ENABLED: ${FEASIBILITY_KC_HTTP_ENABLED:-true}
+      KC_DB_URL: "jdbc:postgresql://auth-db:5432/${KC_DB_URL_DB:-keycloakdb}"
     volumes:
-      - ./init/feasibility-realm.json:/opt/keycloak/data/import/realm.json:ro
+      - ./init/dataportal-realm.json:/opt/keycloak/data/import/realm.json:ro
     healthcheck:
       test: [
         "CMD-SHELL",
@@ -56,4 +46,4 @@ services:
       - auth-db
 
 volumes:
-  feasibility-auth-db:
+  dataportal-auth-db:

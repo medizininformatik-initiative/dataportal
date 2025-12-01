@@ -12,7 +12,7 @@ For the general configuration of the FDE and an overview of the environment vari
 
 ## Running the FDE to provide the FDPG criteria availability and element availability reports
 
-Run the FDE by executing the `run-fde` script provided [here](/dataportal/data-node/fhir-data-evaluator/run-fde.sh).
+Run the FDE by executing the `run-fde` script provided [here](https://github.com/medizininformatik-initiative/dataportal/blob/data-node/fhir-data-evaluator/run-fde.sh).
 
 The script and therefore the FDE has to be run for two different reports, by changing the environment variable `FDE_REPORT_TYPE` as follows before executing the `run-fde.sh` script:
 

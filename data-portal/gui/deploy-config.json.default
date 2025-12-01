@@ -1,56 +1,11 @@
 {
-  "env": {
-    "name": "dev"
-  },
-  "api": {
-    "baseUrl": "/api"
-  },
-  "uiBackendApi": {
-    "baseUrl": "https://api.datenportal.localhost/api/v5"
-  },
-  "auth": {
-    "baseUrl": "https://auth.datenportal.localhost",
-    "realm": "feasibility",
-    "clientId": "feasibility-webapp",
-    "roles": ["FeasibilityUser"]
-  },
-  "legal": {
-    "version": "6.3.5",
-    "copyrightOwner": "FDPG+ Team"
-  },
-  "features": {
-    "v2": {
-      "multiplevaluedefinitions": true,
-      "multiplegroups": false,
-      "dependentgroups": false,
-      "timerestriction": true
-    },
-    "extra": {
-      "displayvaluefiltericon": false,
-      "showoptionspage": true,
-      "showdataselectionpage": false,
-      "optionpageroles": ["FeasibilityAdmin"],
-      "displayInfoMessage": true,
-      "displayUpdateInfo": false
-    }
-  },
-  "options": {
-    "sendsqcontexttobackend": true,
-    "pollingtimeinseconds": 30,
-    "pollingintervallinseconds": 10,
-    "lowerboundarypatientresult": 0,
-    "lowerboundarylocationresult": 0,
-    "dsePatientProfileUrl": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert"
-  },
-  "mock": {
-    "terminology": false,
-    "query": false,
-    "result": false,
-    "loadnsave": false
-  },
+  "authBaseUrl": "https://auth.datenportal.localhost",
+  "authClientId": "dataportal",
+  "authRealm": "dataportal",
+  "backendBaseUrl": "https://api.datenportal.localhost",
+  "copyrightOwner": "FDPG+ Team",
+  "copyrightYear": "2025",
+  "email": "info@forschen-fuer-gesundheit.de",
   "stylesheet": "FDPGTheme",
-  "fhirport": "8082",
-  "dataset": "codex",
-  "queryVersion": "v2",
-  "proposalPortalLink": "https://antrag.dev.forschen-fuer-gesundheit.de"
+  "version": "6.4.0"
 }

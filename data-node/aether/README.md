@@ -1,6 +1,6 @@
 # Overview
 
-[Aether](https://github.com/medizininformatik-initiative/aether) is a data use projct (DUP) pipeline coordination command line interface, which supports the whole process at a DUP site as follows:
+[Aether](https://github.com/medizininformatik-initiative/aether) is a data use project (DUP) pipeline coordination command line interface, which supports the whole process at a DUP site as follows:
 
 ```mermaid
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-COMPOSE_PROJECT=${FEASIBILITY_COMPOSE_PROJECT:-dataportal-node}
+COMPOSE_PROJECT=${DATA_PORTAL_COMPOSE_PROJECT:-dataportal}
 BASE_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit 1 ; pwd -P )"
 CERT_FILE=${CERT_FILE:-$BASE_DIR/auth/cert.pem}
 KEY_FILE=${KEY_FILE:-$BASE_DIR/auth/cert.key}
@@ -21,7 +21,7 @@ else
 fi
 
 # Fhir Server (Blaze) with frontend and keycloak
-if [ -f "$BASE_DIR/fhir-server/.env" ] && grep -qE '^FHIR_SERVER_FRONTEND_KEYCLOAK_ENABLED=true\s*$' "$BASE_DIR/fhir-server/.env"; then
+if [ -f "$BASE_DIR/fhir-server/.env" ] && grep -qE '^KEYCLOAK_ENABLED=true\s*$' "$BASE_DIR/fhir-server/.env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/keycloak.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/keycloak.conf.template" "$BASE_DIR/rev-proxy/conf.d/keycloak.conf"
     fi

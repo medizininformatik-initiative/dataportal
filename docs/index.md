@@ -22,4 +22,8 @@ features:
     icon: 🏥
     details: Collection of software and services needed to execute data use projects as part of a data portal
     link: /data-node/overview
+  - title: Service Version compatibility matrix
+    icon: 🧩
+    details: Shows the versions of the difference components/services needed for each data portal deployment version
+    link: /compatibility-matrix
 ---
