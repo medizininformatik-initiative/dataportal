@@ -33,7 +33,7 @@ services:
     extra_hosts:
     - "auth.localhost:host-gateway"
     volumes:
-    - "${FHIR_SERVER_FRONTEND_CA_CERT:-../auth/cert.pem}:/app/cert.pem:ro"
+    - "${CA_CERT:-../auth/cert.pem}:/app/cert.pem:ro"
 
 volumes:
   blaze-data:

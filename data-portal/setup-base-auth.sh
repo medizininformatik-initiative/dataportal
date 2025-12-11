@@ -15,7 +15,7 @@ BASE_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit 1 ; pwd -P )"
 
 echo "Generating default certificate..."
 docker run --rm -u "$(id -u):$(id -g)" -v "$BASE_DIR"/auth:/export alpine/openssl req -nodes -subj '/CN=local-ca' -x509 -newkey rsa:4096 -keyout /export/ca-key.pem -out /export/ca-cert.pem -days 99999
-docker run --rm -u "$(id -u):$(id -g)" -v "$BASE_DIR"/auth:/export alpine/openssl req -nodes -subj '/CN=localhost' -x509 -CA /export/ca-cert.pem -CAkey /export/ca-key.pem -addext "basicConstraints=CA:false" -addext "subjectAltName = DNS:datenportal.localhost, DNS:auth.datenportal.localhost, DNS:api.datenportal.localhost" -newkey rsa:4096 -keyout /export/key.pem -out /export/cert.pem -days 99998
+docker run --rm -u "$(id -u):$(id -g)" -v "$BASE_DIR"/auth:/export alpine/openssl req -nodes -subj '/CN=localhost' -x509 -CA /export/ca-cert.pem -CAkey /export/ca-key.pem -addext "basicConstraints=CA:false" -addext "subjectAltName = DNS:localhost, DNS:datenportal.localhost, DNS:auth.datenportal.localhost, DNS:api.datenportal.localhost" -newkey rsa:4096 -keyout /export/key.pem -out /export/cert.pem -days 99998
 docker run --rm -u "$(id -u):$(id -g)" -v "$BASE_DIR"/auth:/export alpine chmod -R 655 /export/cert.pem /export/key.pem
 if [ -f "$BASE_DIR"/auth/ca-cert.pem ] && [ -f "$BASE_DIR"/auth/cert.pem ]
 then

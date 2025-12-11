@@ -37,4 +37,6 @@ To install aether follow the installation instruction [here](https://github.com/
 
 Aether uses a .yml config file which allows you to configure which steps should be included in your DUP pipeline.
 
+Example call for aether in this context once installed - calling from this directory `aether pipeline --config base-pipeline-config.yml start queries/example-crtdl.json`
+
 It creates a job directory, which for each DUP project saves the output of each step, so that one can branch of or review the output from each step

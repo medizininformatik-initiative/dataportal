@@ -11,12 +11,8 @@ server {
     }
 
     location / {
-        #Used with 'subdomains.nginx.conf' 
-        proxy_pass http://dataportal-ui:8080/;
-       
-        #Used with 'context-paths.nginx.conf'       
-        #set                  $gui_upstream http://dataportal-ui:8080;
-        #proxy_pass            http://$gui_upstream$request_uri;
+        set         $gui_upstream http://dataportal-ui:8080;
+        proxy_pass  http://$gui_upstream$request_uri;
 
     }
 

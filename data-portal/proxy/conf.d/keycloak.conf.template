@@ -10,12 +10,8 @@ server {
     }
 
     location / {
-        #Used with 'subdomains.nginx.conf' 
-        proxy_pass http://auth:8080;
-
-        #Used with 'context-paths.nginx.conf'     
-        #set $auth_upstream http://auth:8080;
-        #proxy_pass http://$auth_upstream$request_uri;
+        set        $auth_upstream http://auth:8080;
+        proxy_pass http://$auth_upstream$request_uri;
     }
 
 }

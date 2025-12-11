@@ -289,8 +289,8 @@ For the portal then only tool for which this is relevant is the backend.
 
 #### Data Potal Backend
 
-The Data Potal backend supports the use of self-signed certificates from your own CAs. On each startup, the data portal backend will search through the folder /app/certs inside the container, add all found CA *.pem files to a java truststore and start the application with this truststore.
+The Data Potal backend supports the use of self-signed certificates from your own CAs. On each startup, the data portal backend will search through the folder `/opt/dataportal-backend/certs` inside the container, add all found CA *.pem files to a java truststore and start the application with this truststore.
 
-Using docker-compose, mount a folder from your host (e.g.: ./certs) to the /app/certs folder, add your *.pem files (one for each CA you would like to support) to the folder and ensure that they have the .pem extension.
+Using docker-compose, mount a folder from your host (e.g.: `../auth`) to the `/opt/dataportal-backend/certs` folder, add your *.pem files (one for each CA you would like to support) to the folder and ensure that they have the .pem extension.
 
-In this deployment repository we have prepared this for you. To add your own CA add the respective ca *.pem files to the backend/certs folder.
+In this deployment repository we have prepared this for you. To add your own CA add the respective ca *.pem files to the `auth` folder.
