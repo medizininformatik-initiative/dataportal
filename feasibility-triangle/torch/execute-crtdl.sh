@@ -6,6 +6,11 @@ TORCH_PASSWORD=${TORCH_PASSWORD:-""}
 CURL_INSECURE=${CURL_INSECURE:-false}
 
 DIR_QUERIES="queries"
+# check if queries directory exists
+if [ ! -d "$DIR_QUERIES" ]; then
+  DIR_QUERIES=$(mktemp -d)
+  printf "Created temporary queries directory: %s\n" "$DIR_QUERIES"
+fi
 
 # Parse arguments
 while getopts "f:p:" opt; do
