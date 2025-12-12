@@ -65,4 +65,5 @@ if [ -n "$content_location" ]; then
   printf "\nExtraction submitted, find your extraction under:\n\n%s\n\n" "$content_location"
 else
   printf "Content-Location header not found in the response.\n"
+  printf "Response received:\n%s\n" "$response"
 fi
