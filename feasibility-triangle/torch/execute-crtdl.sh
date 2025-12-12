@@ -5,6 +5,8 @@ TORCH_USERNAME=${TORCH_USERNAME:-""}
 TORCH_PASSWORD=${TORCH_PASSWORD:-""}
 CURL_INSECURE=${CURL_INSECURE:-false}
 
+DIR_QUERIES="queries"
+
 # Parse arguments
 while getopts "f:p:" opt; do
   case $opt in
@@ -49,14 +51,14 @@ payload="$payload
   ]
 }"
 
-echo "$payload" > queries/temp-execute-crtdl.json
+echo "$payload" > $DIR_QUERIES/temp-execute-crtdl.json
 
 response=$(curl --location -s -i $CURL_OPTIONS "${TORCH_BASE_URL}/fhir/\$extract-data" \
   --header 'Content-Type: application/fhir+json' \
   --header "Authorization: Basic ${TORCH_AUTHORIZATION}" \
-  --data @queries/temp-execute-crtdl.json)
+  --data @$DIR_QUERIES/temp-execute-crtdl.json)
 
-rm queries/temp-execute-crtdl.json
+rm $DIR_QUERIES/temp-execute-crtdl.json
 
 # Get content location
 content_location=$(printf "%s" "$response" | grep -i 'Content-Location:' | awk '{print $2}' | tr -d '\r')
