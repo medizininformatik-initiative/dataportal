@@ -7,6 +7,7 @@ Please refer to the architecture of a data node [here](architecture.md) and a li
 
 ## Aether use
 
+See aether documentation [here](https://medizininformatik-initiative.github.io/aether/)
 
 
 

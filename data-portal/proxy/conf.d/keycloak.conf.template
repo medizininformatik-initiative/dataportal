@@ -10,7 +10,7 @@ server {
     }
 
     location / {
-        set        $auth_upstream http://auth:8080;
+        set        $auth_upstream auth:8080;
         proxy_pass http://$auth_upstream$request_uri;
     }
 

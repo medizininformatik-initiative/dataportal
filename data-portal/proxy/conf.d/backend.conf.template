@@ -11,7 +11,7 @@ server {
     }
 
     location / {
-        set        $backend_upstream http://dataportal-backend:8090;
+        set        $backend_upstream dataportal-backend:8090;
         proxy_pass http://$backend_upstream$request_uri;
     }
 

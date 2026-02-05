@@ -1,6 +1,6 @@
 services:
   terminology-server:
-    image: samply/blaze:1.2.0
+    image: samply/blaze:1.5.0
     healthcheck:
       test: ["CMD-SHELL", "curl --fail -s http://localhost:8080/health"]
       interval: 5s

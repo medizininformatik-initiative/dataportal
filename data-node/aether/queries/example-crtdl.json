@@ -42,7 +42,12 @@
                 "id": "pat",
                 "name": "standard pat",
                 "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
-                "attributes": []
+                "attributes": [
+                    {
+                        "attributeRef": "Patient.active",
+                        "mustHave": false
+                    }
+                ]
             },
             {
                 "id": "diags",

@@ -54,8 +54,8 @@ pipeline:
   #       use the correct one based on your input (TORCH URL → torch, local dir → local_import, etc.)
   enabled_steps:
     - torch
-    #- dimp
-    #- flattening
+    - dimp
+    - flattening
     #- send
 
 compression:

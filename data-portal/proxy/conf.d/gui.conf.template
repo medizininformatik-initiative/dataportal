@@ -11,7 +11,7 @@ server {
     }
 
     location / {
-        set         $gui_upstream http://dataportal-ui:8080;
+        set         $gui_upstream dataportal-ui:8080;
         proxy_pass  http://$gui_upstream$request_uri;
 
     }

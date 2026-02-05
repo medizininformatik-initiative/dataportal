@@ -28,6 +28,12 @@
                                 "display": "Male",
                                 "system": "http://hl7.org/fhir/administrative-gender",
                                 "version": "2099"
+                            },
+                            {
+                                "code": "female",
+                                "display": "female",
+                                "system": "http://hl7.org/fhir/administrative-gender",
+                                "version": "2099"
                             }
                         ],
                         "type": "concept"

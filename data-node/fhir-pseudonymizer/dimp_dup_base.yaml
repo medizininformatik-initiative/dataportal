@@ -9,16 +9,19 @@ fhirPathRules:
     method: keep
   - path: Patient.address.postalCode
     method: keep
+  ### Remove if patient deceased  
+  - path: Patient.deceased
+    method: redact
   ### Generalize PostalCode to first two characters
   - path: Patient.address.postalCode
     method: generalize
     cases:
       "$this": "$this.toString().substring(0,2)"
-  ### Generalize BirthDate to Year
+  ### Generalize BirthDate to month
   - path: Patient.birthDate
     method: generalize
     cases:
-      "$this": "$this.toString().replaceMatches('(?<year>\\\\d{2,4})-(?<month>\\\\d{2})-(?<day>\\\\d{2})\\\\b', '${year}')"
+      "$this": "$this.toString().replaceMatches('(?<year>\\\\d{2,4})-(?<month>\\\\d{2})-(?<day>\\\\d{2})\\\\b', '${year}-${month}')"
   ###
   ### A Method needs to be added here to add an extension with the quarter the Patient was born in
   ### Alternatively it should be considered if one can not simply generalize to month instead of quarter
