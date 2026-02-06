@@ -7,6 +7,10 @@ services:
       KEYCLOAK_HOSTNAME: ${KEYCLOAK_HOSTNAME:-auth.localhost}
       FLARE_HOSTNAME: ${FLARE_HOSTNAME:-flare.localhost}
       TORCH_HOSTNAME: ${TORCH_HOSTNAME:-torch.localhost}
+      TERMINOLOGY_SERVER_HOSTNAME: ${TERMINOLOGY_SERVER_HOSTNAME:-terminology.localhost}
+      FHIR_PSEUDONYMIZER_HOSTNAME: ${FHIR_PSEUDONYMIZER_HOSTNAME:-dimp.localhost}
+      FHIR_FLATTENER_HOSTNAME: ${FHIR_FLATTENER_HOSTNAME:-flattener.localhost}
+      FHIR_VALIDATOR_HOSTNAME: ${FHIR_VALIDATOR_HOSTNAME:-validator.localhost}
     ports:
       - ${DATA_NODE_REV_PROXY_PORT:-444}:8443
     volumes:

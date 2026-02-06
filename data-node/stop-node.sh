@@ -9,6 +9,7 @@ docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/flare/docker-compose.yml \
                                      -f "$BASE_DIR"/fhir-flattener/docker-compose.yml \
                                      -f "$BASE_DIR"/fhir-pseudonymizer/docker-compose.yml \
                                      -f "$BASE_DIR"/fhir-pseudonymizer/docker-compose.vfps.yml \
+                                     -f "$BASE_DIR"/fhir-validator/docker-compose.yml \
                                      -f "$BASE_DIR"/terminology-server/docker-compose.yml \
                                      -f "$BASE_DIR"/fhir-server/docker-compose.yml \
                                      -f "$BASE_DIR"/fhir-server/keycloak.docker-compose.yml \

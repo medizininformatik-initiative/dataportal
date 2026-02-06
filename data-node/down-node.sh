@@ -6,6 +6,7 @@ BASE_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit 1 ; pwd -P )"
 docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/rev-proxy/docker-compose.yml \
                                      -f "$BASE_DIR"/torch/docker-compose.yml \
                                      -f "$BASE_DIR"/fhir-flattener/docker-compose.yml \
+                                     -f "$BASE_DIR"/fhir-validator/docker-compose.yml \
                                      -f "$BASE_DIR"/terminology-server/docker-compose.yml \
                                      -f "$BASE_DIR"/fhir-pseudonymizer/docker-compose.yml \
                                      -f "$BASE_DIR"/fhir-pseudonymizer/docker-compose.vfps.yml \

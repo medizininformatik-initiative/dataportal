@@ -95,3 +95,15 @@ else
         rm "$BASE_DIR/rev-proxy/conf.d/fhir-flattener.conf"
     fi
 fi
+
+# FHIR Validator
+if [ -f "$BASE_DIR/fhir-validator/.env" ] && grep -qE '^VALIDATION_ENABLED=true\s*$' "$BASE_DIR/fhir-validator/.env"; then
+    if [ ! -f "$BASE_DIR/rev-proxy/conf.d/fhir-validator.conf" ]; then
+        cp "$BASE_DIR/rev-proxy/conf.d/fhir-validator.conf.template" "$BASE_DIR/rev-proxy/conf.d/fhir-validator.conf"
+    fi
+    COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/fhir-validator/docker-compose.yml up -d
+else
+    if [ -f "$BASE_DIR/rev-proxy/conf.d/fhir-validator.conf" ]; then
+        rm "$BASE_DIR/rev-proxy/conf.d/fhir-validator.conf"
+    fi
+fi

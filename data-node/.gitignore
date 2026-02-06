@@ -13,3 +13,6 @@ aether/queries/*
 
 terminology-server/sct-release
 aether/jobs
+
+fhir-validator/igs/*
+!fhir-validator/igs/README.md
