@@ -49,14 +49,14 @@ payload="$payload
   ]
 }"
 
-echo "$payload" > queries/temp-execute-crtdl.json
+echo "$payload" > temp-execute-crtdl.json
 
 response=$(curl --location -s -i $CURL_OPTIONS "${TORCH_BASE_URL}/fhir/\$extract-data" \
   --header 'Content-Type: application/fhir+json' \
   --header "Authorization: Basic ${TORCH_AUTHORIZATION}" \
-  --data @queries/temp-execute-crtdl.json)
+  --data @temp-execute-crtdl.json)
 
-rm queries/temp-execute-crtdl.json
+rm temp-execute-crtdl.json
 
 # Get content location
 content_location=$(printf "%s" "$response" | grep -i 'Content-Location:' | awk '{print $2}' | tr -d '\r')
