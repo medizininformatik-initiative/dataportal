@@ -1,3 +1,6 @@
+#!/bin/bash
+# shellcheck disable=SC2016
+
 curl --request POST \
   --url 'http://localhost:8088/fhir/ViewDefinition/$run' \
   --header 'accept: text/csv' \

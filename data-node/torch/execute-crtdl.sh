@@ -64,5 +64,5 @@ content_location=$(printf "%s" "$response" | grep -i 'Content-Location:' | awk '
 if [ -n "$content_location" ]; then
   printf "\nExtraction submitted, find your extraction under:\n\n%s\n\n" "$content_location"
 else
-  printf "ERROR: \n$(echo "$response" | grep '^{.*}$')"
+  printf "ERROR: \n%s" "$(echo "$response" | grep '^{.*}$')"
 fi
