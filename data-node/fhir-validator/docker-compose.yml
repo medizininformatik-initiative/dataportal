@@ -1,0 +1,37 @@
+services:
+  fhir-validator:
+    image: ghcr.io/medizininformatik-initiative/mii-fhir-validator:0.0.1-alpha.1
+    ports:
+      - "8080:8080"
+    environment:
+      - JAVA_OPTS=-Xmx4g # Adjust memory allocation as needed
+      - FHIR_VERSION=4.0
+      # Use nginx as HTTPS proxy to Blaze (validator forces HTTPS)
+      - TX_SERVER=${TX_SERVER:-http://terminology-server:8080/fhir}
+      # For MII Ontoserver instead of Blaze, use docker-compose.override.yml.example
+      # - IG_PARAMS= -ig de.medizininformatikinitiative.kerndatensatz.base#2026.0.0
+      # -ig /igs/de.medizininformatikinitiative.kerndatensatz.base-2026.0.0.tgz
+      - IG_PARAMS=
+          -ig de.basisprofil.r4#1.5.4
+          -ig de.medizininformatikinitiative.kerndatensatz.meta#2026.0.0
+          -ig de.medizininformatikinitiative.kerndatensatz.base#2026.0.0
+          -ig de.medizininformatikinitiative.kerndatensatz.laborbefund#2026.0.0
+          -ig de.medizininformatikinitiative.kerndatensatz.medikation#2026.0.0
+          -ig de.medizininformatikinitiative.kerndatensatz.consent#2026.0.0
+          -ig de.medizininformatikinitiative.kerndatensatz.bildgebung#2026.0.0
+          -ig de.medizininformatikinitiative.kerndatensatz.biobank#2026.0.0
+          -ig de.medizininformatikinitiative.kerndatensatz.molgen#2026.0.4
+          -ig de.medizininformatikinitiative.kerndatensatz.onkologie#2026.0.0
+          -ig de.medizininformatikinitiative.kerndatensatz.patho#2026.0.0
+          -ig de.medizininformatikinitiative.kerndatensatz.icu#2026.0.0-ballot
+    extra_hosts:
+      - "terminology.localhost:host-gateway"
+    volumes:
+      - ./igs:/igs:ro
+      - ./config/fhir-settings.json:/app/fhir-settings.json:ro
+      - ../auth/cert.pem:/etc/nginx/certs/self-signed.crt:ro
+      - fhir-package-cache:/root/.fhir/packages
+    restart: unless-stopped
+
+volumes:
+  fhir-package-cache:

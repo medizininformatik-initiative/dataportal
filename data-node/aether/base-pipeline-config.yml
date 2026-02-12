@@ -1,0 +1,78 @@
+services:
+  torch:
+    base_url: "http://localhost:8086"
+
+    # TORCH authentication credentials
+    username: ""
+    password: ""
+    extraction_timeout_minutes: 30
+    polling_interval_seconds: 5
+    max_polling_interval_seconds: 30
+
+  #local_import:
+  #  dir: "./my_input_data
+
+  dimp:
+    url: "http://localhost:8083/fhir"
+    bundle_split_threshold_mb: 10
+
+  flattening:
+    # fhir-flattener service URL (internal Docker network hostname and port)
+    service_url: "http://localhost:8088"
+
+    # Path to the flatten-lookup.json file containing element-to-ViewDefinition mappings
+    # This file maps CRTDL attributeRef values to SQL-on-FHIR ViewDefinition snippets
+    lookup_path: "./flatteningLookup.json"
+
+    # Output formats - currently only "csv" is supported
+    formats:
+      - csv
+
+    # Request timeout for the flattening service
+    # Default: 30m (30 minutes)
+    timeout: 30m
+
+  send:
+    url: "http://localhost:8099/fhir"
+    send_as: "direct_resource_load"
+    batch_size: 100
+    #url: "https://fhir.localhost:444/fhir"
+    #oauth_issuer_uri: "https://auth.localhost:444/realms/blaze"
+    #oauth_client_id: "account"
+    #oauth_client_secret: "insecure"
+
+    #server_url: "https://fhir.localhost:444/fhir"
+    #project_identifier: "PROJECT-IDENT"
+    #organization_identifier: "my-dic-ident.de"
+
+pipeline:
+  # List of steps to execute in order
+  # Import step options (must be first): torch, local_import, http_import
+  # Other step options: dimp, validation, csv_conversion, parquet_conversion
+  # NOTE: At least one import step must be first in enabled_steps
+  # NOTE: Enable all the import types you want to support - the system will automatically
+  #       use the correct one based on your input (TORCH URL → torch, local dir → local_import, etc.)
+  enabled_steps:
+    - torch
+    - dimp
+    - flattening
+    #- send
+
+compression:
+  enabled: false
+  level: "best"
+
+retry:
+  # Maximum number of retry attempts for transient errors (network, 5xx)
+  # Range: 1-10
+  max_attempts: 5
+
+  # Initial backoff delay in milliseconds
+  initial_backoff_ms: 1000
+
+  # Maximum backoff delay in milliseconds (exponential backoff cap)
+  max_backoff_ms: 30000
+
+# Directory to store job state and data
+# Can be absolute or relative path
+jobs_dir: "./jobs"

@@ -1,0 +1,1 @@
+# folder for igs - download igs before using the validator

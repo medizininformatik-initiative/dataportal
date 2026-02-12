@@ -1,0 +1,19 @@
+services:
+  flare:
+    image: ghcr.io/medizininformatik-initiative/flare:2.6.0
+    ports:
+      - ${DATA_NODE_FLARE_PORT:-127.0.0.1:8084}:8080
+    env_file:
+      - .env
+    restart: unless-stopped
+    extra_hosts:
+      - "auth.localhost:host-gateway"
+    volumes:
+      - ${FLARE_SELF_SIGNED_CA_CERT_PATH:-../auth}:/app/certs:ro}
+      - type: volume
+        source: feas-flare-cache
+        target: /app/cache
+
+volumes:
+  feas-flare-cache:
+    name: "feas-flare-cache"

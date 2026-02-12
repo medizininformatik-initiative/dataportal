@@ -1,20 +1,22 @@
-# Feasibility Deploy
+# MII Dataportal
 
-[![version](https://img.shields.io/badge/version-5.4.6-green.svg)](https://github.com/medizininformatik-initiative/feasibility-deploy/releases)
+[![GitHub[+] Release](https://img.shields.io/github/v/release/medizininformatik-initiative/dataportal?sort=date&display_name=tag&style=flat&logo=github&label=current)]() [![Docs](https://img.shields.io/badge/Docs-green.svg)](https://medizininformatik-initiative.github.io/dataportal/)
 
-This feasibility deployment repository offers an example deployment repository using docker-compose and official images to set up a feasibility portal (central) as well as feasibility triangle (decentral - at site)
-
-It is divided into two parts:
-
-A feasibility portal part, which creates a deployment of the centralized components necessary for the deployment of the decentralized feasibility query tool.
-
-A feasibility triangle part, which provides a deployment for the decentralized components.
+> [!WARNING] 
+> THIS is the main branch - for deployment please checkout a specific release tag - see current above.
 
 
-## Feasibility Portal (central)
+The MII Dataportal repository packages all the required tooling and software necessary to run data use projects accross multiple distributed sites with a focus on the data side of the equation.
 
-See: `feasibility-portal/README.md` of this repository.
+This includes:
 
-## Feasibility Triangle (decentral)
+A **Data Portal**, which allows researchers to create feasibility queries and data use project extraction queries
 
-See: `feasibility-triangle/README.md` of this repository.
+and
+
+A **Data Node**, which installed at each participating site supports the execution of feasibility and data use project queries
+
+For more information please refer to the official [![Documentation](https://img.shields.io/badge/Documentation-green.svg)](https://medizininformatik-initiative.github.io/dataportal/)
+
+
+

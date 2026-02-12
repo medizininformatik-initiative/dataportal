@@ -1,0 +1,81 @@
+---
+fhirVersion: R4
+fhirPathRules:
+# Base DIMP
+## Patient
+  - path: Patient.address.country
+    method: keep
+  - path: Patient.address.state
+    method: keep
+  - path: Patient.address.postalCode
+    method: keep
+  ### Remove if patient deceased  
+  - path: Patient.deceased
+    method: redact
+  ### Generalize PostalCode to first two characters
+  - path: Patient.address.postalCode
+    method: generalize
+    cases:
+      "$this": "$this.toString().substring(0,2)"
+  ### Generalize BirthDate to month
+  - path: Patient.birthDate
+    method: generalize
+    cases:
+      "$this": "$this.toString().replaceMatches('(?<year>\\\\d{2,4})-(?<month>\\\\d{2})-(?<day>\\\\d{2})\\\\b', '${year}-${month}')"
+  ###
+  ### A Method needs to be added here to add an extension with the quarter the Patient was born in
+  ### Alternatively it should be considered if one can not simply generalize to month instead of quarter
+  ### In this case the birthDate would simply be a normaal date with 7 characters "2017-01" or if no month is provided "2017"
+
+## Base - All Resources
+  - path: nodesByType('Address')
+    method: redact
+### Cryptohash IDs and References
+  - path: Bundle.entry.request.url
+    method: cryptoHash
+    truncateToMaxLength: 32
+  - path: Resource.id
+    method: cryptoHash
+    truncateToMaxLength: 32
+  - path: nodesByType('Reference').reference
+    method: cryptoHash
+    truncateToMaxLength: 32
+  - path: Bundle.entry.fullUrl
+    method: cryptoHash
+    truncateToMaxLength: 32
+  - path: Bundle.entry.request.where(method = 'PUT' or method = 'DELETE').url
+    method: cryptoHash
+    truncateToMaxLength: 32
+
+## Identifier
+  ### Encounter Identifier
+  - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='VN').exists()).value
+    method: pseudonymize
+    domain: https://my-dic-domain/identifiers/encounter-id
+  ### Patient Identifier
+  - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='MR').exists()).value
+    method: pseudonymize
+    domain: https://my-dic-domain/identifiers/patient-id
+
+## Clean References
+  - path: nodesByType('Reference').display
+    method: redact
+  - path: nodesByType('Reference').identifier
+    method: redact
+
+## Additional Insurance (fail safe) - Removes IDAT if unpseudonymized data is processed (precautionary measure; should not happen)
+### Name
+  - path: nodesByType('HumanName')
+    method: redact
+### Insurance Number
+  - path: nodesByType('Identifier').where(type.coding.where(system='http://fhir.de/CodeSystem/identifier-type-de-basis' and (code='GKV' or code='PKV' or code='KVZ10')).exists())
+    method: redact
+### Age
+  - path: nodesByType('Age')
+    method: redact
+### Annotation
+  - path: nodesByType('Annotation')
+    method: redact
+### ContactPoint
+  - path: nodesByType('ContactPoint')
+    method: redact

@@ -1,0 +1,12 @@
+services:
+  fhir-data-evaluator:
+    image: ghcr.io/medizininformatik-initiative/fhir-data-evaluator:1.3.2
+    env_file:
+      - .env
+    extra_hosts:
+      - "auth.localhost:host-gateway"
+      - "localhost:host-gateway"
+    volumes:
+    - "${FDE_INPUT_MEASURE:-./measure/kds-measure.json}:/app/measure.json"
+    - "${FDE_OUTPUT_DIR:-./output}:/app/output"
+    - ../auth:/app/certs

@@ -1,0 +1,39 @@
+services:
+  fhir-server:
+    image: samply/blaze:1.5.0
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail -s http://localhost:8080/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    env_file:
+      - .env
+    ports:
+    - ${PORT_FHIR_SERVER_LOCALHOST:-127.0.0.1:8081}:8080
+    extra_hosts:
+    - "auth.localhost:host-gateway"
+    restart: unless-stopped
+    volumes:
+    - "./custom-search-parameters.json:/app/custom-search-parameters.json:ro"
+    - "blaze-data:/app/data"
+    - "${LOCAL_OPENID_CLIENT_TRUST_STORE:-../auth/trust-store.p12}:/app/trust-store.p12"
+
+  fhir-server-frontend:
+    image: samply/blaze-frontend:1.5.0
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider http://127.0.0.1:3000/fhir/"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    env_file:
+      - .env
+    ports:
+    - ${PORT_FHIR_SERVER_FRONTEND_LOCALHOST:-127.0.0.1:8300}:3000
+    extra_hosts:
+    - "auth.localhost:host-gateway"
+    volumes:
+    - "${CA_CERT:-../auth/cert.pem}:/app/cert.pem:ro"
+
+volumes:
+  blaze-data:

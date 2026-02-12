@@ -1,0 +1,70 @@
+services:
+  dataportal-backend:
+    restart: unless-stopped
+    image: ghcr.io/medizininformatik-initiative/dataportal-backend:8.4.0
+    environment:
+      QUERYRESULT_DISABLE_LOG_FILE_ENCRYPTION: true
+    env_file:
+      - .env
+    ports:
+    - ${DATAPORTAL_BACKEND_PORT:-127.0.0.1:8091}:8090
+    depends_on:
+      dataportal-postgres:
+        condition: service_started
+      dataportal-elastic:
+        condition: service_healthy
+      init-elasticsearch:
+        condition: service_completed_successfully
+    extra_hosts:
+      - "auth.localhost:host-gateway"
+    volumes:
+      - ../auth:/opt/dataportal-backend/certs
+
+  dataportal-postgres:
+    image: 'postgres:16-alpine'
+    ports:
+      - ${DATAPORTAL_BACKEND_DB_PORT:-127.0.0.1:5432}:5432
+    environment:
+      POSTGRES_USER: ${DATABASE_USER:-dataportaluser}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-dataportalpw}
+      POSTGRES_DB: ${DATABASE_DBNAME:-dataportal}
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: dataportal-postgres-data
+        target: /var/lib/postgresql/data
+  dataportal-elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.16.0
+    healthcheck:
+      test: [ "CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1" ]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    environment:
+      discovery.type: single-node
+      ES_JAVA_OPTS: -Xmx512m -Xms512m
+      node.name: es01
+      cluster.name: elasticsearch
+      xpack.security.enabled: false
+    volumes:
+      - type: volume
+        source: dataportal-elastic-data
+        target: /usr/share/elasticsearch/data
+  init-elasticsearch:
+    image: ghcr.io/medizininformatik-initiative/dataportal-es-init:1.2.1
+    depends_on:
+      dataportal-elastic:
+        condition: service_healthy
+    environment:
+      ES_HOST: http://dataportal-elastic
+      ES_PORT: 9200
+      ONTO_GIT_TAG: v3.9.6
+      ONTO_REPO: https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/download
+      DOWNLOAD_FILENAME: elastic.zip
+      EXIT_ON_EXISTING_INDICES: ${DATAPORTAL_ES_INIT_EXIT_ON_EXISTING_INDICES:-false}
+
+volumes:
+  dataportal-postgres-data:
+    name: "dataportal-postgres-data"
+  dataportal-elastic-data:
+    name: "dataportal-elastic-data"

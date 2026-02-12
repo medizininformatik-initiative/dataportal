@@ -1,0 +1,48 @@
+services:
+  fhir-server-keycloak-db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${KC_DB_URL_DB:-keycloakdb}
+      POSTGRES_USER: ${KC_DB_USERNAME:-keycloakdbuser}
+      POSTGRES_PASSWORD: ${KC_DB_PASSWORD:-keycloakdbpw}
+    healthcheck:
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U ${DB_USER} -d ${DB_NAME}'" ]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
+    volumes:
+      - "fhir-server-keycloak-db:/var/lib/postgresql/data"
+  fhir-server-frontend-keycloak:
+    image: quay.io/keycloak/keycloak:26.3.1
+    command: ["start", "--import-realm"]
+    restart: unless-stopped
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "exec 3<>/dev/tcp/localhost/9000; \
+        echo -en 'GET /health/ready' >&3; \
+        # Give the server a moment to respond, then search for 'UP'
+        if timeout 3 cat <&3 | grep -m 1 'UP'; then \
+          exec 3<&-; exec 3>&-; exit 0; \
+        else \
+          exec 3<&-; exec 3>&-; exit 1; \
+        fi"
+      ]
+      start_period: 10s
+      interval: 5s
+      timeout: 2s
+      retries: 20
+    env_file:
+      - .env
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: "jdbc:postgresql://fhir-server-keycloak-db:5432/${KC_DB_URL_DB:-keycloakdb}"
+    volumes:
+      - "./keycloak:/opt/keycloak/data/import"
+    depends_on:
+      - fhir-server-keycloak-db
+
+volumes:
+  fhir-server-keycloak-db:
