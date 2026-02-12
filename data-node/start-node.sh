@@ -9,7 +9,7 @@ TRUST_STORE_FILE=${KEY_FILE:-$BASE_DIR/auth/trust-store.p12}
 
 
 # Terminology Server
-if [ -f "$BASE_DIR/terminology-server/.env" ] && grep -qE '^TERMINOLOGY_SERVER_ENABLED=true\s*$' "$BASE_DIR/terminology-server/.env"; then
+if [ -f "$BASE_DIR/terminology-server/.env" ] && grep -qE '^TERMINOLOGY_SERVER_ENABLED="?true"?\s*$' "$BASE_DIR/terminology-server/.env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf.template" "$BASE_DIR/rev-proxy/conf.d/terminology-server.conf"
     fi
@@ -21,7 +21,7 @@ else
 fi
 
 # Fhir Server (Blaze) with frontend and keycloak
-if [ -f "$BASE_DIR/fhir-server/.env" ] && grep -qE '^KEYCLOAK_ENABLED=true\s*$' "$BASE_DIR/fhir-server/.env"; then
+if [ -f "$BASE_DIR/fhir-server/.env" ] && grep -qE '^KEYCLOAK_ENABLED="?true"?\s*$' "$BASE_DIR/fhir-server/.env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/keycloak.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/keycloak.conf.template" "$BASE_DIR/rev-proxy/conf.d/keycloak.conf"
     fi
@@ -47,7 +47,7 @@ else
 fi
 
 # FLARE
-if [ -f "$BASE_DIR/flare/.env" ] && grep -qE '^FLARE_ENABLED=true\s*$' "$BASE_DIR/flare/.env"; then
+if [ -f "$BASE_DIR/flare/.env" ] && grep -qE '^FLARE_ENABLED="?true"?\s*$' "$BASE_DIR/flare/.env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/flare.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/flare.conf.template" "$BASE_DIR/rev-proxy/conf.d/flare.conf"
     fi
@@ -59,7 +59,7 @@ else
 fi
 
 # TORCH
-if [ -f "$BASE_DIR/torch/.env" ] && grep -qE '^TORCH_ENABLED=true\s*$' "$BASE_DIR/torch/.env"; then
+if [ -f "$BASE_DIR/torch/.env" ] && grep -qE '^TORCH_ENABLED="?true"?\s*$' "$BASE_DIR/torch/.env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/torch.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/torch.conf.template" "$BASE_DIR/rev-proxy/conf.d/torch.conf"
     fi
@@ -72,7 +72,7 @@ fi
 
 
 # FHIR Pseudonymizer (DIMP)
-if [ -f "$BASE_DIR/fhir-pseudonymizer/.env" ] && grep -qE '^DIMP_ENABLED=true\s*$' "$BASE_DIR/fhir-pseudonymizer/.env"; then
+if [ -f "$BASE_DIR/fhir-pseudonymizer/.env" ] && grep -qE '^DIMP_ENABLED="?true"?\s*$' "$BASE_DIR/fhir-pseudonymizer/.env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/fhir-pseudonymizer.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/fhir-pseudonymizer.conf.template" "$BASE_DIR/rev-proxy/conf.d/fhir-pseudonymizer.conf"
     fi
@@ -85,7 +85,7 @@ else
 fi
 
 # FHIR Flattener
-if [ -f "$BASE_DIR/fhir-flattener/.env" ] && grep -qE '^FLATTENING_ENABLED=true\s*$' "$BASE_DIR/fhir-flattener/.env"; then
+if [ -f "$BASE_DIR/fhir-flattener/.env" ] && grep -qE '^FLATTENING_ENABLED="?true"?\s*$' "$BASE_DIR/fhir-flattener/.env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/fhir-flattener.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/fhir-flattener.conf.template" "$BASE_DIR/rev-proxy/conf.d/fhir-flattener.conf"
     fi
@@ -97,7 +97,7 @@ else
 fi
 
 # FHIR Validator
-if [ -f "$BASE_DIR/fhir-validator/.env" ] && grep -qE '^VALIDATION_ENABLED=true\s*$' "$BASE_DIR/fhir-validator/.env"; then
+if [ -f "$BASE_DIR/fhir-validator/.env" ] && grep -qE '^VALIDATION_ENABLED="?true"?\s*$' "$BASE_DIR/fhir-validator/.env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/fhir-validator.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/fhir-validator.conf.template" "$BASE_DIR/rev-proxy/conf.d/fhir-validator.conf"
     fi

@@ -13,7 +13,7 @@ on:
     - develop
 
 env:
-  FEASIBILITY_COMPOSE_PROJECT: test
+  DATA_PORTAL_COMPOSE_PROJECT: test
 
 jobs:
   lint:
@@ -28,7 +28,7 @@ jobs:
       with:
         ignore_paths: .github/scripts
 
-  test-feasibility-triangle-fhir-server:
+  test-data-node-fhir-server:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,37 +39,46 @@ jobs:
       run: .github/scripts/install-blazectl.sh
 
     - name: Initialize .env's
-      run: feasibility-triangle/initialise-triangle-env-files.sh
+      run: data-node/initialise-node-env-files.sh
 
     - name: Change Configuration for localhost
       run: |
-        sed -i -r -e 's#^(FHIR_SERVER_OPENID_PROVIDER_URL)=.*$#\1=https://auth.localhost:444/realms/blaze#' \
-                  -e 's#^(FHIR_SERVER_KC_HOSTNAME_URL)=.*$#\1=https://auth.localhost:444/#' \
-                  -e 's#^(FHIR_SERVER_KC_HTTP_RELATIVE_PATH)=.*$#\1=/#' \
-            feasibility-triangle/fhir-server/.env
-        sed -i -r -e 's#8084#18084#g' \
-                  -e 's#^(FLARE_FHIR_OAUTH_ISSUER_URI)=.*$#\1=https://auth.localhost:444/realms/blaze#' \
-            feasibility-triangle/flare/.env
-        sed -i -r -e 's#^(FHIR_SERVER_HOSTNAME)=.*$#\1=fhir.localhost#' \
-                  -e 's#^(FLARE_HOSTNAME)=.*$#\1=flare.localhost#' \
-                  -e 's#^(KEYCLOAK_HOSTNAME)=.*$#\1=auth.localhost#' \
-                  -e 's#^(FEASIBILITY_TRIANGLE_REV_PROXY_NGINX_CONFIG)=.*$#\1=./subdomains.nginx.conf#' \
-            feasibility-triangle/rev-proxy/.env
+        sed -i -r -e 's#^(ENABLE_TERMINOLOGY_SERVICE)=.*$#\1="false"#' \
+            data-node/terminology-server/.env
+        sed -i -r -e 's#^(FLARE_ENABLED)=.*$#\1="false"#' \
+            data-node/flare/.env
+        sed -i -r -e 's#^(TORCH_ENABLED)=.*$#\1="false"#' \
+            data-node/torch/.env
+        sed -i -r -e 's#^(DIMP_ENABLED)=.*$#\1="false"#' \
+            data-node/fhir-pseudonymizer/.env
+        sed -i -r -e 's#^(FLATTENING_ENABLED)=.*$#\1="false"#' \
+            data-node/fhir-flattener/.env
+        sed -i -r -e 's#^(VALIDATION_ENABLED)=.*$#\1="false"#' \
+            data-node/fhir-validator/.env
+        sed -i -r -e 's#^(OPENID_PROVIDER_URL)=.*$#\1="https://auth.localhost:444/realms/blaze"#' \
+                  -e 's#^(KC_HOSTNAME)=.*$#\1="https://auth.localhost:444/"#' \
+                  -e 's#^(KC_HTTP_RELATIVE_PATH)=.*$#\1=/#' \
+            data-node/fhir-server/.env
+        sed -i -r -e 's#^(FHIR_SERVER_HOSTNAME)=.*$#\1="fhir.localhost"#' \
+                  -e 's#^(FLARE_HOSTNAME)=.*$#\1="flare.localhost"#' \
+                  -e 's#^(KEYCLOAK_HOSTNAME)=.*$#\1="auth.localhost"#' \
+                  -e 's#^(DATA_NODE_REV_PROXY_NGINX_CONFIG)=.*$#\1="./subdomains.nginx.conf"#' \
+            data-node/rev-proxy/.env
 
     - name: Generate certificate
       env:
         CERT_DOMAINS: "fhir.localhost, flare.localhost, auth.localhost"
-      run: feasibility-triangle/generate-cert.sh
+      run: data-node/generate-cert.sh
 
-    - name: Start Triangle
-      run: feasibility-triangle/start-triangle.sh
+    - name: Start Data Node
+      run: data-node/start-node.sh
 
     - name: Load Data
       run: |
-        ACCESS_TOKEN="$(feasibility-triangle/get-fhir-server-access-token.sh)"
-        blazectl --no-progress --server https://fhir.localhost:444/fhir --certificate-authority feasibility-triangle/auth/cert.pem --token "$ACCESS_TOKEN" upload .github/test-data
+        ACCESS_TOKEN="$(data-node/get-fhir-server-access-token.sh)"
+        blazectl --no-progress --server https://fhir.localhost:444/fhir --certificate-authority data-node/auth/cert.pem --token "$ACCESS_TOKEN" upload .github/test-data
 
     - name: Run Test Queries
       run: |
-        ACCESS_TOKEN="$(feasibility-triangle/get-fhir-server-access-token.sh)"
-        .github/scripts/test-basic-queries.sh https://fhir.localhost:444/fhir "$ACCESS_TOKEN" feasibility-triangle/auth/cert.pem
+        ACCESS_TOKEN="$(data-node/get-fhir-server-access-token.sh)"
+        .github/scripts/test-basic-queries.sh https://fhir.localhost:444/fhir "$ACCESS_TOKEN" data-node/auth/cert.pem
