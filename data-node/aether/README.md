@@ -30,7 +30,9 @@ flowchart LR
 
 ## Installing aether
 
-To install aether follow the installation instruction [here](https://github.com/medizininformatik-initiative/aether?tab=readme-ov-file#installation)
+To install aether follow the installation instruction [here](https://medizininformatik-initiative.github.io/aether/getting-started/installation.html)
+
+For version compatibility with the dataportal [see](https://medizininformatik-initiative.github.io/dataportal/compatibility-matrix.html)
 
 
 ## Using aether
