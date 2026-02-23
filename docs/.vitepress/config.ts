@@ -78,7 +78,8 @@ export default withMermaid({
                         link: '/data-node/use.md',
                         items: [
                             { text: 'fhir-data-evaluator', link: '/data-node/fhir-data-evaluator.md' },
-                            { text: 'aether', link: '/data-node/aether.md' }
+                            { text: 'aether', link: '/data-node/aether.md' },
+                            { text: 'mii-fhir-validator', link: '/data-node/mii-fhir-validator.md' }
                         ]
                     },
                 ]
