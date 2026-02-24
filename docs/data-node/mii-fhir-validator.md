@@ -2,20 +2,19 @@
 
 A locally deployable FHIR validation service. This service includes:
 
-FHIR Validator as a local HTTP service
+The FHIR Validator as a local HTTP service
 Blaze terminology service (default, no authentication required)
-Optional: Nginx proxy for certificate-based access to MII Ontoserver
 Support for offline Implementation Guides
 
 The aim of this validator is to create a validator, pre-loaded with packages from the MII, so that validation is harmonized accross the MII sites.
 
 ## Configuration
 
-For the general configuration of the validator [see](https://github.com/medizininformatik-initiative/mii-fhir-validator)
+For the general configuration of the validator [see](https://github.com/medizininformatik-initiative/mii-fhir-validator).
 
 Note that in order for the validator to function properly a terminology server needs to be set up, which contains all the relevant terminologies.
 
-We provide a reference implementation [here](https://github.com/medizininformatik-initiative/dataportal/tree/main/data-node/terminology-server)
+We provide a reference implementation [here](https://github.com/medizininformatik-initiative/dataportal/tree/main/data-node/terminology-server).
 
 ## Using the validator
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASE_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit 1 ; pwd -P )"
-envfiles=( "$BASE_DIR/gui/deploy-config.json" "$BASE_DIR/backend/.env" "$BASE_DIR/keycloak/.env" "$BASE_DIR/proxy/.env")
+envfiles=( "$BASE_DIR/gui/deploy-config.json" "$BASE_DIR/backend/.env" "$BASE_DIR/keycloak/.env" "$BASE_DIR/proxy/.env" "$BASE_DIR/availability-updater/.env")
 
 for file in "${envfiles[@]}"
 do
