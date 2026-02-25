@@ -5,11 +5,12 @@ ONTOLOGY_VERSION=${ONTOLOGY_VERSION:-3.9.6}
 BASE_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit 1 ; pwd -P )"
 
 # Create measure directory if it doesn't exist
+MEASURE_DIR="${BASE_DIR}/measure"
 mkdir -p "${BASE_DIR}/${MEASURE_DIR}"
 
 COMPOSE_PROJECT=${DATA_PORTAL_COMPOSE_PROJECT:-dataportal}
 DOWNLOAD_URL="https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/download/v${ONTOLOGY_VERSION}/availability.zip"
-MEASURE_DIR="${BASE_DIR}/measure"
+
 FDE_REPORT_TYPE=${FDE_REPORT_TYPE:-cdsCodingAvailability}
 
 if [[ $FDE_REPORT_TYPE == "cdsCodingAvailability" ]]; then
