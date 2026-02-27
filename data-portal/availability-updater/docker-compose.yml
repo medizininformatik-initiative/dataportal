@@ -3,6 +3,7 @@ services:
     image: ghcr.io/medizininformatik-initiative/dataportal-availability-updater:0.3.0
     extra_hosts:
       - "auth.localhost:host-gateway"
+      - "localhost:host-gateway"
     env_file:
       - .env
     volumes:

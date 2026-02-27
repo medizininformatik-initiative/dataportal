@@ -1,7 +1,7 @@
 services:
   dataportal-backend:
     restart: unless-stopped
-    image: ghcr.io/medizininformatik-initiative/dataportal-backend:8.4.0
+    image: ghcr.io/medizininformatik-initiative/dataportal-backend:8.5.0
     environment:
       QUERYRESULT_DISABLE_LOG_FILE_ENCRYPTION: true
     env_file:
