@@ -56,9 +56,10 @@ jobs:
         sed -i -r -e 's#^(VALIDATION_ENABLED)=.*$#\1="false"#' \
             data-node/fhir-validator/.env
         sed -i -r -e 's#^(OPENID_PROVIDER_URL)=.*$#\1="https://auth.localhost:444/realms/blaze"#' \
-                  -e 's#^(KC_HOSTNAME)=.*$#\1="https://auth.localhost:444/"#' \
+            data-node/fhir-server/.backend-env
+        sed -i -r -e 's#^(KC_HOSTNAME)=.*$#\1="https://auth.localhost:444/"#' \
                   -e 's#^(KC_HTTP_RELATIVE_PATH)=.*$#\1=/#' \
-            data-node/fhir-server/.env
+            data-node/fhir-server/.keycloak-env
         sed -i -r -e 's#^(FHIR_SERVER_HOSTNAME)=.*$#\1="fhir.localhost"#' \
                   -e 's#^(FLARE_HOSTNAME)=.*$#\1="flare.localhost"#' \
                   -e 's#^(KEYCLOAK_HOSTNAME)=.*$#\1="auth.localhost"#' \
