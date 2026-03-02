@@ -12,6 +12,10 @@ services:
   #local_import:
   #  dir: "./my_input_data
 
+  validation:
+    url: "http://localhost:8080"
+    max_concurrent_requests: 4  # optional, default: 4
+
   dimp:
     url: "http://localhost:8083/fhir"
     bundle_split_threshold_mb: 10
@@ -54,7 +58,8 @@ pipeline:
   #       use the correct one based on your input (TORCH URL → torch, local dir → local_import, etc.)
   enabled_steps:
     - torch
-    - dimp
+    #- dimp
+    - validation
     - flattening
     #- send
 
