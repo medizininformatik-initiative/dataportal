@@ -1,6 +1,8 @@
 services:
   fhir-flattener:
     image: ghcr.io/medizininformatik-initiative/fhir-flattener:0.1.0-alpha.7
+    env_file:
+      - .env
     restart: unless-stopped
     working_dir: /app
     ports:

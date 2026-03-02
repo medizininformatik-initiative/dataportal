@@ -59,7 +59,7 @@ pipeline:
   enabled_steps:
     - torch
     #- dimp
-    - validation
+    #- validation
     - flattening
     #- send
 
