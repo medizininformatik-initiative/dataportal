@@ -1,0 +1,70 @@
+# --- Keycloak Configuration ---
+
+# Enable Keycloak authentication
+# Default: true
+KEYCLOAK_ENABLED="true"
+
+# --- Keycloak Configuration ---
+# Keycloak database name
+# Default: keycloakdb
+KC_DB_URL_DB="keycloakdb"
+
+# Keycloak database username
+# Default: keycloakdbuser
+KC_DB_USERNAME="keycloakdbuser"
+
+# Keycloak database password
+# Default: keycloakdbpw
+KC_DB_PASSWORD="keycloakdbpw"
+
+# Keycloak bootstrap admin username
+# Default: admin
+KC_BOOTSTRAP_ADMIN_USERNAME="admin"
+
+# Keycloak bootstrap admin password
+# Default: admin
+KC_BOOTSTRAP_ADMIN_PASSWORD="admin"
+
+# Keycloak HTTP relative path
+# Default: /
+KC_HTTP_RELATIVE_PATH="/"
+
+# Keycloak hostname (public URL)
+# Default: https://auth.localhost:444
+KC_HOSTNAME="https://auth.localhost:444"
+
+# Keycloak admin console hostname
+# Default: https://auth.localhost:444
+KC_HOSTNAME_ADMIN="https://auth.localhost:444"
+
+# Keycloak logging level
+# Default: info
+KC_LOG_LEVEL="info"
+
+# Enable Keycloak health endpoints
+# Default: true
+KC_HEALTH_ENABLED="true"
+
+# Enable Keycloak metrics endpoints
+# Default: true
+KC_METRICS_ENABLED="true"
+
+# Keycloak proxy headers mode
+# Default: xforwarded
+KC_PROXY_HEADERS="xforwarded"
+
+# Enable Keycloak HTTP (non-HTTPS) mode
+# Default: true
+KC_HTTP_ENABLED="true"
+
+# Keycloak client ID
+# Default: account
+KEYCLOAK_CLIENT_ID="account"
+
+# Keycloak client secret
+# Default: insecure
+KEYCLOAK_CLIENT_SECRET="insecure"
+
+# Keycloak client host URL
+# Default: https://fhir.localhost:444
+KEYCLOAK_CLIENT_HOST_URL="https://fhir.localhost:444"

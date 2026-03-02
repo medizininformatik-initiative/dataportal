@@ -1,0 +1,57 @@
+# --- Backend Configuration ---
+
+# --- Base Configuration ---
+# Base URL for the FHIR server
+# Default: http://fhir-server:8080
+BASE_URL="http://fhir-server:8080"
+
+# Logging level (trace, debug, info, warn, error)
+# Default: info
+LOG_LEVEL="debug"
+
+# --- JVM Performance Tuning ---
+# Java tool options for memory allocation
+# Default: system dependent
+JAVA_TOOL_OPTIONS="-Xmx4g"
+
+# --- Database Configuration ---
+# Database block cache size in MB
+# Default: 128
+DB_BLOCK_CACHE_SIZE="1024"
+
+# Database resource cache ratio (number of resources)
+# Default: 0.25
+# DB_RESOURCE_CACHE_SIZE_RATIO="0.25"
+
+# CQL expression cache size
+# Default: disabled
+CQL_EXPR_CACHE_SIZE="128"
+
+# --- Server Configuration ---
+# Local port binding for FHIR server
+# Default: 127.0.0.1:8081
+PORT_FHIR_SERVER_LOCALHOST="127.0.0.1:8081"
+
+# Enforce referential integrity in FHIR resources
+# Default: true
+# ENFORCE_REFERENTIAL_INTEGRITY="true"
+
+# External terminology service URL
+# Default: disabled
+EXTERN_TERMINOLOGY_SERVICE_URL="http://terminology-server:8080/fhir"
+
+# Enable admin API endpoints
+# Default: false
+ENABLE_ADMIN_API="true"
+
+# --- FHIR Server Authentication Configuration ---
+# OpenID Connect provider URL
+# Default: disabled
+OPENID_PROVIDER_URL="https://auth.localhost:444/realms/blaze"
+
+# Local OpenID client trust store path
+# Default: ../auth/trust-store.p12
+# LOCAL_OPENID_CLIENT_TRUST_STORE="../auth/trust-store.p12"
+
+# Trust store password
+OPENID_CLIENT_TRUST_STORE_PASS="insecure"

@@ -21,11 +21,11 @@ else
 fi
 
 # Fhir Server (Blaze) with frontend and keycloak
-if [ -f "$BASE_DIR/fhir-server/.env" ] && grep -qE '^KEYCLOAK_ENABLED="?true"?\s*$' "$BASE_DIR/fhir-server/.env"; then
+if [ -f "$BASE_DIR/fhir-server/.keycloak-env" ] && grep -qE '^KEYCLOAK_ENABLED="?true"?\s*$' "$BASE_DIR/fhir-server/.keycloak-env"; then
     if [ ! -f "$BASE_DIR/rev-proxy/conf.d/keycloak.conf" ]; then
         cp "$BASE_DIR/rev-proxy/conf.d/keycloak.conf.template" "$BASE_DIR/rev-proxy/conf.d/keycloak.conf"
     fi
-    COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/fhir-server/keycloak.docker-compose.yml up -d --wait
+    COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/fhir-server/keycloak.docker-compose.yml up --wait
 else
     if [ -f "$BASE_DIR/rev-proxy/conf.d/keycloak.conf" ]; then
         rm "$BASE_DIR/rev-proxy/conf.d/keycloak.conf"
@@ -36,7 +36,7 @@ fi
 if [ -f "$CERT_FILE" ] && [ -f "$KEY_FILE" ]; then
     if [ -f "$TRUST_STORE_FILE" ]; then
         COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/rev-proxy/docker-compose.yml up -d
-        COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/fhir-server/docker-compose.yml up -d --wait
+        COMPOSE_IGNORE_ORPHANS=True docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR"/fhir-server/docker-compose.yml up --wait
     else
         echo "Trust store ($TRUST_STORE_FILE) file is missing. Please run '$BASE_DIR/generate-cert.sh' and then retry."
         exit 1
