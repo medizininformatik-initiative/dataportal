@@ -9,9 +9,17 @@ fhirPathRules:
     method: keep
   - path: Patient.address.postalCode
     method: keep
-  ### Remove if patient deceased  
-  - path: Patient.deceased
+  ### Keep if patient deceased boolean
+  - path: Patient.deceased.ofType(boolean)
+    method: keep
+  ### Remove if patient deceased dateTime
+  - path: Patient.deceased.ofType(dateTime)
     method: redact
+  ### Alternative - to Discuss: Keep deceased but generalize to month if patient deceased dateTime
+  #- path: Patient.deceased.ofType(dateTime)
+  #  method: generalize
+  #  cases:
+  #    "$this": "$this.toString().replaceMatches('(?<year>\\\\d{2,4})-(?<month>\\\\d{2})-(?<day>\\\\d{2})\\\\b', '${year}-${month}')"
   ### Generalize PostalCode to first two characters
   - path: Patient.address.postalCode
     method: generalize
@@ -57,11 +65,18 @@ fhirPathRules:
     method: pseudonymize
     domain: https://my-dic-domain/identifiers/patient-id
 
-## Clean References
+
+## Add specific logical References to be kept here - potential candidates are known cds identifier:
+  - path: nodesByType('Reference').identifier.where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and (code='VN')).exists())
+    method: keep
+
+
+## Clean References - To discuss if necessary potentially problematic when using logical reference resolve
   - path: nodesByType('Reference').display
     method: redact
   - path: nodesByType('Reference').identifier
     method: redact
+    
 
 ## Additional Insurance (fail safe) - Removes IDAT if unpseudonymized data is processed (precautionary measure; should not happen)
 ### Name

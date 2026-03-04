@@ -35,8 +35,8 @@ services:
       PGUSER: postgres
       # kics-scan ignore-line
       PGPASSWORD: postgres
-    #ports:
+    ports:
     #  # Http1, Http2, Http3
-    #  - "127.0.0.1:8080:8080"
+    #  - "127.0.0.1:8089:8080"
     #  # Http2-only for plaintext gRPC
     #  - "127.0.0.1:8081:8081"

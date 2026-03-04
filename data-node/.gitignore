@@ -16,3 +16,4 @@ aether/jobs
 
 fhir-validator/igs/*
 !fhir-validator/igs/README.md
+aether/base-pipeline-config-local-test.yml
