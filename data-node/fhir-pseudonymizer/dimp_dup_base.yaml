@@ -70,13 +70,15 @@ fhirPathRules:
   - path: nodesByType('Reference').identifier.where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and (code='VN')).exists())
     method: keep
 
+  - path: nodesByType('Reference').identifier.where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and (code='MR')).exists())
+    method: keep
 
 ## Clean References - To discuss if necessary potentially problematic when using logical reference resolve
   - path: nodesByType('Reference').display
     method: redact
   - path: nodesByType('Reference').identifier
     method: redact
-    
+
 
 ## Additional Insurance (fail safe) - Removes IDAT if unpseudonymized data is processed (precautionary measure; should not happen)
 ### Name
