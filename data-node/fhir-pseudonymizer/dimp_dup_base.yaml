@@ -45,6 +45,9 @@ fhirPathRules:
   - path: Resource.id
     method: cryptoHash
     truncateToMaxLength: 32
+  - path: Provenance.target.reference
+    method: cryptoHash
+    truncateToMaxLength: 32
   - path: nodesByType('Reference').reference
     method: cryptoHash
     truncateToMaxLength: 32
