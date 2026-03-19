@@ -1,6 +1,6 @@
 services:
   fhir-validator:
-    image: ghcr.io/medizininformatik-initiative/mii-fhir-validator:0.0.1-alpha.4
+    image: ghcr.io/medizininformatik-initiative/mii-fhir-validator:0.0.1-alpha.5
     ports:
       - "8080:8080"
     env_file:
@@ -12,6 +12,7 @@ services:
       - ./config/fhir-settings.json:/app/fhir-settings.json:ro
       - ../auth/cert.pem:/etc/nginx/certs/self-signed.crt:ro
       - fhir-package-cache:/root/.fhir/packages
+      - ./config/advisor.json:/app/validator/advisor.json:ro
     restart: unless-stopped
 
 volumes:
