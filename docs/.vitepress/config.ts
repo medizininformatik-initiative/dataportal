@@ -9,6 +9,7 @@ export default withMermaid({
     lastUpdated: true,
     themeConfig: {
         siteTitle: false,
+        outline: false,
 
         editLink: {
             pattern: 'https://github.com/medizininformatik-initiative/dataportal/edit/main/docs/:path',
@@ -25,10 +26,6 @@ export default withMermaid({
 
         search: {
             provider: 'local'
-        },
-
-        outline: {
-            level: [2, 3]
         },
 
         nav: [
