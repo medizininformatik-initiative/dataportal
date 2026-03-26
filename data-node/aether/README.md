@@ -41,4 +41,6 @@ Aether uses a .yml config file which allows you to configure which steps should 
 
 Example call for aether in this context once installed - calling from this directory `aether pipeline --config base-pipeline-config.yml start queries/example-crtdl.json`
 
-It creates a job directory, which for each DUP project saves the output of each step, so that one can branch of or review the output from each step
+It creates a job directory, which for each DUP project saves the output of each step, so that one can branch of or review the output from each step.
+
+To see all the configuration options see [base-pipeline-config.yml](base-pipeline-config.yml).

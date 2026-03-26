@@ -1,6 +1,6 @@
 services:
   flare:
-    image: ghcr.io/medizininformatik-initiative/flare:2.6.0
+    image: ghcr.io/medizininformatik-initiative/flare:2.7.0
     ports:
       - ${DATA_NODE_FLARE_PORT:-127.0.0.1:8084}:8080
     env_file:
