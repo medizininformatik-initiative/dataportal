@@ -10,7 +10,7 @@ export default withMermaid({
     themeConfig: {
         siteTitle: false,
         outline: false,
-
+        aside: false,
         editLink: {
             pattern: 'https://github.com/medizininformatik-initiative/dataportal/edit/main/docs/:path',
             text: 'Edit this page on GitHub'
