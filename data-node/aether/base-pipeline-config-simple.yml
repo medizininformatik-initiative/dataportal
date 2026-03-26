@@ -1,0 +1,29 @@
+services:
+
+  torch:
+    base_url: "http://localhost:8086"
+    username: ""
+    password: ""
+
+    extraction_timeout_minutes: 30
+    polling_interval_seconds: 5
+    max_polling_interval_seconds: 30
+
+pipeline:
+  enabled_steps:
+    - torch  
+
+retry:
+
+  max_attempts: 5
+  initial_backoff_ms: 1000
+  max_backoff_ms: 30000
+
+tls:
+  # ca_cert_path: "/path/to/certs.pem"
+
+compression:
+  enabled: false
+  level: "default"
+
+jobs_dir: "./jobs"

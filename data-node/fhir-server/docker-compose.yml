@@ -1,8 +1,8 @@
 services:
   fhir-server:
-    image: samply/blaze:1.6.0
+    image: samply/blaze:1.6.2
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail -s http://localhost:8080/health"]
+      test: [ "CMD", "wget", "--spider", "http://127.0.0.1:8080/health" ]
       interval: 5s
       timeout: 5s
       retries: 3
@@ -20,7 +20,7 @@ services:
     - "${LOCAL_OPENID_CLIENT_TRUST_STORE:-../auth/trust-store.p12}:/app/trust-store.p12"
 
   fhir-server-frontend:
-    image: samply/blaze-frontend:1.6.0
+    image: samply/blaze-frontend:1.6.2
     healthcheck:
       test: ["CMD-SHELL", "wget --spider http://127.0.0.1:3000/fhir/"]
       interval: 5s

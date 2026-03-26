@@ -9,7 +9,8 @@ export default withMermaid({
     lastUpdated: true,
     themeConfig: {
         siteTitle: false,
-
+        outline: false,
+        aside: false,
         editLink: {
             pattern: 'https://github.com/medizininformatik-initiative/dataportal/edit/main/docs/:path',
             text: 'Edit this page on GitHub'
@@ -25,10 +26,6 @@ export default withMermaid({
 
         search: {
             provider: 'local'
-        },
-
-        outline: {
-            level: [2, 3]
         },
 
         nav: [
@@ -63,6 +60,12 @@ export default withMermaid({
                     { text: 'Overview', link: '/data-portal/overview.md' },
                     { text: 'Architecture', link: '/data-portal/architecture.md' },
                     { text: 'Example Deployment', link: '/data-portal/example-deployment.md' },
+                    {
+                        text: 'Use',
+                        items: [
+                            { text: 'Data Portal Availability: availability-updater', link: '/data-portal/availability.md' },
+                        ]
+                    }
                 ]
             },
             {
@@ -77,9 +80,12 @@ export default withMermaid({
                         text: 'Use',
                         link: '/data-node/use.md',
                         items: [
-                            { text: 'fhir-data-evaluator', link: '/data-node/fhir-data-evaluator.md' },
-                            { text: 'aether', link: '/data-node/aether.md' },
-                            { text: 'mii-fhir-validator', link: '/data-node/mii-fhir-validator.md' }
+                            { text: 'Pipeline Coordination: aether', link: '/data-node/aether.md' },
+                            { text: 'Data Extraction: TORCH', link: '/data-node/TORCH.md' },
+                            { text: 'DIMP: fhir-pseudonymizer', link: '/data-node/DIMP.md' },
+                            { text: 'FHIR Validation: mii-fhir-validator', link: '/data-node/mii-fhir-validator.md' },
+                            { text: 'FHIR Flattening: fhir-flattener', link: '/data-node/fhir-flattener.md' },
+                            { text: 'FHIR metadata reporting: fhir-data-evaluator', link: '/data-node/fhir-data-evaluator.md' }
                         ]
                     },
                 ]
