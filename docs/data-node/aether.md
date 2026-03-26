@@ -7,7 +7,9 @@ Please refer to the architecture of a data node [here](architecture.md) and a li
 
 ## Aether use
 
-See aether documentation [here](https://medizininformatik-initiative.github.io/aether/)
+See aether documentation [here](https://medizininformatik-initiative.github.io/aether/).
+
+For example configuration see the base configuration in our example setup [here](https://github.com/medizininformatik-initiative/dataportal/blob/main/data-node/aether/base-pipeline-config.yml).
 
 
 

@@ -1,0 +1,83 @@
+services:
+
+  torch:
+    base_url: "http://localhost:8086"
+    username: ""
+    password: ""
+    extraction_timeout_minutes: 999
+    polling_interval_seconds: 5
+    max_polling_interval_seconds: 30
+  
+  dimp:
+    url: "http://localhost:8083/fhir"
+    bundle_split_threshold_mb: 10
+
+  crtdl_preprocessing:
+    enabled: true
+
+    enrichments_path: "./dimp-enrichments.json"
+
+  flattening:
+    service_url: "http://localhost:8088"
+    lookup_path: "./flatteningLookup.json"
+
+    formats:
+      - csv
+
+    timeout: 30m
+    batch_size_mb: 500
+
+  send:
+    send_as: "transfer_load"
+
+    url: "https://fhir-server.example.com/fhir"
+    batch_size: 100
+
+    auth:
+      # Option 1: Basic Auth
+      # Use environment variables to avoid storing credentials in config files:
+      # username: "${FHIR_USER}"
+      # password: "${FHIR_PASSWORD}"
+      # Option 2: OAuth2 Client Credentials (Keycloak-compatible)
+      # Use environment variables to avoid storing credentials in config files:
+      # oauth_issuer_uri: "${FHIR_OAUTH_ISSUER_URI}"
+      # oauth_client_id: "${FHIR_OAUTH_CLIENT_ID}"
+      # oauth_client_secret: "${FHIR_OAUTH_CLIENT_SECRET}"
+
+    transfer:
+      project_identifier: "MII-PROJECT"
+      organization_identifier: "your-org.example.de"
+
+  validation:
+    url: "http://localhost:8080/fhir"
+    max_concurrent_requests: 4
+    bundle_chunk_size_mb: 10
+    fail_on_error: true
+
+  local_import:
+    dir: "/path/to/fhir/data"
+
+pipeline:
+  enabled_steps:
+    - torch           # TORCH import via CRTDL or direct TORCH URL
+    - dimp
+    - flattening      # Transform FHIR to CSV using fhir-flattener (CRTDL input only)
+    # - send           # Uncomment to send data to DSF transfer server
+
+  max_ndjson_line_size_mb: 100
+
+retry:
+  max_attempts: 5
+  initial_backoff_ms: 1000
+  max_backoff_ms: 30000
+
+tls:
+
+  # ca_cert_path: "/path/to/certs.pem"
+  insecure_skip_verify: false
+
+compression:
+  enabled: false
+  level: "default"
+
+jobs_dir: "./jobs"

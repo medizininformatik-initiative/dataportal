@@ -44,10 +44,6 @@
                 "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
                 "attributes": [
                     {
-                        "attributeRef": "Patient.identifier",
-                        "mustHave": false
-                    },
-                    {
                         "attributeRef": "Patient.active",
                         "mustHave": false
                     }
@@ -59,7 +55,7 @@
                 "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
                 "attributes": [
                     {
-                        "attributeRef": "Encounter.identifier",
+                        "attributeRef": "Encounter.class",
                         "mustHave": false
                     }
                 ]

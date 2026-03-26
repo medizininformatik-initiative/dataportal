@@ -44,7 +44,7 @@ services:
   # Aufnahmenummer) that are not part of the research query but needed for pseudonymization.
   crtdl_preprocessing:
     # Enable/disable CRTDL preprocessing (default: false)
-    enabled: false
+    enabled: true
 
     # Option 1: External JSON file containing enrichment rules (recommended for complex/shared rules)
     # The file should contain a JSON array of GroupEnrichment objects
