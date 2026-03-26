@@ -13,7 +13,7 @@ a flatteningLookup table, which is provided as part of the [FDPG ontology](https
 The lookup table is still in development, but a first version can be downloaded from our [example deployment](https://github.com/medizininformatik-initiative/dataportal/blob/main/data-node/aether/flatteningLookup.json) to try out the flattening
 in conjunction with aether.
 
-## The flattening ruels for the Core Data Set (CDS)
+## The flattening rules for the Core Data Set (CDS)
 
 The flatteningLookup table is generated based on specific rules and the CDS profiles as described [here](https://github.com/medizininformatik-initiative/fhir-ontology-generator/blob/406-generate-fhir-flattening-viewdefintion-lookup-file/flattening/README.md).
 

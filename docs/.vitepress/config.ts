@@ -78,7 +78,7 @@ export default withMermaid({
                         link: '/data-node/use.md',
                         items: [
                             { text: 'Pipeline Coordination: aether', link: '/data-node/aether.md' },
-                            { text: 'DIMP: fhir-pseudonymizer', link: '/data-node/fhir-pseudonymizer.md' },
+                            { text: 'DIMP: fhir-pseudonymizer', link: '/data-node/DIMP.md' },
                             { text: 'FHIR Validation: mii-fhir-validator', link: '/data-node/mii-fhir-validator.md' },
                             { text: 'FHIR Flattening: fhir-flattener', link: '/data-node/fhir-flattener.md' },
                             { text: 'FHIR metadata reporting: fhir-data-evaluator', link: '/data-node/fhir-data-evaluator.md' }
