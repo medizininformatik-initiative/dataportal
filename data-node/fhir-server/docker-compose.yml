@@ -1,14 +1,17 @@
 services:
   fhir-server:
-    image: samply/blaze:1.6.0
+    image: "samply/blaze:1.6.0@sha256:76b8d0947a8463921e4cd5db291b14d58c221d4ca474a582eea3f16294ef8b3d"
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail -s http://localhost:8080/health"]
+      test: [ "CMD", "wget", "--spider", "http://localhost:8080/health" ]
       interval: 5s
       timeout: 5s
       retries: 3
       start_period: 60s
+    environment:
+      DB_SEARCH_PARAM_BUNDLE: "/app/custom-search-parameters.json"
+      OPENID_CLIENT_TRUST_STORE: "/app/trust-store.p12"
     env_file:
-      - .env
+      - .backend-env
     ports:
     - ${PORT_FHIR_SERVER_LOCALHOST:-127.0.0.1:8081}:8080
     extra_hosts:
@@ -17,17 +20,19 @@ services:
     volumes:
     - "./custom-search-parameters.json:/app/custom-search-parameters.json:ro"
     - "blaze-data:/app/data"
-    - "${LOCAL_OPENID_CLIENT_TRUST_STORE:-../auth/trust-store.p12}:/app/trust-store.p12"
+    - "${LOCAL_OPENID_CLIENT_TRUST_STORE:-../auth/trust-store.p12}:/app/trust-store.p12:ro"
 
   fhir-server-frontend:
-    image: samply/blaze-frontend:1.6.0
+    image: "samply/blaze-frontend:1.6.0@sha256:c9a455b168c1f15c087f859939e721f0ae81b47aa897bd3796a85be6bf3c5012"
     healthcheck:
       test: ["CMD-SHELL", "wget --spider http://127.0.0.1:3000/fhir/"]
       interval: 5s
       timeout: 5s
       retries: 3
+    environment:
+      NODE_EXTRA_CA_CERTS: "/app/cert.pem"
     env_file:
-      - .env
+      - .frontend-env
     ports:
     - ${PORT_FHIR_SERVER_FRONTEND_LOCALHOST:-127.0.0.1:8300}:3000
     extra_hosts:

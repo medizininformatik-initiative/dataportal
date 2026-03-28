@@ -2,7 +2,7 @@ services:
   terminology-server:
     image: samply/blaze:1.6.0
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail -s http://localhost:8080/health"]
+      test: [ "CMD", "wget", "--spider", "http://localhost:8080/health" ]
       interval: 5s
       timeout: 5s
       retries: 3
