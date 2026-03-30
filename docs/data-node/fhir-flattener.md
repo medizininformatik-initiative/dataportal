@@ -7,7 +7,7 @@ and FHIR resources and flattens them.
 
 ## Use in the DUP pipeline
 
-In the DUP pipelin the [aether](aether.md) takes the extracted resources and based on a CRTDL generates ViewDefinitions for the specific DUP using
+In the DUP pipeline [aether](aether.md) takes the extracted resources and based on a CRTDL generates ViewDefinitions for the specific DUP using
 a flatteningLookup table, which is provided as part of the [FDPG ontology](https://github.com/medizininformatik-initiative/fhir-ontology-generator).
 
 The lookup table is still in development, but a first version can be downloaded from our [example deployment](https://github.com/medizininformatik-initiative/dataportal/blob/main/data-node/aether/flatteningLookup.json) to try out the flattening
