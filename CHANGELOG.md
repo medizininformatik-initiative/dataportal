@@ -8,15 +8,260 @@ Please refer to the respective repositories for a more in depth changelog of sin
 
 |Component|Link|
 |--|--|
-|UI|<https://github.com/medizininformatik-initiative/feasibility-gui>|
+|Dataportal UI|<https://github.com/medizininformatik-initiative/dataportal-ui>|
+|Dataportal Backend|<https://github.com/medizininformatik-initiative/dataportal-backend>|
+|Dataportal Availability Updater|<https://github.com/medizininformatik-initiative/availability-updater>|
 |Ontology Generation|<https://github.com/medizininformatik-initiative/fhir-ontology-generator>|
 |sq2cql|<https://github.com/medizininformatik-initiative/sq2cql>|
-|Backend|<https://github.com/medizininformatik-initiative/feasibility-backend>|
-|DSF Feasibility Plugin|<https://github.com/medizininformatik-initiative/feasibility-dsf-process>|
+|DSF Feasibility Process|<https://github.com/medizininformatik-initiative/mii-process-feasibility>|
 |FLARE|<https://github.com/medizininformatik-initiative/flare>|
-|TORCH|<https://github.com/medizininformatik-initiative/torch>|
-|Blaze FHIR server|<https://github.com/samply/blaze>|
 |Fhir Data Evaluator|<https://github.com/medizininformatik-initiative/fhir-data-evaluator>|
+|Blaze FHIR server|<https://github.com/samply/blaze>|
+|aether|<https://github.com/medizininformatik-initiative/aether>|
+|TORCH|<https://github.com/medizininformatik-initiative/torch>|
+|Blaze FHIR terminology server|<https://github.com/samply/blaze>|
+|mii-fhir-validator|<https://github.com/medizininformatik-initiative/mii-fhir-validator>|
+|fhir-flattener|<https://github.com/medizininformatik-initiative/fhir-flattener>|
+|fhir-pseudonymizer|<https://github.com/miracum/fhir-pseudonymizer>|
+
+
+## [6.0.0] - 2026-03-31
+
+
+### Overview 
+
+**Feasibility Portal**    -> **Data Portal**
+**Feasibility Triangle**  -> **Data Node**
+
+Since the last major the repository has been refactored to reflect the additional functionality of the dataportal.
+It was devided into a `data-portal` and a `data-node` part.
+
+Additionally, the `data-node`, which replaced the `feasibility-triangle` now includes additional services, supporting the full data use project (DUP) pipeline at the node site.
+
+In this context we have also updated and improved the documentation.
+
+The DUP Pipeline includes the services described [here](https://medizininformatik-initiative.github.io/dataportal/data-node/overview.html#data-node-services).
+
+The following services or components are new:
+
+- DUP Pipeline Coordinator (aether)
+- FHIR Terminology Server (Blaze)
+- De-Identification, Minimization, Pseudonymization DIMP (fhir-pseudonymizer)
+- FHIR Validation (fhir-validator)
+- FHIR Flattening (fhir-flattener)
+
+
+### Ontology
+
+Current: **[v4.0.0](https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/tag/v4.0.0)**
+Changed since laster Major Release FROM [v3.8.0](https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/tag/v3.8.0) To [v4.0.0](https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/tag/v4.0.0)
+
+#### Major Ontology Updates
+
+* Upgrade all resources to use CDS version 2025 by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/445
+* Remove primitively-typed elements from DSE profile details tree by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/303
+* Create scorecard.yml by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/392
+* 320 create broad availability measure by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/329
+* Fix intermediate nodes missing in profile tree and add ordering by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/395
+* Address backend issues 344, 357, and 358 by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/398
+* Add ref-based targeting to GitHub FHIR package manager and fix unnecessary inflation by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/407
+* Implement configurable field handling in DSE via config file by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/412
+* Add value set display values to terminology display mapping file by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/413
+* Add missing field exclusion if occurence is 0 for profile details by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/417
+* Implement category based procedure criterion class for FDPG project by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/418
+* Include admission identifier of MII CDS Encounter profile by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/439
+* Rework field config and change identifier handling by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/443
+* Allow multiple value set references in UI profile attributes by @Frontman50 in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/314
+* Ensure backbone references are selectable by @Frontman50 in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/363
+* Adapt generator to new MII CDS ICU module version by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/361
+* Restrict allowed units of age criterion class by @paulolaup in https://github.com/medizininformatik-initiative/fhir-ontology-generator/pull/368
+
+
+### Updates since last Major
+
+**Data Portal**
+
+|Component|From|To|
+|--|--|--|
+|dataportal-ui|[v6.3.3](https://github.com/medizininformatik-initiative/feasibility-gui/releases/tag/v6.3.3)|[v6.8.0](https://github.com/medizininformatik-initiative/dataportal-ui/releases/tag/v6.8.0)|
+|dataportal-backend|[v7.3.0](https://github.com/medizininformatik-initiative/feasibility-backend/releases/tag/v7.3.0)|[v7.3.0](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v8.6.0)|
+|Keycloak|quay.io/keycloak/keycloak:26.3.1|quay.io/keycloak/keycloak:26.3.1|
+|availability-updater|-|[0.3.0](https://github.com/medizininformatik-initiative/dataportal-availibility-updater/releases/tag/v0.3.0)|
+
+**Data Node**
+
+|Component|From|To|
+|--|--|--|
+|FHIR Server - Blaze|[v1.0.4](https://github.com/samply/blaze/releases/tag/v1.0.4)|[v1.6.2](https://github.com/samply/blaze/releases/tag/v1.6.2)|
+|TORCH|[1.0.0-alpha.6](https://github.com/medizininformatik-initiative/torch/releases/tag/v1.0.0-alpha.6)|[1.0.0-alpha.18](https://github.com/medizininformatik-initiative/torch/releases/tag/v1.0.0-alpha.18)|
+|FLARE|[2.6.0](https://github.com/medizininformatik-initiative/flare/releases/tag/v2.6.0)|[2.7.0](https://github.com/medizininformatik-initiative/flare/releases/tag/v2.7.0)|
+|FDE|[1.3.1](https://github.com/medizininformatik-initiative/fhir-data-evaluator/releases/tag/v1.3.1)|[1.3.3](https://github.com/medizininformatik-initiative/fhir-data-evaluator/releases/tag/v1.3.3)|
+|aether|-|[0.6.0](https://github.com/medizininformatik-initiative/aether/releases/tag/v0.6.0)|
+|fhir-pseudonymizer|-|[2.23.0](https://github.com/miracum/fhir-pseudonymizer/releases/tag/v2.23.0)|
+|mii-fhir-validator|-|[0.0.1-alpha.5](https://github.com/medizininformatik-initiative/mii-fhir-validator/releases/tag/v0.0.1-alpha.5)|
+|terminology server (blaze)|-|[1.6.2](https://github.com/samply/blaze/releases/tag/v1.6.2)|
+|fhir-flattener|-|[0.1.0-alpha.7](https://github.com/medizininformatik-initiative/fhir-flattener/releases/tag/v0.1.0-alpha.7)|
+
+
+### Major Changes since last Major
+
+#### dataportal-ui
+
+* Infinite scrolling – implemented for CodeableConcept search, Criteria search, and Reference search [#217](https://github.com/medizininformatik-initiative/feasibility-gui/issues/217)
+* Support loading of query by id via url params [#416](https://github.com/medizininformatik-initiative/feasibility-gui/issues/416)
+* Search engine updates – revised engine logic and search operation flow.
+* Updated UI profile to support multiple value sets and criteria sets for feasibility [#425](https://github.com/medizininformatik-initiative/feasibility-gui/issues/425)
+* Added feedback through the snackbar on profile edit [#448](https://github.com/medizininformatik-initiative/feasibility-gui/issues/448)
+* Major overhaul of CSS and component layouts for improved consistency and responsiveness.  [#452](https://github.com/medizininformatik-initiative/feasibility-gui/issues/452), [#440](https://github.com/medizininformatik-initiative/feasibility-gui/issues/440)
+* Removed unused and outdated configuration entries; Data Portal settings are now retrieved from the backend settings endpoint during application initialization. [#432](https://github.com/medizininformatik-initiative/feasibility-gui/issues/432)
+* CRTDL display objects are now loaded from the backend at startup. [#455](https://github.com/medizininformatik-initiative/feasibility-gui/issues/455)
+* Improved display of terminology titles. [#465](https://github.com/medizininformatik-initiative/feasibility-gui/issues/465)
+* Implemented auto-save functionality in the data selection editor; profile changes are now saved automatically.  [#468](https://github.com/medizininformatik-initiative/feasibility-gui/issues/468)
+* Added a selectable boolean to criteria-relative data to prevent adding elements to the cohort when not allowed.  [#482](https://github.com/medizininformatik-initiative/feasibility-gui/issues/482)
+* Fixed UI crashes occurring when linking a reference in the data selection.  [#478](https://github.com/medizininformatik-initiative/feasibility-gui/issues/478)
+* Added bulk search functionality for criteria [#460](https://github.com/medizininformatik-initiative/feasibility-gui/issues/460)
+* Added bulk search support for `CodeableConcept` [#461](https://github.com/medizininformatik-initiative/feasibility-gui/issues/461)
+* Introduced explanation tabs providing information about concepts, fields, references, terminology codes, time restrictions and token filters [#495](https://github.com/medizininformatik-initiative/feasibility-gui/issues/495)
+* Snackbar notifications now display across the UI on user interaction [#470](https://github.com/medizininformatik-initiative/feasibility-gui/issues/470), [#476](https://github.com/medizininformatik-initiative/feasibility-gui/issues/476)
+* Updated button naming convention to be action-oriented [#469](https://github.com/medizininformatik-initiative/feasibility-gui/issues/469)
+* Redesigned tab component and query editor for improved usability and responsiveness [#388](https://github.com/medizininformatik-initiative/feasibility-gui/issues/388)
+* Added dedicated tab to display and manage selected concepts [#477](https://github.com/medizininformatik-initiative/feasibility-gui/issues/477)
+* Changed repository name from "feasibility-gui" to "dataportal-gui" to reflect broader functionality [#502](https://github.com/medizininformatik-initiative/feasibility-gui/issues/502)
+* Added save, upload, and download functionality to the action bar by default across the UI [#463](https://github.com/medizininformatik-initiative/feasibility-gui/issues/463)
+* Renamed data selection tab names in the query editor view [#501](https://github.com/medizininformatik-initiative/feasibility-gui/issues/501)
+* Refactored the CRTDL translator to allow bulk upload of criteria and codeable concepts [#472](https://github.com/medizininformatik-initiative/feasibility-gui/issues/472)
+* Added auto upgrade of CRTDL on upload [#545](https://github.com/medizininformatik-initiative/dataportal-ui/issues/545)
+* Added auto upgrade of CCDL on upload [#548](https://github.com/medizininformatik-initiative/dataportal-ui/issues/548)
+
+
+#### dataportal-backend
+
+* #599 - Update UI profile model to allow support of multiple value sets by @michael-82 in https://github.com/medizininformatik-initiative/feasibility-backend/pull/600
+* Settings endpoint was added to provide configuration settings to the GUI ([#663](https://github.com/medizininformatik-initiative/feasibility-backend/issues/663))
+* Endpoint to retrieve all ui profiles was added ([#721](https://github.com/medizininformatik-initiative/feasibility-backend/issues/721))
+* An endpoint was added to convert crtdl to a zip file with csv files ([#721](https://github.com/medizininformatik-initiative/feasibility-backend/issues/721))
+* Relationship entries (parents/children/related_items) in terminology search now contain selectable, termcode and terminology attributes ([#664](https://github.com/medizininformatik-initiative/feasibility-backend/issues/664), [#734](https://github.com/medizininformatik-initiative/feasibility-backend/issues/734))
+* #690 - Add exact search endpoint for criteria and for value sets by @michael-82 in https://github.com/medizininformatik-initiative/dataportal-backend/pull/699
+* Switch to PEM encoded client certificate for dsf broker by @EmteZogaf in https://github.com/medizininformatik-initiative/dataportal-backend/pull/741
+* #664 - Include selectable boolean in /terminology/entry/{id}/relations response by @michael-82 in https://github.com/medizininformatik-initiative/dataportal-backend/pull/694
+* #721 - Change UiProfile handling by @michael-82 in https://github.com/medizininformatik-initiative/dataportal-backend/pull/723
+* Update dependency com.squareup.okhttp3:mockwebserver to v5.3.0 by @renovate[bot] in https://github.com/medizininformatik-initiative/dataportal-backend/pull/722
+* #709 - Add endpoint to convert crtdl to csv zip by @michael-82 in https://github.com/medizininformatik-initiative/dataportal-backend/pull/718
+* #663 - Standardized API endpoint to serve configuration for the frontend by @michael-82 in https://github.com/medizininformatik-initiative/dataportal-backend/pull/669
+* #771 - Add extra variable for internal polling limit vs external (ui) polling limit by @michael-82 in https://github.com/medizininformatik-initiative/dataportal-backend/pull/774
+* #689 -  Improved Error Handling by @michael-82 in https://github.com/medizininformatik-initiative/dataportal-backend/pull/769
+* #836 - Dispatch queries asynchronously by @michael-82 in https://github.com/medizininformatik-initiative/dataportal-backend/pull/837
+* Ensure validator also validates against children fields by @juliangruendner in https://github.com/medizininformatik-initiative/dataportal-backend/pull/843
+* #758 - Update Documentation by @michael-82 in https://github.com/medizininformatik-initiative/dataportal-backend/pull/849
+* #870 - Auto upgrade CRTDLs by @michael-82 in https://github.com/medizininformatik-initiative/dataportal-backend/pull/875
+* Reconnect websocket to DSF after connection termination by @EmteZogaf in https://github.com/medizininformatik-initiative/dataportal-backend/pull/742
+* Import all Certificates in PEM Files by @EmteZogaf in https://github.com/medizininformatik-initiative/dataportal-backend/pull/781
+* #872 - Move Reconnector to Collector and do not reuse Websocket by @EmteZogaf in https://github.com/medizininformatik-initiative/dataportal-backend/pull/873
+
+#### availability-updater
+
+- Initial Release with Container build
+- Download Ontology from fhir-ontology-generator repository
+- Download availability reports from local fhir report server
+- Update Availability based on ontology
+- Update Availability on local elastic search
+- Treat patient stratifier differently - calculate accross als statifier and map individually
+- Make min required reports for availability update configurable
+- Added oauth2 and basic auth support
+- Added self-signed certificate support
+
+#### Keycloak
+
+#### Blaze (FHIR server for data and terminology service)
+
+* Improve FHIR Search Performance for Multiple Params and Values ([#799](https://github.com/samply/blaze/issues/799))
+* Fix Paging with FHIR Search _id Parameter ([#2953](https://github.com/samply/blaze/issues/2953))
+* Prevent Cache Thrashing During Large Resource Scans ([#3086](https://github.com/samply/blaze/issues/3086))
+* Improve Performance of FHIR Search Queries with 10k Values ([#3112](https://github.com/samply/blaze/issues/3112))
+* Allow to Cache Larger CQL Expressions ([#3113](https://github.com/samply/blaze/issues/3113))
+* Optimize DateTime Parsing ([#3064](https://github.com/samply/blaze/issues/3064))
+* Remove Duplicate Search Params and Values ([#3036](https://github.com/samply/blaze/issues/3036))
+* Implement _since for Patient $everything ([#1636](https://github.com/samply/blaze/issues/1636))
+* Implement ValueSet References ([#110](https://github.com/samply/blaze/issues/110))
+* Implement CQL Instance Expression for FHIR Types ([#3126](https://github.com/samply/blaze/issues/3126))
+* Fail on Unsupported FHIR Search Modifier ([#2951](https://github.com/samply/blaze/issues/2951))
+* Switch Resource Cache Sizing from Count to Memory-Based ([#3253](https://github.com/samply/blaze/issues/3253))
+* Implement $cql Operation ([#3230](https://github.com/samply/blaze/issues/3230))
+* Implement CQL Operator InCodeSystem ([#3157](https://github.com/samply/blaze/issues/3157))
+* Implement Basic VCL Support ([#3275](https://github.com/samply/blaze/issues/3275))
+* Offer Health Checks ([#3338](https://github.com/samply/blaze/issues/3338))
+* Support Multiple Codings in Terminology Operations ([#3347](https://github.com/samply/blaze/issues/3347))
+* Fix SNOMED CT CodeSystem Generation ([#3456](https://github.com/samply/blaze/issues/3456))
+* Resolve Versions in Terminology Service ([#3470](https://github.com/samply/blaze/issues/3470))
+
+#### TORCH
+
+- Transfer script to FHIR DUP Server [#394](https://github.com/medizininformatik-initiative/torch/pull/394)
+- Update Shipped Structure Definitions [#481](https://github.com/medizininformatik-initiative/torch/pull/481)
+- Implement Conflict Handling in Consent [#513](https://github.com/medizininformatik-initiative/torch/pull/513)
+- Increase WebFlux Buffer Size [#514](https://github.com/medizininformatik-initiative/torch/pull/514)
+- Support nested Lists [#589](https://github.com/medizininformatik-initiative/torch/pull/589)
+- Handle single consents [#478](https://github.com/medizininformatik-initiative/torch/pull/478)
+- Add information about attributeGroup to resources [#525](https://github.com/medizininformatik-initiative/torch/pull/525)
+- Support backbone reference resolve [#511](https://github.com/medizininformatik-initiative/torch/pull/511)
+- Fix unsupported FHIR time types in consent check [#645](https://github.com/medizininformatik-initiative/torch/pull/645)
+- Set required recorded field on Provenance resource [#662](https://github.com/medizininformatik-initiative/torch/pull/662)
+- Fix Missing Default For Base Url [#673](https://github.com/medizininformatik-initiative/torch/pull/673)
+- Fix Resource Cache Not Filtered After Reference Handling [#678](https://github.com/medizininformatik-initiative/torch/pull/678)
+- Fix NPE in Date Parsing Crashes Consent Extraction [#679](https://github.com/medizininformatik-initiative/torch/pull/679)
+- Fix NPE in collectReferences [#726](https://github.com/medizininformatik-initiative/torch/issues/726)
+- Fix NPE in DateTimeReading [#696](https://github.com/medizininformatik-initiative/torch/issues/696)
+- Fix Torch Not Retrying On Prematurely Closed [#701](https://github.com/medizininformatik-initiative/torch/issues/701)
+- Add FAQ and Error Numbers for Lookup [#594](https://github.com/medizininformatik-initiative/torch/issues/594)
+- Implement Job Manager [#659](https://github.com/medizininformatik-initiative/torch/issues/659)
+- Fix Concurrency Issue In Batch Bundle Query Calls [#734](https://github.com/medizininformatik-initiative/torch/pull/734)
+- Fix slice with coding not resolved correctly [#737](https://github.com/medizininformatik-initiative/torch/pull/737)
+- Ensure Unexpandable concept does not shut down torch [#749](https://github.com/medizininformatik-initiative/torch/issues/749)
+- Remove Torch Reference Restriction [#741](https://github.com/medizininformatik-initiative/torch/issues/741)
+- Fix Filter Expansion Defaulting To Empty When Not Expandable [#769](https://github.com/medizininformatik-initiative/torch/issues/769)
+- Fix: cascading delete not resolved correctly [#772](https://github.com/medizininformatik-initiative/torch/issues/772)
+- Add Patient Params To Transfer To Dup Script [#584](https://github.com/medizininformatik-initiative/torch/issues/584)
+- Adding Diagnostic Monad for Collecting Operation Outcomes  [#666](https://github.com/medizininformatik-initiative/torch/issues/666)
+- Add Patient.identifier handling for traceability  [#772](https://github.com/medizininformatik-initiative/torch/issues/772)
+
+#### FLARE
+
+* Update Ontology to v4.0.0
+
+#### FDE - Fhir-Data-Evaluator
+
+* Update Documentation
+* Make Obfuscation Count Configurable
+* Fix UUID Not Set Correctly
+* Add Resource Information on Failures
+* Add Integration Tests with Hapi Fhir Server
+
+#### aether
+
+* Initialise project and add basic extraction and pipeline functionality
+* Add TORCH support
+* Add github pages documentation
+* Add Pipeline steps including connected services: torch, wait, dimp, fhir-validation, flattening, send
+
+#### fhir-pseudonymizer
+
+* Add dataportal base DUP DIMP yaml
+* Add fhir-pseudonymizer v2.25.0 from base [repository](https://github.com/miracum/fhir-pseudonymizer)
+* Core used methods in dataportal context: redact, generalize, cryptoHash, keep
+
+#### mii-fhir-validator
+
+* Add initial service and connect to local terminology service
+* Based on HL7 [validator cli project](https://confluence.hl7.org/spaces/FHIR/pages/35718580/Using+the+FHIR+Validator)
+* Provides validator webservice /validateResource
+* Includes package download and advisor file setup
+
+#### fhir-flattener
+
+* Wrapped pathling library ViewDefinition Runner
+* Add ViewDefinition run operation
+* Add support fro quantity extensions
+
 
 ## [5.4.6] - 2025-10-17
 
