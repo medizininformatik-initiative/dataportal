@@ -38,8 +38,35 @@ if [ ! -f "${MEASURE_DIR}/${MEASURE_FILE}_v${ONTOLOGY_VERSION}.json" ]; then
     echo "done."
 fi
 
+touch .env-temp
+
+export OVERRIDE_ENV=".env-temp"
+
+# ensure cleanup on exit/crash
+trap "rm -f $OVERRIDE_ENV" EXIT
+
+cp .env "$OVERRIDE_ENV"
+
+override_env_var() {
+  local key=$1
+  local value=$2
+  if grep -q "^${key}=" "$OVERRIDE_ENV"; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+      sed -i '' "s|^${key}=.*|${key}=${value}|" "$OVERRIDE_ENV"
+    else
+      sed -i "s|^${key}=.*|${key}=${value}|" "$OVERRIDE_ENV"
+    fi
+  else
+    echo "${key}=${value}" >> "$OVERRIDE_ENV"
+  fi
+}
+
+override_env_var "PROJECT_IDENTIFIER_VALUE" "$PROJECT_IDENTIFIER_VALUE"
+override_env_var "PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT" "$PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT"
+
+
 echo "Starting FHIR data evaluator ..."
-PROJECT_IDENTIFIER_VALUE=$PROJECT_IDENTIFIER_VALUE PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT=$PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT COMPOSE_IGNORE_ORPHANS=True FDE_INPUT_MEASURE="${MEASURE_DIR}/${MEASURE_FILE}_v${ONTOLOGY_VERSION}.json" docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR/docker-compose.yml" up -d
+COMPOSE_IGNORE_ORPHANS=True FDE_INPUT_MEASURE="${MEASURE_DIR}/${MEASURE_FILE}_v${ONTOLOGY_VERSION}.json" docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR/docker-compose.yml" up -d
 
 
 

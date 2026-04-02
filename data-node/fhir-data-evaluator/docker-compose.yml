@@ -2,10 +2,7 @@ services:
   fhir-data-evaluator:
     image: ghcr.io/medizininformatik-initiative/fhir-data-evaluator:1.3.3
     env_file:
-      - .env
-    environment:
-      - PROJECT_IDENTIFIER_VALUE=${PROJECT_IDENTIFIER_VALUE:-}
-      - PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT=${PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT:-}
+      - ${OVERRIDE_ENV:-.env}
     extra_hosts:
       - "auth.localhost:host-gateway"
       - "localhost:host-gateway"
