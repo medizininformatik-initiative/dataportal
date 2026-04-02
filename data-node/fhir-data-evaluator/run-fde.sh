@@ -15,13 +15,13 @@ FDE_REPORT_TYPE=${FDE_REPORT_TYPE:-cdsCodingAvailability}
 
 if [[ $FDE_REPORT_TYPE == "cdsCodingAvailability" ]]; then
     MEASURE_FILE="Measure-CdsCodingAvailability.fhir"
-    FDE_PROJECT_IDENTIFIER_VALUE=fdpg-data-availability-report
-    FDE_PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT=fdpg-data-availability-report-obfuscated
+    PROJECT_IDENTIFIER_VALUE=fdpg-data-availability-report
+    PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT=fdpg-data-availability-report-obfuscated
 
 elif [[ "$FDE_REPORT_TYPE" == "DseElementAvailability" ]]; then
     MEASURE_FILE="Measure-DseElementAvailability.fhir"
-    FDE_PROJECT_IDENTIFIER_VALUE="fdpg-data-element-availability-report"
-    FDE_PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT=fdpg-data-element-availability-report-obfuscated
+    PROJECT_IDENTIFIER_VALUE="fdpg-data-element-availability-report"
+    PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT=fdpg-data-element-availability-report-obfuscated
 
 else
     echo "Unknown FDE_REPORT_TYPE: $FDE_REPORT_TYPE"
@@ -39,7 +39,7 @@ if [ ! -f "${MEASURE_DIR}/${MEASURE_FILE}_v${ONTOLOGY_VERSION}.json" ]; then
 fi
 
 echo "Starting FHIR data evaluator ..."
-FDE_PROJECT_IDENTIFIER_VALUE=$FDE_PROJECT_IDENTIFIER_VALUE FDE_PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT=$FDE_PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT COMPOSE_IGNORE_ORPHANS=True FDE_INPUT_MEASURE="${MEASURE_DIR}/${MEASURE_FILE}_v${ONTOLOGY_VERSION}.json" docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR/docker-compose.yml" up -d
+PROJECT_IDENTIFIER_VALUE=$PROJECT_IDENTIFIER_VALUE PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT=$PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT COMPOSE_IGNORE_ORPHANS=True FDE_INPUT_MEASURE="${MEASURE_DIR}/${MEASURE_FILE}_v${ONTOLOGY_VERSION}.json" docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR/docker-compose.yml" up -d
 
 
 
