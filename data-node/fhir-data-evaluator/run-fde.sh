@@ -43,7 +43,7 @@ touch .env-temp
 export OVERRIDE_ENV=".env-temp"
 
 # ensure cleanup on exit/crash
-trap "rm -f $OVERRIDE_ENV" EXIT
+trap 'rm -f $OVERRIDE_ENV' EXIT
 
 cp .env "$OVERRIDE_ENV"
 
