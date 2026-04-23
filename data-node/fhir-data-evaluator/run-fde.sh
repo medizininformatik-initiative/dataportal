@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 
 ONTOLOGY_VERSION=${ONTOLOGY_VERSION:-4.0.0}
+echo "\$0 = $0"
+echo "dirname \$0 = $(dirname "$0")"
 
 BASE_DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit 1 ; pwd -P )"
+echo "BASE_DIR = $BASE_DIR"
 
 # Create measure directory if it doesn't exist
 MEASURE_DIR="${BASE_DIR}/measure"
-mkdir -p "${BASE_DIR}/${MEASURE_DIR}"
+echo "MEASURE_DIR = $MEASURE_DIR"
+mkdir -vp "${BASE_DIR}/${MEASURE_DIR}"
 
 COMPOSE_PROJECT=${DATA_PORTAL_COMPOSE_PROJECT:-dataportal}
+echo "COMPOSE_PROJECT = $COMPOSE_PROJECT"
 DOWNLOAD_URL="https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/download/v${ONTOLOGY_VERSION}/availability.zip"
 
 FDE_REPORT_TYPE=${FDE_REPORT_TYPE:-cdsCodingAvailability}
