@@ -39,7 +39,8 @@ if [ ! -f "${MEASURE_DIR}/${MEASURE_FILE}_v${ONTOLOGY_VERSION}.json" ]; then
     # Download and extract measure resource
     curl -Ls -o "${BASE_DIR}/availability.zip" "$DOWNLOAD_URL"
     unzip -pj "${BASE_DIR}/availability.zip" "${MEASURE_FILE}.json" > "${MEASURE_DIR}/${MEASURE_FILE}_v${ONTOLOGY_VERSION}.json"
-    rm "${BASE_DIR}/availability.zip"
+    #rm "${BASE_DIR}/availability.zip"
+    mv -v "${BASE_DIR}/availability.zip" "${BASE_DIR}/availability."$(date +%Y-%m-%dT%H.%M.%S)".zip"
     echo "done."
 fi
 
@@ -73,7 +74,7 @@ override_env_var "PROJECT_IDENTIFIER_VALUE_OBFUSCATED_REPORT" "$PROJECT_IDENTIFI
 echo "Starting FHIR data evaluator ..."
 COMPOSE_IGNORE_ORPHANS=True FDE_INPUT_MEASURE="${MEASURE_DIR}/${MEASURE_FILE}_v${ONTOLOGY_VERSION}.json" docker compose -p "$COMPOSE_PROJECT" -f "$BASE_DIR/docker-compose.yml" up -d
 
-
+#mv -v "${MEASURE_DIR}/${MEASURE_FILE}" "${MEASURE_DIR}/${MEASURE_FILE}."$(date +%Y-%m-%dT%H.%M.%S)
 
 
 
