@@ -1,0 +1,95 @@
+import { withMermaid } from "vitepress-plugin-mermaid";
+
+export default withMermaid({
+    title: 'Dataportal',
+    description: 'Dataportal Documentation',
+    ignoreDeadLinks: true,
+    base: process.env.DOCS_BASE || '',
+    appearance: true,
+    lastUpdated: true,
+    themeConfig: {
+        siteTitle: false,
+        outline: false,
+        aside: false,
+        editLink: {
+            pattern: 'https://github.com/medizininformatik-initiative/dataportal/edit/main/docs/:path',
+            text: 'Edit this page on GitHub'
+        },
+
+        socialLinks: [
+            { icon: 'github', link: 'https://github.com/medizininformatik-initiative/dataportal' }
+        ],
+
+        footer: {
+            message: 'Released under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>',
+        },
+
+        search: {
+            provider: 'local'
+        },
+
+        nav: [
+            { text: 'Home', link: '/' }
+        ],
+
+        sidebar: [
+            {
+                text: 'Home',
+                link: '/index.md',
+                activeMatch: '^/$'
+            },
+            {
+                text: 'Overview',
+                link: '/overview.md',
+                activeMatch: '^/$'
+            },
+            {
+                text: 'Services compatibility matrix',
+                link: '/compatibility-matrix.md',
+                activeMatch: '^/$'
+            },
+            {
+                text: 'Architecture',
+                link: '/architecture.md',
+                activeMatch: '^/$'
+            },
+            {
+                text: 'Data Portal',
+                link: '/data-portal/overview.md',
+                items: [
+                    { text: 'Overview', link: '/data-portal/overview.md' },
+                    { text: 'Architecture', link: '/data-portal/architecture.md' },
+                    { text: 'Example Deployment', link: '/data-portal/example-deployment.md' },
+                    {
+                        text: 'Use',
+                        items: [
+                            { text: 'Data Portal Availability: availability-updater', link: '/data-portal/availability.md' },
+                        ]
+                    }
+                ]
+            },
+            {
+                text: 'Data Node',
+                link: '/data-node/overview.md',
+                items: [
+                    { text: 'Overview', link: '/data-node/overview.md' },
+                    { text: 'Architecture', link: '/data-node/architecture.md' },
+                    { text: 'Example Deployment', link: '/data-node/example-deployment.md' },
+                    { text: 'DUP Pipeline', link: '/data-node/dup-pipeline.md' },
+                    {
+                        text: 'Use',
+                        link: '/data-node/use.md',
+                        items: [
+                            { text: 'Pipeline Coordination: aether', link: '/data-node/aether.md' },
+                            { text: 'Data Extraction: TORCH', link: '/data-node/TORCH.md' },
+                            { text: 'DIMP: fhir-pseudonymizer', link: '/data-node/DIMP.md' },
+                            { text: 'FHIR Validation: mii-fhir-validator', link: '/data-node/mii-fhir-validator.md' },
+                            { text: 'FHIR Flattening: fhir-flattener', link: '/data-node/fhir-flattener.md' },
+                            { text: 'FHIR metadata reporting: fhir-data-evaluator', link: '/data-node/fhir-data-evaluator.md' }
+                        ]
+                    },
+                ]
+            }
+        ]
+    }
+})

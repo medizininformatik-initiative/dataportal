@@ -1,0 +1,67 @@
+name: Docs
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+    branches:
+      - main
+      - 160-restructure-deploy-repository
+    tags:
+      - 'v*.*.*'
+  pull_request:
+    paths:
+      - 'docs/**'
+    branches:
+      - main
+  schedule:
+    - cron: '0 1 * * *'
+  merge_group:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: true
+
+permissions: read-all
+
+jobs:
+  build-pages:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+
+      - name: Setup Node
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: 'docs/package-lock.json'
+
+      - name: Build
+        working-directory: docs
+        env:
+          DOCS_BASE: "/${{ github.event.repository.name }}/"
+        run: make build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: docs/.vitepress/dist
+
+  deploy-pages:
+    runs-on: ubuntu-24.04
+    needs: [ build-pages ]
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: ${{ github.ref == 'refs/heads/main' && 'github-pages' || format('preview-{0}', github.ref_name) }}
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

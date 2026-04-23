@@ -1,0 +1,278 @@
+# Aether DUP Pipeline Configuration Example
+# Copy this file to aether.yaml and customize for your environment
+
+services:
+  # TORCH Data Extraction Server (optional)
+  # Used for extracting FHIR cohort data directly via CRTDL files
+  # Leave empty to skip TORCH integration
+  torch:
+    # TORCH server base URL
+    base_url: "http://localhost:8086"
+
+    # TORCH authentication credentials
+    username: ""
+    password: ""
+
+    # Maximum time to wait for extraction completion (in minutes)
+    # Default: 30 minutes (reasonable for typical cohort sizes)
+    extraction_timeout_minutes: 30
+
+    # Initial polling interval when checking extraction status (in seconds)
+    # Default: 5 seconds
+    polling_interval_seconds: 5
+
+    # Maximum polling interval (exponential backoff cap, in seconds)
+    # Default: 30 seconds
+    max_polling_interval_seconds: 30
+  
+  # DIMP Pseudonymization Service (optional)
+  # Leave empty to skip pseudonymization step
+  dimp:
+    url: "http://localhost:8083/fhir"
+
+    # Bundle splitting threshold in megabytes (MB)
+    # Large FHIR Bundles exceeding this size will be automatically split into smaller chunks
+    # to prevent HTTP 413 "Payload Too Large" errors when sending to DIMP
+    # Range: 1-100 MB
+    # Default: 10 MB
+    bundle_split_threshold_mb: 10
+
+
+  # CRTDL Preprocessing (optional)
+  # Enriches CRTDL files with additional attributes required by DIMP before sending to TORCH.
+  # This is needed when DIMP requires certain identifiers (e.g., PseudonymisierterIdentifier,
+  # Aufnahmenummer) that are not part of the research query but needed for pseudonymization.
+  crtdl_preprocessing:
+    # Enable/disable CRTDL preprocessing (default: false)
+    enabled: true
+
+    # Option 1: External JSON file containing enrichment rules (recommended for complex/shared rules)
+    # The file should contain a JSON array of GroupEnrichment objects
+    enrichments_path: "./dimp-enrichments.json"
+
+    # Option 2: Inline enrichment rules (simpler for small configs)
+    # NOTE: Cannot use both enrichments_path AND enrichments - validation error if both are provided
+    # enrichments:
+    #   - group_reference: "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Patient"
+    #     create_if_not_exists:
+    #       group_name: "Patient"
+    #     attributes_to_add:
+    #       - attribute_ref: "Patient.identifier:PseudonymisierterIdentifier"
+    #         must_have: true
+    #   - group_reference: "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung"
+    #     attributes_to_add:
+    #       - attribute_ref: "Encounter.identifier:Aufnahmenummer"
+    #         must_have: true
+
+  # Flattening Service (optional)
+  # fhir-flattener transforms FHIR NDJSON data into CSV files using ViewDefinitions
+  # Only used with CRTDL-based pipelines (requires CRTDL file to define attribute groups)
+  # Leave service_url empty to skip flattening step
+  flattening:
+    # fhir-flattener service URL (internal Docker network hostname and port)
+    service_url: "http://localhost:8088"
+
+    # Path to the flatten-lookup.json file containing element-to-ViewDefinition mappings
+    # This file maps CRTDL attributeRef values to SQL-on-FHIR ViewDefinition snippets
+    lookup_path: "./flatteningLookup.json"
+
+    # Output formats - currently only "csv" is supported
+    formats:
+      - csv
+
+    # Request timeout for the flattening service
+    # Default: 30m (30 minutes)
+    timeout: 30m
+
+    # Total memory budget in megabytes (MB) for streaming processing.
+    # This budget is divided equally across attribute groups — each group flushes
+    # to the flattener when its share is exceeded. For example, with batch_size_mb: 150
+    # and 3 groups, each group flushes at ~50 MB, keeping total memory near 150 MB.
+    # Default: 500 MB (0 means "use default")
+    batch_size_mb: 500
+
+  # Send Step Configuration
+  # Supports three modes determined by the 'send_as' setting:
+  # - direct_resource_load: Sends NDJSON directly to a FHIR server using transaction bundles
+  # - transfer_load: Prepares and sends to a transfer FHIR server using Binary/DocumentReference
+  # - s3_upload: Uploads files to an S3-compatible object store (AWS S3, MinIO, Ceph)
+  send:
+    # Send mode (required)
+    # - "direct_resource_load": Upload FHIR resources directly to a FHIR server
+    # - "transfer_load": Package files for DSF-based transfer (Binary/DocumentReference)
+    # - "s3_upload": Upload files to S3 bucket
+    send_as: "transfer_load"
+
+    # FHIR server base URL (required for direct_resource_load and transfer_load modes)
+    url: "https://fhir-server.example.com/fhir"
+
+    # Number of resources per transaction bundle (only for direct_resource_load mode)
+    # Default: 100, Max: 1000
+    batch_size: 100
+
+    # Authentication (optional) - choose ONE method or leave both empty
+    auth:
+      # Option 1: Basic Auth
+      # Use environment variables to avoid storing credentials in config files:
+      # username: "${FHIR_USER}"
+      # password: "${FHIR_PASSWORD}"
+
+      # Option 2: OAuth2 Client Credentials (Keycloak-compatible)
+      # Use environment variables to avoid storing credentials in config files:
+      # oauth_issuer_uri: "${FHIR_OAUTH_ISSUER_URI}"
+      # oauth_client_id: "${FHIR_OAUTH_CLIENT_ID}"
+      # oauth_client_secret: "${FHIR_OAUTH_CLIENT_SECRET}"
+
+    # Transfer settings (only for transfer_load mode)
+    transfer:
+      # MII project identifier (used in DocumentReference.masterIdentifier)
+      project_identifier: "MII-PROJECT"
+
+      # Organization identifier (used in DocumentReference.author)
+      organization_identifier: "your-org.example.de"
+
+    # S3 Upload settings (only for s3_upload mode)
+    s3:
+      # Custom endpoint for S3-compatible stores (MinIO, Ceph, etc.)
+      # Leave empty for AWS S3
+      # endpoint: "http://localhost:9000"
+
+      # AWS region (default: eu-central-1)
+      region: "eu-central-1"
+
+      # S3 bucket name (required for s3_upload mode)
+      # Supports environment variables:
+      bucket: "${S3_BUCKET}"
+
+      # AWS credentials
+      # Use environment variables to avoid storing credentials in config files:
+      access_key_id: "${AWS_ACCESS_KEY_ID}"
+      secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
+
+      # Use path-style addressing (required for MinIO and some S3-compatible stores)
+      use_path_style: true
+
+      # Upload timeout (default: 30m)
+      timeout: 30m
+
+  # FHIR Validation Service (optional)
+  # Validates FHIR resources against profiles before further processing
+  # Leave url empty to skip validation step
+  validation:
+    # Validation service URL
+    url: "http://localhost:8080/fhir"
+
+    # Maximum concurrent validation requests (default: 4)
+    max_concurrent_requests: 4
+
+    # Bundle chunk size in MB for batching resources (default: 10)
+    bundle_chunk_size_mb: 10
+
+    # Stop the pipeline when validation finds data quality errors (default: true)
+    # When true: pipeline stops after validation completes with errors
+    # When false: validation reports are written but the pipeline continues
+    fail_on_error: true
+
+  # Local Import Configuration
+  # Default directory for local FHIR NDJSON file imports
+  # Can be overridden with --dir flag on command line
+  local_import:
+    # Directory containing FHIR NDJSON files to import
+    # Supports environment variables: dir: "${FHIR_DATA_DIR}"
+    # Can be overridden with: aether pipeline start query.crtdl --dir /other/path
+    dir: "/path/to/fhir/data"
+
+pipeline:
+  # List of steps to execute in order
+  # Import step options (must be first): torch, local_import, http_import
+  # Other step options: dimp, validation, csv_conversion, parquet_conversion, wait, flattening
+  #
+  # IMPORTANT: Only ONE import step should be enabled at a time!
+  #   - torch: Use with CRTDL for TORCH extraction
+  #   - local_import: Import from local directory (set via services.local_import.dir or --dir flag)
+  #   - http_import: Download from HTTP URL
+  #
+  # CRTDL file requirements:
+  #   - Required when: torch OR flattening step is enabled
+  #   - Optional when: only local_import or http_import (no flattening)
+  #   - Always provided as positional argument: aether pipeline start query.crtdl
+  #
+  # Local import directory:
+  #   - Configure via: services.local_import.dir in this file
+  #   - Or override with: --dir /path/to/data flag
+  #   - DEPRECATED: directory as positional argument (shows warning)
+  #
+  # Send step:
+  #   Use 'send' as a final step to upload data to a destination server.
+  #   Mode is determined by 'services.send.send_as':
+  #   - direct_resource_load: Sends NDJSON directly to FHIR server using transaction bundles
+  #   - transfer_load: Zips files, wraps in Binary/DocumentReference, POSTs to transfer server
+  #   - s3_upload: Uploads files directly to S3 bucket
+  #
+  # Wait step:
+  #   Use 'wait' to pause the pipeline for inspection or manual modification.
+  #   - Creates a copy of data in a {previous_output}_wait directory (e.g., import_wait/)
+  #   - Pipeline pauses until 'aether pipeline continue <job-id>' is run
+  #   - Cannot be first step (needs previous output)
+  #   - Consecutive waits are not allowed
+  enabled_steps:
+    # Choose ONE import step:
+    - torch           # TORCH import via CRTDL or direct TORCH URL
+    #- local_import    # Import from local directory (configured above)
+    # - http_import     # Import from HTTP URL
+    # - wait          # Uncomment to pause after import for inspection
+    - dimp
+    # - wait          # Uncomment to pause after pseudonymization
+    - flattening      # Transform FHIR to CSV using fhir-flattener (CRTDL input only)
+    # - send           # Uncomment to send data to DSF transfer server
+
+  # Maximum NDJSON line size in megabytes (MB)
+  # FHIR Bundles with many resources can produce very large single-line JSON objects.
+  # Increase this if you encounter "token too long" errors when reading NDJSON files.
+  # Default: 100 MB (omit or set to 0 for default)
+  # max_ndjson_line_size_mb: 100
+
+retry:
+  # Maximum number of retry attempts for transient errors (network, 5xx)
+  # Range: 1-10
+  max_attempts: 5
+
+  # Initial backoff delay in milliseconds
+  initial_backoff_ms: 1000
+
+  # Maximum backoff delay in milliseconds (exponential backoff cap)
+  max_backoff_ms: 30000
+
+# TLS settings for outgoing HTTP connections
+# Use to trust custom/internal certificates (common in hospital/research networks)
+tls:
+  # Path to a PEM file containing additional certificates to trust
+  # Accepts both CA certificates and individual server certificates
+  # Multiple certificates can be bundled in a single PEM file
+  # System CA certificates are still trusted alongside custom ones
+  # Supports environment variables: ca_cert_path: "${CA_CERT_PATH}"
+  # ca_cert_path: "/path/to/certs.pem"
+
+  # Skip TLS verification entirely (development/testing ONLY)
+  # WARNING: Disables certificate validation — never use in production
+  insecure_skip_verify: false
+
+# Compression settings for pipeline output files
+# Zstd compression reduces disk usage and speeds up file transfers
+compression:
+  # Enable/disable compression (default: true)
+  # When enabled, output files use .ndjson.zst extension
+  # When disabled, output files use plain .ndjson extension
+  enabled: false
+
+  # Compression level (default: "default")
+  # Options: "fastest", "default", "better", "best"
+  # - fastest: Minimal CPU usage, lower compression ratio (~3-4x)
+  # - default: Balanced speed and compression (~4-5x)
+  # - better: Higher compression, slower (~5-6x)
+  # - best: Maximum compression, slowest (~6-7x)
+  level: "default"
+
+# Directory to store job state and data
+# Can be absolute or relative path
+jobs_dir: "./jobs"

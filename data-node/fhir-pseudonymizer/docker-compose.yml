@@ -1,0 +1,21 @@
+services:
+  fhir-pseudonymizer:
+    image: ghcr.io/miracum/fhir-pseudonymizer:v2.23.0
+    restart: unless-stopped
+    cap_drop:
+      - ALL
+    ipc: none
+    security_opt:
+      - "no-new-privileges:true"
+    read_only: true
+    privileged: false
+    environment:
+      DOTNET_EnableDiagnostics: "0"
+      PseudonymizationService: "Vfps"
+      Vfps__Address: "dns:///vfps:8081"
+      AnonymizationEngineConfigPath: "/opt/fhir-pseudonymizer/dimp_dup_base.yaml"
+      UseSystemTextJsonFhirSerializer: "true"
+    volumes:
+      - "./dimp_dup_base.yaml:/opt/fhir-pseudonymizer/dimp_dup_base.yaml:ro"
+    ports:
+      - "127.0.0.1:8083:8080"

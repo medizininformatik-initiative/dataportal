@@ -1,0 +1,22 @@
+[
+  {
+    "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+    "addGroupIfNotExists": true,
+    "attributesToAdd": [
+      {
+        "attributeRef": "Patient.identifier",
+        "mustHave": false
+      }
+    ]
+  },
+  {
+    "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+    "addGroupIfNotExists": true,
+    "attributesToAdd": [
+      {
+        "attributeRef": "Encounter.identifier",
+        "mustHave": false
+      }
+    ]
+  }
+]
