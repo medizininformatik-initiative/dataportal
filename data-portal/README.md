@@ -50,11 +50,11 @@ If you use the default local data portal setup you will only have to change the 
 | keycloak/.env          | KC_ADMIN_USER                                | keycloak admin user name                                           |
 | keycloak/.env          | KC_ADMIN_PW                                  | choose a secure password here e.g. Ykc2PINWatNqL5Wq,OIxFz1Sv3dzmQ2 |
 | backend/.env           | BROKER_CLIENT_DIRECT_ENABLED                 | true                                                               |
-| backend/.env           | API_BASE_URL                                 | base-url-of-your-local-data-portal-backend                         |
+| backend/.env           | API_BASE_URL                                 | base-url-of-your-local-data-portal/backend.                        |
 | backend/.env           | FLARE_WEBSERVICE_BASE_URL                    | http://flare:8080                                                  |
-| backend/.env           | ALLOWED_ORIGINS                              | base-url-of-your-local-data-portal-backend                         |
-| backend/.env           | KEYCLOAK_BASE_URL_ISSUER                     | base-url-of-your-local-data-portal-keycloak                        |
-| gui/deploy-config.json | uiBackendApi > baseUrl                       | base-url-of-your-local-data-portal-backend/api/v3                  |
+| backend/.env           | ALLOWED_ORIGINS                              | base-url-of-your-local-data-portal                                 |
+| backend/.env           | KEYCLOAK_BASE_URL_ISSUER                     | base-url-of-your-local-data-portal/auth                            |
+| gui/deploy-config.json | uiBackendApi > baseUrl                       | base-url-of-your-local-data-portal/backend                         |
 | gui/deploy-config.json | auth > baseUrl                               | base-url-of-your-local-data-portal-keycloak                        |
 | proxy/.env.default	   | BACKEND_HOSTNAME                             | hostname (inkl. subdomain) of the local backend                    |
 | proxy/.env.default     | KEYCLOAK_HOSTNAM                             | hostname (inkl. subdomain) of the local keycloak                   |
@@ -87,18 +87,18 @@ For the reverse proxy you need to choose the configuration (variable `DATA_PORTA
       -  `auth > baseUrl`: set the domain part of the local data portal keycloak.
 - On the [proxy/.env] use this variable `DATA_PORTAL_PROXY_NGINX_CONFIG=./subdomains.nginx.conf`.
 
-- [./context-paths.nginx.conf](./proxy/context-paths.nginx.conf) which requires only one domain and uses context paths (`/auth` for keycloak,`/api` for backend and `/`) for user interface.
+- [./context-paths.nginx.conf](./proxy/context-paths.nginx.conf) which requires only one domain and uses context paths (`/auth` for keycloak,`/backend` for backend and `/`) for user interface.
 - The domain must point to the host machine the portal will run.
 - On the [proxy/.env] use this variable`DATA_PORTAL_PROXY_NGINX_CONFIG=./context-paths.nginx.conf`
 -  Change the following variable `KC_HOSTNAME` and `KC_HOSTNAME_ADMIN` in [keycloak/.env]: set the domain part of your domain. The path must be set to /auth at the end of the url. For example, https://example.org/auth.
 - Add `/auth` in the following variable `KC_HTTP_RELATIVE_PATH` in [keycloak/.env]
-- Change the following variable `API_BASE_URL` in [backend/.env]: set the domain part of your domain. The path must be set to /api at the end of the url. For example, https://example.org/api.
+- Change the following variable `API_BASE_URL` in [backend/.env]: set the domain part of your domain. The path must be set to /backend at the end of the url. For example, https://example.org/backend.
 - Change the following variable `ALLOWED_ORIGINS`  in [backend/.env]: set the domain part of your domain. For example, https://example.org.
 - Change the following variable`KEYCLOAK_BASE_URL_ISSUER` in [backend/.env]: set the domain part of your domain. The path must be set to /api at the end of the url. For example, https://example.org/auth.
 - Add `/auth` in the following variable `KEYCLOAK_BASE_URL_JWK` in [backend/.env]
 - Change the variable `BROKER_CLIENT_DIRECT_AUTH_OAUTH_ISSUER_URL` when using the bundled keycloak in [backend/.env]replace the values with https://DOMAIN:REV_PROXY_PORT/auth/realms/blaze where DOMAIN is your domain and REV_PROXY_PORT is the port number set in rev-proxy/.env (default 444). For example, https://example.org:444/auth/realms/blaze.
 - On the [gui/deploy-config.json] change the following variables:
-  - `uiBackendApi > baseUrl`: set the domain part of the local data portal backend with the context path `/api`. For example https://example.org/api.
+  - `uiBackendApi > baseUrl`: set the domain part of the local data portal backend with the context path `/backend`. For example https://example.org/backend.
   -  `auth > baseUrl`: set the domain part of the local data portal keycloak the context path `/auth`. For example https://example.org/auth.
 
 In case you do **not** have a docker-wide configuration of your organizations proxy server(s) you might need to add the following parameters to the `environment` section of the `init-elasticsearch` service in `backend/docker-compose.yml`: `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY`. The first two should obviously be your proxy server, the last one must include `dataportal-elastic`.
@@ -114,11 +114,11 @@ execute `bash start-portal.sh`.
 
 This starts the following default local data portal, with the following components:
 
-| Component | url                                                    | description |
-|-----------|--------------------------------------------------------|-------------|
-| GUI       | https://data-portal-subdomain.my-data-portal-domain    |             |
-| Keycloak  | https://keycloak-subdomain.my-data-portal-domain      |             |
-| Backend   | https://backend-subdomain.my-data-portal-domain/api/v5 |             |
+| Component | url context path                          | url subdomain                                                   |
+|-----------|-------------------------------------------|-----------------------------------------------------------------|
+| GUI       | https://data-portal-domain                | https://data-portal-subdomain.my-data-portal-domain             |
+| Keycloak  | https://data-portal-domain/auth           | https://keycloak-subdomain.my-data-portal-domain                |
+| Backend   | https://data-portal-domain/backend/api/v5 | https://backend-subdomain.my-data-portal-domain/backend/api/v5  |
 
 
 ### Step 7 - Configure keycloak and add a user for the user interface
