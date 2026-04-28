@@ -57,7 +57,7 @@ If you use the default local data portal setup you will only have to change the 
 | gui/deploy-config.json | uiBackendApi > baseUrl                       | base-url-of-your-local-data-portal/backend                         |
 | gui/deploy-config.json | auth > baseUrl                               | base-url-of-your-local-data-portal-keycloak                        |
 | proxy/.env.default	   | BACKEND_HOSTNAME                             | hostname (inkl. subdomain) of the local backend                    |
-| proxy/.env.default     | KEYCLOAK_HOSTNAM                             | hostname (inkl. subdomain) of the local keycloak                   |
+| proxy/.env.default     | KEYCLOAK_HOSTNAME                            | hostname (inkl. subdomain) of the local keycloak                   |
 | proxy/.env.default     | GUI_HOSTNAME                                 | hostname (inkl. subdomain) of the local ui                         |
 
 Please note that all user env variables (variables containing USER) should be changed and all password variables (variables containing PASSWORD or PW) should be set to secure passwords.
@@ -73,6 +73,11 @@ The portal is configured by default to start the following services:
 For the reverse proxy you need to choose the configuration (variable `DATA_PORTAL_PROXY_NGINX_CONFIG` in
 [proxy/.env](./proxy/.env)) which also decides what the changes to the `.env` files you have to make:
 
+Choose between `Subdoamin config` and `Context path config`
+
+
+#### Subdomain config:
+
 - [./subdomains.nginx.conf](./proxy/subdomains.nginx.conf) with separate domains for the services (Backend, UI, Keycloak)
   - All subdomains must point to the host machine the portal will run.
 
@@ -83,9 +88,11 @@ For the reverse proxy you need to choose the configuration (variable `DATA_PORTA
 - Change the values for the variables `API_BASE_URL` in [backend/.env](./backend/.env) and `ALLOWED_ORIGINS` in [backend /.env](./backend/.env)
           to the base url of your data portal backend. In the [backend/.env](./backend/.env) change the values for the variable `KEYCLOAK_BASE_URL_ISSUER`	to the base url of your data portal keycloak.
 - Change the following variables in [gui/deploy-config.json](./gui/deploy-config.json):
-      - `uiBackendApi > baseUrl`: set the domain part of the local data portal backend.
-      -  `auth > baseUrl`: set the domain part of the local data portal keycloak.
+      - `backendBaseUrl`: set the domain part of the local data portal backend.
+      -  `authBaseUrl`: set the domain part of the local data portal keycloak.
 - On the [proxy/.env] use this variable `DATA_PORTAL_PROXY_NGINX_CONFIG=./subdomains.nginx.conf`.
+
+#### Context path config:
 
 - [./context-paths.nginx.conf](./proxy/context-paths.nginx.conf) which requires only one domain and uses context paths (`/auth` for keycloak,`/backend` for backend and `/`) for user interface.
 - The domain must point to the host machine the portal will run.
@@ -98,8 +105,8 @@ For the reverse proxy you need to choose the configuration (variable `DATA_PORTA
 - Add `/auth` in the following variable `KEYCLOAK_BASE_URL_JWK` in [backend/.env]
 - Change the variable `BROKER_CLIENT_DIRECT_AUTH_OAUTH_ISSUER_URL` when using the bundled keycloak in [backend/.env]replace the values with https://DOMAIN:REV_PROXY_PORT/auth/realms/blaze where DOMAIN is your domain and REV_PROXY_PORT is the port number set in rev-proxy/.env (default 444). For example, https://example.org:444/auth/realms/blaze.
 - On the [gui/deploy-config.json] change the following variables:
-  - `uiBackendApi > baseUrl`: set the domain part of the local data portal backend with the context path `/backend`. For example https://example.org/backend.
-  -  `auth > baseUrl`: set the domain part of the local data portal keycloak the context path `/auth`. For example https://example.org/auth.
+  - `backendBaseUrl`: set the domain part of the local data portal backend with the context path `/backend`. For example https://example.org/backend.
+  -  `authBaseUrl`: set the domain part of the local data portal keycloak the context path `/auth`. For example https://example.org/auth.
 
 In case you do **not** have a docker-wide configuration of your organizations proxy server(s) you might need to add the following parameters to the `environment` section of the `init-elasticsearch` service in `backend/docker-compose.yml`: `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY`. The first two should obviously be your proxy server, the last one must include `dataportal-elastic`.
 
