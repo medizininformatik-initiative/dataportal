@@ -92,9 +92,9 @@ For the reverse proxy you need to choose the configuration (variable `DATA_PORTA
 - On the [proxy/.env] use this variable`DATA_PORTAL_PROXY_NGINX_CONFIG=./context-paths.nginx.conf`
 -  Change the following variable `KC_HOSTNAME` and `KC_HOSTNAME_ADMIN` in [keycloak/.env]: set the domain part of your domain. The path must be set to /auth at the end of the url. For example, https://example.org/auth.
 - Add `/auth` in the following variable `KC_HTTP_RELATIVE_PATH` in [keycloak/.env]
-- Change the following variable `API_BASE_URL` in [backend/.env]: set the domain part of your domain. The path must be set to /backend at the end of the url. For example, https://example.org/backend.
+- Change the following variable `API_BASE_URL` in [backend/.env]: set the domain part of your domain. The path must be set to `/backend` at the end of the url. For example, https://example.org/backend.
 - Change the following variable `ALLOWED_ORIGINS`  in [backend/.env]: set the domain part of your domain. For example, https://example.org.
-- Change the following variable`KEYCLOAK_BASE_URL_ISSUER` in [backend/.env]: set the domain part of your domain. The path must be set to /api at the end of the url. For example, https://example.org/auth.
+- Change the following variable`KEYCLOAK_BASE_URL_ISSUER` in [backend/.env]: set the domain part of your domain. The path must be set to `/auth `at the end of the url. For example, https://example.org/auth.
 - Add `/auth` in the following variable `KEYCLOAK_BASE_URL_JWK` in [backend/.env]
 - Change the variable `BROKER_CLIENT_DIRECT_AUTH_OAUTH_ISSUER_URL` when using the bundled keycloak in [backend/.env]replace the values with https://DOMAIN:REV_PROXY_PORT/auth/realms/blaze where DOMAIN is your domain and REV_PROXY_PORT is the port number set in rev-proxy/.env (default 444). For example, https://example.org:444/auth/realms/blaze.
 - On the [gui/deploy-config.json] change the following variables:
