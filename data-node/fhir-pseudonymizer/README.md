@@ -12,7 +12,7 @@ It is important that the pseudonyms are kept save and persisted over a long peri
 
 If a site is using the vfps of this example, the fhir-pseudonymizer needs the pseudonym domains used in the [dimp_dup_base.yaml](./dimp_dup_base.yaml) to exist in the vfps.
 
-For testing purposes one can keep `https://my-dic-domain/identifiers/encounter-id` and `https://my-dic-domain/identifiers/patient-id`, otherwise change to your domain of choice.
+For testing purposes one can keep `my-dic-encounter-namespace` and `my-dic-patient-namespace`, otherwise change to your domain of choice.
 
 To create the domains in the vfps use the following post requests:
 
@@ -22,7 +22,7 @@ curl --request POST \
   --url http://localhost:8089/v1/namespaces \
   --header 'content-type: application/json' \
   --data '{
-  "name": "https://my-dic-domain/identifiers/patient-id",
+  "name": "my-dic-patient-namespace",
   "pseudonymGenerationMethod": "PSEUDONYM_GENERATION_METHOD_UNSPECIFIED",
   "pseudonymLength": 32,
   "pseudonymPrefix": "string",
@@ -37,7 +37,7 @@ curl --request POST \
   --url http://localhost:8089/v1/namespaces \
   --header 'content-type: application/json' \
   --data '{
-  "name": "https://my-dic-domain/identifiers/encounter-id",
+  "name": "my-dic-encounter-namespace",
   "pseudonymGenerationMethod": "PSEUDONYM_GENERATION_METHOD_UNSPECIFIED",
   "pseudonymLength": 32,
   "pseudonymPrefix": "string",
@@ -45,4 +45,3 @@ curl --request POST \
   "description": "string"
 }'
 ```
-

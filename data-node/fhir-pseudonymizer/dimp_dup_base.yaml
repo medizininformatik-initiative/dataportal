@@ -62,11 +62,11 @@ fhirPathRules:
   ### Encounter Identifier
   - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='VN').exists()).value
     method: pseudonymize
-    domain: https://my-dic-domain/identifiers/encounter-id
+    domain: my-dic-encounter-namespace
   ### Patient Identifier
   - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='MR').exists()).value
     method: pseudonymize
-    domain: https://my-dic-domain/identifiers/patient-id
+    domain: my-dic-patient-namespace
 
 
 ## Add specific logical References to be kept here - potential candidates are known cds identifier:
