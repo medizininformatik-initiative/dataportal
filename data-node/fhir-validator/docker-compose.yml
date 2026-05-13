@@ -1,6 +1,6 @@
 services:
   fhir-validator:
-    image: ghcr.io/medizininformatik-initiative/mii-fhir-validator:0.0.1-alpha.5
+    image: ghcr.io/medizininformatik-initiative/mii-fhir-validator:0.0.1-alpha.6
     ports:
       - "8080:8080"
     env_file:

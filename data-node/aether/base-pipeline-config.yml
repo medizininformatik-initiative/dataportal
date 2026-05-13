@@ -28,7 +28,7 @@ services:
   # DIMP Pseudonymization Service (optional)
   # Leave empty to skip pseudonymization step
   dimp:
-    url: "http://localhost:8083/fhir"
+    url: "http://localhost:8083"
 
     # Bundle splitting threshold in megabytes (MB)
     # Large FHIR Bundles exceeding this size will be automatically split into smaller chunks
