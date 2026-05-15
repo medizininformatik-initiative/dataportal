@@ -10,6 +10,7 @@ torch/queries/*
 output
 aether/queries/*
 !aether/queries/example-crtdl.json
+!aether/queries/example-crtdl-consent.json
 
 terminology-server/sct-release
 aether/jobs
