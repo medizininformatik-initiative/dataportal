@@ -34,6 +34,13 @@ To install aether follow the installation instruction [here](https://medizininfo
 
 For version compatibility with the dataportal [see](https://medizininformatik-initiative.github.io/dataportal/compatibility-matrix.html)
 
+## Setting up aether
+
+To use aether all the services which aether is using for your pipeline need to be set up - see pipeline steps above.
+
+Additionally, to flatten data aether needs a `flatteningLookup.json` file, which can be downloaded for the the newest ontology published for the data node.
+
+To download flatteningLookup of a particular ontology version, use the `get_flattening_lookup.sh` of this repository.
 
 ## Using aether
 
