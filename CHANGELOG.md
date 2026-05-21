@@ -25,6 +25,46 @@ Please refer to the respective repositories for a more in depth changelog of sin
 |fhir-pseudonymizer|<https://github.com/miracum/fhir-pseudonymizer>|
 
 
+## [6.1.0] - 2026-05-21
+
+### Updates since last version
+
+For updates to the components since the last version see the [compatibility matrix ](https://medizininformatik-initiative.github.io/dataportal/compatibility-matrix.html)
+For detailed overview of releases see the individual components
+
+### Breaking changes
+
+- aether: Service urls now standardized to service root - aether adds /fhir to the url
+- aether: Removed flatteningLookup.json as it is now part of the ontology generation files - [see documentation](https://medizininformatik-initiative.github.io/dataportal/data-node/aether.html#setting-up-aether)
+- TORCH: Updated Consent Calculation - [see](https://github.com/medizininformatik-initiative/torch/issues/851)
+
+### Fixes
+
+- Added additional documentation
+- Fixed dimp_dup_base.yml zip code generalization
+
+### Major New Features
+
+- UI
+  - Add filtering of filter options for criteria search
+  - Move criterion editing to its own page
+- Backend
+  - Add filtering of filter options for criteria search
+- aether
+  - Copy effective CRTDL into job dir
+  - Service urls now standardized to service root - aether adds /fhir to the url.
+- TORCH
+  - Updated Consent Calculation to support Consent for central analysis - [see](https://medizininformatik-initiative.github.io/torch/implementation/consent.html)
+  - Implemented job handling and Task API
+
+### Ontology
+
+This release is based on ontology version [v4.1.0](https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/tag/v4.1.0)
+
+- New module oncology added.
+- Added `flattening.zip` (fhir flattening viewdefintion lookup) as part of the ontology assets.
+
+
 ## [6.0.0] - 2026-03-31
 
 
