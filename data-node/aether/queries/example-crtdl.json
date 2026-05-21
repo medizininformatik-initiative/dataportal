@@ -46,6 +46,14 @@
                     {
                         "attributeRef": "Patient.active",
                         "mustHave": false
+                    },
+                    {
+                        "attributeRef": "Patient.birthDate",
+                        "mustHave": false
+                    },
+                    {
+                        "attributeRef": "Patient.address:Strassenanschrift",
+                        "mustHave": true
                     }
                 ]
             },

@@ -160,7 +160,7 @@ services:
   # Leave url empty to skip validation step
   validation:
     # Validation service URL
-    url: "http://localhost:8080/fhir"
+    url: "http://localhost:8080"
 
     # Maximum concurrent validation requests (default: 4)
     max_concurrent_requests: 4
