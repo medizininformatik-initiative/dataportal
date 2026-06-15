@@ -19,6 +19,8 @@ This configuration is provided as a guideline only and does not guarantee compli
 Depending on your specific setup or the characteristics of your data, this base configuration 
 will likely need to be extended or adjusted to meet the requirements of your particular project and/or site.
 
+<details>
+<summary>Table with list of applied DIMP rules</summary>
 
 | DSC Concept | FHIR Resource | FHIR Element | Privacy Requirement | Description | DIMP Implementation | DUP Base YAML |
 |---|---|---|---|---|---|---|
@@ -36,8 +38,7 @@ will likely need to be extended or adjusted to meet the requirements of your par
 | Postal Code | Patient | `Patient.address.postalCode` | IDAT and MDAT – generalize to 2 digits | Postal code component of an address. Retaining the first 2 digits preserves regional granularity while reducing re-identification risk. | Generalize to first 2 characters | `- path: Patient.address.postalCode`<br>`  method: generalize`<br>`  cases:`<br>`    "$this": "$this.toString().substring(0,2)"` |
 | Free Text | All | `nodesByType('Annotation')` | IDAT – remove | Unstructured free-text fields such as `Observation.note`. May contain patient-identifiable information and cannot be reliably de-identified automatically. | Redact | `- path: nodesByType('Annotation')`<br>`  method: redact` |
 
-
-Here's the improved version:
+</details>
 
 ---
 
@@ -92,9 +93,7 @@ Once data is DIMPed for a DUP the data set does not contain any original technic
 Therefore additional steps are required for debugging and checking correct data extraction (like consent compliance).
 
 > [!INFO]
-> The technical id - ID - is a technical identifier used in the FHIR server to identify a data entry and has no direct correspondance to the primary data in the hospital, this ID does not contain sensitive information and is commonly generated on load into the FHIR server. This ID should not be confused with a logical Identifier for the patient like the medical record number (MR). Identifier can be used to re-identify a patient in the hospital. The have to be added to DUP data sets for re-identification purposes in a ps
-
- have to pseudonymised to be added to a DUP data set and have to be 
+> The technical id - ID - is a technical identifier used in the FHIR server to identify a data entry and has no direct correspondance to the primary data in the hospital, this ID does not contain sensitive information and is commonly generated on load into the FHIR server (It is each sites responsibility to assess wether cryptohashing their technical IDs is sufficient). This ID should not be confused with a logical Identifier for the patient like the medical record number (MR). Identifier can be used to re-identify a patient in the hospital. They have to be added to DUP data sets for re-identification purposes, for example in case of withdrawal (German = "Widerruf").
 
 
 Given any data set in DIMPed fhir or CSV format (aether job step folders `dimp` and `csv`), the technical IDs cannot be reversed, however if you are looking for a particular ID in your final data set from your original you can use the following command:
