@@ -20,7 +20,7 @@ Depending on your specific setup or the characteristics of your data, this base 
 will likely need to be extended or adjusted to meet the requirements of your particular project and/or site.
 
 <details>
-<summary>Table with list of applied DIMP rules</summary>
+<summary>Table with list of applied DIMP rules: </summary>
 
 | DSC Concept | FHIR Resource | FHIR Element | Privacy Requirement | Description | DIMP Implementation | DUP Base YAML |
 |---|---|---|---|---|---|---|
