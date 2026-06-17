@@ -58,11 +58,20 @@ fhirPathRules:
   ### Encounter Identifier
   - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='VN').exists()).value
     method: pseudonymize
-    domain: my-dic-encounter-namespace
+    domain: my-dic-encounter-vn-namespace
   ### Patient Identifier
   - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='MR').exists()).value
     method: pseudonymize
-    domain: my-dic-patient-namespace
+    domain: my-dic-patient-mr-namespace
+
+  #### Patient Identifier - Re-Pseudonymize PSEUDED
+  - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v3-ObservationValue' and code='PSEUDED').exists()).value
+    method: pseudonymize
+    domain: my-dic-patient-pseuded-namespace
+
+  - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v3-ObservationValue' and code='ANONYED').exists()).value
+    method: pseudonymize
+    domain: my-dic-patient-anonyed-namespace
 
 
 ## Add specific logical References to be kept here - potential candidates are known cds identifier:

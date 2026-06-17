@@ -11,5 +11,17 @@ do
   else
     cp "$file.default" "$file"
     printf "Initialized .env file %s from template file %s\n\n" "$file" "$file.default"
+
+    if [[ "$file" == *"fhir-pseudonymizer/.env" ]]; then
+      crypto_key=$(openssl rand -hex 32)
+
+      if [[ "$OSTYPE" == "darwin"* ]]; then
+        sed -i '' "s|Anonymization__CryptoHashKey=.*|Anonymization__CryptoHashKey=$crypto_key|" "$file"
+      else
+        sed -i "s|Anonymization__CryptoHashKey=.*|Anonymization__CryptoHashKey=$crypto_key|" "$file"
+      fi
+
+      printf "Generated and set Anonymization__CryptoHashKey in %s\n\n" "$file"
+    fi
   fi
 done

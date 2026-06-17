@@ -107,7 +107,52 @@ Based on this input, TORCH will extract resources and check each resource agains
 
 ## Verifying Consent
 
-Take a random extracted resource from a patient bundle or the CSV.
+Take a random extracted resource from a patient bundle (job folder = import) or the CSV (job folder = csv).
+
+
+**Example Condition resource from a extraction bundle:**
+
+
+<details>
+<summary>Condition resource from patient bundle</summary>
+
+```json
+{
+    "resourceType": "Condition",
+    "id": "mii-exa-test-data-patient-9-diagnose-1",
+    "meta": {
+        "profile": [
+            "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose"
+        ]
+    },
+    "code": {
+        "coding": [
+            {
+                "system": "http://fhir.de/CodeSystem/bfarm/icd-10-gm",
+                "version": "2024",
+                "code": "N83.2"
+            },
+            {
+                "system": "http://fhir.de/CodeSystem/bfarm/alpha-id",
+                "version": "2024",
+                "code": "I20743",
+                "display": "Ovarialzyste"
+            },
+            {
+                "system": "http://snomed.info/sct",
+                "version": "http://snomed.info/sct/900000000000207008/version/20230731",
+                "code": "79883001",
+                "display": "Cyst of ovary (disorder)"
+            }
+        ]
+    },
+    "subject": {
+        "reference": "Patient/mii-exa-test-data-patient-9"
+    },
+    "recordedDate": "2024-02-20"
+}
+```
+</details>
 
 **Example row from a Condition CSV:**
 
@@ -115,6 +160,9 @@ Take a random extracted resource from a patient bundle or the CSV.
 id,patient,...,Condition_recordedDate,...
 mii-exa-test-data-patient-9-diagnose-1,Patient/mii-exa-test-data-patient-9,...,2024-02-20,...
 ```
+
+> [!INFO]
+> Note that if you are using DIMP in your pipeline you cannot easily use the CSV to check your consent against, as the flattening comes after the DIMP step, which means that all the IDs (cryptohashed) and identifier (re-pseudonymized) will already be changed.
 
 **Step 1 — Extract the consent-relevant date**
 
