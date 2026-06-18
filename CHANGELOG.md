@@ -25,6 +25,36 @@ Please refer to the respective repositories for a more in depth changelog of sin
 |fhir-pseudonymizer|<https://github.com/miracum/fhir-pseudonymizer>|
 
 
+## [6.2.0] - 2026-06-18
+
+### Updates since last version
+
+For updates to the components since the last version see the [compatibility matrix ](https://medizininformatik-initiative.github.io/dataportal/compatibility-matrix.html)
+For detailed overview of releases see the individual components
+
+### Breaking changes
+
+- aether: aether.yaml is now a required first positional argument — The --config flag is gone;
+- aehter: DIMP step output directory renamed pseudonymized → dimp — Downstream steps and external tooling that read the pseudonymized output must use the new
+
+### Fixes
+
+- Added additional documentation
+- Added Anonymization__CryptoHashKey env var to pseudonymizer
+- TORCH: No longer extends encounter when consent is signed on the encounter end date - for info on consent in torch [see](https://medizininformatik-initiative.github.io/torch/implementation/consent.html)
+
+### Major New Features
+- aether
+  - Copy effective CRTDL into job dir
+  - Service urls now standardized to service root - aether adds /fhir to the url.
+- TORCH
+  - Provide extraction-exclusion list in TORCH output 
+
+### Ontology
+
+This release is based on ontology version [v4.1.0](https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/tag/v4.1.0)
+
+
 ## [6.1.0] - 2026-05-21
 
 ### Updates since last version
