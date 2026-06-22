@@ -25,6 +25,28 @@ Please refer to the respective repositories for a more in depth changelog of sin
 |fhir-pseudonymizer|<https://github.com/miracum/fhir-pseudonymizer>|
 
 
+## [6.3.0] - 2026-06-22
+
+### Updates since last version
+
+For updates to the components since the last version see the [compatibility matrix ](https://medizininformatik-initiative.github.io/dataportal/compatibility-matrix.html)
+For detailed overview of releases see the individual components
+
+### Breaking changes
+
+- fhir-pseudonymizer: Updated documentation for pseudonymization inlcuding DUP specific crypto hashes and identifier
+
+
+### Major New Features
+
+- flattening: Support more fields to flattening - new flatteningLookup.json - see ontology 4.2.0
+
+
+### Ontology
+
+This release is based on ontology version [v4.2.0](https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/tag/v4.2.0)
+
+
 ## [6.2.0] - 2026-06-18
 
 ### Updates since last version
