@@ -12,6 +12,6 @@ services:
     env_file:
       - .env
     volumes:
-      - "./dimp_dup_base.yaml:/opt/fhir-pseudonymizer/dimp_dup_base.yaml:ro"
+      - "${DIMP_DUP_YAML_PATH:-./dimp_dup_base.yaml}:/opt/fhir-pseudonymizer/dimp_dup_base.yaml:ro"
     ports:
       - "127.0.0.1:8083:8080"

@@ -61,8 +61,8 @@ There are three ways to handle each identifier:
 | Option | When to use |
 |---|---|
 | **Don't re-pseudonymize** | The identifier is already pseudonymized and no additional per-project pseudonymization is needed |
-| **Re-pseudonymize for extraction** (shared namespace across projects) | The identifier is not yet pseudonymized, or your site requires pseudonymization for data extractions generally |
-| **Re-pseudonymize per DUP project** (separate namespace per project) | The identifier is not yet pseudonymized, or your site requires a distinct pseudonym for each individual DUP project |
+| **Re-pseudonymize for extraction** (shared namespace across projects) | The identifier is not yet pseudonymized, or your site requires pseudonymization for data extractions generally - note this is an uncommon use case |
+| **Re-pseudonymize per DUP project** (separate namespace per project) | The identifier is not yet pseudonymized and your site requires a distinct pseudonym for each individual DUP project - The standard use case|
 
 #### Identifier Reference Table
 
@@ -79,13 +79,65 @@ The CDS defines the following standard patient identifiers. Check which ones you
 
 > **Site-specific identifiers:** Any additional identifiers your site has added that are not defined as a slice in the CDS profile must be removed during the DIMP process. This is your site's responsibility.
 
-#### Configuration Checklist
+
+#### The standard DIMP use case - per project DIMP
+
+The standard use case for a DUP is to re-pseudonymize using project specific namespaces and cryptohashing of IDs for the specific project (new hash key per project).
+
+For each project, unless otherwise specified, the following need to be adjusted:
+
+1. `parameters.cryptoHashKey` needs to be filled with a crypohashkey for the project. You can use the following command for this `openssl rand -hex 32` to generate a new key for your project
+2. The `project-prefix-here` part in the `dimp_dup_base.yaml` should be replaced with your project prefix.
+
+The best way to achieve the DUP based DIMP is to create a project-prefix-dimp-dup-base.yml and mount this yaml to the pseudonymizer and restart it.
+Once the project has been executed shut down the pseudonymizer and prepare for the next project.
+
+
+#### Configuration Checklist - standard DUP project
 
 1. Identify which patient identifiers your site uses
-2. Update your DUP YAML to reflect the correct re-pseudonymization approach for each
-3. If using per-project namespaces, create those namespaces in your pseudonymization service (e.g. vfps, gPas, Enticy) **before** running the DIMP step — if a namespace is missing, the `fhir-pseudonymizer` will fail and break the pipeline
-4. For instructions on creating namespaces in vfps, see [this guide](https://github.com/medizininformatik-initiative/dataportal/blob/main/data-node/fhir-pseudonymizer/README.md)
+2. Update your DUP YAML to reflect the correct re-pseudonymization for each and create a new cryptohash key for your project and update it in the dup yaml
+3. Save the DUP YAML with your project prefix and mount it into the fhir pseudonymizer
+3. Create the needed namespaces in your pseudonymization service (e.g. vfps, gPas, Enticy) **before** running the DIMP step — if a namespace is missing, the `fhir-pseudonymizer` will fail and break the pipeline - (For instructions on creating namespaces in vfps, see [this guide](https://github.com/medizininformatik-initiative/dataportal/blob/main/data-node/fhir-pseudonymizer/README.md))
+4. Restart the fhir-pseudonymizer and check if your DUP configuration has been updated. To check your configuration has been updated send a pseudonymization query as follows and check if the hashed id of the resource is equaled to the first 32 digits of `echo -n "VHF02002-CD-1" | openssl dgst -sha256 -hmac "<YOUR_KEY>"`
+5. It is important that you ensure that the pseudonymization service you use is persisted at your site as this is the only option to re-identify patients later should this be necessary.
 
+
+
+
+<details>
+<summary>Example curl request to check pseudonymization configuration </summary>
+
+```curl
+curl --request POST \
+  --url 'http://localhost:8083/fhir/$de-identify' \
+  --header 'content-type: application/json' \
+  --data '{
+  "resourceType": "Condition",
+  "id": "VHF02002-CD-1",
+  "meta": {
+    "profile": [
+      "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose"
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "http://fhir.de/CodeSystem/bfarm/icd-10-gm",
+        "version": "2020",
+        "code": "I95.0"
+      }
+    ],
+    "text": "Idiopathische Hypotonie"
+  },
+  "subject": {
+    "reference": "Patient/VHF02002"
+  },
+  "recordedDate": "2021-01-01T00:00:00+01:00"
+}'
+```
+
+</details>
 
 ### Working with DIMPED data and re-identification
 
