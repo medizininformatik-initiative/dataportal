@@ -37,6 +37,10 @@ services:
     # Default: 10 MB
     bundle_split_threshold_mb: 100
 
+    # initial use of experimental anonymization path yaml
+    experimental_v3:
+      anonymization_config: "./example-project_dimp_dup_base.yaml"
+
 
   # CRTDL Preprocessing (optional)
   # Enriches CRTDL files with additional attributes required by DIMP before sending to TORCH.

@@ -1,5 +1,7 @@
 test/testdata
 .env
+__pycache__/
+.pytest_cache/
 deploy-config.json
 *.pem
 *.key
