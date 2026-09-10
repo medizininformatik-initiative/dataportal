@@ -1,0 +1,15 @@
+---
+fhirVersion: R4
+parameters:
+  cryptoHashKey: #your crypto hash key here generate with e.g.: openssl rand -hex 32
+fhirPathRules:
+
+# !! - Note the example dimp_dup_base.yaml has moved to data-node/aether/dimp_dup_base.yaml
+# as it is now dynamically passed for each project
+#
+# This is meant to demonstrate that dynamic rule passing works and ensure that the pseudyonmizer otherwise redacts everything.
+# This essentially enforces dynamic rules only
+
+### Redact everything
+  - path: Resource
+    method: redact

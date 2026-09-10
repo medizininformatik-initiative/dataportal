@@ -10,19 +10,32 @@ fhirPathRules:
   - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='VN').exists()).value
     method: pseudonymize
     domain: example-project-my-dic-encounter-vn-namespace
+
+  - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='VN').exists())
+    method: keep
   ### Patient Identifier
   - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='MR').exists()).value
     method: pseudonymize
     domain: example-project-my-dic-patient-mr-namespace
+
+  - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='MR').exists())
+    method: keep
 
   #### Patient Identifier - Re-Pseudonymize PSEUDED
   - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v3-ObservationValue' and code='PSEUDED').exists()).value
     method: pseudonymize
     domain: example-project-my-dic-patient-pseuded-namespace
 
+  - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v3-ObservationValue' and code='PSEUDED').exists())
+    method: keep
+
   - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v3-ObservationValue' and code='ANONYED').exists()).value
     method: pseudonymize
     domain: example-project-my-dic-patient-anonyed-namespace
+
+  - path: nodesByType('Identifier').where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v3-ObservationValue' and code='ANONYED').exists())
+    method: keep
+ 
 
 ## Patient
   ### Generalize PostalCode to first two characters
@@ -36,6 +49,8 @@ fhirPathRules:
   - path: Patient.address.state
     method: keep
   - path: Patient.address.postalCode
+    method: keep
+  - path: Patient.address.type
     method: keep
   ### Keep if patient deceased boolean
   - path: Patient.deceased.ofType(boolean)
@@ -93,8 +108,15 @@ fhirPathRules:
 ## Clean References - To discuss if necessary potentially problematic when using logical reference resolve
   - path: nodesByType('Reference').display
     method: redact
-  - path: nodesByType('Reference').identifier
+
+## Redact all remaining identifier unless otherwise specified
+  - path: nodesByType('Identifier')
     method: redact
+
+  #  Alternative to redaction - has to be discussed on per project basis
+  #- path: nodesByType('Identifier').value
+  #  method: cryptoHash
+  #  truncateToMaxLength: 32
 
 
 ## Additional Insurance (fail safe) - Removes IDAT if unpseudonymized data is processed (precautionary measure; should not happen)
