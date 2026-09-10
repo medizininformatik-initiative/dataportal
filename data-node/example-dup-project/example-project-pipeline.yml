@@ -38,8 +38,11 @@ services:
     bundle_split_threshold_mb: 100
 
     # initial use of experimental anonymization path yaml
-    experimental_v3:
-      anonymization_config: "./example-project_dimp_dup_base.yaml"
+    
+    # This sets the anonymization yaml, which is sent with each $de-identify request
+    # Overwrites the fhir-pseudonymizer config
+    # Can be overwritten by passing a path to another yaml via cli option --anonymization-config
+    anonymization_config: "./example-project_dimp_dup_base.yaml"
 
 
   # CRTDL Preprocessing (optional)
