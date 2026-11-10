@@ -15,10 +15,11 @@ fhirPathRules:
     method: keep
 
 ## Always hash systems of identifier
- # This needs a feature in the pseudonymizer to allow hashing full urls
- # - path: nodesByType('Identifier').system
- #   method: cryptoHash
- #   truncateToMaxLength: 32
+ # fhir-pseudonymizer > 3.0.0
+  - path: nodesByType('Identifier').system
+    method: cryptoHash
+    transformWholeUri: true
+    truncateToMaxLength: 32
 
 ## Always remove the identifier assigner - carries the institution name in display
   - path: nodesByType('Identifier').assigner

@@ -1,6 +1,7 @@
 {
   "suppress": [
     "VALIDATION_VAL_PROFILE_SIGNPOST",
-    "VALIDATION_VAL_PROFILE_SIGNPOST_META"
+    "VALIDATION_VAL_PROFILE_SIGNPOST_META",
+    "http://hl7.org/fhir/StructureDefinition/DomainResource#dom-6"
   ]
 }
