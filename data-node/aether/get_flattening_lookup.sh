@@ -23,7 +23,7 @@ if [[ $# -gt 1 ]]; then
   exit 1
 fi
 
-VERSION="${1-${FLATTENING_VERSION:-v5.2.0}}"
+VERSION="${1-${FLATTENING_VERSION:-v5.2.1}}"
 
 # Basic sanity check: must look like vX.Y.Z
 if [[ ! "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
