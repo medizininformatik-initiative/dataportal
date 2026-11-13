@@ -15,7 +15,7 @@ services:
     volumes:
       - "fhir-server-keycloak-db:/var/lib/postgresql/data"
   fhir-server-frontend-keycloak:
-    image: quay.io/keycloak/keycloak:26.8.1
+    image: quay.io/keycloak/keycloak:26.8.2
     command: ["start", "--import-realm"]
     restart: unless-stopped
     healthcheck:

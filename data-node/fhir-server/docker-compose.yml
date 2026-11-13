@@ -28,6 +28,10 @@ services:
       retries: 3
     env_file:
       - .env
+    environment:
+      # .env is shared with Blaze, whose BASE_URL Better Auth would take as the public URL of the frontend.
+      # "/" makes Better Auth ignore it and derive the origin from the request.
+      BASE_URL: "/"
     ports:
     - ${PORT_FHIR_SERVER_FRONTEND_LOCALHOST:-127.0.0.1:8300}:3000
     extra_hosts:

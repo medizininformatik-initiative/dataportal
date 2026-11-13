@@ -1,6 +1,6 @@
 services:
   postgresql:
-    image: docker.io/library/postgres:18.6@sha256:5a5a84b19854a9ffaa54082c166ff4ec27473a361e496e5ea167f298f2da9722
+    image: docker.io/library/postgres:18.7@sha256:9f4fd4aa918f52ae3d6f3b687f1de90d8f867cd4d520021545a9a50c120eae3b
     restart: unless-stopped
     deploy:
       resources:
@@ -31,7 +31,7 @@ services:
     ports:
       - "127.0.0.1:35432:5432"
   vfps:
-    image: ghcr.io/miracum/vfps:v1.23.0
+    image: ghcr.io/miracum/vfps:v1.28.0
     restart: unless-stopped
     depends_on:
       postgresql:

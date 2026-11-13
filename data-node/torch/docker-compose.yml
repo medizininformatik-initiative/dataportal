@@ -1,7 +1,7 @@
 services:
   torch-nginx:
       restart: unless-stopped
-      image: nginxinc/nginx-unprivileged:1.31.6-alpine
+      image: nginxinc/nginx-unprivileged:1.31.7-alpine
       ports:
         - ${TORCH_NGINX_PORT:-127.0.0.1:80}:8080
       volumes:

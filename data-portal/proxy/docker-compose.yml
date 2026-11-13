@@ -1,7 +1,7 @@
 services:
   dataportal-nginx:
     restart: unless-stopped
-    image: nginxinc/nginx-unprivileged:1.31.6-alpine
+    image: nginxinc/nginx-unprivileged:1.31.7-alpine
     environment:
       BACKEND_HOSTNAME: ${BACKEND_HOSTNAME:-api.datenportal.localhost}
       GUI_HOSTNAME: ${GUI_HOSTNAME:-datenportal.localhost}
