@@ -1,0 +1,341 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/therapeutische-implikation",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "1bfd517c-a6ec-55b9-80af-a7c12d486258",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category:labCategory",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category:labCategory.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:conclusion-string",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:evidence-level",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:medication-assessed",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:phenotypic-treatment-context",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:predicted-therapeutic-implication",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:prognosis",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:therapy-assessed",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.dataAbsentReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.effective[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.extension:secondary-finding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.interpretation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.issued",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.method",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.referenceRange",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "159235f6-560b-59b2-bbc4-ac567b14324a"
+            ]
+          },
+          {
+            "attributeRef": "Observation.derivedFrom",
+            "mustHave": false,
+            "linkedGroups": [
+              "3217778c-7f7f-5b41-9b8f-a153ab050e38"
+            ]
+          },
+          {
+            "attributeRef": "Observation.device",
+            "mustHave": false,
+            "linkedGroups": [
+              "fd857cbd-4bd3-59bd-9c52-2b11af512324"
+            ]
+          },
+          {
+            "attributeRef": "Observation.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "a847c312-1228-5a4c-81ca-64bf4a84a903"
+            ]
+          },
+          {
+            "attributeRef": "Observation.extension:body-structure",
+            "mustHave": false,
+            "linkedGroups": [
+              "fcf46842-b0fe-5618-ad78-9b7cc246ccb7"
+            ]
+          },
+          {
+            "attributeRef": "Observation.focus",
+            "mustHave": false,
+            "linkedGroups": [
+              "4c3eab90-8b98-5177-81ae-a22aeac7c512"
+            ]
+          },
+          {
+            "attributeRef": "Observation.hasMember",
+            "mustHave": false,
+            "linkedGroups": [
+              "e6706dcd-1427-5672-af78-0cd104f67cd1"
+            ]
+          },
+          {
+            "attributeRef": "Observation.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "c1ed25fb-57fb-52bf-bc09-097440aab52a"
+            ]
+          },
+          {
+            "attributeRef": "Observation.performer",
+            "mustHave": false,
+            "linkedGroups": [
+              "4c3eab90-8b98-5177-81ae-a22aeac7c512"
+            ]
+          },
+          {
+            "attributeRef": "Observation.specimen",
+            "mustHave": false,
+            "linkedGroups": [
+              "d7047adb-438b-574d-8825-140039f3fdd5"
+            ]
+          }
+        ],
+        "id": "945b4677-aebc-5f15-9b2c-c8ddeed03100",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/therapeutische-implikation",
+        "name": "therapeutische-implikation"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "CarePlan.activity",
+            "mustHave": false
+          }
+        ],
+        "id": "159235f6-560b-59b2-bbc4-ac567b14324a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tumorkonferenz",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tumorkonferenz"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DocumentReference.category",
+            "mustHave": false
+          }
+        ],
+        "id": "3217778c-7f7f-5b41-9b8f-a153ab050e38",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-dokument",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-dokument"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "fd857cbd-4bd3-59bd-9c52-2b11af512324",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "a847c312-1228-5a4c-81ca-64bf4a84a903",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "BodyStructure.active",
+            "mustHave": false
+          }
+        ],
+        "id": "fcf46842-b0fe-5618-ad78-9b7cc246ccb7",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-koerperstruktur",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-koerperstruktur"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "4c3eab90-8b98-5177-81ae-a22aeac7c512",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "e6706dcd-1427-5672-af78-0cd104f67cd1",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tod",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tod"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "MedicationAdministration.category",
+            "mustHave": false
+          }
+        ],
+        "id": "c1ed25fb-57fb-52bf-bc09-097440aab52a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationAdministration",
+        "includeReferenceOnly": true,
+        "name": "linked-medicationadministration"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Specimen.accessionIdentifier",
+            "mustHave": false
+          }
+        ],
+        "id": "d7047adb-438b-574d-8825-140039f3fdd5",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-specimen",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-specimen"
+      }
+    ]
+  }
+}

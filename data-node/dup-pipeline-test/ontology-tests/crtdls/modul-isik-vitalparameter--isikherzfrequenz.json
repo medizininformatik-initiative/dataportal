@@ -1,0 +1,306 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://gematik.de/fhir/isik/StructureDefinition/ISiKHerzfrequenz",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "8a8e4d23-d001-5cc1-b105-02e1f65aa3b6",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category:VSCat",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code.coding:IEEE11073",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code.coding:loinc",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code.coding:snomed",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.dataAbsentReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.effective[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.interpretation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.issued",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.method",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.referenceRange",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.value[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "3748a2bb-d23b-51e9-b390-263e0eaa7ea0"
+            ]
+          },
+          {
+            "attributeRef": "Observation.derivedFrom",
+            "mustHave": false,
+            "linkedGroups": [
+              "d62f8aef-b434-5b3e-ab4d-15847ee98702"
+            ]
+          },
+          {
+            "attributeRef": "Observation.device",
+            "mustHave": false,
+            "linkedGroups": [
+              "e5ff370a-74fa-5d3d-a5c3-2303f064232f"
+            ]
+          },
+          {
+            "attributeRef": "Observation.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "72f83e91-21b4-5020-8523-c72280960a4a"
+            ]
+          },
+          {
+            "attributeRef": "Observation.focus",
+            "mustHave": false,
+            "linkedGroups": [
+              "314f470d-1d25-54e0-8854-9f5dc88cad08"
+            ]
+          },
+          {
+            "attributeRef": "Observation.hasMember",
+            "mustHave": false,
+            "linkedGroups": [
+              "6c907c8b-6e05-5825-a5ab-d742b7a08ec1"
+            ]
+          },
+          {
+            "attributeRef": "Observation.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "dd85903b-2ba8-5168-ac6d-1b87ec812a56"
+            ]
+          },
+          {
+            "attributeRef": "Observation.performer",
+            "mustHave": false,
+            "linkedGroups": [
+              "314f470d-1d25-54e0-8854-9f5dc88cad08"
+            ]
+          },
+          {
+            "attributeRef": "Observation.specimen",
+            "mustHave": false,
+            "linkedGroups": [
+              "0b76ef25-1e5e-5acc-9b94-e27bde9ad495"
+            ]
+          }
+        ],
+        "id": "fbaec2d9-365a-50ef-8d16-724b47dd4985",
+        "groupReference": "https://gematik.de/fhir/isik/StructureDefinition/ISiKHerzfrequenz",
+        "name": "isikherzfrequenz"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "CarePlan.activity",
+            "mustHave": false
+          }
+        ],
+        "id": "3748a2bb-d23b-51e9-b390-263e0eaa7ea0",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tumorkonferenz",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tumorkonferenz"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DocumentReference.category",
+            "mustHave": false
+          }
+        ],
+        "id": "d62f8aef-b434-5b3e-ab4d-15847ee98702",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-dokument",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-dokument"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "e5ff370a-74fa-5d3d-a5c3-2303f064232f",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "72f83e91-21b4-5020-8523-c72280960a4a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "314f470d-1d25-54e0-8854-9f5dc88cad08",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "6c907c8b-6e05-5825-a5ab-d742b7a08ec1",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tod",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tod"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "MedicationAdministration.category",
+            "mustHave": false
+          }
+        ],
+        "id": "dd85903b-2ba8-5168-ac6d-1b87ec812a56",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationAdministration",
+        "includeReferenceOnly": true,
+        "name": "linked-medicationadministration"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Specimen.accessionIdentifier",
+            "mustHave": false
+          }
+        ],
+        "id": "0b76ef25-1e5e-5acc-9b94-e27bde9ad495",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-specimen",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-specimen"
+      }
+    ]
+  }
+}

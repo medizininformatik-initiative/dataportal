@@ -1,0 +1,290 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationAdministration",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "5e0f0522-8894-5bca-9aed-f8c3196dd415",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "MedicationAdministration.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.dosage",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.effective[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.effective[x]:effectiveDateTime",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.effective[x]:effectivePeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.instantiates",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.medication[x]:medicationCodeableConcept",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.medication[x]:medicationCodeableConcept.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.medication[x]:medicationCodeableConcept.coding:Pharmazentralnummer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.medication[x]:medicationCodeableConcept.coding:UNII",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.medication[x]:medicationCodeableConcept.coding:atcClassDe",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.medication[x]:medicationCodeableConcept.coding:atcClassEn",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.performer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.reasonCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.statusReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationAdministration.context",
+            "mustHave": false,
+            "linkedGroups": [
+              "ea89ec80-781a-5238-80b9-fb94577c7409"
+            ]
+          },
+          {
+            "attributeRef": "MedicationAdministration.device",
+            "mustHave": false,
+            "linkedGroups": [
+              "96fb30ea-07e2-5445-b803-980971c39d8b"
+            ]
+          },
+          {
+            "attributeRef": "MedicationAdministration.eventHistory",
+            "mustHave": false,
+            "linkedGroups": [
+              "699785c5-dc20-5451-aa9d-c981db07ac8a"
+            ]
+          },
+          {
+            "attributeRef": "MedicationAdministration.medication[x]",
+            "mustHave": false,
+            "linkedGroups": [
+              "1ced465b-2e4a-5cc5-9567-269da3dffb16"
+            ]
+          },
+          {
+            "attributeRef": "MedicationAdministration.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "d48a2f71-13f6-5718-945d-8f596db61f02"
+            ]
+          },
+          {
+            "attributeRef": "MedicationAdministration.performer.actor",
+            "mustHave": false,
+            "linkedGroups": [
+              "d1625832-e36f-5f88-a6a8-6ec7f5396ebd"
+            ]
+          },
+          {
+            "attributeRef": "MedicationAdministration.reasonReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "dedd2e2f-acb8-5442-9fa8-a3235b078179"
+            ]
+          },
+          {
+            "attributeRef": "MedicationAdministration.request",
+            "mustHave": false,
+            "linkedGroups": [
+              "84a71bb6-75c4-5de0-932f-4ac9a9e4c655"
+            ]
+          },
+          {
+            "attributeRef": "MedicationAdministration.supportingInformation",
+            "mustHave": false,
+            "linkedGroups": [
+              "d1625832-e36f-5f88-a6a8-6ec7f5396ebd"
+            ]
+          }
+        ],
+        "id": "d48a2f71-13f6-5718-945d-8f596db61f02",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationAdministration",
+        "name": "medicationadministration"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "ea89ec80-781a-5238-80b9-fb94577c7409",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "96fb30ea-07e2-5445-b803-980971c39d8b",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Provenance.activity",
+            "mustHave": false
+          }
+        ],
+        "id": "699785c5-dc20-5451-aa9d-c981db07ac8a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-provenance",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-consent-provenance"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Medication.amount",
+            "mustHave": false
+          }
+        ],
+        "id": "1ced465b-2e4a-5cc5-9567-269da3dffb16",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/Medication",
+        "includeReferenceOnly": true,
+        "name": "linked-medication"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "d1625832-e36f-5f88-a6a8-6ec7f5396ebd",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "dedd2e2f-acb8-5442-9fa8-a3235b078179",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "includeReferenceOnly": true,
+        "name": "linked-diagnose"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "MedicationRequest.authoredOn",
+            "mustHave": false
+          }
+        ],
+        "id": "84a71bb6-75c4-5de0-932f-4ac9a9e4c655",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationRequest",
+        "includeReferenceOnly": true,
+        "name": "linked-medicationrequest"
+      }
+    ]
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-o2saettigung-im-arteriellen-blut-durch-pulsoxymetrie",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "84f208bf-5868-54ae-9008-961bed9da9e4",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.bodySite.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category:loinc-fhir-core",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category:loinc-fhir-core.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category:vs-cat",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category:vs-cat.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code.coding:IEEE-11073",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code.coding:loinc",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code.coding:loinc-fhir-core",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code.coding:sct",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.dataAbsentReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.effective[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.interpretation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.issued",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.method",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.referenceRange",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.value[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "3cb25785-e4aa-59d5-b957-1f6b324ba0fa"
+            ]
+          },
+          {
+            "attributeRef": "Observation.derivedFrom",
+            "mustHave": false,
+            "linkedGroups": [
+              "b0236d6b-8c19-53dc-b4dc-94980ed92ee5"
+            ]
+          },
+          {
+            "attributeRef": "Observation.device",
+            "mustHave": false,
+            "linkedGroups": [
+              "00751e91-9f52-535b-813b-38196665baef"
+            ]
+          },
+          {
+            "attributeRef": "Observation.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "f26b4b13-e404-52b2-87d7-f6bf56211c36"
+            ]
+          },
+          {
+            "attributeRef": "Observation.focus",
+            "mustHave": false,
+            "linkedGroups": [
+              "444a45d8-3f98-5f85-beb9-479165934a8c"
+            ]
+          },
+          {
+            "attributeRef": "Observation.hasMember",
+            "mustHave": false,
+            "linkedGroups": [
+              "142c7c54-8eee-59d7-8844-51c315831ae2"
+            ]
+          },
+          {
+            "attributeRef": "Observation.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "00f18bca-75b1-5bf6-90f9-762475edf753"
+            ]
+          },
+          {
+            "attributeRef": "Observation.performer",
+            "mustHave": false,
+            "linkedGroups": [
+              "444a45d8-3f98-5f85-beb9-479165934a8c"
+            ]
+          },
+          {
+            "attributeRef": "Observation.specimen",
+            "mustHave": false,
+            "linkedGroups": [
+              "b5a75880-4a84-53d6-867c-1613bb8fba5e"
+            ]
+          }
+        ],
+        "id": "9a16e86b-340e-5b7e-bc6f-6198ea51ef5d",
+        "groupReference": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-o2saettigung-im-arteriellen-blut-durch-pulsoxymetrie",
+        "name": "sd-mii-icu-o2saettigung-im-arteriellen-blut-durch-pulsoxymetrie"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "CarePlan.activity",
+            "mustHave": false
+          }
+        ],
+        "id": "3cb25785-e4aa-59d5-b957-1f6b324ba0fa",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tumorkonferenz",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tumorkonferenz"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DocumentReference.category",
+            "mustHave": false
+          }
+        ],
+        "id": "b0236d6b-8c19-53dc-b4dc-94980ed92ee5",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-dokument",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-dokument"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "00751e91-9f52-535b-813b-38196665baef",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "f26b4b13-e404-52b2-87d7-f6bf56211c36",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "444a45d8-3f98-5f85-beb9-479165934a8c",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "142c7c54-8eee-59d7-8844-51c315831ae2",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tod",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tod"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Procedure.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "00f18bca-75b1-5bf6-90f9-762475edf753",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-prozedur/StructureDefinition/Procedure",
+        "includeReferenceOnly": true,
+        "name": "linked-procedure"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Specimen.accessionIdentifier",
+            "mustHave": false
+          }
+        ],
+        "id": "b5a75880-4a84-53d6-867c-1613bb8fba5e",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-specimen",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-specimen"
+      }
+    ]
+  }
+}

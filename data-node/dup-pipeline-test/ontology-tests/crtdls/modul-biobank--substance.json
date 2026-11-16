@@ -1,0 +1,106 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Substance",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "5669eeda-6d53-56a6-a740-523f01d85a95",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Substance.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Substance.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Substance.description",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Substance.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Substance.ingredient",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Substance.instance",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Substance.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Substance.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Substance.ingredient.substance[x]",
+            "mustHave": false,
+            "linkedGroups": [
+              "9f6fbf4d-6b6c-5ae3-a119-8f4e4ce59da9"
+            ]
+          }
+        ],
+        "id": "9f6fbf4d-6b6c-5ae3-a119-8f4e4ce59da9",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Substance",
+        "name": "substance"
+      }
+    ]
+  }
+}

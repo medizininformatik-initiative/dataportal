@@ -1,0 +1,166 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-provenance",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "3ecf1348-62ac-573b-a59e-24ee2af3b4e6",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Provenance.activity",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Provenance.agent",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Provenance.entity",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Provenance.occurred[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Provenance.policy",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Provenance.reason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Provenance.recorded",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Provenance.signature",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Provenance.signature.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Provenance.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Provenance.agent.onBehalfOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "5371f228-e63f-5fcb-99e7-4603fefaa727"
+            ]
+          },
+          {
+            "attributeRef": "Provenance.agent.who",
+            "mustHave": false,
+            "linkedGroups": [
+              "5371f228-e63f-5fcb-99e7-4603fefaa727"
+            ]
+          },
+          {
+            "attributeRef": "Provenance.entity.what",
+            "mustHave": false,
+            "linkedGroups": [
+              "6bfa14b8-eff3-51fe-88aa-8ba21ff52f78"
+            ]
+          },
+          {
+            "attributeRef": "Provenance.signature.onBehalfOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "5371f228-e63f-5fcb-99e7-4603fefaa727"
+            ]
+          },
+          {
+            "attributeRef": "Provenance.signature.who",
+            "mustHave": false,
+            "linkedGroups": [
+              "5371f228-e63f-5fcb-99e7-4603fefaa727"
+            ]
+          }
+        ],
+        "id": "e86f5855-0087-5bd9-b1eb-e8fcb8483c67",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-provenance",
+        "name": "mii-pr-consent-provenance"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "5371f228-e63f-5fcb-99e7-4603fefaa727",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DocumentReference.category",
+            "mustHave": false
+          }
+        ],
+        "id": "6bfa14b8-eff3-51fe-88aa-8ba21ff52f78",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-documentreference",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-consent-documentreference"
+      }
+    ]
+  }
+}

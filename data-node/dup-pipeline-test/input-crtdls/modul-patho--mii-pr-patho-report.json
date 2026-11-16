@@ -1,0 +1,267 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-report",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "5addf4de-497d-5380-9a47-1372d725dc48",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DiagnosticReport.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.code.coding:pathology-report",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.conclusion",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.conclusionCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.effective[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.extension:related-report",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.identifier:Set-ID",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.issued",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.media",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.presentedForm",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "3a30e8bd-86fb-5ac4-9628-de45e192cc0c"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "c1c40485-3dc2-50dc-9d66-d87ae2a6583f"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.imagingStudy",
+            "mustHave": false,
+            "linkedGroups": [
+              "bd601ed6-c3fb-5bdd-aaad-7db81f7f22f5"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.media.link",
+            "mustHave": false,
+            "linkedGroups": [
+              "7d69f79e-248a-5146-9ef5-c0f49f7819d7"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.performer",
+            "mustHave": false,
+            "linkedGroups": [
+              "3a99d978-46f3-5e29-b5a3-f920a59561dc"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.result",
+            "mustHave": false,
+            "linkedGroups": [
+              "17efacc3-ddd6-5e0f-870b-fa69f43e6ca3"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.resultsInterpreter",
+            "mustHave": false,
+            "linkedGroups": [
+              "3a99d978-46f3-5e29-b5a3-f920a59561dc"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.specimen",
+            "mustHave": false,
+            "linkedGroups": [
+              "920997b1-b482-54e4-baab-a7378c0ee5e8"
+            ]
+          }
+        ],
+        "id": "e9b0f895-5cc9-541c-bb96-395ac01375a9",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-report",
+        "name": "mii-pr-patho-report"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "ServiceRequest.asNeeded[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "3a30e8bd-86fb-5ac4-9628-de45e192cc0c",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-service-request",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-patho-service-request"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "c1c40485-3dc2-50dc-9d66-d87ae2a6583f",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "ImagingStudy.description",
+            "mustHave": false
+          }
+        ],
+        "id": "bd601ed6-c3fb-5bdd-aaad-7db81f7f22f5",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-bildgebungsstudie",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-bildgebungsstudie"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Media.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "7d69f79e-248a-5146-9ef5-c0f49f7819d7",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-attached-image",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-patho-attached-image"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "3a99d978-46f3-5e29-b5a3-f920a59561dc",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "17efacc3-ddd6-5e0f-870b-fa69f43e6ca3",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tod",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tod"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Specimen.accessionIdentifier",
+            "mustHave": false
+          }
+        ],
+        "id": "920997b1-b482-54e4-baab-a7378c0ee5e8",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-specimen",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-specimen"
+      }
+    ]
+  }
+}

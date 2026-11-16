@@ -1,0 +1,267 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/empfohlene-folgemassnahme",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "e72237dd-41e5-5d73-b473-798e943384f9",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Task.authoredOn",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.businessStatus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.description",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.executionPeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.groupIdentifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.input",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.instantiatesCanonical",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.instantiatesUri",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.intent",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.lastModified",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.output",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.performerType",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.priority",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.reasonCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.restriction",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.statusReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Task.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "d2c71f30-eaa9-5697-8cd1-340b41ca8a67"
+            ]
+          },
+          {
+            "attributeRef": "Task.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "be3ab4d4-e9ce-54cc-a253-1160b090cda2"
+            ]
+          },
+          {
+            "attributeRef": "Task.focus",
+            "mustHave": false,
+            "linkedGroups": [
+              "d2c71f30-eaa9-5697-8cd1-340b41ca8a67"
+            ]
+          },
+          {
+            "attributeRef": "Task.owner",
+            "mustHave": false,
+            "linkedGroups": [
+              "d2c71f30-eaa9-5697-8cd1-340b41ca8a67"
+            ]
+          },
+          {
+            "attributeRef": "Task.reasonReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "cd18f4ec-a4bd-584b-a7bc-52682c942169"
+            ]
+          },
+          {
+            "attributeRef": "Task.relevantHistory",
+            "mustHave": false,
+            "linkedGroups": [
+              "c1b6656d-aa06-59e8-9f47-bbba1f27ebe3"
+            ]
+          },
+          {
+            "attributeRef": "Task.requester",
+            "mustHave": false,
+            "linkedGroups": [
+              "7ac0b55a-5386-5600-b574-f86ea6c9c04d"
+            ]
+          },
+          {
+            "attributeRef": "Task.restriction.recipient",
+            "mustHave": false,
+            "linkedGroups": [
+              "d2c71f30-eaa9-5697-8cd1-340b41ca8a67"
+            ]
+          }
+        ],
+        "id": "c78f8556-c5be-5676-b908-c0894dac0011",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/empfohlene-folgemassnahme",
+        "name": "empfohlene-folgemassnahme"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "d2c71f30-eaa9-5697-8cd1-340b41ca8a67",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "be3ab4d4-e9ce-54cc-a253-1160b090cda2",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "cd18f4ec-a4bd-584b-a7bc-52682c942169",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/therapeutische-implikation",
+        "includeReferenceOnly": true,
+        "name": "linked-therapeutische-implikation"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Provenance.activity",
+            "mustHave": false
+          }
+        ],
+        "id": "c1b6656d-aa06-59e8-9f47-bbba1f27ebe3",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-provenance",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-consent-provenance"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "7ac0b55a-5386-5600-b574-f86ea6c9c04d",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      }
+    ]
+  }
+}

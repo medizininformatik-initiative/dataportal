@@ -1,0 +1,407 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-strahlentherapie-bestrahlung-nuklearmedizin",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "b6556304-2308-5d89-9cb6-f00919c1d515",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Procedure.bodySite",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.bodySite.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.bodySite.extension:Seitenlokalisation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.category.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.category.coding:sct",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.code.coding:ops",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.code.coding:ops.extension:Seitenlokalisation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.code.coding:sct",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.complication",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.extension:Boost",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.extension:Dokumentationsdatum",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.extension:Einzeldosis",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.extension:Gesamtdosis",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.extension:durchfuehrungsabsicht",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.focalDevice",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.followUp",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.instantiatesCanonical",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.instantiatesUri",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.outcome",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.performed[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.performed[x]:performedDateTime",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.performed[x]:performedPeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.performer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.reasonCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.statusReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.usedCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.usedCode:Applikationsart",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.usedCode:Applikationsart.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.usedCode:Strahlenart",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.usedCode:Strahlenart.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.asserter",
+            "mustHave": false,
+            "linkedGroups": [
+              "3fb66a43-6add-5667-a297-86ae816c7865"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "74fd4e54-3bab-59a7-9ea7-7229d5ad5c82"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.complicationDetail",
+            "mustHave": false,
+            "linkedGroups": [
+              "2c77880c-6a86-5522-826b-6b161d2154df"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "1df43c44-d816-555f-98ad-fc3f26a0ce1e"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.focalDevice.manipulated",
+            "mustHave": false,
+            "linkedGroups": [
+              "5844be50-75fb-57aa-954e-4fd2bd704e1a"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "e579d3ef-ba3b-50cc-aec4-03b78eedb225"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.performer.actor",
+            "mustHave": false,
+            "linkedGroups": [
+              "3fb66a43-6add-5667-a297-86ae816c7865"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.performer.onBehalfOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "410323ab-5c25-53ab-b6d6-281adbdf03e1"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.reasonReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "835dedbb-fae8-5a01-b9cf-8d7f23fc8c59"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.recorder",
+            "mustHave": false,
+            "linkedGroups": [
+              "3fb66a43-6add-5667-a297-86ae816c7865"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.report",
+            "mustHave": false,
+            "linkedGroups": [
+              "33410dc8-5a69-5126-b533-b00f73d616b7"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.usedReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "5844be50-75fb-57aa-954e-4fd2bd704e1a"
+            ]
+          }
+        ],
+        "id": "65cb58be-30ff-5644-a88c-867015673ec7",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-strahlentherapie-bestrahlung-nuklearmedizin",
+        "name": "mii-pr-onko-strahlentherapie-bestrahlung-nuklearmedizin"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "3fb66a43-6add-5667-a297-86ae816c7865",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "CarePlan.activity",
+            "mustHave": false
+          }
+        ],
+        "id": "74fd4e54-3bab-59a7-9ea7-7229d5ad5c82",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tumorkonferenz",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tumorkonferenz"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "2c77880c-6a86-5522-826b-6b161d2154df",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "includeReferenceOnly": true,
+        "name": "linked-diagnose"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "1df43c44-d816-555f-98ad-fc3f26a0ce1e",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "5844be50-75fb-57aa-954e-4fd2bd704e1a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Procedure.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "e579d3ef-ba3b-50cc-aec4-03b78eedb225",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-prozedur/StructureDefinition/Procedure",
+        "includeReferenceOnly": true,
+        "name": "linked-procedure"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "410323ab-5c25-53ab-b6d6-281adbdf03e1",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "835dedbb-fae8-5a01-b9cf-8d7f23fc8c59",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-diagnose-primaertumor",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-diagnose-primaertumor"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DiagnosticReport.category",
+            "mustHave": false
+          }
+        ],
+        "id": "33410dc8-5a69-5126-b533-b00f73d616b7",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-report",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-patho-report"
+      }
+    ]
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-nebenwirkung-adverse-event",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "864f744c-8ff8-54bc-8993-06475dd4c2ae",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "AdverseEvent.actuality",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.date",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.detected",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.event",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.event.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.outcome",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.recordedDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.seriousness",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.seriousness.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.severity",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.suspectEntity",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AdverseEvent.contributor",
+            "mustHave": false,
+            "linkedGroups": [
+              "29fdb7de-7264-51ff-956d-129bf13a2b45"
+            ]
+          },
+          {
+            "attributeRef": "AdverseEvent.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "e22052f2-8afd-5752-b09e-83a592840a18"
+            ]
+          },
+          {
+            "attributeRef": "AdverseEvent.recorder",
+            "mustHave": false,
+            "linkedGroups": [
+              "29fdb7de-7264-51ff-956d-129bf13a2b45"
+            ]
+          },
+          {
+            "attributeRef": "AdverseEvent.referenceDocument",
+            "mustHave": false,
+            "linkedGroups": [
+              "255000f0-5973-5624-a808-fa45ba63a5e7"
+            ]
+          },
+          {
+            "attributeRef": "AdverseEvent.resultingCondition",
+            "mustHave": false,
+            "linkedGroups": [
+              "9fbb46ef-4301-5025-a9a2-6a9cd9ae52bd"
+            ]
+          },
+          {
+            "attributeRef": "AdverseEvent.study",
+            "mustHave": false,
+            "linkedGroups": [
+              "dff30496-dc77-5d15-b3d8-08721d234f00"
+            ]
+          },
+          {
+            "attributeRef": "AdverseEvent.subjectMedicalHistory",
+            "mustHave": false,
+            "linkedGroups": [
+              "9fbb46ef-4301-5025-a9a2-6a9cd9ae52bd"
+            ]
+          },
+          {
+            "attributeRef": "AdverseEvent.suspectEntity.causality.author",
+            "mustHave": false,
+            "linkedGroups": [
+              "29fdb7de-7264-51ff-956d-129bf13a2b45"
+            ]
+          },
+          {
+            "attributeRef": "AdverseEvent.suspectEntity.instance",
+            "mustHave": false,
+            "linkedGroups": [
+              "363c5af7-3145-5904-a947-82d725e1c252"
+            ]
+          }
+        ],
+        "id": "a80f48b9-46d6-5902-a3a5-3d0dbac756c5",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-nebenwirkung-adverse-event",
+        "name": "mii-pr-onko-nebenwirkung-adverse-event"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "29fdb7de-7264-51ff-956d-129bf13a2b45",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "e22052f2-8afd-5752-b09e-83a592840a18",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DocumentReference.category",
+            "mustHave": false
+          }
+        ],
+        "id": "255000f0-5973-5624-a808-fa45ba63a5e7",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-dokument",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-dokument"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "9fbb46ef-4301-5025-a9a2-6a9cd9ae52bd",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "includeReferenceOnly": true,
+        "name": "linked-diagnose"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "ResearchStudy.arm",
+            "mustHave": false
+          }
+        ],
+        "id": "dff30496-dc77-5d15-b3d8-08721d234f00",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-studie",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-studie"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Procedure.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "363c5af7-3145-5904-a947-82d725e1c252",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-prozedur/StructureDefinition/Procedure",
+        "includeReferenceOnly": true,
+        "name": "linked-procedure"
+      }
+    ]
+  }
+}

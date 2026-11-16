@@ -1,0 +1,218 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Todesursache",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "750646f2-7020-5252-9a49-8bfe2133c434",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.bodySite",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.category:todesDiagnose",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.category:todesDiagnose.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.category:todesDiagnose.coding:loinc",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.category:todesDiagnose.coding:snomed",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.clinicalStatus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code.coding:icd10-who",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.evidence",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.onset[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.recordedDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.severity",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.stage",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.verificationStatus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.asserter",
+            "mustHave": false,
+            "linkedGroups": [
+              "577fbb17-4a38-5245-a467-117c66ae94d5"
+            ]
+          },
+          {
+            "attributeRef": "Condition.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "09316aed-6c32-5298-8052-42a098cc2ea4"
+            ]
+          },
+          {
+            "attributeRef": "Condition.evidence.detail",
+            "mustHave": false,
+            "linkedGroups": [
+              "577fbb17-4a38-5245-a467-117c66ae94d5"
+            ]
+          },
+          {
+            "attributeRef": "Condition.recorder",
+            "mustHave": false,
+            "linkedGroups": [
+              "577fbb17-4a38-5245-a467-117c66ae94d5"
+            ]
+          },
+          {
+            "attributeRef": "Condition.stage.assessment",
+            "mustHave": false,
+            "linkedGroups": [
+              "ea325bcd-7063-5673-8993-7badb410c9b4"
+            ]
+          }
+        ],
+        "id": "0ec1916c-4d5d-5fe3-afa6-156dced6794b",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Todesursache",
+        "name": "todesursache"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "577fbb17-4a38-5245-a467-117c66ae94d5",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "09316aed-6c32-5298-8052-42a098cc2ea4",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DiagnosticReport.category",
+            "mustHave": false
+          }
+        ],
+        "id": "ea325bcd-7063-5673-8993-7badb410c9b4",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-report",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-patho-report"
+      }
+    ]
+  }
+}

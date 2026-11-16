@@ -1,0 +1,2725 @@
+{
+  "profiles": [
+    {
+      "crtdl": "modul-isik-vitalparameter--isikabrechnungsfall",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKAbrechnungsfall",
+      "variants": 1,
+      "fields": 12,
+      "uncovered_fields": [],
+      "references": 2,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikalkoholabusus",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKAlkoholAbusus",
+      "variants": 11,
+      "fields": 18,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikallergieunvertraeglichkeit",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKAllergieUnvertraeglichkeit",
+      "variants": 5,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 4,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikangehoeriger",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKAngehoeriger",
+      "variants": 1,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 0,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikatemfrequenz",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKAtemfrequenz",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikberichtbundle",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKBerichtBundle",
+      "variants": 1,
+      "fields": 8,
+      "uncovered_fields": [],
+      "references": 0,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikberichtsubsysteme",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKBerichtSubSysteme",
+      "variants": 2,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikbinary",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKBinary",
+      "variants": 1,
+      "fields": 2,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikblutdrucksystemischarteriell",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKBlutdruckSystemischArteriell",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikdiagnose",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKDiagnose",
+      "variants": 5,
+      "fields": 29,
+      "uncovered_fields": [],
+      "references": 6,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikekg",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKEKG",
+      "variants": 1,
+      "fields": 18,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikgcs",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKGCS",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 8,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikherzfrequenz",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKHerzfrequenz",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikkoerpergewicht",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKKoerpergewicht",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikkoerpergroesse",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKKoerpergroesse",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikkoerpertemperatur",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKKoerpertemperatur",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikkontaktgesundheitseinrichtung",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKKontaktGesundheitseinrichtung",
+      "variants": 1,
+      "fields": 34,
+      "uncovered_fields": [],
+      "references": 8,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikkopfumfang",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKKopfumfang",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikorganisation",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKOrganisation",
+      "variants": 1,
+      "fields": 29,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikorganisationfachabteilung",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKOrganisationFachabteilung",
+      "variants": 1,
+      "fields": 28,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikpatient",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKPatient",
+      "variants": 2,
+      "fields": 42,
+      "uncovered_fields": [],
+      "references": 3,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikpersonimgesundheitsberuf",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKPersonImGesundheitsberuf",
+      "variants": 1,
+      "fields": 38,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikprozedur",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKProzedur",
+      "variants": 2,
+      "fields": 25,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikraucherstatus",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKRaucherStatus",
+      "variants": 11,
+      "fields": 18,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isiksauerstoffsaettigungarteriell",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKSauerstoffsaettigungArteriell",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikschwangerschafterwarteterentbindungstermin",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKSchwangerschaftErwarteterEntbindungstermin",
+      "variants": 11,
+      "fields": 18,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikschwangerschaftsstatus",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKSchwangerschaftsstatus",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikstandortbettenstellplatz",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKStandortBettenstellplatz",
+      "variants": 1,
+      "fields": 16,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikstandortraum",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKStandortRaum",
+      "variants": 1,
+      "fields": 16,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikstillstatus",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKStillstatus",
+      "variants": 11,
+      "fields": 18,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikversicherungsverhaeltnisgesetzlich",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKVersicherungsverhaeltnisGesetzlich",
+      "variants": 2,
+      "fields": 12,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--isikversicherungsverhaeltnisselbstzahler",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKVersicherungsverhaeltnisSelbstzahler",
+      "variants": 2,
+      "fields": 13,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--patient-merge-subscription",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/patient-merge-subscription",
+      "variants": 1,
+      "fields": 8,
+      "uncovered_fields": [],
+      "references": 0,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-herzzeitvolumen",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-herzzeitvolumen",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-ideales-koerpergewicht",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-ideales-koerpergewicht",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-intrakranieller-druck-icp",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-intrakranieller-druck-icp",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpergewicht-percentil-altersabhaengig",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpergewicht-percentil-altersabhaengig",
+      "variants": 2,
+      "fields": 24,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpergroesse-percentil-altersabhaengig",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpergroesse-percentil-altersabhaengig",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-achsel",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-achsel",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-atemwege",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-atemwege",
+      "variants": 2,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-blut",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-blut",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-brust",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-brust",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-brustwirbelsaeule",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-brustwirbelsaeule",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-gelenk",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-gelenk",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-halswirbelsaeule",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-halswirbelsaeule",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-harnblase",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-harnblase",
+      "variants": 2,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-kern",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-kern",
+      "variants": 2,
+      "fields": 24,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-leiste",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-leiste",
+      "variants": 2,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-lendenwirbelsaeule",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-lendenwirbelsaeule",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-myokard",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-myokard",
+      "variants": 2,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-nasal",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-nasal",
+      "variants": 2,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-nasen-rachen-raum",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-nasen-rachen-raum",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-rektal",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-rektal",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-speiseroehre",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-speiseroehre",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-stirn",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-stirn",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-trommelfell",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-trommelfell",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-unter-der-zunge",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-unter-der-zunge",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-koerpertemperatur-vaginal",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-koerpertemperatur-vaginal",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-linksatrialer-druck",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-linksatrialer-druck",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-linksventri-herzindex-durch-indikatorverduennung",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-linksventri-herzindex-durch-indikatorverduennung",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-linksventri-herzzeitvolumen-durch-indikatorverd",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-linksventri-herzzeitvolumen-durch-indikatorverd",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-linksventri-schlagvolumen-durch-indikatorverduennung",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-linksventri-schlagvolumen-durch-indikatorverduennung",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-linksventri-schlagvolumenindex-durch-indikatorverd",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-linksventri-schlagvolumenindex-durch-indikatorverd",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-linksventrikulaerer-druck",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-linksventrikulaerer-druck",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-linksventrikulaerer-herzindex",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-linksventrikulaerer-herzindex",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-linksventrikulaeres-schlagvolumen",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-linksventrikulaeres-schlagvolumen",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-linksventrikulaeres-schlagvolumenindex",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-linksventrikulaeres-schlagvolumenindex",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-o2saettigung-im-arteriellen-blut-durch-pulsoxymetrie",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-o2saettigung-im-arteriellen-blut-durch-pulsoxymetrie",
+      "variants": 2,
+      "fields": 25,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-o2saettigung-im-blut-postduktal-durch-pulsoxymetrie",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-o2saettigung-im-blut-postduktal-durch-pulsoxymetrie",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-o2saettigung-im-blut-preduktal-durch-pulsoxymetrie",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-o2saettigung-im-blut-preduktal-durch-pulsoxymetrie",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-pulmonalarterieller-blutdruck",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-pulmonalarterieller-blutdruck",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-pulmonalarterieller-wedge-druck",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-pulmonalarterieller-wedge-druck",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-pulmonalvaskulaerer-widerstandsindex",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-pulmonalvaskulaerer-widerstandsindex",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-puls",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-puls",
+      "variants": 2,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-rechtsatrialer-druck",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-rechtsatrialer-druck",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-rechtsventrikulaerer-druck",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-rechtsventrikulaerer-druck",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-systemischer-vaskulaerer-widerstandsindex",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-systemischer-vaskulaerer-widerstandsindex",
+      "variants": 2,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-isik-vitalparameter--sd-mii-icu-zentralvenoeser-blutdruck",
+      "url": "https://gematik.de/fhir/isik/StructureDefinition/sd-mii-icu-zentralvenoeser-blutdruck",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-diagnose--diagnose",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+      "variants": 5,
+      "fields": 29,
+      "uncovered_fields": [],
+      "references": 6,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-fall--kontaktgesundheitseinrichtung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+      "variants": 1,
+      "fields": 32,
+      "uncovered_fields": [],
+      "references": 8,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-labor--diagnosticreportlab",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/DiagnosticReportLab",
+      "variants": 1,
+      "fields": 18,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-labor--observationlab",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/ObservationLab",
+      "variants": 11,
+      "fields": 26,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-labor--servicerequestlab",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/ServiceRequestLab",
+      "variants": 3,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-medikation--medication",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/Medication",
+      "variants": 2,
+      "fields": 16,
+      "uncovered_fields": [],
+      "references": 2,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-medikation--medicationadministration",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationAdministration",
+      "variants": 2,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-medikation--medicationrequest",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationRequest",
+      "variants": 3,
+      "fields": 63,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-medikation--medicationstatement",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationStatement",
+      "variants": 3,
+      "fields": 60,
+      "uncovered_fields": [],
+      "references": 7,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-medikation--medikationsliste",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/medikationsliste",
+      "variants": 1,
+      "fields": 14,
+      "uncovered_fields": [],
+      "references": 3,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-person--patient",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Patient",
+      "variants": 2,
+      "fields": 41,
+      "uncovered_fields": [],
+      "references": 3,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-person--patientpseudonymisiert",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+      "variants": 2,
+      "fields": 27,
+      "uncovered_fields": [],
+      "references": 3,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-person--todesursache",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Todesursache",
+      "variants": 5,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 5,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-person--vitalstatus",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Vitalstatus",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 8,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-prozedur--procedure",
+      "url": "https://www.medizininformatik-initiative.de/fhir/core/modul-prozedur/StructureDefinition/Procedure",
+      "variants": 2,
+      "fields": 28,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-bildgebung--mii-pr-bildgebung-anforderung-bildgebung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-anforderung-bildgebung",
+      "variants": 3,
+      "fields": 26,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-bildgebung--mii-pr-bildgebung-behandlungsempfehlung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-behandlungsempfehlung",
+      "variants": 3,
+      "fields": 13,
+      "uncovered_fields": [],
+      "references": 13,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-bildgebung--mii-pr-bildgebung-bildgebungsprozedur",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-bildgebungsprozedur",
+      "variants": 2,
+      "fields": 29,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-bildgebung--mii-pr-bildgebung-bildgebungsstudie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-bildgebungsstudie",
+      "variants": 1,
+      "fields": 15,
+      "uncovered_fields": [],
+      "references": 8,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-bildgebung--mii-pr-bildgebung-geraet",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+      "variants": 1,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 2,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-bildgebung--mii-pr-bildgebung-koerperstruktur",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-koerperstruktur",
+      "variants": 1,
+      "fields": 8,
+      "uncovered_fields": [],
+      "references": 0,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-bildgebung--mii-pr-bildgebung-kontrastmittelgabe",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-kontrastmittelgabe",
+      "variants": 2,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-bildgebung--mii-pr-bildgebung-radiologische-befundungsprozedur",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-radiologische-befundungsprozedur",
+      "variants": 2,
+      "fields": 28,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-bildgebung--mii-pr-bildgebung-radiologische-beobachtung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-radiologische-beobachtung",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-bildgebung--mii-pr-bildgebung-radiologischer-befund",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-radiologischer-befund",
+      "variants": 12,
+      "fields": 25,
+      "uncovered_fields": [],
+      "references": 8,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-bildgebung--mii-pr-bildgebung-semistrukt-befundbericht",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-semistrukt-befundbericht",
+      "variants": 2,
+      "fields": 13,
+      "uncovered_fields": [],
+      "references": 11,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-biobank--organization",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+      "variants": 1,
+      "fields": 13,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-biobank--specimen",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Specimen",
+      "variants": 2,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 7,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-biobank--substance",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Substance",
+      "variants": 2,
+      "fields": 8,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--arterieller-blutdruck",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/arterieller-blutdruck",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--arterieller-druck",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/arterieller-druck",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--atemfrequenz",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/atemfrequenz",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--atemwegsdruck-bei-mitl-exspiratorischem-gasfluss",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/atemwegsdruck-bei-mitl-exspiratorischem-gasfluss",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--atemwegsdruck-bei-null-exspiratorischem-gasfluss",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/atemwegsdruck-bei-null-exspiratorischem-gasfluss",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--atemzugvolumen-einstellung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/atemzugvolumen-einstellung",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--atemzugvolumen-waehrend-beatmung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/atemzugvolumen-waehrend-beatmung",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--beatmung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/beatmung",
+      "variants": 1,
+      "fields": 27,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--beatmungsvolumen-pro-minute-maschineller",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/beatmungsvolumen-pro-minute-maschineller",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--beatmungszeit-hohem-druck",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/beatmungszeit-hohem-druck",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--beatmungszeit-niedrigem-druck",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/beatmungszeit-niedrigem-druck",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-abnahme-haemofiltration-einzelmesswerte",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-abnahme-haemofiltration-einzelmesswerte",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-drainage-generisch",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-drainage-generisch",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-drainage-op",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-drainage-op",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-drainage-wund",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-drainage-wund",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-fluessigkeit-gesamt",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-fluessigkeit-gesamt",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-gallenfluessigkeit",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-gallenfluessigkeit",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-gallengang",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-gallengang",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-magensonde",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-magensonde",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-opdrainage",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-opdrainage",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-pankreasdrainage",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-pankreasdrainage",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-stuhlgang",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-stuhlgang",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-urin",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-urin",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-ausfuhr-wunddrainage",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-ausfuhr-wunddrainage",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-blutverlust",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-blutverlust",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-einfuhr-enterale-fluesse",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-einfuhr-enterale-fluesse",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-einfuhr-enterale-fluessigkeit",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-einfuhr-enterale-fluessigkeit",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-einfuhr-fluessigkeit-gesamt",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-einfuhr-fluessigkeit-gesamt",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-einfuhr-oraler-fluesse",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-einfuhr-oraler-fluesse",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-einfuhr-oraler-fluessigkeit",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-einfuhr-oraler-fluessigkeit",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-gesamte-ausfuhr",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-gesamte-ausfuhr",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-gesamte-einfuhr",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-gesamte-einfuhr",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--bilanz-gesamte-tages-bilanz",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/bilanz-gesamte-tages-bilanz",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--blutfluss-cardiovasculaeres-geraet",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/blutfluss-cardiovasculaeres-geraet",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--blutfluss-extrakorporaler-gasaustausch",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/blutfluss-extrakorporaler-gasaustausch",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--blutflussindex-extrakorporaler-gasaustausch",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/blutflussindex-extrakorporaler-gasaustausch",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--dauer-extrakorporaler-gasaustausch",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/dauer-extrakorporaler-gasaustausch",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--dauer-haemodialysesitzung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/dauer-haemodialysesitzung",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--devicemetric-eingestellte-gemessene-parameter-beatmung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/devicemetric-eingestellte-gemessene-parameter-beatmung",
+      "variants": 1,
+      "fields": 10,
+      "uncovered_fields": [],
+      "references": 2,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--devicemetric-eingestellte-gemessene-parameter-extrakorporale-verfahren",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/devicemetric-eingestellte-gemessene-parameter-extrakorporale-verfahren",
+      "variants": 1,
+      "fields": 10,
+      "uncovered_fields": [],
+      "references": 2,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--druckdifferenz-beatmung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/druckdifferenz-beatmung",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--dynamische-kompliance",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/dynamische-kompliance",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--eingestellter-inspiratorischer-gasfluss",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/eingestellter-inspiratorischer-gasfluss",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--einstellung-ausatmungszeit-beatmung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/einstellung-ausatmungszeit-beatmung",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--einstellung-einatmungszeit-beatmung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/einstellung-einatmungszeit-beatmung",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--endexspiratorischer-kohlendioxidpartialdruck",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/endexspiratorischer-kohlendioxidpartialdruck",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--exspiratorischer-gasfluss",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/exspiratorischer-gasfluss",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--exspiratorischer-sauerstoffpartialdruck",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/exspiratorischer-sauerstoffpartialdruck",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--extrakorporales-verfahren",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/extrakorporales-verfahren",
+      "variants": 1,
+      "fields": 27,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--gasfluss",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/gasfluss",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--haemodialyse-blutfluss",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/haemodialyse-blutfluss",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--herzfrequenz",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/herzfrequenz",
+      "variants": 2,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--horowitz-in-arteriellem-blut",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/horowitz-in-arteriellem-blut",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--icu-device",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/icu-device",
+      "variants": 1,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 2,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--inspiratorische-sauerstofffraktion",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/inspiratorische-sauerstofffraktion",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--inspiratorische-sauerstofffraktion-eingestellt",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/inspiratorische-sauerstofffraktion-eingestellt",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--inspiratorische-sauerstofffraktion-gemessen",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/inspiratorische-sauerstofffraktion-gemessen",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--inspiratorischer-gasfluss",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/inspiratorischer-gasfluss",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--ionisiertes-kalzium-nierenersatzverfahren",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/ionisiertes-kalzium-nierenersatzverfahren",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--koerpergewicht",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/koerpergewicht",
+      "variants": 11,
+      "fields": 26,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--koerpergroesse",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/koerpergroesse",
+      "variants": 11,
+      "fields": 26,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--kopfumfang",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/kopfumfang",
+      "variants": 11,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--maximaler-beatmungsdruck",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/maximaler-beatmungsdruck",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--mechanische-atemfrequenz-beatmet",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/mechanische-atemfrequenz-beatmet",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--mittlerer-beatmungsdruck",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/mittlerer-beatmungsdruck",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--positiv-endexspiratorischer-druck",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/positiv-endexspiratorischer-druck",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--spontane-atemfrequenz-beatmet",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/spontane-atemfrequenz-beatmet",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--spontane-mechanische-atemfrequenz-beatmet",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/spontane-mechanische-atemfrequenz-beatmet",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--spontanes-atemzugvolumen",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/spontanes-atemzugvolumen",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--spontanes-mechanisches-atemzugvolumen-waehrend",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/spontanes-mechanisches-atemzugvolumen-waehrend",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--substituatfluss",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/substituatfluss",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--substituatvolumen",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/substituatvolumen",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--unterstuetzungsdruck-beatmung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/unterstuetzungsdruck-beatmung",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--venoeser-druck",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/venoeser-druck",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-icu--zeitverhaeltnis-ein-ausatmung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/zeitverhaeltnis-ein-ausatmung",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--anforderung-genetischer-test",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/anforderung-genetischer-test",
+      "variants": 3,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--diagnostische-implikation",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/diagnostische-implikation",
+      "variants": 11,
+      "fields": 24,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--empfohlene-folgemassnahme",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/empfohlene-folgemassnahme",
+      "variants": 12,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 8,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--ergebnis-zusammenfassung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/ergebnis-zusammenfassung",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--familienanamnese",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/familienanamnese",
+      "variants": 5,
+      "fields": 34,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--genotyp",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/genotyp",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--medikationsempfehlung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/medikationsempfehlung",
+      "variants": 12,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 8,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--mikrosatelliteninstabilitaet",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/mikrosatelliteninstabilitaet",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--molekulargenetischer-befundbericht",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/molekulargenetischer-befundbericht",
+      "variants": 1,
+      "fields": 13,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--mutationslast",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/mutationslast",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--polygener-risiko-score",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/polygener-risiko-score",
+      "variants": 2,
+      "fields": 11,
+      "uncovered_fields": [],
+      "references": 7,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--therapeutische-implikation",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/therapeutische-implikation",
+      "variants": 11,
+      "fields": 24,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--untersuchte-region",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/untersuchte-region",
+      "variants": 11,
+      "fields": 27,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-molgen--variante",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/variante",
+      "variants": 11,
+      "fields": 50,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-allgemeiner-leistungszustand-ecog",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-allgemeiner-leistungszustand-ecog",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-allgemeiner-leistungszustand-karnofsky",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-allgemeiner-leistungszustand-karnofsky",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-anzahl-befallene-lymphknoten",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-anzahl-befallene-lymphknoten",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-anzahl-befallene-sentinel-lymphknoten",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-anzahl-befallene-sentinel-lymphknoten",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-anzahl-untersuchte-lymphknoten",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-anzahl-untersuchte-lymphknoten",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-anzahl-untersuchte-sentinel-lymphknoten",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-anzahl-untersuchte-sentinel-lymphknoten",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-befund",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-befund",
+      "variants": 2,
+      "fields": 13,
+      "uncovered_fields": [],
+      "references": 8,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-diagnose-primaertumor",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-diagnose-primaertumor",
+      "variants": 5,
+      "fields": 35,
+      "uncovered_fields": [],
+      "references": 6,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-fernmetastasen",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-fernmetastasen",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-genetische-variante",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-genetische-variante",
+      "variants": 11,
+      "fields": 53,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-grading",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-grading",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-histologie-icdo3",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-histologie-icdo3",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-liste-evidenz-erstdiagnose",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-liste-evidenz-erstdiagnose",
+      "variants": 1,
+      "fields": 11,
+      "uncovered_fields": [],
+      "references": 3,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-nebenwirkung-adverse-event",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-nebenwirkung-adverse-event",
+      "variants": 1,
+      "fields": 14,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-operation",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-operation",
+      "variants": 2,
+      "fields": 34,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-residualstatus",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-residualstatus",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-specimen",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-specimen",
+      "variants": 2,
+      "fields": 11,
+      "uncovered_fields": [],
+      "references": 5,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-strahlentherapie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-strahlentherapie",
+      "variants": 2,
+      "fields": 31,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-strahlentherapie-bestrahlung-nuklearmedizin",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-strahlentherapie-bestrahlung-nuklearmedizin",
+      "variants": 2,
+      "fields": 37,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-strahlentherapie-bestrahlung-strahlentherapie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-strahlentherapie-bestrahlung-strahlentherapie",
+      "variants": 2,
+      "fields": 37,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-studienteilnahme",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-studienteilnahme",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-systemische-therapie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-systemische-therapie",
+      "variants": 2,
+      "fields": 32,
+      "uncovered_fields": [],
+      "references": 12,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-systemische-therapie-medikation",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-systemische-therapie-medikation",
+      "variants": 3,
+      "fields": 59,
+      "uncovered_fields": [],
+      "references": 7,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-a-symbol",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-a-symbol",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-klassifikation",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-klassifikation",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-l-kategorie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-l-kategorie",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-m-kategorie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-m-kategorie",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-m-symbol",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-m-symbol",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-n-kategorie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-n-kategorie",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-pn-kategorie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-pn-kategorie",
+      "variants": 11,
+      "fields": 18,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-r-symbol",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-r-symbol",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-s-kategorie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-s-kategorie",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-t-kategorie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-t-kategorie",
+      "variants": 11,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-v-kategorie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-v-kategorie",
+      "variants": 11,
+      "fields": 18,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tnm-y-symbol",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tnm-y-symbol",
+      "variants": 11,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tod",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tod",
+      "variants": 11,
+      "fields": 18,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-tumorkonferenz",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tumorkonferenz",
+      "variants": 3,
+      "fields": 14,
+      "uncovered_fields": [],
+      "references": 13,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-verlauf",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-verlauf",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-onko--mii-pr-onko-weitere-klassifikationen",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-weitere-klassifikationen",
+      "variants": 11,
+      "fields": 16,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-active-problems-list",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-active-problems-list",
+      "variants": 1,
+      "fields": 12,
+      "uncovered_fields": [],
+      "references": 4,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-additional-specified-grouper",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-additional-specified-grouper",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-attached-image",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-attached-image",
+      "variants": 2,
+      "fields": 19,
+      "uncovered_fields": [],
+      "references": 6,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-composition",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-composition",
+      "variants": 2,
+      "fields": 26,
+      "uncovered_fields": [],
+      "references": 14,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-diagnostic-conclusion-grouper",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-diagnostic-conclusion-grouper",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-finding",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-finding",
+      "variants": 4,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-history-of-present-illness",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-history-of-present-illness",
+      "variants": 1,
+      "fields": 12,
+      "uncovered_fields": [],
+      "references": 4,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-intraoperative-grouper",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-intraoperative-grouper",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-macroscopic-grouper",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-macroscopic-grouper",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-microscopic-grouper",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-microscopic-grouper",
+      "variants": 11,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-problem-list-item",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-problem-list-item",
+      "variants": 5,
+      "fields": 16,
+      "uncovered_fields": [],
+      "references": 5,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-report",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-report",
+      "variants": 1,
+      "fields": 15,
+      "uncovered_fields": [],
+      "references": 8,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-service-request",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-service-request",
+      "variants": 3,
+      "fields": 24,
+      "uncovered_fields": [],
+      "references": 8,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-patho--mii-pr-patho-specimen",
+      "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-specimen",
+      "variants": 2,
+      "fields": 17,
+      "uncovered_fields": [],
+      "references": 6,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-consent--mii-pr-consent-documentreference",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-documentreference",
+      "variants": 1,
+      "fields": 13,
+      "uncovered_fields": [],
+      "references": 6,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-consent--mii-pr-consent-einwilligung",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-einwilligung",
+      "variants": 1,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 6,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-consent--mii-pr-consent-provenance",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-provenance",
+      "variants": 2,
+      "fields": 10,
+      "uncovered_fields": [],
+      "references": 5,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-diagnostic-report",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-diagnostic-report",
+      "variants": 1,
+      "fields": 20,
+      "uncovered_fields": [],
+      "references": 9,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-empfindlichkeit",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-empfindlichkeit",
+      "variants": 2,
+      "fields": 24,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-keimzahl",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-keimzahl",
+      "variants": 2,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-kultur-nachweis",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-kultur-nachweis",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-mikroskopie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-mikroskopie",
+      "variants": 11,
+      "fields": 25,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-molekulare-diagnostik",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-molekulare-diagnostik",
+      "variants": 11,
+      "fields": 24,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-mre-klasse",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-mre-klasse",
+      "variants": 2,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-mrgn-klasse",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-mrgn-klasse",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-resistenzgene",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-resistenzgene",
+      "variants": 11,
+      "fields": 23,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-resistenzmutation",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-resistenzmutation",
+      "variants": 11,
+      "fields": 22,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-serologie-immunologie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-serologie-immunologie",
+      "variants": 11,
+      "fields": 24,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-virulenzfaktor",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-virulenzfaktor",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-mikrobio--mii-pr-mikrobio-voraussichtliche-empfindlichkeit",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/StructureDefinition/mii-pr-mikrobio-voraussichtliche-empfindlichkeit",
+      "variants": 11,
+      "fields": 21,
+      "uncovered_fields": [],
+      "references": 10,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-studie--mii-pr-studie-beteiligte-person",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+      "variants": 1,
+      "fields": 10,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-studie--mii-pr-studie-dokument",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-dokument",
+      "variants": 1,
+      "fields": 13,
+      "uncovered_fields": [],
+      "references": 7,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-studie--mii-pr-studie-ein-auschluss-kriterium",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-ein-auschluss-kriterium",
+      "variants": 6,
+      "fields": 32,
+      "uncovered_fields": [],
+      "references": 1,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-studie--mii-pr-studie-register",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-register",
+      "variants": 2,
+      "fields": 32,
+      "uncovered_fields": [],
+      "references": 0,
+      "uncovered_references": [],
+      "unlinked_references": []
+    },
+    {
+      "crtdl": "modul-studie--mii-pr-studie-studie",
+      "url": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-studie",
+      "variants": 1,
+      "fields": 27,
+      "uncovered_fields": [],
+      "references": 5,
+      "uncovered_references": [],
+      "unlinked_references": []
+    }
+  ],
+  "profile_issues": [
+    "https://gematik.de/fhir/isik/StructureDefinition/ISiKStandortBettenstellplatz: Location.mode has type code but a complex fixed/pattern value. Used its first code.",
+    "https://gematik.de/fhir/isik/StructureDefinition/ISiKStandortRaum: Location.mode has type code but a complex fixed/pattern value. Used its first code.",
+    "no code found for required binding http://fhir.de/ValueSet/UcumVitalsCommonDE of Quantity.code. Used 'test'.",
+    "no code found for required binding http://hl7.org/fhir/ValueSet/characteristic-combination of Extension.value[x]. Used 'test'.",
+    "no code found for required binding http://hl7.org/fhir/ValueSet/currencies|4.0.1 of Money.currency. Used 'test'.",
+    "no code found for required binding http://hl7.org/fhir/ValueSet/mimetypes|4.0.1 of Signature.sigFormat. Used 'test'.",
+    "no code found for required binding http://hl7.org/fhir/ValueSet/mimetypes|4.0.1 of Signature.targetFormat. Used 'test'.",
+    "no code found for required binding https://gematik.de/fhir/isik/ValueSet/FhirMimeTypeVS of Subscription.channel.payload. Used 'test'.",
+    "no code found for required binding https://gematik.de/fhir/isik/ValueSet/vs-mii-icu-unit-equivalent-ucum-beats-per-minute of Quantity.code. Used 'test'.",
+    "no code found for required binding https://gematik.de/fhir/isik/ValueSet/vs-mii-icu-unit-equivalent-ucum-dyn-s-cm5-m2 of Quantity.code. Used 'test'.",
+    "no code found for required binding https://gematik.de/fhir/isik/ValueSet/vs-mii-icu-unit-equivalent-ucum-l-per-minute of Quantity.code. Used 'test'.",
+    "no code found for required binding https://gematik.de/fhir/isik/ValueSet/vs-mii-icu-unit-equivalent-ucum-l-per-minute-and-squaremeter of Quantity.code. Used 'test'.",
+    "no code found for required binding https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/ValueSet/vs-mii-icu-unit-equivalent-ucum-beats-per-minute of Quantity.code. Used 'test'.",
+    "no code found for required binding https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/ValueSet/vs-mii-icu-unit-equivalent-ucum-breaths-per-minute of Quantity.code. Used 'test'.",
+    "no code found for required binding https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/ValueSet/vs-mii-icu-unit-equivalent-ucum-milliliter of Quantity.code. Used 'test'.",
+    "no code found for required binding https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/ValueSet/mii-vs-onko-icdo3-topographie of Coding.code. Used 'test'.",
+    "no code found for required binding https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/ValueSet/mii-vs-onko-nebenwirkung-art of Coding.code. Used 'test'.",
+    "no code found for required binding https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/ValueSet/mii-vs-empfindlichkeit-einheiten-ucum of Quantity.code. Used 'test'.",
+    "no code found for required binding https://www.medizininformatik-initiative.de/fhir/modul-mikrobio/ValueSet/mii-vs-keimzahl-einheiten-ucum of Quantity.code. Used 'test'."
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/devicemetric-eingestellte-gemessene-parameter-beatmung",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "7ac0013c-bf46-5cae-8861-393f8856a699",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DeviceMetric.calibration",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.color",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.measurementPeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.operationalStatus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.type.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.unit",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.parent",
+            "mustHave": false,
+            "linkedGroups": [
+              "5ecb1034-32c7-5b85-95c2-35439ca2dbb2"
+            ]
+          },
+          {
+            "attributeRef": "DeviceMetric.source",
+            "mustHave": false,
+            "linkedGroups": [
+              "e6d63b3b-f4fb-544b-b9b9-23539aa8efb3"
+            ]
+          }
+        ],
+        "id": "43ba65c1-91e3-5d40-93f1-d7ce090b730a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/devicemetric-eingestellte-gemessene-parameter-beatmung",
+        "name": "devicemetric-eingestellte-gemessene-parameter-beatmung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "5ecb1034-32c7-5b85-95c2-35439ca2dbb2",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "e6d63b3b-f4fb-544b-b9b9-23539aa8efb3",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/icu-device",
+        "includeReferenceOnly": true,
+        "name": "linked-icu-device"
+      }
+    ]
+  }
+}

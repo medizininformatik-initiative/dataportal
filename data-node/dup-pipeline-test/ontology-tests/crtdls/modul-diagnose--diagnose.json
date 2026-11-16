@@ -1,0 +1,261 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "0847c3f2-743f-53b5-aa74-f0eef3c0f75f",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.bodySite",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.bodySite.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.bodySite.coding:snomed-ct",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.clinicalStatus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code.coding:alpha-id",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code.coding:icd10-gm",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code.coding:icd10-gm.extension:Diagnosesicherheit",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code.coding:icd10-gm.extension:Mehrfachcodierungs-Kennzeichen",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code.coding:icd10-gm.extension:Seitenlokalisation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code.coding:orphanet",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.code.coding:sct",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.evidence",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.extension:Feststellungsdatum",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.onset[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.onset[x]:onsetDateTime",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.onset[x]:onsetPeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.onset[x]:onsetPeriod.end.extension:lebensphase-bis",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.onset[x]:onsetPeriod.start.extension:lebensphase-von",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.recordedDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.severity",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.stage",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.verificationStatus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Condition.asserter",
+            "mustHave": false,
+            "linkedGroups": [
+              "d10f95e1-9fdd-544d-bb2c-3a52f12b59e8"
+            ]
+          },
+          {
+            "attributeRef": "Condition.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "bc97e9d7-5ce4-5f90-9098-eff6fcffaec1"
+            ]
+          },
+          {
+            "attributeRef": "Condition.evidence.detail",
+            "mustHave": false,
+            "linkedGroups": [
+              "d10f95e1-9fdd-544d-bb2c-3a52f12b59e8"
+            ]
+          },
+          {
+            "attributeRef": "Condition.extension:ReferenzPrimaerdiagnose",
+            "mustHave": false,
+            "linkedGroups": [
+              "1eae94c6-63e0-51e4-ac47-e8632759e90c"
+            ]
+          },
+          {
+            "attributeRef": "Condition.recorder",
+            "mustHave": false,
+            "linkedGroups": [
+              "d10f95e1-9fdd-544d-bb2c-3a52f12b59e8"
+            ]
+          },
+          {
+            "attributeRef": "Condition.stage.assessment",
+            "mustHave": false,
+            "linkedGroups": [
+              "d9c49ccf-4ad2-5bd7-ae7e-80f1b42e8b3a"
+            ]
+          }
+        ],
+        "id": "1eae94c6-63e0-51e4-ac47-e8632759e90c",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "name": "diagnose"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "d10f95e1-9fdd-544d-bb2c-3a52f12b59e8",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "bc97e9d7-5ce4-5f90-9098-eff6fcffaec1",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DiagnosticReport.category",
+            "mustHave": false
+          }
+        ],
+        "id": "d9c49ccf-4ad2-5bd7-ae7e-80f1b42e8b3a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-report",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-patho-report"
+      }
+    ]
+  }
+}

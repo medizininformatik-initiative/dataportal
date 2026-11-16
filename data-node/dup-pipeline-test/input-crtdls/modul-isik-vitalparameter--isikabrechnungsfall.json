@@ -1,0 +1,141 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://gematik.de/fhir/isik/StructureDefinition/ISiKAbrechnungsfall",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "93699199-43ea-54df-acbc-303900ce2a73",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Account.coverage",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.coverage.extension:Abrechnungsart",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.description",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.extension:AbrechnungsDiagnoseProzedur",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.guarantor",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.identifier:Abrechnungsnummer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.name",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.servicePeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Account.guarantor.party",
+            "mustHave": false,
+            "linkedGroups": [
+              "a7e7961b-fafe-5ed4-b8c0-65d69ab970cf"
+            ]
+          },
+          {
+            "attributeRef": "Account.owner",
+            "mustHave": false,
+            "linkedGroups": [
+              "a7e7961b-fafe-5ed4-b8c0-65d69ab970cf"
+            ]
+          }
+        ],
+        "id": "7971b979-becf-5d95-9835-b3c69ce7abab",
+        "groupReference": "https://gematik.de/fhir/isik/StructureDefinition/ISiKAbrechnungsfall",
+        "name": "isikabrechnungsfall"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "a7e7961b-fafe-5ed4-b8c0-65d69ab970cf",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      }
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-register",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "064433ad-e49e-5623-8688-640bdadc602c",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Library.approvalDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.author",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.contact",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.content",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.copyright",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.dataRequirement",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.date",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.description",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.editor",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.effectivePeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.endorser",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.experimental",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.jurisdiction",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.lastReviewDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.name",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.parameter",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.publisher",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.purpose",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.relatedArtifact",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.relatedArtifact.document",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.reviewer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.subtitle",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.title",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.topic",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.url",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.usage",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.useContext",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Library.version",
+            "mustHave": false
+          }
+        ],
+        "id": "ecd346c9-0089-5f2b-adae-2c99dcbd505e",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-register",
+        "name": "mii-pr-studie-register"
+      }
+    ]
+  }
+}

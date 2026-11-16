@@ -1,0 +1,383 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-strahlentherapie",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "de70477a-99ad-5f77-a461-83d3b83b8732",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Procedure.bodySite",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.category.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.category.coding:sct",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.code.coding:ops",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.code.coding:ops.extension:Seitenlokalisation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.code.coding:sct",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.complication",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.extension:Dokumentationsdatum",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.extension:Intention",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.extension:StellungZurOp",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.extension:durchfuehrungsabsicht",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.focalDevice",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.followUp",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.instantiatesCanonical",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.instantiatesUri",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.outcome",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.outcome.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.performed[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.performed[x]:performedDateTime",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.performed[x]:performedPeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.performer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.reasonCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.statusReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.usedCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Procedure.asserter",
+            "mustHave": false,
+            "linkedGroups": [
+              "4a3bea85-2a0c-5c26-ae8c-adfd865a0cf1"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "768f9197-27ed-54b1-9ce2-ef60dd772bfb"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.complicationDetail",
+            "mustHave": false,
+            "linkedGroups": [
+              "cbead305-f40e-5a9c-a787-d88801f963c6"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "52820df0-fdf8-5f6b-9122-134895782973"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.focalDevice.manipulated",
+            "mustHave": false,
+            "linkedGroups": [
+              "fb6605e2-bc13-5366-a1d6-3a07db4aad0e"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "5295788f-94d1-5609-bf2a-66a6d78534f1"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.performer.actor",
+            "mustHave": false,
+            "linkedGroups": [
+              "4a3bea85-2a0c-5c26-ae8c-adfd865a0cf1"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.performer.onBehalfOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "e2b3c628-02a9-5ec3-9fee-71ff7fb344f3"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.reasonReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "1a5782ee-b16a-5148-99fe-7f3283f455f3"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.recorder",
+            "mustHave": false,
+            "linkedGroups": [
+              "4a3bea85-2a0c-5c26-ae8c-adfd865a0cf1"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.report",
+            "mustHave": false,
+            "linkedGroups": [
+              "b5c05fc8-d796-5e67-9974-c6e77ea51807"
+            ]
+          },
+          {
+            "attributeRef": "Procedure.usedReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "fb6605e2-bc13-5366-a1d6-3a07db4aad0e"
+            ]
+          }
+        ],
+        "id": "b06e1d1d-65ca-512e-a7c3-9719be38af44",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-strahlentherapie",
+        "name": "mii-pr-onko-strahlentherapie"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "4a3bea85-2a0c-5c26-ae8c-adfd865a0cf1",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "CarePlan.activity",
+            "mustHave": false
+          }
+        ],
+        "id": "768f9197-27ed-54b1-9ce2-ef60dd772bfb",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tumorkonferenz",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tumorkonferenz"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "cbead305-f40e-5a9c-a787-d88801f963c6",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "includeReferenceOnly": true,
+        "name": "linked-diagnose"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "52820df0-fdf8-5f6b-9122-134895782973",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "fb6605e2-bc13-5366-a1d6-3a07db4aad0e",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "5295788f-94d1-5609-bf2a-66a6d78534f1",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tod",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tod"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "e2b3c628-02a9-5ec3-9fee-71ff7fb344f3",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "1a5782ee-b16a-5148-99fe-7f3283f455f3",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-diagnose-primaertumor",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-diagnose-primaertumor"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DiagnosticReport.category",
+            "mustHave": false
+          }
+        ],
+        "id": "b5c05fc8-d796-5e67-9974-c6e77ea51807",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-report",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-patho-report"
+      }
+    ]
+  }
+}

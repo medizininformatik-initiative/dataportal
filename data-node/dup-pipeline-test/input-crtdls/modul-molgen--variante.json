@@ -1,0 +1,445 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/variante",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "d4cffe84-dacf-5fbd-9861-a137dcff0e4d",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category:labCategory",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.category:labCategory.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:allelic-read-depth",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:allelic-state",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:alt-allele",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:amino-acid-change-type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:chromosome-identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:coding-change-type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:coding-hgvs",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:conclusion-string",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:coordinate-system",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:copy-number",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:cytogenetic-location",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:cytogenomic-nomenclature",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:detection-limit",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:dna-region",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:exact-start-end",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:gene-fusion",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:gene-studied",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:genomic-hgvs",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:genomic-ref-seq",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:genomic-source-class",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:inner-start-end",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:molecular-consequence",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:outer-start-end",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:protein-hgvs",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:ref-allele",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:reference-sequence-assembly",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:sample-allelic-frequency",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:transcript-ref-seq",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:variant-confidence-status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:variant-inheritance",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.component:variation-code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.dataAbsentReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.effective[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.extension:secondary-finding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.interpretation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.issued",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.method",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.referenceRange",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.value[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.value[x]:valueCodeableConcept",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Observation.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "e2caf317-8c8b-5a4b-bdfc-2f5ec3f08b8a"
+            ]
+          },
+          {
+            "attributeRef": "Observation.derivedFrom",
+            "mustHave": false,
+            "linkedGroups": [
+              "18aa43d3-27c8-5eb0-ab80-949d040bb4b0"
+            ]
+          },
+          {
+            "attributeRef": "Observation.device",
+            "mustHave": false,
+            "linkedGroups": [
+              "ba45a43d-25bb-559f-8439-3595a9c7374d"
+            ]
+          },
+          {
+            "attributeRef": "Observation.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "895f255e-c659-5206-ae59-4295cb499fc4"
+            ]
+          },
+          {
+            "attributeRef": "Observation.extension:body-structure",
+            "mustHave": false,
+            "linkedGroups": [
+              "434697a5-41fc-5da3-8b87-4f8acbd54d93"
+            ]
+          },
+          {
+            "attributeRef": "Observation.focus",
+            "mustHave": false,
+            "linkedGroups": [
+              "13c4a4ee-b6ac-5462-b031-40fea79cfcc8"
+            ]
+          },
+          {
+            "attributeRef": "Observation.hasMember",
+            "mustHave": false,
+            "linkedGroups": [
+              "ad4e88c0-73af-58d8-b337-6473debc1568"
+            ]
+          },
+          {
+            "attributeRef": "Observation.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "8fed5f07-730e-55e4-9da8-749b05710a0b"
+            ]
+          },
+          {
+            "attributeRef": "Observation.performer",
+            "mustHave": false,
+            "linkedGroups": [
+              "13c4a4ee-b6ac-5462-b031-40fea79cfcc8"
+            ]
+          },
+          {
+            "attributeRef": "Observation.specimen",
+            "mustHave": false,
+            "linkedGroups": [
+              "7e2ffa1b-318c-57f9-8550-927c434f84ed"
+            ]
+          }
+        ],
+        "id": "c2818f2a-4851-53c7-b15b-2870349d6735",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/variante",
+        "name": "variante"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "CarePlan.activity",
+            "mustHave": false
+          }
+        ],
+        "id": "e2caf317-8c8b-5a4b-bdfc-2f5ec3f08b8a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tumorkonferenz",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tumorkonferenz"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DocumentReference.category",
+            "mustHave": false
+          }
+        ],
+        "id": "18aa43d3-27c8-5eb0-ab80-949d040bb4b0",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-dokument",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-dokument"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "ba45a43d-25bb-559f-8439-3595a9c7374d",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "895f255e-c659-5206-ae59-4295cb499fc4",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "BodyStructure.active",
+            "mustHave": false
+          }
+        ],
+        "id": "434697a5-41fc-5da3-8b87-4f8acbd54d93",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-koerperstruktur",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-koerperstruktur"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "13c4a4ee-b6ac-5462-b031-40fea79cfcc8",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "ad4e88c0-73af-58d8-b337-6473debc1568",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tod",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tod"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "MedicationAdministration.category",
+            "mustHave": false
+          }
+        ],
+        "id": "8fed5f07-730e-55e4-9da8-749b05710a0b",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationAdministration",
+        "includeReferenceOnly": true,
+        "name": "linked-medicationadministration"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Specimen.accessionIdentifier",
+            "mustHave": false
+          }
+        ],
+        "id": "7e2ffa1b-318c-57f9-8550-927c434f84ed",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-specimen",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-specimen"
+      }
+    ]
+  }
+}

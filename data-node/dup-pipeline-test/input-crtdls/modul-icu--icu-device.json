@@ -1,0 +1,193 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/icu-device",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "c542c06d-db66-541c-9a36-a6ae243fdcbe",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.deviceName",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.distinctIdentifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.expirationDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.lotNumber",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.manufactureDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.manufacturer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.modelNumber",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.partNumber",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.property",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.safety",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.serialNumber",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.specialization",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.statusReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.udiCarrier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.url",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.version",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Device.owner",
+            "mustHave": false,
+            "linkedGroups": [
+              "53cc80a6-51a0-581d-88e9-deff61b82320"
+            ]
+          },
+          {
+            "attributeRef": "Device.parent",
+            "mustHave": false,
+            "linkedGroups": [
+              "a099a03b-5406-53fa-9062-3d3baae4a11a"
+            ]
+          }
+        ],
+        "id": "af60d3ef-872a-520a-99c9-6c91b6d50466",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/icu-device",
+        "name": "icu-device"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "53cc80a6-51a0-581d-88e9-deff61b82320",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "a099a03b-5406-53fa-9062-3d3baae4a11a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      }
+    ]
+  }
+}

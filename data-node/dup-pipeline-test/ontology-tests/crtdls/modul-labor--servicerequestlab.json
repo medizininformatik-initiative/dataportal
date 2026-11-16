@@ -1,0 +1,325 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/ServiceRequestLab",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "0520d0f5-1de9-50de-bd49-eff74f755930",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "ServiceRequest.asNeeded[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.authoredOn",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.category.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.category.coding:laboratory",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.doNotPerform",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.identifier:anforderung",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.instantiatesCanonical",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.instantiatesUri",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.intent",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.locationCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.occurrence[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.orderDetail",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.performerType",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.priority",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.quantity[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.reasonCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.requisition",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ServiceRequest.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "e219e7a4-5ff0-5194-85a7-ee27218c4abd"
+            ]
+          },
+          {
+            "attributeRef": "ServiceRequest.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "fa5386a3-305b-51bc-bdb1-06eebcc95afa"
+            ]
+          },
+          {
+            "attributeRef": "ServiceRequest.performer",
+            "mustHave": false,
+            "linkedGroups": [
+              "99764a60-475a-5f30-a55c-0cfdae5ebce3"
+            ]
+          },
+          {
+            "attributeRef": "ServiceRequest.reasonReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "c7ec747e-35ca-5a7a-be5a-dd3c288610fa"
+            ]
+          },
+          {
+            "attributeRef": "ServiceRequest.relevantHistory",
+            "mustHave": false,
+            "linkedGroups": [
+              "0a0394c6-f10e-5d4e-a3cd-c3479ca18bfa"
+            ]
+          },
+          {
+            "attributeRef": "ServiceRequest.replaces",
+            "mustHave": false,
+            "linkedGroups": [
+              "0df13295-28a9-5c14-b273-c8f7d18c4998"
+            ]
+          },
+          {
+            "attributeRef": "ServiceRequest.requester",
+            "mustHave": false,
+            "linkedGroups": [
+              "99764a60-475a-5f30-a55c-0cfdae5ebce3"
+            ]
+          },
+          {
+            "attributeRef": "ServiceRequest.specimen",
+            "mustHave": false,
+            "linkedGroups": [
+              "24e9010a-1f37-5864-aace-a04ee7f5dc28"
+            ]
+          },
+          {
+            "attributeRef": "ServiceRequest.subject",
+            "mustHave": false,
+            "linkedGroups": [
+              "cf4231cd-1790-5e83-9cc9-b216fc58246d"
+            ]
+          },
+          {
+            "attributeRef": "ServiceRequest.supportingInfo",
+            "mustHave": false,
+            "linkedGroups": [
+              "99764a60-475a-5f30-a55c-0cfdae5ebce3"
+            ]
+          }
+        ],
+        "id": "fe3edb19-bad3-53bb-882a-f994e272ed4d",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/ServiceRequestLab",
+        "name": "servicerequestlab"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "CarePlan.activity",
+            "mustHave": false
+          }
+        ],
+        "id": "e219e7a4-5ff0-5194-85a7-ee27218c4abd",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tumorkonferenz",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tumorkonferenz"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "fa5386a3-305b-51bc-bdb1-06eebcc95afa",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "99764a60-475a-5f30-a55c-0cfdae5ebce3",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "c7ec747e-35ca-5a7a-be5a-dd3c288610fa",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "includeReferenceOnly": true,
+        "name": "linked-diagnose"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Provenance.activity",
+            "mustHave": false
+          }
+        ],
+        "id": "0a0394c6-f10e-5d4e-a3cd-c3479ca18bfa",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-consent/StructureDefinition/mii-pr-consent-provenance",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-consent-provenance"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "ServiceRequest.asNeeded[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "0df13295-28a9-5c14-b273-c8f7d18c4998",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/anforderung-genetischer-test",
+        "includeReferenceOnly": true,
+        "name": "linked-anforderung-genetischer-test"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Specimen.accessionIdentifier",
+            "mustHave": false
+          }
+        ],
+        "id": "24e9010a-1f37-5864-aace-a04ee7f5dc28",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-specimen",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-specimen"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "cf4231cd-1790-5e83-9cc9-b216fc58246d",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      }
+    ]
+  }
+}

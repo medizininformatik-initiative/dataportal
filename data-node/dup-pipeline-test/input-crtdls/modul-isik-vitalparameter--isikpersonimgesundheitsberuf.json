@@ -1,0 +1,238 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://gematik.de/fhir/isik/StructureDefinition/ISiKPersonImGesundheitsberuf",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "91e1e125-3509-556b-8991-53087f6a0987",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Practitioner.active",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.address",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.address:Postfach",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.address:Postfach.extension:Stadtteil",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.address:Postfach.line.extension:Postfach",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.address:Postfach.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.address:Strassenanschrift",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.address:Strassenanschrift.extension:Stadtteil",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.address:Strassenanschrift.line.extension:Adresszusatz",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.address:Strassenanschrift.line.extension:Hausnummer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.address:Strassenanschrift.line.extension:Strasse",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.address:Strassenanschrift.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.birthDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.birthDate.extension:Data-Absent-Reason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.communication",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.gender",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.gender.extension:Geschlecht-Administrativ",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.identifier:Arztnummer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.identifier:EFN",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.identifier:TelematikId",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name:Geburtsname",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name:Geburtsname.family.extension:nachname",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name:Geburtsname.family.extension:namenszusatz",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name:Geburtsname.family.extension:vorsatzwort",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name:Geburtsname.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name:Name",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name:Name.family.extension:nachname",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name:Name.family.extension:namenszusatz",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name:Name.family.extension:vorsatzwort",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name:Name.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.name:Name.prefix.extension:prefix-qualifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.photo",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.qualification",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.telecom",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.telecom.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Practitioner.qualification.issuer",
+            "mustHave": false,
+            "linkedGroups": [
+              "cf506508-2615-58a5-83a8-3f8bec7f54e8"
+            ]
+          }
+        ],
+        "id": "d66e0b51-b982-568c-a4f2-70af09da6e8c",
+        "groupReference": "https://gematik.de/fhir/isik/StructureDefinition/ISiKPersonImGesundheitsberuf",
+        "name": "isikpersonimgesundheitsberuf"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "cf506508-2615-58a5-83a8-3f8bec7f54e8",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      }
+    ]
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://gematik.de/fhir/isik/StructureDefinition/ISiKBerichtSubSysteme",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "7e50d8db-ae40-5fb1-9261-4463b949b792",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Composition.attester",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.category.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.category.coding:IHE",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.category.coding:LOINC",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.confidentiality",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.date",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.event",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.relatesTo",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.section",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.text.div",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.title",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type.coding:IHE",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type.coding:KDL",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type.coding:LOINC",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.attester.party",
+            "mustHave": false,
+            "linkedGroups": [
+              "24661c1b-7314-57ad-8360-b58126f0781e"
+            ]
+          },
+          {
+            "attributeRef": "Composition.author",
+            "mustHave": false,
+            "linkedGroups": [
+              "24661c1b-7314-57ad-8360-b58126f0781e"
+            ]
+          },
+          {
+            "attributeRef": "Composition.custodian",
+            "mustHave": false,
+            "linkedGroups": [
+              "1c4cd3d3-1b20-5d03-a668-4b6e532fa814"
+            ]
+          },
+          {
+            "attributeRef": "Composition.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "c58c1c0c-c4fc-59e9-821d-77b328fe1548"
+            ]
+          },
+          {
+            "attributeRef": "Composition.event.detail",
+            "mustHave": false,
+            "linkedGroups": [
+              "24661c1b-7314-57ad-8360-b58126f0781e"
+            ]
+          },
+          {
+            "attributeRef": "Composition.relatesTo.target[x]",
+            "mustHave": false,
+            "linkedGroups": [
+              "8224ec41-e299-5d3b-88de-80f718b677da"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section.author",
+            "mustHave": false,
+            "linkedGroups": [
+              "24661c1b-7314-57ad-8360-b58126f0781e"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section.entry",
+            "mustHave": false,
+            "linkedGroups": [
+              "24661c1b-7314-57ad-8360-b58126f0781e"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section.focus",
+            "mustHave": false,
+            "linkedGroups": [
+              "24661c1b-7314-57ad-8360-b58126f0781e"
+            ]
+          }
+        ],
+        "id": "222d468e-11ae-5d52-9a65-217fafb162b7",
+        "groupReference": "https://gematik.de/fhir/isik/StructureDefinition/ISiKBerichtSubSysteme",
+        "name": "isikberichtsubsysteme"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "24661c1b-7314-57ad-8360-b58126f0781e",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "1c4cd3d3-1b20-5d03-a668-4b6e532fa814",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "c58c1c0c-c4fc-59e9-821d-77b328fe1548",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Composition.attester",
+            "mustHave": false
+          }
+        ],
+        "id": "8224ec41-e299-5d3b-88de-80f718b677da",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-semistrukt-befundbericht",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-semistrukt-befundbericht"
+      }
+    ]
+  }
+}

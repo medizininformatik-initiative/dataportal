@@ -1,0 +1,244 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-semistrukt-befundbericht",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "98b34a1e-1bce-5d2b-9864-4b2ff9271eeb",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Composition.attester",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.confidentiality",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.date",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.event",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.relatesTo",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.section",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.section:diagRep",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.title",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.attester.party",
+            "mustHave": false,
+            "linkedGroups": [
+              "52d0b4c4-5c3d-591c-bf14-ee56be72e6a5"
+            ]
+          },
+          {
+            "attributeRef": "Composition.custodian",
+            "mustHave": false,
+            "linkedGroups": [
+              "155ce199-3325-51f8-beac-1d63090fcfb9"
+            ]
+          },
+          {
+            "attributeRef": "Composition.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "ead19f16-ec5f-584d-baa9-93e0545c4fbe"
+            ]
+          },
+          {
+            "attributeRef": "Composition.event.detail",
+            "mustHave": false,
+            "linkedGroups": [
+              "52d0b4c4-5c3d-591c-bf14-ee56be72e6a5"
+            ]
+          },
+          {
+            "attributeRef": "Composition.relatesTo.target[x]",
+            "mustHave": false,
+            "linkedGroups": [
+              "ca3d18d4-e563-55a8-82f2-05814cb9ee10"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section.author",
+            "mustHave": false,
+            "linkedGroups": [
+              "52d0b4c4-5c3d-591c-bf14-ee56be72e6a5"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section:diagRep.author",
+            "mustHave": false,
+            "linkedGroups": [
+              "52d0b4c4-5c3d-591c-bf14-ee56be72e6a5"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section.entry",
+            "mustHave": false,
+            "linkedGroups": [
+              "52d0b4c4-5c3d-591c-bf14-ee56be72e6a5"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section:diagRep.entry",
+            "mustHave": false,
+            "linkedGroups": [
+              "418d1eb0-7425-5ce9-ac09-501896b8ad39"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section.focus",
+            "mustHave": false,
+            "linkedGroups": [
+              "52d0b4c4-5c3d-591c-bf14-ee56be72e6a5"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section:diagRep.focus",
+            "mustHave": false,
+            "linkedGroups": [
+              "52d0b4c4-5c3d-591c-bf14-ee56be72e6a5"
+            ]
+          }
+        ],
+        "id": "ca3d18d4-e563-55a8-82f2-05814cb9ee10",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-semistrukt-befundbericht",
+        "name": "mii-pr-bildgebung-semistrukt-befundbericht"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "52d0b4c4-5c3d-591c-bf14-ee56be72e6a5",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "155ce199-3325-51f8-beac-1d63090fcfb9",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "ead19f16-ec5f-584d-baa9-93e0545c4fbe",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DiagnosticReport.category",
+            "mustHave": false
+          }
+        ],
+        "id": "418d1eb0-7425-5ce9-ac09-501896b8ad39",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-radiologischer-befund",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-radiologischer-befund"
+      }
+    ]
+  }
+}

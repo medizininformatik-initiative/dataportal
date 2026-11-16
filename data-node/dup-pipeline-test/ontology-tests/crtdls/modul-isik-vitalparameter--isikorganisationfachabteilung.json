@@ -1,0 +1,198 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://gematik.de/fhir/isik/StructureDefinition/ISiKOrganisationFachabteilung",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "568df632-ec06-5ebf-a30b-14c18c54752d",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.address",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.address:Postfach",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.address:Postfach.extension:Stadtteil",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.address:Postfach.line.extension:Postfach",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.address:Postfach.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.address:Strassenanschrift",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.address:Strassenanschrift.extension:Stadtteil",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.address:Strassenanschrift.line.extension:Adresszusatz",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.address:Strassenanschrift.line.extension:Hausnummer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.address:Strassenanschrift.line.extension:Strasse",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.address:Strassenanschrift.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.alias",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.contact",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.identifier:Abteilungsidentifikator",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.identifier:BSNR",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.identifier:IKNR",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.identifier:TelematikID",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.name",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.telecom",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.type:ErweiterterFachabteilungsschluessel",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.type:ErweiterterFachabteilungsschluessel.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.type:Fachbereich",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.type:Fachbereich.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.type:organisationstyp",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Organization.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "d449b248-e1e8-5660-8b52-908fca5792d3"
+            ]
+          }
+        ],
+        "id": "0dfd1ac4-6471-5c1f-88e9-d8691221da94",
+        "groupReference": "https://gematik.de/fhir/isik/StructureDefinition/ISiKOrganisationFachabteilung",
+        "name": "isikorganisationfachabteilung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "d449b248-e1e8-5660-8b52-908fca5792d3",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      }
+    ]
+  }
+}

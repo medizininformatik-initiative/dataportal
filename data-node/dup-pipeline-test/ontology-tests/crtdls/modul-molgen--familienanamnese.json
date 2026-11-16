@@ -1,0 +1,222 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/familienanamnese",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "3c05e315-b770-5371-8804-2ad0b6d8d784",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "FamilyMemberHistory.age[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.born[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.condition",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.condition.code.coding:icd10-gm.extension:Diagnosesicherheit",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.condition.code.coding:icd10-gm.extension:Mehrfachcodierungs-Kennzeichen",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.condition.code.coding:icd10-gm.extension:Seitenlokalisation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.dataAbsentReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.date",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.deceased[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.estimatedAge",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.instantiatesCanonical",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.instantiatesUri",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.name",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.reasonCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.reasonCode.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.reasonCode.coding:alpha-id",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.reasonCode.coding:icd10-gm",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.reasonCode.coding:icd10-gm.extension:Diagnosesicherheit",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.reasonCode.coding:icd10-gm.extension:Mehrfachcodierungs-Kennzeichen",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.reasonCode.coding:icd10-gm.extension:Seitenlokalisation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.reasonCode.coding:orphanet",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.reasonCode.coding:sct",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.relationship",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.relationship.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.relationship.coding:snomed",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.relationship.coding:snomed.extension:FamiliareLinie",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.relationship.coding:snomed.extension:Verwandtschaftsgrad",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.relationship.coding:snomed.extension:Verwandtschaftsverhaeltnis",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.relationship.coding:v3-RoleCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.sex",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "FamilyMemberHistory.reasonReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "25ce9805-7568-53c1-b19f-7fcef9b02f2f"
+            ]
+          }
+        ],
+        "id": "260b265e-aedc-559d-ade7-cb16746d966a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/familienanamnese",
+        "name": "familienanamnese"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "25ce9805-7568-53c1-b19f-7fcef9b02f2f",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "includeReferenceOnly": true,
+        "name": "linked-diagnose"
+      }
+    ]
+  }
+}

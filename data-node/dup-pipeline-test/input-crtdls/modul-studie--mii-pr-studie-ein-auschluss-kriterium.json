@@ -1,0 +1,202 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-ein-auschluss-kriterium",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "f32bc36b-a69c-562b-b57d-e19b123ca50a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "EvidenceVariable.approvalDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.author",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.characteristic",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.characteristic.extension:definitionByCombination",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.characteristic.extension:definitionByTypeAndValue",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.characteristic.extension:definitionCanonical",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.characteristic.extension:linkId",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.contact",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.copyright",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.date",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.description",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.editor",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.effectivePeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.endorser",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.jurisdiction",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.lastReviewDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.name",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.publisher",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.relatedArtifact",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.reviewer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.shortTitle",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.subtitle",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.title",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.topic",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.url",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.useContext",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.version",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "EvidenceVariable.characteristic.extension:definitionReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "79d50ffe-8cb5-544f-81ef-eac0914a7a2f"
+            ]
+          }
+        ],
+        "id": "79d50ffe-8cb5-544f-81ef-eac0914a7a2f",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-ein-auschluss-kriterium",
+        "name": "mii-pr-studie-ein-auschluss-kriterium"
+      }
+    ]
+  }
+}

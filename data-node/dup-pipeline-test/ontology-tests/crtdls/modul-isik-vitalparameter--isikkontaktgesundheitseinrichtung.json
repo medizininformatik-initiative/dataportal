@@ -1,0 +1,319 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://gematik.de/fhir/isik/StructureDefinition/ISiKKontaktGesundheitseinrichtung",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "3abbcfdb-4c49-5568-aa43-777782292599",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.classHistory",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.diagnosis",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.extension:Aufnahmegrund",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.extension:Aufnahmegrund.extension:DritteStelle",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.extension:Aufnahmegrund.extension:ErsteUndZweiteStelle",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.extension:Aufnahmegrund.extension:VierteStelle",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.extension:plannedEndDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.extension:plannedStartDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.hospitalization",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.hospitalization.dischargeDisposition.extension:Entlassungsgrund",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.hospitalization.dischargeDisposition.extension:RehaEntlassung",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.hospitalization.extension:Wahlleistung",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.identifier:Aufnahmenummer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.length",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.location",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.location:Bettenstellplatz",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.location:Station",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.location:Zimmer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.participant",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.priority",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.reasonCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.serviceType",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.serviceType.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.serviceType.coding:ErweiterterFachabteilungsschluessel",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.serviceType.coding:Fachabteilungsschluessel",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.statusHistory",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.type:KontaktArt",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.type:Kontaktebene",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Encounter.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "50e115fb-7e8c-5315-a888-96c1b992ed80"
+            ]
+          },
+          {
+            "attributeRef": "Encounter.diagnosis.condition",
+            "mustHave": false,
+            "linkedGroups": [
+              "cbb34c7f-2037-58cf-8935-91a99e0eef14"
+            ]
+          },
+          {
+            "attributeRef": "Encounter.hospitalization.destination",
+            "mustHave": false,
+            "linkedGroups": [
+              "bc336116-d074-5ae0-a2d8-a35ee0c6e8b8"
+            ]
+          },
+          {
+            "attributeRef": "Encounter.hospitalization.origin",
+            "mustHave": false,
+            "linkedGroups": [
+              "bc336116-d074-5ae0-a2d8-a35ee0c6e8b8"
+            ]
+          },
+          {
+            "attributeRef": "Encounter.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "de4bf1ed-5951-568d-b7fc-758f5516f419"
+            ]
+          },
+          {
+            "attributeRef": "Encounter.participant.individual",
+            "mustHave": false,
+            "linkedGroups": [
+              "719505d1-502b-5382-b16c-0d275592329e"
+            ]
+          },
+          {
+            "attributeRef": "Encounter.reasonReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "cbb34c7f-2037-58cf-8935-91a99e0eef14"
+            ]
+          },
+          {
+            "attributeRef": "Encounter.serviceProvider",
+            "mustHave": false,
+            "linkedGroups": [
+              "bc336116-d074-5ae0-a2d8-a35ee0c6e8b8"
+            ]
+          }
+        ],
+        "id": "31634772-83ab-5581-bac3-9fa282854017",
+        "groupReference": "https://gematik.de/fhir/isik/StructureDefinition/ISiKKontaktGesundheitseinrichtung",
+        "name": "isikkontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "ServiceRequest.asNeeded[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "50e115fb-7e8c-5315-a888-96c1b992ed80",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/anforderung-genetischer-test",
+        "includeReferenceOnly": true,
+        "name": "linked-anforderung-genetischer-test"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "cbb34c7f-2037-58cf-8935-91a99e0eef14",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "includeReferenceOnly": true,
+        "name": "linked-diagnose"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "bc336116-d074-5ae0-a2d8-a35ee0c6e8b8",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "de4bf1ed-5951-568d-b7fc-758f5516f419",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "719505d1-502b-5382-b16c-0d275592329e",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      }
+    ]
+  }
+}

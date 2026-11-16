@@ -1,0 +1,169 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/Medication",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "c4b5b824-2d31-5e17-98ef-8ed06960ea97",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Medication.amount",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.batch",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.code.coding:Pharmazentralnummer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.code.coding:atcClassDe",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.code.coding:atcClassEn",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.form",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.form.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.form.coding:EDQM",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.ingredient",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.ingredient.extension:Wirkstoffrelation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.ingredient.extension:Wirkstofftyp",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Medication.ingredient.item[x]",
+            "mustHave": false,
+            "linkedGroups": [
+              "a8b854bd-6683-5877-ad80-efde39ee4136"
+            ]
+          },
+          {
+            "attributeRef": "Medication.manufacturer",
+            "mustHave": false,
+            "linkedGroups": [
+              "c6f35ca5-be02-5969-8b4a-d20cbb7e36e7"
+            ]
+          }
+        ],
+        "id": "920981c3-b557-5760-9e92-9ef00dd62d10",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/Medication",
+        "name": "medication"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Substance.category",
+            "mustHave": false
+          }
+        ],
+        "id": "a8b854bd-6683-5877-ad80-efde39ee4136",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Substance",
+        "includeReferenceOnly": true,
+        "name": "linked-substance"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "c6f35ca5-be02-5969-8b4a-d20cbb7e36e7",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      }
+    ]
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://gematik.de/fhir/isik/StructureDefinition/ISiKVersicherungsverhaeltnisSelbstzahler",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "c5b2dc36-9d25-50d0-9c83-9c077b616d33",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Coverage.class",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.costToBeneficiary",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.dependent",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.identifier:pkv",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.relationship",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.subrogation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.type.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.type.coding:VersicherungsArtDeBasis",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Coverage.payor",
+            "mustHave": false,
+            "linkedGroups": [
+              "221c17b6-bc37-5ba5-aa98-1db3a49c2bed"
+            ]
+          }
+        ],
+        "id": "60436ada-d6eb-52fb-83eb-04b484148241",
+        "groupReference": "https://gematik.de/fhir/isik/StructureDefinition/ISiKVersicherungsverhaeltnisSelbstzahler",
+        "name": "isikversicherungsverhaeltnisselbstzahler"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "221c17b6-bc37-5ba5-aa98-1db3a49c2bed",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      }
+    ]
+  }
+}

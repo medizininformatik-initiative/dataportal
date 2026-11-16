@@ -1,0 +1,180 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/medikationsliste",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "3f9ba749-bf57-5268-93d0-88ca788c09bb",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "List.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.code.coding:contextCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.code.coding:medCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.date",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.emptyReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.entry",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.mode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.orderedBy",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.title",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "f4181e68-b87a-52f8-ab77-8dd397c0d8e1"
+            ]
+          },
+          {
+            "attributeRef": "List.entry.item",
+            "mustHave": false,
+            "linkedGroups": [
+              "e66dd4b5-ff7c-5acf-94ea-405d1b0a7b4a"
+            ]
+          },
+          {
+            "attributeRef": "List.source",
+            "mustHave": false,
+            "linkedGroups": [
+              "65441bb8-3636-5da7-858e-a8cf9fe997e1"
+            ]
+          }
+        ],
+        "id": "28d0117d-75c3-5c05-b1ca-fcac7ce9c11c",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/medikationsliste",
+        "name": "medikationsliste"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "f4181e68-b87a-52f8-ab77-8dd397c0d8e1",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "MedicationStatement.category",
+            "mustHave": false
+          }
+        ],
+        "id": "e66dd4b5-ff7c-5acf-94ea-405d1b0a7b4a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationStatement",
+        "includeReferenceOnly": true,
+        "name": "linked-medicationstatement"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "65441bb8-3636-5da7-858e-a8cf9fe997e1",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      }
+    ]
+  }
+}

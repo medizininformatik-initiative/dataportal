@@ -1,0 +1,191 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-history-of-present-illness",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "7ec81131-2ae9-5b21-bd09-6017c393ec17",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "List.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.date",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.emptyReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.entry",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.mode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.orderedBy",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.title",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "cad32621-d292-525f-ae2b-ccf6f6c15fd1"
+            ]
+          },
+          {
+            "attributeRef": "List.entry.item",
+            "mustHave": false,
+            "linkedGroups": [
+              "abaf6b45-a6bc-5870-92b7-3d8e7f88fb2b"
+            ]
+          },
+          {
+            "attributeRef": "List.source",
+            "mustHave": false,
+            "linkedGroups": [
+              "a4f51fe4-d6fc-5ff8-beef-a06a6f40a010"
+            ]
+          },
+          {
+            "attributeRef": "List.subject",
+            "mustHave": false,
+            "linkedGroups": [
+              "b925036f-88b1-58fb-af95-5510c7f376bb"
+            ]
+          }
+        ],
+        "id": "c201170d-e7c2-59cb-bd8c-95fb6061be6a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-history-of-present-illness",
+        "name": "mii-pr-patho-history-of-present-illness"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "cad32621-d292-525f-ae2b-ccf6f6c15fd1",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "abaf6b45-a6bc-5870-92b7-3d8e7f88fb2b",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-problem-list-item",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-patho-problem-list-item"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "a4f51fe4-d6fc-5ff8-beef-a06a6f40a010",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "b925036f-88b1-58fb-af95-5510c7f376bb",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      }
+    ]
+  }
+}

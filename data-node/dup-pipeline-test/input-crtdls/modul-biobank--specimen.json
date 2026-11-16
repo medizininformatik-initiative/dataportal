@@ -1,0 +1,244 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Specimen",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "3162d9a0-86a5-5027-8bea-542eef7f4cdc",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Specimen.accessionIdentifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.collection",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.collection.extension:einstellungBlutversorgung",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.condition",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.container",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.processing",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.processing:lagerprozess",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.processing:lagerprozess.extension:temperaturbedingungen",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.processing.extension:temperaturbedingungen",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.receivedTime",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.type.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.type.coding:sct",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Specimen.collection.collector",
+            "mustHave": false,
+            "linkedGroups": [
+              "9ab0fc2b-d1c9-5ffc-991a-d9c124fd049b"
+            ]
+          },
+          {
+            "attributeRef": "Specimen.container.additive[x]",
+            "mustHave": false,
+            "linkedGroups": [
+              "25c6f3bc-c61d-5afe-b7b3-71a19ababd1e"
+            ]
+          },
+          {
+            "attributeRef": "Specimen.extension:festgestellteDiagnose",
+            "mustHave": false,
+            "linkedGroups": [
+              "b794ea12-47a1-5531-92a1-511e8cd9d609"
+            ]
+          },
+          {
+            "attributeRef": "Specimen.parent",
+            "mustHave": false,
+            "linkedGroups": [
+              "558cbfc8-8436-5b57-be14-0424dbd18687"
+            ]
+          },
+          {
+            "attributeRef": "Specimen.processing.additive",
+            "mustHave": false,
+            "linkedGroups": [
+              "25c6f3bc-c61d-5afe-b7b3-71a19ababd1e"
+            ]
+          },
+          {
+            "attributeRef": "Specimen.processing:lagerprozess.additive",
+            "mustHave": false,
+            "linkedGroups": [
+              "25c6f3bc-c61d-5afe-b7b3-71a19ababd1e"
+            ]
+          },
+          {
+            "attributeRef": "Specimen.request",
+            "mustHave": false,
+            "linkedGroups": [
+              "252b9e64-95b2-5f5c-8f5a-5848619de3cb"
+            ]
+          }
+        ],
+        "id": "e5ac7ecd-0861-501c-ba25-4529233dbbae",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Specimen",
+        "name": "specimen"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "9ab0fc2b-d1c9-5ffc-991a-d9c124fd049b",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Substance.category",
+            "mustHave": false
+          }
+        ],
+        "id": "25c6f3bc-c61d-5afe-b7b3-71a19ababd1e",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Substance",
+        "includeReferenceOnly": true,
+        "name": "linked-substance"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "b794ea12-47a1-5531-92a1-511e8cd9d609",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "includeReferenceOnly": true,
+        "name": "linked-diagnose"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Specimen.accessionIdentifier",
+            "mustHave": false
+          }
+        ],
+        "id": "558cbfc8-8436-5b57-be14-0424dbd18687",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-specimen",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-specimen"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "ServiceRequest.asNeeded[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "252b9e64-95b2-5f5c-8f5a-5848619de3cb",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/anforderung-genetischer-test",
+        "includeReferenceOnly": true,
+        "name": "linked-anforderung-genetischer-test"
+      }
+    ]
+  }
+}

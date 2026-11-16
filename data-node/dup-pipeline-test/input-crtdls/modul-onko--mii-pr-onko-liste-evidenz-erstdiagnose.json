@@ -1,0 +1,168 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-liste-evidenz-erstdiagnose",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "d3fa9dc0-b47e-5479-a779-41b94d270b74",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "List.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.date",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.emptyReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.entry",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.mode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.orderedBy",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.title",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "List.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "fe5ee4cc-b0ea-5e5c-ab80-4c63db2dd7a2"
+            ]
+          },
+          {
+            "attributeRef": "List.entry.item",
+            "mustHave": false,
+            "linkedGroups": [
+              "eb26b645-58d4-5907-a592-3db2ccbb4850"
+            ]
+          },
+          {
+            "attributeRef": "List.source",
+            "mustHave": false,
+            "linkedGroups": [
+              "40b905d2-f91c-5d34-b9e2-adb1e18d6bd7"
+            ]
+          }
+        ],
+        "id": "4943e1c1-e1d7-5c38-9e3d-b1df182da74d",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-liste-evidenz-erstdiagnose",
+        "name": "mii-pr-onko-liste-evidenz-erstdiagnose"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "fe5ee4cc-b0ea-5e5c-ab80-4c63db2dd7a2",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "eb26b645-58d4-5907-a592-3db2ccbb4850",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tod",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tod"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "40b905d2-f91c-5d34-b9e2-adb1e18d6bd7",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      }
+    ]
+  }
+}

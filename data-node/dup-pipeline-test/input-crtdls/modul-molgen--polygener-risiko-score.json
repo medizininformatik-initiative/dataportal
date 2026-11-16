@@ -1,0 +1,196 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/polygener-risiko-score",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "519bad51-aa61-50cb-9f22-6f72b31639c3",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "RiskAssessment.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "RiskAssessment.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "RiskAssessment.method",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "RiskAssessment.mitigation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "RiskAssessment.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "RiskAssessment.occurrence[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "RiskAssessment.prediction",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "RiskAssessment.prediction.extension:whenCodeableConcept",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "RiskAssessment.reasonCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "RiskAssessment.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "RiskAssessment.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "RiskAssessment.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "fb397b76-e21d-5351-9a29-6400b7a92932"
+            ]
+          },
+          {
+            "attributeRef": "RiskAssessment.basis",
+            "mustHave": false,
+            "linkedGroups": [
+              "fb397b76-e21d-5351-9a29-6400b7a92932"
+            ]
+          },
+          {
+            "attributeRef": "RiskAssessment.condition",
+            "mustHave": false,
+            "linkedGroups": [
+              "0ca65025-ea54-5e49-9679-c12756f83ae9"
+            ]
+          },
+          {
+            "attributeRef": "RiskAssessment.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "24675b30-9fa9-5f6f-b0fd-a691d5ca98eb"
+            ]
+          },
+          {
+            "attributeRef": "RiskAssessment.parent",
+            "mustHave": false,
+            "linkedGroups": [
+              "fb397b76-e21d-5351-9a29-6400b7a92932"
+            ]
+          },
+          {
+            "attributeRef": "RiskAssessment.performer",
+            "mustHave": false,
+            "linkedGroups": [
+              "fb397b76-e21d-5351-9a29-6400b7a92932"
+            ]
+          },
+          {
+            "attributeRef": "RiskAssessment.reasonReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "0ca65025-ea54-5e49-9679-c12756f83ae9"
+            ]
+          }
+        ],
+        "id": "8dabd81f-61b5-57a6-a8d0-3292cdb2ad5f",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-molgen/StructureDefinition/polygener-risiko-score",
+        "name": "polygener-risiko-score"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "fb397b76-e21d-5351-9a29-6400b7a92932",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "0ca65025-ea54-5e49-9679-c12756f83ae9",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "includeReferenceOnly": true,
+        "name": "linked-diagnose"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "24675b30-9fa9-5f6f-b0fd-a691d5ca98eb",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      }
+    ]
+  }
+}

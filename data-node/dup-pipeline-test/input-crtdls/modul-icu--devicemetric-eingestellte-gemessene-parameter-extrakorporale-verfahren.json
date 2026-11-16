@@ -1,0 +1,145 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/devicemetric-eingestellte-gemessene-parameter-extrakorporale-verfahren",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "75ae33ac-8c74-5a9c-ba13-3efbf77fbfcd",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DeviceMetric.calibration",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.color",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.measurementPeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.operationalStatus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.type.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.unit",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DeviceMetric.parent",
+            "mustHave": false,
+            "linkedGroups": [
+              "5b972666-2842-58fc-a764-cd4cbd366b5a"
+            ]
+          },
+          {
+            "attributeRef": "DeviceMetric.source",
+            "mustHave": false,
+            "linkedGroups": [
+              "212d661d-1fe9-56d0-b645-d01f17ab370d"
+            ]
+          }
+        ],
+        "id": "38f3214d-aa0b-53ca-af91-797691c54904",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/devicemetric-eingestellte-gemessene-parameter-extrakorporale-verfahren",
+        "name": "devicemetric-eingestellte-gemessene-parameter-extrakorporale-verfahren"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "5b972666-2842-58fc-a764-cd4cbd366b5a",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "212d661d-1fe9-56d0-b645-d01f17ab370d",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-icu/StructureDefinition/icu-device",
+        "includeReferenceOnly": true,
+        "name": "linked-icu-device"
+      }
+    ]
+  }
+}

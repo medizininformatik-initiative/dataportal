@@ -1,0 +1,219 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://gematik.de/fhir/isik/StructureDefinition/ISiKAllergieUnvertraeglichkeit",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "75a81835-5f82-5d69-a6a9-4b0549c0f619",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "AllergyIntolerance.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.clinicalStatus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.clinicalStatus.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.code.coding:ask",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.code.coding:atc",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.code.coding:snomed-ct",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.criticality",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.lastOccurrence",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.onset[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.onset[x]:onsetAge",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.onset[x]:onsetDateTime",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.onset[x]:onsetString",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.reaction",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.recordedDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.verificationStatus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.verificationStatus.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "AllergyIntolerance.asserter",
+            "mustHave": false,
+            "linkedGroups": [
+              "a3b5e4ed-902c-545e-a3dc-62e68452c558"
+            ]
+          },
+          {
+            "attributeRef": "AllergyIntolerance.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "0a9cfb45-eca2-5a51-b07d-0cce7ea8babc"
+            ]
+          },
+          {
+            "attributeRef": "AllergyIntolerance.note.author[x]",
+            "mustHave": false,
+            "linkedGroups": [
+              "d3f9e102-1f75-5ca3-936d-5a0ed647802d"
+            ]
+          },
+          {
+            "attributeRef": "AllergyIntolerance.recorder",
+            "mustHave": false,
+            "linkedGroups": [
+              "a3b5e4ed-902c-545e-a3dc-62e68452c558"
+            ]
+          }
+        ],
+        "id": "e820f476-3e53-55a6-9710-ec42d994d17f",
+        "groupReference": "https://gematik.de/fhir/isik/StructureDefinition/ISiKAllergieUnvertraeglichkeit",
+        "name": "isikallergieunvertraeglichkeit"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "a3b5e4ed-902c-545e-a3dc-62e68452c558",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "0a9cfb45-eca2-5a51-b07d-0cce7ea8babc",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "d3f9e102-1f75-5ca3-936d-5a0ed647802d",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      }
+    ]
+  }
+}

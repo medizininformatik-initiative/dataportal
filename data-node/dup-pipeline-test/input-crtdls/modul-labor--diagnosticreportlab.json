@@ -1,0 +1,298 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/DiagnosticReportLab",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "fb5f2297-bf3c-5cb6-bb34-727e680dd14e",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DiagnosticReport.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.category.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.category.coding:diagnostic-service-sections",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.category.coding:loinc-lab",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.code.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.code.coding:loinc-labReport",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.conclusion",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.conclusionCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.effective[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.effective[x].extension:QuelleKlinischesBezugsdatum",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.identifier:befund",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.issued",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.media",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.presentedForm",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "DiagnosticReport.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "2061343c-5572-5e52-b865-ba71579fe671"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "2d43065c-e5a0-52c3-b5db-1beaa751f36f"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.imagingStudy",
+            "mustHave": false,
+            "linkedGroups": [
+              "063ae840-e6be-5ecf-b93a-e320246097ed"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.media.link",
+            "mustHave": false,
+            "linkedGroups": [
+              "944eb2b6-6cf9-5fb9-b683-c325413e58e4"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.performer",
+            "mustHave": false,
+            "linkedGroups": [
+              "5981fd30-9699-59f2-88db-550f2ac71579"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.result",
+            "mustHave": false,
+            "linkedGroups": [
+              "28f95d88-82ea-50ba-b16e-4788d7be6bd6"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.resultsInterpreter",
+            "mustHave": false,
+            "linkedGroups": [
+              "5981fd30-9699-59f2-88db-550f2ac71579"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.specimen",
+            "mustHave": false,
+            "linkedGroups": [
+              "3539dbde-86bf-5866-957c-c81b4f857f18"
+            ]
+          },
+          {
+            "attributeRef": "DiagnosticReport.subject",
+            "mustHave": false,
+            "linkedGroups": [
+              "2c800343-9267-59d6-9b03-0e38e95091f1"
+            ]
+          }
+        ],
+        "id": "f96b29e4-b314-53f0-a538-d67b5ab06670",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/DiagnosticReportLab",
+        "name": "diagnosticreportlab"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "CarePlan.activity",
+            "mustHave": false
+          }
+        ],
+        "id": "2061343c-5572-5e52-b865-ba71579fe671",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tumorkonferenz",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tumorkonferenz"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "2d43065c-e5a0-52c3-b5db-1beaa751f36f",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "ImagingStudy.description",
+            "mustHave": false
+          }
+        ],
+        "id": "063ae840-e6be-5ecf-b93a-e320246097ed",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-bildgebungsstudie",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-bildgebungsstudie"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Media.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "944eb2b6-6cf9-5fb9-b683-c325413e58e4",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-attached-image",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-patho-attached-image"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "5981fd30-9699-59f2-88db-550f2ac71579",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Observation.bodySite",
+            "mustHave": false
+          }
+        ],
+        "id": "28f95d88-82ea-50ba-b16e-4788d7be6bd6",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tod",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-tod"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Specimen.accessionIdentifier",
+            "mustHave": false
+          }
+        ],
+        "id": "3539dbde-86bf-5866-957c-c81b4f857f18",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-specimen",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-specimen"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Device.contact",
+            "mustHave": false
+          }
+        ],
+        "id": "2c800343-9267-59d6-9b03-0e38e95091f1",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-geraet",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-geraet"
+      }
+    ]
+  }
+}

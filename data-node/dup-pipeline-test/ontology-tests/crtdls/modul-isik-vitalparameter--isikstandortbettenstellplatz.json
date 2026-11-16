@@ -1,0 +1,150 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://gematik.de/fhir/isik/StructureDefinition/ISiKStandortBettenstellplatz",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "747f8bc0-6737-5832-be63-73ab4d8e2c25",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Location.address",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.alias",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.availabilityExceptions",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.description",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.hoursOfOperation",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.identifier:standortnummer-dkg",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.mode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.name",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.operationalStatus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.physicalType",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.position",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.telecom",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Location.managingOrganization",
+            "mustHave": false,
+            "linkedGroups": [
+              "a26ab4f7-4c11-59f1-8094-1fccaac01f02"
+            ]
+          }
+        ],
+        "id": "36d26da1-3a09-511e-adbe-e5efced5f61e",
+        "groupReference": "https://gematik.de/fhir/isik/StructureDefinition/ISiKStandortBettenstellplatz",
+        "name": "isikstandortbettenstellplatz"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "a26ab4f7-4c11-59f1-8094-1fccaac01f02",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      }
+    ]
+  }
+}

@@ -1,0 +1,329 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-composition",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "f9990341-0653-5e92-af22-a04e2bc0a9e5",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Composition.attester",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.attester:content-validator",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.attester:legal",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.category.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.category.coding:HL7-patho",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.category.coding:IHE",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.category.coding:LOINC",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.confidentiality",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.date",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.event",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.extension:document-version",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.relatesTo",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.section",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.section:patho-diagnostic-report",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.text.div",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.title",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type.coding:IHE",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type.coding:KDL",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type.coding:LOINC",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.type.coding:LOINC-patho",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Composition.attester.party",
+            "mustHave": false,
+            "linkedGroups": [
+              "ef13f7c4-1c1b-5a4a-b140-c563f3064af1"
+            ]
+          },
+          {
+            "attributeRef": "Composition.attester:content-validator.party",
+            "mustHave": false,
+            "linkedGroups": [
+              "05807a9c-36cd-5b77-aba6-56def12cc710"
+            ]
+          },
+          {
+            "attributeRef": "Composition.attester:legal.party",
+            "mustHave": false,
+            "linkedGroups": [
+              "05807a9c-36cd-5b77-aba6-56def12cc710"
+            ]
+          },
+          {
+            "attributeRef": "Composition.author",
+            "mustHave": false,
+            "linkedGroups": [
+              "05807a9c-36cd-5b77-aba6-56def12cc710"
+            ]
+          },
+          {
+            "attributeRef": "Composition.custodian",
+            "mustHave": false,
+            "linkedGroups": [
+              "05807a9c-36cd-5b77-aba6-56def12cc710"
+            ]
+          },
+          {
+            "attributeRef": "Composition.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "2b24394d-8c66-5a73-bd2c-35e7045a8946"
+            ]
+          },
+          {
+            "attributeRef": "Composition.event.detail",
+            "mustHave": false,
+            "linkedGroups": [
+              "ef13f7c4-1c1b-5a4a-b140-c563f3064af1"
+            ]
+          },
+          {
+            "attributeRef": "Composition.relatesTo.target[x]",
+            "mustHave": false,
+            "linkedGroups": [
+              "417c7e0d-a7a0-5fc4-b6fb-ace85811e7ff"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section.author",
+            "mustHave": false,
+            "linkedGroups": [
+              "ef13f7c4-1c1b-5a4a-b140-c563f3064af1"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section:patho-diagnostic-report.author",
+            "mustHave": false,
+            "linkedGroups": [
+              "ef13f7c4-1c1b-5a4a-b140-c563f3064af1"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section.entry",
+            "mustHave": false,
+            "linkedGroups": [
+              "ef13f7c4-1c1b-5a4a-b140-c563f3064af1"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section:patho-diagnostic-report.entry",
+            "mustHave": false,
+            "linkedGroups": [
+              "2bb5b5b8-7109-542c-8f97-416e9c24ba15"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section.focus",
+            "mustHave": false,
+            "linkedGroups": [
+              "ef13f7c4-1c1b-5a4a-b140-c563f3064af1"
+            ]
+          },
+          {
+            "attributeRef": "Composition.section:patho-diagnostic-report.focus",
+            "mustHave": false,
+            "linkedGroups": [
+              "ef13f7c4-1c1b-5a4a-b140-c563f3064af1"
+            ]
+          }
+        ],
+        "id": "b0fc458f-729b-5dd3-9e6c-d69ec7d55aa5",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-composition",
+        "name": "mii-pr-patho-composition"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "ef13f7c4-1c1b-5a4a-b140-c563f3064af1",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "05807a9c-36cd-5b77-aba6-56def12cc710",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "2b24394d-8c66-5a73-bd2c-35e7045a8946",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Composition.attester",
+            "mustHave": false
+          }
+        ],
+        "id": "417c7e0d-a7a0-5fc4-b6fb-ace85811e7ff",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-bildgebung/StructureDefinition/mii-pr-bildgebung-semistrukt-befundbericht",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-bildgebung-semistrukt-befundbericht"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "DiagnosticReport.category",
+            "mustHave": false
+          }
+        ],
+        "id": "2bb5b5b8-7109-542c-8f97-416e9c24ba15",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-patho/StructureDefinition/mii-pr-patho-report",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-patho-report"
+      }
+    ]
+  }
+}

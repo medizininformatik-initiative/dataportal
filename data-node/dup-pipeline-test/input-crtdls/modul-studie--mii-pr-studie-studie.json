@@ -1,0 +1,258 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-studie",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "8ebc942f-fcf1-5669-ae90-e54eccdcf7e7",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "ResearchStudy.arm",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.condition",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.contact",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.description",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.extension:Akronym",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.extension:AssociatedParty",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.extension:Ethikvotum",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.extension:Finanzierung",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.extension:Label",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.extension:Rekrutierung",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.focus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.focus.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.keyword",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.keyword.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.location",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.objective",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.phase",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.primaryPurposeType",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.reasonStopped",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.relatedArtifact",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.title",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "ResearchStudy.extension:Eligibility",
+            "mustHave": false,
+            "linkedGroups": [
+              "957ff0ef-7942-528a-89a5-da39f48256d2"
+            ]
+          },
+          {
+            "attributeRef": "ResearchStudy.extension:Studienregister",
+            "mustHave": false,
+            "linkedGroups": [
+              "59fc8216-fe69-51e5-9fbc-c351afa8c4d7"
+            ]
+          },
+          {
+            "attributeRef": "ResearchStudy.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "ef4b5736-7212-5851-93bf-38090cf8433e"
+            ]
+          },
+          {
+            "attributeRef": "ResearchStudy.principalInvestigator",
+            "mustHave": false,
+            "linkedGroups": [
+              "726e2eea-b443-5637-90b6-dc82e9b3ea1c"
+            ]
+          },
+          {
+            "attributeRef": "ResearchStudy.sponsor",
+            "mustHave": false,
+            "linkedGroups": [
+              "f34abee8-b485-5db5-98f4-79035e4c5ff8"
+            ]
+          }
+        ],
+        "id": "ef4b5736-7212-5851-93bf-38090cf8433e",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-studie",
+        "name": "mii-pr-studie-studie"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "EvidenceVariable.approvalDate",
+            "mustHave": false
+          }
+        ],
+        "id": "957ff0ef-7942-528a-89a5-da39f48256d2",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-ein-auschluss-kriterium",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-ein-auschluss-kriterium"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Library.approvalDate",
+            "mustHave": false
+          }
+        ],
+        "id": "59fc8216-fe69-51e5-9fbc-c351afa8c4d7",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-register",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-register"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "726e2eea-b443-5637-90b6-dc82e9b3ea1c",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "f34abee8-b485-5db5-98f4-79035e4c5ff8",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      }
+    ]
+  }
+}

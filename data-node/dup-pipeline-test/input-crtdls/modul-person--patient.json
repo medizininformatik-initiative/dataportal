@@ -1,0 +1,253 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Patient",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Postfach",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Postfach.city.extension:gemeindeschluessel",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Postfach.extension:Stadtteil",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Postfach.line.extension:Postfach",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Postfach.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Strassenanschrift",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Strassenanschrift.city.extension:gemeindeschluessel",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Strassenanschrift.country",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Strassenanschrift.extension:Stadtteil",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Strassenanschrift.line.extension:Adresszusatz",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Strassenanschrift.line.extension:Hausnummer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Strassenanschrift.line.extension:Strasse",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Strassenanschrift.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.address:Strassenanschrift.postalCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.birthDate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.birthDate.extension:data-absent-reason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.communication",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.contact",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.deceased[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.gender",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.gender.extension:other-amtlich",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.identifier:pid",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.identifier:versichertenId",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.maritalStatus",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.multipleBirth[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.name:geburtsname",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.name:name",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.name:name.family.extension:nachname",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.name:name.family.extension:namenszusatz",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.name:name.family.extension:vorsatzwort",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.name:name.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.name:name.prefix.extension:prefix-qualifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.name:geburtsname.family.extension:nachname",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.name:geburtsname.family.extension:namenszusatz",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.name:geburtsname.family.extension:vorsatzwort",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.name:geburtsname.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.photo",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.telecom",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "Patient.contact.organization",
+            "mustHave": false,
+            "linkedGroups": [
+              "21a09fc8-0231-55fd-b289-230133a60567"
+            ]
+          },
+          {
+            "attributeRef": "Patient.generalPractitioner",
+            "mustHave": false,
+            "linkedGroups": [
+              "21a09fc8-0231-55fd-b289-230133a60567"
+            ]
+          },
+          {
+            "attributeRef": "Patient.managingOrganization",
+            "mustHave": false,
+            "linkedGroups": [
+              "21a09fc8-0231-55fd-b289-230133a60567"
+            ]
+          }
+        ],
+        "id": "e24f9665-8285-543b-acc1-452fbd1a2726",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Patient",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Organization.active",
+            "mustHave": false
+          }
+        ],
+        "id": "21a09fc8-0231-55fd-b289-230133a60567",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization",
+        "includeReferenceOnly": true,
+        "name": "linked-organization"
+      }
+    ]
+  }
+}

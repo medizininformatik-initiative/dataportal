@@ -1,0 +1,428 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationStatement",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "838b0cb9-9060-5af6-83c0-aba5ad68340b",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "MedicationStatement.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.category.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.category.coding:contextCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.category.coding:usageCategory",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dateAsserted",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.additionalInstruction",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.asNeeded[x]:asNeededCodeableConcept",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.dose[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.dose[x]:doseQuantity",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.dose[x]:doseRange",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.dose[x]:doseRange.high",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.dose[x]:doseRange.low",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.rate[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.rate[x]:rateQuantity",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.rate[x]:rateRange",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.rate[x]:rateRange.high",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.rate[x]:rateRange.low",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.rate[x]:rateRatio",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.rate[x]:rateRatio.denominator",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.rate[x]:rateRatio.numerator",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.doseAndRate.type",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.maxDosePerAdministration",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.maxDosePerLifetime",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.maxDosePerPeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.maxDosePerPeriod.denominator",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.maxDosePerPeriod.numerator",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.method",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.route",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.route.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.route.coding:EDQM",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.route.coding:SNOMED",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.site",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.site.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.site.coding:SNOMED",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.timing",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.timing.code",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.timing.repeat",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.timing.repeat.bounds[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.timing.repeat.bounds[x]:boundsDuration",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.timing.repeat.bounds[x]:boundsPeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.timing.repeat.bounds[x]:boundsRange",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.timing.repeat.bounds[x]:boundsRange.high",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.dosage.timing.repeat.bounds[x]:boundsRange.low",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.effective[x]",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.effective[x]:effectiveDateTime",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.effective[x]:effectivePeriod",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.medication[x]:medicationCodeableConcept",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.medication[x]:medicationCodeableConcept.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.medication[x]:medicationCodeableConcept.coding:Pharmazentralnummer",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.medication[x]:medicationCodeableConcept.coding:UNII",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.medication[x]:medicationCodeableConcept.coding:atcClassDe",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.medication[x]:medicationCodeableConcept.coding:atcClassEn",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.reasonCode",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.statusReason",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "MedicationStatement.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "31e81b7e-6504-55a8-844b-d3c669f5ca36"
+            ]
+          },
+          {
+            "attributeRef": "MedicationStatement.context",
+            "mustHave": false,
+            "linkedGroups": [
+              "a57121c1-d801-54bb-95b6-ab7d5a24810b"
+            ]
+          },
+          {
+            "attributeRef": "MedicationStatement.derivedFrom",
+            "mustHave": false,
+            "linkedGroups": [
+              "4424f8e4-3551-5b0d-8a43-e5e1b500f4e7"
+            ]
+          },
+          {
+            "attributeRef": "MedicationStatement.informationSource",
+            "mustHave": false,
+            "linkedGroups": [
+              "4424f8e4-3551-5b0d-8a43-e5e1b500f4e7"
+            ]
+          },
+          {
+            "attributeRef": "MedicationStatement.medication[x]",
+            "mustHave": false,
+            "linkedGroups": [
+              "76d0ca03-3c34-580e-89d2-f61c26c50abb"
+            ]
+          },
+          {
+            "attributeRef": "MedicationStatement.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "b4bff654-a2a8-53ad-9e2c-7b880bc2ff5b"
+            ]
+          },
+          {
+            "attributeRef": "MedicationStatement.reasonReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "1d7dcae2-c2e4-5a43-ae6f-05f483272c75"
+            ]
+          }
+        ],
+        "id": "d532e29c-a787-5d6c-b1b6-53111ca99939",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationStatement",
+        "name": "medicationstatement"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "MedicationRequest.authoredOn",
+            "mustHave": false
+          }
+        ],
+        "id": "31e81b7e-6504-55a8-844b-d3c669f5ca36",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationRequest",
+        "includeReferenceOnly": true,
+        "name": "linked-medicationrequest"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "a57121c1-d801-54bb-95b6-ab7d5a24810b",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "4424f8e4-3551-5b0d-8a43-e5e1b500f4e7",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Medication.amount",
+            "mustHave": false
+          }
+        ],
+        "id": "76d0ca03-3c34-580e-89d2-f61c26c50abb",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/Medication",
+        "includeReferenceOnly": true,
+        "name": "linked-medication"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "MedicationAdministration.category",
+            "mustHave": false
+          }
+        ],
+        "id": "b4bff654-a2a8-53ad-9e2c-7b880bc2ff5b",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationAdministration",
+        "includeReferenceOnly": true,
+        "name": "linked-medicationadministration"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "1d7dcae2-c2e4-5a43-ae6f-05f483272c75",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "includeReferenceOnly": true,
+        "name": "linked-diagnose"
+      }
+    ]
+  }
+}

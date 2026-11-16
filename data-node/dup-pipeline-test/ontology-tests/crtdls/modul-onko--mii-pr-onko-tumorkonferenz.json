@@ -1,0 +1,286 @@
+{
+  "version": "http://json-schema.org/to-be-done/schema#",
+  "display": "Ontology test https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tumorkonferenz",
+  "cohortDefinition": {
+    "version": "http://to_be_decided.com/draft-1/schema#",
+    "display": "Ausgewählte Merkmale",
+    "inclusionCriteria": [
+      [
+        {
+          "termCodes": [
+            {
+              "code": "263495000",
+              "display": "Geschlecht",
+              "system": "http://snomed.info/sct",
+              "version": ""
+            }
+          ],
+          "context": {
+            "code": "Patient",
+            "display": "Patient",
+            "system": "fdpg.mii.cds",
+            "version": "1.0.0"
+          },
+          "valueFilter": {
+            "selectedConcepts": [
+              {
+                "code": "female",
+                "display": "Female",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              },
+              {
+                "code": "male",
+                "display": "Male",
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "version": "2099"
+              }
+            ],
+            "type": "concept"
+          }
+        }
+      ]
+    ]
+  },
+  "dataExtraction": {
+    "attributeGroups": [
+      {
+        "attributes": [
+          {
+            "attributeRef": "Patient.active",
+            "mustHave": false
+          }
+        ],
+        "id": "ee2d0ba9-6545-58b1-9489-2d50dc3e5776",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/PatientPseudonymisiert",
+        "name": "patient"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "CarePlan.activity",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.category",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.category.coding",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.created",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.description",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.identifier",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.instantiatesCanonical",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.instantiatesUri",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.intent",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.note",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.period",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.status",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.text",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.title",
+            "mustHave": false
+          },
+          {
+            "attributeRef": "CarePlan.activity.detail.performer",
+            "mustHave": false,
+            "linkedGroups": [
+              "cc03248d-a04a-56ab-937f-44dd0d69a6a3"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.activity.detail.product[x]",
+            "mustHave": false,
+            "linkedGroups": [
+              "aca48b5e-be33-5206-9e19-05d92da71281"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.activity.detail.reasonReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "e427ddfe-7818-59a7-8a50-28a0db041f47"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.activity.outcomeReference",
+            "mustHave": false,
+            "linkedGroups": [
+              "cc03248d-a04a-56ab-937f-44dd0d69a6a3"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.activity.reference",
+            "mustHave": false,
+            "linkedGroups": [
+              "cf228bce-f148-52f9-9de0-ec9938aa3bc5"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.addresses",
+            "mustHave": false,
+            "linkedGroups": [
+              "7900d7b0-65b0-535f-a4e6-62efdc8248e4"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.author",
+            "mustHave": false,
+            "linkedGroups": [
+              "cc03248d-a04a-56ab-937f-44dd0d69a6a3"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.basedOn",
+            "mustHave": false,
+            "linkedGroups": [
+              "feb37fe7-3473-5500-a767-4b9591f7eb34"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.contributor",
+            "mustHave": false,
+            "linkedGroups": [
+              "cc03248d-a04a-56ab-937f-44dd0d69a6a3"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.encounter",
+            "mustHave": false,
+            "linkedGroups": [
+              "18ec4d82-5110-56c6-acef-7719e08ad85c"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.partOf",
+            "mustHave": false,
+            "linkedGroups": [
+              "feb37fe7-3473-5500-a767-4b9591f7eb34"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.replaces",
+            "mustHave": false,
+            "linkedGroups": [
+              "feb37fe7-3473-5500-a767-4b9591f7eb34"
+            ]
+          },
+          {
+            "attributeRef": "CarePlan.supportingInfo",
+            "mustHave": false,
+            "linkedGroups": [
+              "cc03248d-a04a-56ab-937f-44dd0d69a6a3"
+            ]
+          }
+        ],
+        "id": "feb37fe7-3473-5500-a767-4b9591f7eb34",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-tumorkonferenz",
+        "name": "mii-pr-onko-tumorkonferenz"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "PractitionerRole.active",
+            "mustHave": false
+          }
+        ],
+        "id": "cc03248d-a04a-56ab-937f-44dd0d69a6a3",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/modul-studie/StructureDefinition/mii-pr-studie-beteiligte-person",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-studie-beteiligte-person"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Medication.amount",
+            "mustHave": false
+          }
+        ],
+        "id": "aca48b5e-be33-5206-9e19-05d92da71281",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/Medication",
+        "includeReferenceOnly": true,
+        "name": "linked-medication"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "e427ddfe-7818-59a7-8a50-28a0db041f47",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose",
+        "includeReferenceOnly": true,
+        "name": "linked-diagnose"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "MedicationRequest.authoredOn",
+            "mustHave": false
+          }
+        ],
+        "id": "cf228bce-f148-52f9-9de0-ec9938aa3bc5",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/MedicationRequest",
+        "includeReferenceOnly": true,
+        "name": "linked-medicationrequest"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Condition.abatement[x]",
+            "mustHave": false
+          }
+        ],
+        "id": "7900d7b0-65b0-535f-a4e6-62efdc8248e4",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/ext/modul-onko/StructureDefinition/mii-pr-onko-diagnose-primaertumor",
+        "includeReferenceOnly": true,
+        "name": "linked-mii-pr-onko-diagnose-primaertumor"
+      },
+      {
+        "attributes": [
+          {
+            "attributeRef": "Encounter.class",
+            "mustHave": false
+          }
+        ],
+        "id": "18ec4d82-5110-56c6-acef-7719e08ad85c",
+        "groupReference": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/KontaktGesundheitseinrichtung",
+        "includeReferenceOnly": true,
+        "name": "linked-kontaktgesundheitseinrichtung"
+      }
+    ]
+  }
+}
