@@ -27,7 +27,7 @@ from typing import NamedTuple
 
 import pytest
 
-from conftest import DATA_NODE_DIR, run_aether_pipeline, wait_for_url
+from helpers import DATA_NODE_DIR, run_aether_pipeline, wait_for_url
 
 PROJECT_DIR = DATA_NODE_DIR / "example-dup-project"
 DUP_YAML = PROJECT_DIR / "example-project_dimp_dup_base.yaml"

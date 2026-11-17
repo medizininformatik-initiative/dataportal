@@ -54,7 +54,61 @@ jobs:
         python-version: "3.12"
 
     - name: Install e2e test dependencies
-      run: pip install -r .github/e2e-tests/requirements.txt
+      run: pip install -r tests/requirements.txt
 
     - name: Run e2e tests
-      run: pytest .github/e2e-tests
+      run: pytest tests/node tests/pipeline
+
+  integration-portal:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install test dependencies
+      run: |
+        pip install -r tests/requirements.txt
+        python -m playwright install --with-deps chromium
+
+    - name: Set up Data Node (core services)
+      env:
+        DATA_NODE_PROFILE: core
+      run: .github/scripts/setup-data-node.sh
+
+    - name: Get MII testdata
+      working-directory: data-node
+      run: ./get-mii-testdata.sh
+
+    - name: Upload testdata
+      run: data-node/upload-testdata.sh
+
+    - name: Set up Data Portal
+      run: .github/scripts/setup-data-portal.sh
+
+    - name: Create portal test user
+      run: .github/scripts/create-portal-test-user.sh
+
+    - name: Run integration tests
+      run: >
+        pytest tests/api tests/ui -m smoke
+        --junitxml=test-results/junit.xml
+        --output=test-results/playwright
+        --tracing=retain-on-failure --video=retain-on-failure --screenshot=only-on-failure
+
+    - name: Collect container logs
+      if: failure()
+      run: .github/scripts/collect-docker-logs.sh test-results/docker-logs
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: integration-portal-results
+        path: test-results
+        if-no-files-found: ignore

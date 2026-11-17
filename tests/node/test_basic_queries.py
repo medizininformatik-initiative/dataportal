@@ -16,7 +16,7 @@ import urllib.request
 
 import pytest
 
-from conftest import DATA_NODE_DIR, get_fhir_access_token
+from helpers import DATA_NODE_DIR, get_fhir_access_token
 
 FHIR_BASE_URL = "https://fhir.localhost:444/fhir"
 CACERT = DATA_NODE_DIR / "auth" / "cert.pem"
