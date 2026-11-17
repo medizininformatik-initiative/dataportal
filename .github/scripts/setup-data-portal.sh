@@ -70,6 +70,23 @@ set_env_var "$BACKEND_ENV" PT_POLLING_TIME_UI PT20S
 
 "$DATA_PORTAL_DIR/start-portal.sh"
 
+# start-portal.sh continues when a stack fails to start (e.g. an image tag that no longer
+# exists), so check that every service got a container before waiting for health.
+COMPOSE_PROJECT="${DATA_PORTAL_COMPOSE_PROJECT:-dataportal}"
+missing=""
+for stack in keycloak backend gui proxy; do
+  compose=(docker compose -p "$COMPOSE_PROJECT" -f "$DATA_PORTAL_DIR/$stack/docker-compose.yml")
+  for service in $("${compose[@]}" config --services); do
+    if [ -z "$("${compose[@]}" ps -a -q "$service")" ]; then
+      missing="$missing $stack/$service"
+    fi
+  done
+done
+if [ -n "$missing" ]; then
+  echo "Error: no container for:$missing - see the start-portal.sh output above" >&2
+  exit 1
+fi
+
 wait_for_url "$PORTAL_URL/auth/realms/dataportal/.well-known/openid-configuration" 300
 # The backend starts after the Elasticsearch init has loaded the ontology.
 wait_for_url "$PORTAL_URL/backend/api/v6/actuator/health" 900

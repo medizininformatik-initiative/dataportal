@@ -150,3 +150,26 @@ def portal_request(
         return status, json.loads(text)
     except ValueError:
         return status, text
+
+
+# Backend Elasticsearch, published on the host by data-portal/backend/docker-compose.yml.
+PORTAL_ES_URL = os.environ.get("PORTAL_ES_URL", "http://localhost:9200")
+COMPOSE_PROJECT = os.environ.get("DATA_PORTAL_COMPOSE_PROJECT", "dataportal")
+
+
+def container_logs(service: str) -> str:
+    """Returns the logs of a service container of the compose project."""
+    result = subprocess.run(
+        ["docker", "logs", f"{COMPOSE_PROJECT}-{service}-1"], capture_output=True, text=True
+    )
+    result.check_returncode()
+    return result.stdout + result.stderr
+
+
+def pinned_ontology_tag() -> str:
+    """The ontology tag the backend Elasticsearch is loaded with (ONTO_GIT_TAG of the
+    es-init service in data-portal/backend/docker-compose.yml)."""
+    compose = (DATA_PORTAL_DIR / "backend" / "docker-compose.yml").read_text()
+    match = re.search(r"ONTO_GIT_TAG:\s*(\S+)", compose)
+    assert match, "ONTO_GIT_TAG not found in data-portal/backend/docker-compose.yml"
+    return match.group(1)
