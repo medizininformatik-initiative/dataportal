@@ -61,6 +61,12 @@ set_env_var "$BACKEND_ENV" CQL_SERVER_BASE_URL "http://fhir-server:8080/fhir"
 # The golden counts on the MII test data are small, so no result thresholds.
 set_env_var "$BACKEND_ENV" PRIVACY_THRESHOLD_RESULTS 0
 set_env_var "$BACKEND_ENV" PRIVACY_THRESHOLD_SITES_RESULT 0
+# The soft quota (default 3 queries per minute) also applies to power users and the
+# tests send more queries than that. Rate-limit tests use their own setting.
+set_env_var "$BACKEND_ENV" PRIVACY_QUOTA_SOFT_CREATE_AMOUNT 1000
+# The UI polls a result for this long before it shows "Query completed" (default PT1M).
+# The direct broker answers within seconds, so a shorter time keeps the UI tests fast.
+set_env_var "$BACKEND_ENV" PT_POLLING_TIME_UI PT20S
 
 "$DATA_PORTAL_DIR/start-portal.sh"
 

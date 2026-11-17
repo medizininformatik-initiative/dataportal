@@ -60,7 +60,8 @@ jobs:
       run: pytest tests/node tests/pipeline
 
   integration-portal:
-    runs-on: ubuntu-latest
+    # Playwright 1.60 has no browser builds for Ubuntu 26.04 (ubuntu-latest).
+    runs-on: ubuntu-24.04
 
     steps:
     - name: Check out Git repository
