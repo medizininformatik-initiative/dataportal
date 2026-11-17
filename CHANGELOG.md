@@ -27,6 +27,19 @@ Please refer to the respective repositories for a more in depth changelog of sin
 
 ## [7.0.0] - unreleased
 
+<!-- TODO: set release date -->
+
+### Overview
+
+This release makes the data use project (DUP) pipeline of the `data-node` production ready. TORCH and aether reached their first stable versions, the DIMP step supports per-project pseudonymisation, and the data selection uses the same search as the cohort selection. No services were added or removed.
+
+Changes in this repository:
+
+- Example DUP project with per-project dynamic pseudonymisation - [see](https://github.com/medizininformatik-initiative/dataportal/tree/main/data-node/example-dup-project)
+- DIMP DUP configs mask required references with a data-absent-reason instead of pruning them, keep the re-pseudonymized patient and encounter identifiers and redact all other identifiers
+- Consent documentation and an example consent CRTDL - [see](https://medizininformatik-initiative.github.io/dataportal/data-node/consent.html)
+- Combined transfer load script for the send step, test data switched to the MII test data, data-portal env defaults use the context path setup (backend under `/backend`)
+
 ### Breaking changes
 
 - postgres: The dataportal-backend database (`dataportal-postgres`) and the keycloak database (`auth-db`) are upgraded from Postgres 17 to 18. Postgres 18 cannot start on Postgres 17 data, and the volume mount moved from `/var/lib/postgresql/data` to `/var/lib/postgresql`. Existing installations have to migrate their data:
@@ -37,6 +50,82 @@ Please refer to the respective repositories for a more in depth changelog of sin
   3. Update and start the new version, then restore each dump:
      - backend: `docker compose exec -T dataportal-postgres psql -U <DATABASE_USER> -d postgres < backend-dump.sql`
      - keycloak: `docker compose exec -T auth-db psql -U <KC_DB_USERNAME> -d postgres < keycloak-dump.sql`
+- ontology: Ontology 5.x changes the Elasticsearch artifact. Reinstall the index once with `DATAPORTAL_ES_INIT_FORCE_REINSTALL="true"`.
+- TORCH: Consent results differ from 6.0.0 - [see](https://medizininformatik-initiative.github.io/torch/implementation/consent.html)
+  - Only `.8` and `.6` are evaluated and both must be in the CRTDL. Combined consent keys (e.g. `yes-yes-no-yes`) are no longer supported.
+  - The consent start moves only to the start of an inpatient stay that began at most `TORCH_ENCOUNTER_SHIFT_MAX_DAYS` (default 7) days before.
+  - `Patient.identifier` is no longer a standard attribute. Add it to the CRTDL if you need it, e.g. for re-pseudonymisation.
+- fhir-pseudonymizer v3: Keys must be at least 32 bytes (`openssl rand -hex 32`). URL-like values that contain `~` or `-` are hashed differently, so such pseudonyms in 6.x extractions cannot be linked to 7.0.0 extractions.
+- aether:
+  - Call it as `aether pipeline start <aether.yaml> <crtdl.json>`. The `--config` flag is gone.
+  - The DIMP output directory is now `dimp` (was `pseudonymized`).
+  - Service URLs are server roots without `/fhir`.
+  - `services.dimp.experimental_v3` is replaced by `services.dimp.anonymization_config`.
+  - The first Ctrl+C asks for a confirmation. Scripts should send SIGTERM or use `aether job stop`.
+- Blaze 1.13.0:
+  - The image no longer contains `curl`, so healthchecks must use `wget`.
+  - The frontend ignores `ORIGIN` and uses `HOST_HEADER` and `PROTOCOL_HEADER`. Users have to sign in again, and the reverse proxy must accept request headers of about 6 KB.
+- mii-fhir-validator: Copy the new `IG_PARAMS` from `.env.default` into your `.env` and update the terminology in the local Blaze - [see](https://github.com/medizininformatik-initiative/mii-fhir-validator/releases/tag/v0.0.1-alpha.9)
+- FLARE: Unsupported FHIR search parameters now fail a query instead of being ignored (`FLARE_FHIR_STRICT_HANDLING`, default `true`).
+
+<!-- TODO: add breaking changes of the final dataportal-ui, dataportal-backend and TORCH releases -->
+
+### Ontology
+
+This release is based on ontology version [v5.2.2](https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/tag/v5.2.2) (was [v4.0.0](https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/tag/v4.0.0)).
+
+<!-- TODO: v5.2.2 is still marked as pre-release on GitHub -->
+
+- New modules: Onkologie and MolGen 2026
+- New attributes: interpretation for laboratory values, status for encounters
+- Flattening lookup for aether (`flattening.zip`) is now part of the ontology release
+- New Elasticsearch index for profile details, with German umlaut handling
+
+### Updates since last Major
+
+**Data Portal**
+
+|Component|From|To|
+|--|--|--|
+|dataportal-ui|[v6.8.0](https://github.com/medizininformatik-initiative/dataportal-ui/releases/tag/v6.8.0)|TODO (currently 7.3.4-rc4)|
+|dataportal-backend|[v8.6.0](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v8.6.0)|TODO (currently pr-1211)|
+|availability-updater|[v0.3.0](https://github.com/medizininformatik-initiative/dataportal-availibility-updater/releases/tag/v0.3.0)|[v0.4.2](https://github.com/medizininformatik-initiative/dataportal-availibility-updater/releases/tag/v0.4.2)|
+|dataportal-es-init|2.0.0|3.1.0|
+|Elasticsearch|9.2.4|9.5.6|
+|Keycloak|26.3.1|26.8.2|
+|Postgres (backend and Keycloak)|17|18.7|
+
+**Data Node**
+
+|Component|From|To|
+|--|--|--|
+|FHIR Server - Blaze|[v1.6.2](https://github.com/samply/blaze/releases/tag/v1.6.2)|[v1.13.0](https://github.com/samply/blaze/releases/tag/v1.13.0)|
+|terminology server (blaze)|[v1.6.2](https://github.com/samply/blaze/releases/tag/v1.6.2)|[v1.13.0](https://github.com/samply/blaze/releases/tag/v1.13.0)|
+|TORCH|[v1.0.0-alpha.18](https://github.com/medizininformatik-initiative/torch/releases/tag/v1.0.0-alpha.18)|TODO (currently [v1.0.4](https://github.com/medizininformatik-initiative/torch/releases/tag/v1.0.4))|
+|FLARE|[v2.7.0](https://github.com/medizininformatik-initiative/flare/releases/tag/v2.7.0)|[v2.9.0](https://github.com/medizininformatik-initiative/flare/releases/tag/v2.9.0)|
+|FDE|[v1.3.3](https://github.com/medizininformatik-initiative/fhir-data-evaluator/releases/tag/v1.3.3)|[v1.3.3](https://github.com/medizininformatik-initiative/fhir-data-evaluator/releases/tag/v1.3.3)|
+|aether|[v0.6.0](https://github.com/medizininformatik-initiative/aether/releases/tag/v0.6.0)|[v1.6.0](https://github.com/medizininformatik-initiative/aether/releases/tag/v1.6.0)|
+|fhir-pseudonymizer|[v2.23.0](https://github.com/miracum/fhir-pseudonymizer/releases/tag/v2.23.0)|[v3.1.2](https://github.com/miracum/fhir-pseudonymizer/releases/tag/v3.1.2)|
+|vfps|[v1.3.6](https://github.com/miracum/vfps/releases/tag/v1.3.6)|[v1.28.0](https://github.com/miracum/vfps/releases/tag/v1.28.0)|
+|mii-fhir-validator|[0.0.1-alpha.5](https://github.com/medizininformatik-initiative/mii-fhir-validator/releases/tag/v0.0.1-alpha.5)|[0.0.1-alpha.9](https://github.com/medizininformatik-initiative/mii-fhir-validator/releases/tag/v0.0.1-alpha.9)|
+|fhir-flattener|[0.1.0-alpha.7](https://github.com/medizininformatik-initiative/fhir-flattener/releases/tag/v0.1.0-alpha.7)|[0.1.0-alpha.10](https://github.com/medizininformatik-initiative/fhir-flattener/releases/tag/v0.1.0-alpha.10)|
+
+The full list of changes is in the release notes of each component, linked in the table.
+
+### Highlights
+
+<!-- TODO: update the dataportal-ui, dataportal-backend and TORCH highlights once their final releases exist -->
+
+- **dataportal-ui:** Angular 19. Elasticsearch-based search replaces the tree in the data selection. Criteria are edited on their own page. Shortcuts lead to missing filters and unlinked references. CSV download of the data selection.
+- **dataportal-backend:** Spring Boot 4. Feature search with field descriptions and pinned profiles. sq2cql replaced by cctb-cql.
+- **availability-updater:** Reads the ontology 5.x layout and uses less memory. OAuth2 and basic auth for the ontology download.
+- **TORCH:** First stable release. Task API to submit, pause, cancel and delete jobs and to follow their progress. Consent calculation follows the MII consent specification and reports conflicts. Extraction-exclusion list and Prometheus metrics.
+- **aether:** First stable release. Checks the CRTDL, the flattening lookup and the connected services before a job starts. New commands `aether job stop` and `aether send`. Re-attaches to running TORCH extractions.
+- **fhir-pseudonymizer:** Per-project anonymization config on `$de-identify` and per-context key derivation.
+- **mii-fhir-validator:** 2026 MII KDS packages, HL7 validator 6.9.11.
+- **Blaze:** Faster small transactions and JSON parsing. Optional `iss` and `aud` checks for JWTs. Security fixes.
+- **fhir-flattener:** RFC 4180 CSV, lower memory use.
+- **FLARE:** Strict handling of search parameters. **FDE:** no changes.
 
 
 ## [6.3.0] - 2026-06-22
