@@ -117,6 +117,30 @@ class Terminology:
         assert not missing, f"value set of the filter does not offer {missing}"
         return [found[c] for c in codes]
 
+    def filter_selections(self, spec: dict) -> list[tuple[str, str]]:
+        """The filters of a golden spec as (English filter display, code) pairs. The
+        criterion editor of the UI shows one tab per filter, named by that display."""
+        hits = self._get("/api/v6/terminology/entry/search", {"searchterm": spec["code"], "page-size": 50})
+        entry_id = next(r["id"] for r in hits["results"] if r["termcode"] == spec["code"] and r["context"] == spec["context"])
+        profile = self.ui_profile(self._get("/api/v6/terminology/criteria-profile-data", {"ids": entry_id})[0]["uiProfileId"])
+        selections = []
+        if "valueConcepts" in spec:
+            label = english_display(profile["valueDefinition"]["display"])
+            selections += [(label, code) for code in spec["valueConcepts"]]
+        if "attribute" in spec:
+            definition = next(
+                a for a in profile["attributeDefinitions"] if a["attributeCode"]["code"] == spec["attribute"]["code"]
+            )
+            label = english_display(definition["display"])
+            selections += [(label, code) for code in spec["attribute"]["concepts"]]
+        return selections
+
+
+def english_display(display: dict) -> str:
+    translations = display.get("translations") or []
+    english = next((t.get("value") for t in translations if t.get("language") == "en-US"), None)
+    return english or display["original"]
+
 
 def build_ccdl(case: dict, terminology: Terminology) -> dict:
     ccdl = {

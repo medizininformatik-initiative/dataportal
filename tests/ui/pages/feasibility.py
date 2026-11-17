@@ -58,23 +58,45 @@ def move_staged_criterion(page: Page, target: str) -> None:
     page.mouse.up()
 
 
-def build_query(page: Page, case: dict) -> None:
-    """Builds a golden case (one criterion per group, no filters) in the criteria editor:
-    adds all criteria on the search page, then drags them from the staging area to their
-    lists in the order they were added."""
+def configure_staged_criterion(page: Page, selections: list[tuple[str, str]]) -> None:
+    """Opens the criterion editor for the first staged criterion, selects each
+    (filter display, code) in the tab of that filter and closes the editor."""
+    page.locator("#Stage .cdk-drag").first.get_by_role("button", name="Options").click()
+    page.locator("button", has_text="Configure").click()
+    page.wait_for_url("**/query-editor/criterion/**")
+    for label, code in selections:
+        page.locator("div.tabs-container div.tab").filter(
+            has_text=re.compile(rf"^\s*{re.escape(label)}\s*$", re.I)
+        ).click()
+        page.get_by_placeholder("Enter concept or term code").filter(visible=True).fill(code)
+        row = page.locator("tbody tr").filter(visible=True).filter(
+            has=page.locator("td", has_text=re.compile(rf"^\s*{re.escape(code)}\s*$"))
+        )
+        expect(row.first).to_be_visible()
+        row.first.locator("[data-cy=checkbox]").click()
+    page.get_by_role("button", name="Close").click()
+    page.wait_for_url("**/feasibility-query/overview")
+    page.wait_for_timeout(1000)
+
+
+def build_query(page: Page, case: dict, terminology=None) -> None:
+    """Builds a golden case (one criterion per group) in the criteria editor: adds all
+    criteria on the search page, then configures their filters and drags them from the
+    staging area to their lists in the order they were added. Cases with filters need a
+    feasibility.Terminology to look up the filter tabs."""
     placements = []
     for target, groups in (("Inclusion", case["inclusion"]), ("Exclusion", case.get("exclusion") or [])):
         for group in groups:
             assert len(group) == 1, "OR groups are not supported by this helper yet"
-            criterion = group[0]
-            assert not {"valueConcepts", "attribute"} & criterion.keys(), "filters are not supported yet"
-            placements.append((target, criterion))
+            placements.append((target, group[0]))
 
     open_search(page)
     for _, criterion in placements:
         add_criterion(page, criterion["code"], criterion["context"])
     show_editor(page)
     for target, criterion in placements:
+        if {"valueConcepts", "attribute"} & criterion.keys():
+            configure_staged_criterion(page, terminology.filter_selections(criterion))
         move_staged_criterion(page, target)
         expect(page.locator(f"#{target}")).to_contain_text(criterion["code"])
     expect(page.locator("#Stage .cdk-drag")).to_have_count(0)
