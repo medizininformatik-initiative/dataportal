@@ -27,7 +27,7 @@ Example call for aether in this context once installed - calling from the [examp
 
 It creates a job directory, which for each DUP project saves the output of each step, so that one can branch of or review the output from each step.
 
-To see all the configuration options see [base-pipeline-config.yml](base-pipeline-config.yml).
+To see all the configuration options see [base-pipeline-config.yml](https://github.com/medizininformatik-initiative/dataportal/blob/main/data-node/aether/base-pipeline-config.yml).
 
 
 ### The DUP Reference Pipeline Detailed
@@ -81,7 +81,7 @@ First install aether locally following the install instructions [here](https://m
 
 To get started using aether configure a simple pipeline as shown [here](https://github.com/medizininformatik-initiative/dataportal/blob/main/data-node/aether/base-pipeline-config-simple.yml).
 
-and then run aether using `aether pipeline --config base-pipeline-config-simple.yml start queries/example-crtdl.json` in the [aether folder](https://github.com/medizininformatik-initiative/dataportal/tree/main/data-node/aether) of your data node.
+and then run aether using `aether pipeline start base-pipeline-config-simple.yml queries/example-crtdl.json` in the [aether folder](https://github.com/medizininformatik-initiative/dataportal/tree/main/data-node/aether) of your data node.
 
 Aether will run and then tell you the ID of your job e.g. `Job ID: 20260331_0915_5932b1e1-0ed5-4bab-902e-25f328209390`, which directly corresponds to a folder in your `jobs` directory. 
 
@@ -90,10 +90,13 @@ For this simple example you will find your extracted data in the `import` folder
 Note that aether always creates all necessary folders for all supported steps:
 
 1. import (TORCH export directory)
-2. pseudonymized (Pseudonymized data)
+2. dimp (pseudonymized data from the DIMP step)
 3. validation (output information from the validation step - note this does not contain the data but validation results instead)
-4. csv (flattened output if csv is chosen)
-5. send (information about the send step)
+4. viewdefinitions (ViewDefinitions generated for the flattening step)
+5. csv (flattened output if csv is chosen)
+6. send (information about the send step)
+
+The job directory also contains the job log (`job.log`), the CRTDL used for the job (`enriched-crtdl.json`) and the job state (`state.json`).
 
 
 
