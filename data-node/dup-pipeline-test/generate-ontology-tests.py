@@ -60,7 +60,7 @@ NAME_HINTS = {"contentType": "text/plain", "language": "de"}
 
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--release", default="v5.2.1", help="fhir-ontology-generator release tag")
+    p.add_argument("--release", default="v5.2.2", help="fhir-ontology-generator release tag")
     p.add_argument("--cache-dir", type=Path, default=HERE / ".cache")
     p.add_argument("--out-dir", type=Path, default=HERE / "ontology-tests")
     p.add_argument("--cohort", type=Path, default=HERE / "replacement-cohort.json")
@@ -500,8 +500,14 @@ class Generator:
     def extension_url(obj, t, node):
         obj = obj or {}
         prof = (t.get("profile") or [None])[0]
-        if "url" not in obj or obj["url"] == PRIMITIVES["uri"]:
+        # url is a fhirpath System.String in the snapshot, so an unfixed url gets the string default
+        if "url" not in obj or obj["url"] in (PRIMITIVES["uri"], PRIMITIVES["string"]):
             obj["url"] = prof or node.rsplit(":", 1)[-1]
+        # ext-1: an extension has sub-extensions or a value, never both. Snapshots of complex
+        # extensions do not always restrict value[x] to max 0, so drop the value here.
+        if obj.get("extension"):
+            for k in [k for k in obj if k.startswith(("value", "_value"))]:
+                del obj[k]
         if len(obj) == 1:
             obj["valueString"] = "test"
         return {"url": obj.pop("url"), **obj}

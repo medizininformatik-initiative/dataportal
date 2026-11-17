@@ -1,6 +1,6 @@
 # Ontology test data coverage
 
-Profiles: 270. Fields covered: 5788 of 5788. Reference fields covered and linked: 2259 of 2259.
+Profiles: 268. Fields covered: 5778 of 5778. Reference fields covered and linked: 2258 of 2258.
 
 | Profile | Variants | Fields | Uncovered fields | Uncovered or unlinked references |
 | --- | --- | --- | --- | --- |

@@ -51,32 +51,12 @@
       "unlinked_references": []
     },
     {
-      "crtdl": "modul-isik-vitalparameter--isikberichtbundle",
-      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKBerichtBundle",
-      "variants": 1,
-      "fields": 8,
-      "uncovered_fields": [],
-      "references": 0,
-      "uncovered_references": [],
-      "unlinked_references": []
-    },
-    {
       "crtdl": "modul-isik-vitalparameter--isikberichtsubsysteme",
       "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKBerichtSubSysteme",
       "variants": 2,
       "fields": 20,
       "uncovered_fields": [],
       "references": 9,
-      "uncovered_references": [],
-      "unlinked_references": []
-    },
-    {
-      "crtdl": "modul-isik-vitalparameter--isikbinary",
-      "url": "https://gematik.de/fhir/isik/StructureDefinition/ISiKBinary",
-      "variants": 1,
-      "fields": 2,
-      "uncovered_fields": [],
-      "references": 1,
       "uncovered_references": [],
       "unlinked_references": []
     },
