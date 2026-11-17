@@ -125,6 +125,19 @@ def get_portal_access_token(
         return json.load(response)
 
 
+_PORTAL_TOKEN: dict = {}
+
+
+def portal_token() -> str:
+    """Access token of the portal test user, renewed a minute before it expires. Keycloak
+    issues tokens for 5 minutes by default, shorter than a full test run."""
+    now = time.time()
+    if not _PORTAL_TOKEN or _PORTAL_TOKEN["expires"] - now < 60:
+        response = get_portal_access_token()
+        _PORTAL_TOKEN.update(token=response["access_token"], expires=now + response.get("expires_in", 300))
+    return _PORTAL_TOKEN["token"]
+
+
 def portal_request(
     path: str, token: str | None = None, method: str = "GET", body: object | None = None
 ) -> tuple[int, object]:

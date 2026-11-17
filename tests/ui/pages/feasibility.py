@@ -58,16 +58,38 @@ def move_staged_criterion(page: Page, target: str) -> None:
     page.mouse.up()
 
 
-def configure_staged_criterion(page: Page, selections: list[tuple[str, str]]) -> None:
-    """Opens the criterion editor for the first staged criterion, selects each
-    (filter display, code) in the tab of that filter and closes the editor."""
+def open_staged_criterion_editor(page: Page) -> None:
     page.locator("#Stage .cdk-drag").first.get_by_role("button", name="Options").click()
     page.locator("button", has_text="Configure").click()
     page.wait_for_url("**/query-editor/criterion/**")
+    page.wait_for_load_state("networkidle")
+
+
+def open_criterion_tab(page: Page, label: str) -> None:
+    page.locator("div.tabs-container div.tab").filter(
+        has_text=re.compile(rf"^\s*{re.escape(label)}\s*$", re.I)
+    ).click()
+
+
+def apply_time_period_to_all(page: Page, start: str, end: str, criteria: int) -> None:
+    """'Apply time period to all criteria' with type 'between'. Dates are typed as M/D/YYYY:
+    with the en-US browser locale the date field does not accept the dd.mm.yyyy format
+    its placeholder shows."""
+    page.get_by_role("button", name="Apply time period to all criteria").click()
+    dates = page.get_by_placeholder("dd.mm.yyyy")
+    for field, value in zip((dates.nth(0), dates.nth(1)), (start, end)):
+        field.click()
+        field.press_sequentially(value)
+        field.press("Tab")
+    page.get_by_role("button", name=f"Apply ({criteria})").click()
+
+
+def configure_staged_criterion(page: Page, selections: list[tuple[str, str]]) -> None:
+    """Opens the criterion editor for the first staged criterion, selects each
+    (filter display, code) in the tab of that filter and closes the editor."""
+    open_staged_criterion_editor(page)
     for label, code in selections:
-        page.locator("div.tabs-container div.tab").filter(
-            has_text=re.compile(rf"^\s*{re.escape(label)}\s*$", re.I)
-        ).click()
+        open_criterion_tab(page, label)
         page.get_by_placeholder("Enter concept or term code").filter(visible=True).fill(code)
         row = page.locator("tbody tr").filter(visible=True).filter(
             has=page.locator("td", has_text=re.compile(rf"^\s*{re.escape(code)}\s*$"))

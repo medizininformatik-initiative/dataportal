@@ -20,7 +20,7 @@ from functools import lru_cache
 import pytest
 
 from feasibility import CCDL_VERSION, run_feasibility
-from helpers import get_portal_access_token, portal_request
+from helpers import portal_request, portal_token
 
 pytestmark = pytest.mark.smoke
 
@@ -43,9 +43,8 @@ def assert_only_known_issues(check: str, problems: list[str]) -> None:
     assert not message, "\n".join(message)
 
 
-@lru_cache(maxsize=None)
 def _token() -> str:
-    return get_portal_access_token()["access_token"]
+    return portal_token()
 
 
 def _get(path: str, **params) -> object:

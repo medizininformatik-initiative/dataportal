@@ -20,7 +20,7 @@ pytestmark = pytest.mark.smoke
 GOLDEN = {case["id"]: case for case in load_golden_cases()}
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture
 def terminology(portal_access_token: str) -> Terminology:
     return Terminology(portal_access_token)
 

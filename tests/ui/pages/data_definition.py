@@ -27,9 +27,26 @@ def download_data_definition(page: Page, title: str, fmt: str, directory: pathli
 
 
 def upload_crtdl(page: Page, path: pathlib.Path) -> None:
-    """Opens the data definition page and uploads a CRTDL file."""
+    """Opens the data definition page, uploads a CRTDL file and waits until the backend
+    has validated it (and upgraded it if needed)."""
     page.goto(f"{PORTAL_URL}{DATA_DEFINITION_PATH}")
-    page.locator("[data-cy=upload-crtdl]").set_input_files(str(path))
+    with page.expect_response(lambda r: "/validation/crtdl" in r.url):
+        page.locator("[data-cy=upload-crtdl]").set_input_files(str(path))
+    page.wait_for_load_state("networkidle")
+
+
+def upload_crtdl_from_action_bar(page: Page, path: pathlib.Path) -> None:
+    """Uploads a CRTDL through the action bar of the current page, without reloading the
+    app, so the query that is being built is still there before the upload."""
+    with page.expect_response(lambda r: "/validation/crtdl" in r.url):
+        page.locator("[data-cy=upload-crtdl]").set_input_files(str(path))
+    page.wait_for_load_state("networkidle")
+
+
+def open_feature_selection_step(page: Page) -> None:
+    """Data definition page: goes to step 2 (feature selection) of the uploaded definition."""
+    page.get_by_role("button", name="To Feature Selection").click()
+    page.wait_for_url("**/data-query/data-selection")
 
 
 def run_feasibility_of_data_definition(page: Page) -> None:

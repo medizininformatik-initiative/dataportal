@@ -26,7 +26,7 @@ CASES = [
 ]
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture
 def terminology(portal_access_token: str) -> Terminology:
     return Terminology(portal_access_token)
 
