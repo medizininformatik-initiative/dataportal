@@ -6,7 +6,7 @@ B2  every UI profile has a criterion that runs over CQL, also with its filters (
 B4  every data selection profile resolves, and its code filters offer concepts (ON-10)
 ON-5  criteria sets contain only criteria of their own context
 ON-8  search treats umlauts and their transcription alike
-ON-9  criteria and filters have an English display
+ON-9  ICD-10-GM and SNOMED CT criteria have an English display
 ON-13 data selection offers no profiles of non-DomainResource types
 """
 
@@ -156,9 +156,13 @@ def test_criteria_sets_contain_only_their_own_context():
 # --- B2: every UI profile runs -----------------------------------------------------------
 
 
+# UI profiles the ontology ships without criteria on purpose (confirmed 2026-11-17).
+UI_PROFILES_WITHOUT_CRITERIA = {"MII_PR_Onko_Strahlentherapie_Bestrahlung_Nuklearmedizin"}
+
+
 def test_every_ui_profile_is_used_by_a_criterion():
-    unused = sorted(set(ui_profiles()) - set(sample_criteria()))
-    assert_only_known_issues("ui-profiles-without-criteria", unused)
+    unused = set(ui_profiles()) - set(sample_criteria()) - UI_PROFILES_WITHOUT_CRITERIA
+    assert not unused, f"no criterion found for UI profiles {sorted(unused)}"
 
 
 def _filters_for(profile: dict) -> dict:
@@ -200,7 +204,7 @@ def _filters_for(profile: dict) -> dict:
 def test_criterion_of_ui_profile_runs_with_and_without_filter(name: str):
     sample = sample_criteria().get(name)
     if sample is None:
-        pytest.skip("no criterion found for this UI profile (see test_every_ui_profile_is_used_by_a_criterion)")
+        pytest.skip("UI profile without criteria (see UI_PROFILES_WITHOUT_CRITERIA)")
     profile = ui_profiles()[name]
     filters = _filters_for(profile)
     base = {"termCodes": sample["termCodes"], "context": sample["context"]}
@@ -231,24 +235,25 @@ def test_molgen_module_has_a_runnable_criterion():
 
 # --- ON-9: English display ---------------------------------------------------------------
 
-
-def test_sampled_criteria_have_english_display():
-    missing = [
-        f"{s['search']['context']}: {s['search']['display']['original']}"
-        for s in sample_criteria().values()
-        if not _english(s["search"]["display"])
-    ]
-    assert_only_known_issues("criteria-without-english-display", missing)
+# Not every concept has an English translation. Criteria of these terminologies must have one.
+TRANSLATED_TERMINOLOGIES = ("http://fhir.de/CodeSystem/bfarm/icd-10-gm", "http://snomed.info/sct")
 
 
-def test_ui_profile_filters_have_english_display():
-    missing = [
-        f"{name}: {(d.get('attributeCode') or {}).get('code') or 'value'}"
-        for name, profile in ui_profiles().items()
-        for d in _filter_definitions(profile)
-        if not _english(d.get("display"))
-    ]
-    assert_only_known_issues("filters-without-english-display", missing)
+@pytest.mark.parametrize("terminology", TRANSLATED_TERMINOLOGIES)
+def test_icd10_and_snomed_criteria_have_english_display(terminology: str):
+    """Checks the first page of criteria of the terminology in every context."""
+    checked, missing = 0, []
+    for context in contexts():
+        hits = _get(
+            "/api/v6/terminology/entry/search",
+            searchterm="", contexts=context, terminologies=terminology, **{"page-size": 50},
+        )
+        for hit in hits["results"]:
+            checked += 1
+            if not _english(hit["display"]):
+                missing.append(f"{context}: {hit['termcode']} {hit['display']['original']}")
+    assert checked, f"no criteria of {terminology} found"
+    assert not missing, f"{len(missing)} of {checked} criteria without English display:\n" + "\n".join(missing)
 
 
 # --- ON-8: umlauts in search -------------------------------------------------------------
