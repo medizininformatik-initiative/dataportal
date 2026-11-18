@@ -9,6 +9,9 @@ services:
       start_period: 60s
     env_file:
       - .env
+    environment:
+      # Workaround for CVE-2026-114938 (Java4Shell). Remove once the image ships a patched JDK.
+      JDK_JAVA_OPTIONS: "-XX:-UseBASE64Intrinsics"
     ports:
     - ${PORT_FHIR_SERVER_LOCALHOST:-127.0.0.1:8081}:8080
     extra_hosts:

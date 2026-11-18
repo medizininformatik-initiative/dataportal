@@ -37,6 +37,8 @@ services:
     env_file:
       - .env
     environment:
+      # Workaround for CVE-2026-114938 (Java4Shell). Remove once the image ships a patched JDK.
+      JAVA_OPTS_APPEND: "-XX:-UseBASE64Intrinsics"
       KC_DB: postgres
       KC_DB_URL: "jdbc:postgresql://fhir-server-keycloak-db:5432/${KC_DB_URL_DB:-keycloakdb}"
     volumes:
