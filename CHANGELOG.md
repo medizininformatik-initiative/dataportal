@@ -97,6 +97,8 @@ This release is based on ontology version [v5.2.2](https://github.com/medizininf
 
 ### Updates since last Major
 
+The versions of all components per release are listed in the [compatibility matrix](https://medizininformatik-initiative.github.io/dataportal/compatibility-matrix.html).
+
 **Data Portal**
 
 |Component|From|To|
