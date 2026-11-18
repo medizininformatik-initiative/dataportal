@@ -71,16 +71,35 @@ def test_fde_measure_report_has_the_mandatory_elements(fde_report):
     assert not missing, missing
 
 
+def stratifier_codes(group: dict) -> set[str]:
+    """Measure groups have no code or id that FDE copies, and FDE writes the report groups in
+    the order they finish. The stratifier codes identify a group in both."""
+    codes = set()
+    for stratifier in group.get("stratifier", []):
+        concepts = stratifier["code"] if isinstance(stratifier["code"], list) else [stratifier["code"]]
+        codes |= {c["coding"][0]["code"] for c in concepts}
+    return codes
+
+
+def population_counts(group: dict) -> dict[str, int]:
+    return {p["code"]["coding"][0]["code"]: p.get("count") for p in group["population"]}
+
+
 def test_fde_pages_through_all_resources(fde_report):
-    """The initial population of the first group is the result of a FHIR search (Diagnose
-    Conditions). With 5 resources per page FDE must read every page of it."""
+    """The initial population of every group is the result of a FHIR search. With 5 resources
+    per page FDE must read every page of it."""
     measure = json.loads(fde_measure().read_text())
-    criteria = next(p["criteria"]["expression"] for p in measure["group"][0]["population"]
-                    if p["code"]["coding"][0]["code"] == "initial-population")
-    expected = fhir_get(f"{criteria}&_summary=count")["total"]
-    assert expected > 5
-    populations = {p["code"]["coding"][0]["code"]: p["count"] for p in fde_report["group"][0]["population"]}
-    assert populations["initial-population"] == expected
+    reports = {frozenset(stratifier_codes(g)): g for g in fde_report["group"]}
+    checked = 0
+    for group in measure["group"]:
+        criteria = next(p["criteria"]["expression"] for p in group["population"]
+                        if p["code"]["coding"][0]["code"] == "initial-population")
+        query = criteria + ("&" if "?" in criteria else "?") + "_summary=count"
+        expected = fhir_get(query)["total"]
+        report = reports[frozenset(stratifier_codes(group))]
+        assert population_counts(report)["initial-population"] == expected, criteria
+        checked += expected > 5
+    assert checked, "no group has more than one page of resources"
 
 
 @pytest.mark.xfail(strict=True, reason="D11: FHIR_SOURCE_SERVER and FHIR_REPORT_SERVER default to "
