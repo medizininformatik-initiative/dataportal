@@ -86,8 +86,6 @@ def test_count_appears_with_data_and_goes_away_without(runs):
     assert runs["second"][0] == 0
 
 
-@pytest.mark.xfail(strict=True, reason="D18: availability-updater/.env.default points at http://fhir-sever:8080/fhir "
-                   "(typo), so the updater cannot load the reports")
 def test_default_report_server_is_the_fhir_server():
     assert env_file(UPDATER_DIR / ".env.default")["AVAILABILITY_REPORT_SERVER_BASE_URL"] == "http://fhir-server:8080/fhir"
 

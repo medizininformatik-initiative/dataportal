@@ -117,8 +117,8 @@ def test_unknown_job_is_404():
     assert outcome["resourceType"] == "OperationOutcome"
 
 
-@pytest.mark.xfail(strict=True, reason="D20: TORCH 1.1.0 answers DELETE /fhir/Task/{id} with 204, but the Task "
-                   "stays readable and the result files stay on disk and on the file server")
+@pytest.mark.xfail(strict=True, reason="D20, torch#1391: TORCH 1.1.0 answers DELETE /fhir/Task/{id} with 204, but "
+                   "the Task stays readable and the result files stay on disk and on the file server")
 def test_deleted_job_and_its_results_are_gone():
     status_url = submit(json.loads(EXAMPLE_CRTDL.read_text()))
     result = Result(wait(status_url))
