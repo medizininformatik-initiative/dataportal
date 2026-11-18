@@ -266,3 +266,15 @@ def delete_resources(resources: list[dict]) -> None:
     fhir_transaction([
         {"request": {"method": "DELETE", "url": f"{r['resourceType']}/{r['id']}"}} for r in resources
     ])
+
+
+def fhir_search(query: str) -> list[dict]:
+    """All resources of a FHIR search (query relative to the base URL), following the next links."""
+    url = f"{FHIR_URL}/{query}"
+    resources: list[dict] = []
+    while url:
+        with _request(url, headers={"Accept": "application/fhir+json", "Authorization": f"Bearer {fhir_token()}"}) as response:
+            bundle = json.load(response)
+        resources += [e["resource"] for e in bundle.get("entry", []) if "resource" in e]
+        url = next((link["url"] for link in bundle.get("link", []) if link["relation"] == "next"), None)
+    return resources
