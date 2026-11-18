@@ -221,9 +221,9 @@ def test_criterion_of_ui_profile_runs_with_and_without_filter(name: str):
         assert run_feasibility(filtered, _token()) <= count
 
 
-@pytest.mark.xfail(strict=True, reason="D24: a broad SNOMED CT criterion (21371007 Operation on abdominal region) "
-                   "expands to 22,746 codes, one exists per code in a 1.2 MB CQL library; Blaze 1.13.0 fails to evaluate "
-                   "it and the query gets no result")
+@pytest.mark.xfail(strict=True, reason="D24, fhir-ontology-generator#570: ontology v5.2.2 marks 21371007 Operation "
+                   "on abdominal region selectable in context Procedure (not in the Onkologie contexts); it expands to 22,746 "
+                   "codes, Blaze 1.13.0 fails on the 1.2 MB CQL and the query gets no result")
 def test_broad_snomed_procedure_criterion_runs():
     term_code = {"code": "21371007", "system": "http://snomed.info/sct",
                  "version": "http://snomed.info/sct/900000000000207008/version/20240701", "display": "Operation on abdominal region"}

@@ -49,13 +49,14 @@ def failed_dispatch(broken_backend) -> tuple[str, str]:
     status, headers, body = broken_backend.request("/api/v6/query/feasibility", portal_token(), "POST", SIMPLE_CCDL)
     assert status == 201, body
     query_id = {k.lower(): v for k, v in headers.items()}["location"].rstrip("/").rsplit("/", 1)[1]
-    deadline = time.monotonic() + 60
+    # The dispatch queue can be busy right after the UI suite.
+    deadline = time.monotonic() + 180
     while time.monotonic() < deadline:
         log = broken_backend.logs()
         if f"Failed to dispatch query '{query_id}'" in log:
             return query_id, log
         time.sleep(1)
-    pytest.fail(f"no dispatch error for query {query_id} in the backend log")
+    pytest.fail(f"no dispatch error for query {query_id} in the backend log after 180 s")
 
 
 def test_dispatch_failure_is_logged(failed_dispatch):
