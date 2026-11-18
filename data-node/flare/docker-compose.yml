@@ -12,7 +12,7 @@ services:
     extra_hosts:
       - "auth.localhost:host-gateway"
     volumes:
-      - ${FLARE_SELF_SIGNED_CA_CERT_PATH:-../auth}:/app/certs:ro}
+      - ${FLARE_SELF_SIGNED_CA_CERT_PATH:-../auth}:/app/certs:ro
       - type: volume
         source: feas-flare-cache
         target: /app/cache
