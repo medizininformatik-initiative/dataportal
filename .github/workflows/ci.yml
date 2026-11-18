@@ -57,7 +57,53 @@ jobs:
       run: pip install -r tests/requirements.txt
 
     - name: Run e2e tests
-      run: pytest tests/node tests/pipeline
+      # The DUP profile runs get their own runner, see test-dup-pipeline-profiles.
+      run: pytest tests/node tests/pipeline --ignore=tests/pipeline/test_dup_pipeline_profiles.py
+
+  test-dup-pipeline-profiles:
+    # One pipeline run per DSE profile, 4 in parallel. Separate from test-data-node-e2e,
+    # because the data node services grow during the other tests, and in one job GitHub shut
+    # the runner down (exit code 143) during these runs.
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v4
+
+    - name: Install aether
+      run: .github/scripts/install-aether.sh
+
+    - name: Set up Data Node
+      run: .github/scripts/setup-data-node.sh
+
+    - name: Get MII testdata
+      working-directory: data-node
+      run: ./get-mii-testdata.sh
+
+    - name: Upload testdata
+      run: data-node/upload-testdata.sh
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install e2e test dependencies
+      run: pip install -r tests/requirements.txt
+
+    - name: Run DUP pipeline profile tests
+      run: pytest tests/pipeline/test_dup_pipeline_profiles.py -rA --basetemp=test-results/tmp
+
+    - name: Upload run summaries
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: dup-pipeline-profiles-results
+        path: |
+          test-results/tmp/*/summary.md
+          test-results/tmp/*/coverage.md
+          test-results/tmp/*/runs/*/aether.log
+        if-no-files-found: ignore
 
   integration-portal:
     # Playwright 1.60 has no browser builds for Ubuntu 26.04 (ubuntu-latest).
