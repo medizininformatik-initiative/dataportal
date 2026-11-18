@@ -27,6 +27,10 @@ Please refer to the respective repositories for a more in depth changelog of sin
 
 ## [7.0.0] - unreleased
 
+### Security
+
+- Java4Shell (CVE-2026-114938): All JVM services start with `-XX:-UseBASE64Intrinsics` until their images ship a patched JDK. The flag is set via `JDK_JAVA_OPTIONS` in the compose files of dataportal-backend, Blaze (fhir-server, terminology-server), FLARE, TORCH, fhir-data-evaluator, fhir-flattener and mii-fhir-validator, and via `JAVA_OPTS_APPEND` for the fhir-server Keycloak. Elasticsearch and the portal Keycloak already set it. A `JDK_JAVA_OPTIONS` value in a service's `.env` is overridden by the compose file. Add custom options to `JAVA_TOOL_OPTIONS` instead.
+
 ### Breaking changes
 
 - postgres: The dataportal-backend database (`dataportal-postgres`) and the keycloak database (`auth-db`) are upgraded from Postgres 17 to 18. Postgres 18 cannot start on Postgres 17 data, and the volume mount moved from `/var/lib/postgresql/data` to `/var/lib/postgresql`. Existing installations have to migrate their data:

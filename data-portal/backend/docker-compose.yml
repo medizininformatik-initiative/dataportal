@@ -3,6 +3,8 @@ services:
     restart: unless-stopped
     image: ghcr.io/medizininformatik-initiative/dataportal-backend:9.5.1
     environment:
+      # Workaround for CVE-2026-114938 (Java4Shell). Remove once the image ships a patched JDK.
+      JDK_JAVA_OPTIONS: "-XX:-UseBASE64Intrinsics"
       QUERYRESULT_DISABLE_LOG_FILE_ENCRYPTION: true
     env_file:
       - .env
