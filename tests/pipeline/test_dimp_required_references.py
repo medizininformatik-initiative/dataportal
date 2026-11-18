@@ -19,7 +19,7 @@ import urllib.request
 
 import pytest
 
-from conftest import DATA_NODE_DIR, wait_for_url
+from helpers import DATA_NODE_DIR, wait_for_url
 
 DUP_YAML = DATA_NODE_DIR / "example-dup-project" / "example-project_dimp_dup_base.yaml"
 DE_IDENTIFY_URL = "http://localhost:8083/fhir/$de-identify"
