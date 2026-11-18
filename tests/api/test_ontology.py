@@ -80,7 +80,9 @@ def _es_search(index: str, body: dict) -> dict:
 @lru_cache(maxsize=None)
 def sample_criteria() -> dict[str, dict]:
     """One selectable criterion per UI profile, from Elasticsearch: for each context and
-    terminology the leaf criteria (without children) in id order, then the others. The
+    terminology the first 50 leaf criteria (without children) by code, in id order, then
+    the others. Broad parents expand to so many codes that Blaze cannot parse the CQL
+    (samply/blaze#2186). The
     search API ranks by availability, which the availability updater changes, and its
     first page then holds broad parents that do not run (D24)."""
     pairs = _es_search("ontology", {"size": 0, "aggs": {"context": {"terms": {"field": "context.code", "size": 500},
@@ -90,9 +92,12 @@ def sample_criteria() -> dict[str, dict]:
         for terminology in context["terminology"]["buckets"]:
             selectable = [{"term": {"context.code": context["key"]}}, {"term": {"terminology": terminology["key"]}},
                           {"term": {"selectable": True}}]
-            leaves = _es_search("ontology", {"size": 50, "_source": False, "query": {"bool": {
-                "filter": selectable, "must_not": [{"exists": {"field": "children.contextualized_termcode_hash"}}]}}})
-            others = _es_search("ontology", {"size": 50, "_source": False, "query": {"bool": {"filter": selectable}}})
+            # children.contextualized_termcode_hash is not indexed, so leaves are found by
+            # children.selectable. Sorted, so every stack picks the same criteria.
+            leaves = _es_search("ontology", {"size": 50, "_source": False, "sort": ["termcode.keyword"], "query": {"bool": {
+                "filter": selectable, "must_not": [{"exists": {"field": "children.selectable"}}]}}})
+            others = _es_search("ontology", {"size": 50, "_source": False, "sort": ["termcode.keyword"],
+                                             "query": {"bool": {"filter": selectable}}})
             ids = sorted(h["_id"] for h in leaves["hits"]["hits"])
             ids += sorted({h["_id"] for h in others["hits"]["hits"]} - set(ids))
             if not ids:
