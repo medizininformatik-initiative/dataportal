@@ -72,7 +72,7 @@ Two settings decide which rules are applied:
 > Keep `redact-all.yaml` as the mounted fall-back configuration. It ensures that a request which does not carry a project DIMP configuration — a misconfigured pipeline, a manual call, another client — returns an empty resource instead of un-DIMPed data. Replacing it with a real DIMP configuration re-introduces the risk of exporting data under the wrong project's rules.
 
 > [!WARNING]
-> Sending the configuration per request requires `fhir-pseudonymizer` >= `v2.34.0` (this repository pins `v2.35.1`) and aether >= `v1.4.0`. Earlier aether versions used `services.dimp.experimental_v3.anonymization_config`; that option has been removed — move the path up to `services.dimp.anonymization_config`.
+> Sending the configuration per request requires `fhir-pseudonymizer` >= `v2.34.0` (this repository pins `v3.1.2`) and aether >= `v1.4.0`. Earlier aether versions used `services.dimp.experimental_v3.anonymization_config`; that option has been removed — move the path up to `services.dimp.anonymization_config`.
 
 ---
 
