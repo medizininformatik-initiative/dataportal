@@ -5,6 +5,9 @@ services:
       - ${DATA_NODE_FLARE_PORT:-127.0.0.1:8084}:8080
     env_file:
       - .env
+    environment:
+      # Workaround for CVE-2026-114938 (Java4Shell). Remove once the image ships a patched JDK.
+      JDK_JAVA_OPTIONS: "-XX:-UseBASE64Intrinsics"
     restart: unless-stopped
     extra_hosts:
       - "auth.localhost:host-gateway"

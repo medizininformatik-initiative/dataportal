@@ -14,6 +14,9 @@ services:
       - ${TORCH_PORT:-127.0.0.1:8086}:8080
     env_file:
       - .env
+    environment:
+      # Workaround for CVE-2026-114938 (Java4Shell). Remove once the image ships a patched JDK.
+      JDK_JAVA_OPTIONS: "-XX:-UseBASE64Intrinsics"
     volumes:
       - "${TORCH_DATA_VOLUME:-triangle-torch-data-store}:/app/output"
       - ../auth:/app/certs
