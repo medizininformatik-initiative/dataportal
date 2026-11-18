@@ -10,6 +10,8 @@
 #   core           - FHIR server with its Keycloak, reverse proxy and TORCH only, for the
 #                    data portal integration tests. Feasibility runs over CQL against the
 #                    FHIR server, so flare is not needed; TORCH also uses CQL by default.
+#   pipeline       - the services of the example DUP pipeline (TORCH, DIMP, fhir-flattener)
+#                    with the FHIR server, without flare, terminology server and validator.
 
 BASE_DIR="$( cd -- "$(dirname "$0")/../.." >/dev/null 2>&1 || exit 1 ; pwd -P )"
 DATA_NODE_DIR="$BASE_DIR/data-node"
@@ -36,8 +38,13 @@ case "$DATA_NODE_PROFILE" in
     set_env_var "$DATA_NODE_DIR/fhir-flattener/.env" FLATTENING_ENABLED false
     set_env_var "$DATA_NODE_DIR/fhir-validator/.env" VALIDATION_ENABLED false
     ;;
+  pipeline)
+    set_env_var "$DATA_NODE_DIR/flare/.env" FLARE_ENABLED false
+    set_env_var "$DATA_NODE_DIR/terminology-server/.env" TERMINOLOGY_SERVER_ENABLED false
+    set_env_var "$DATA_NODE_DIR/fhir-validator/.env" VALIDATION_ENABLED false
+    ;;
   *)
-    echo "Error: unknown DATA_NODE_PROFILE '$DATA_NODE_PROFILE' (expected full or core)" >&2
+    echo "Error: unknown DATA_NODE_PROFILE '$DATA_NODE_PROFILE' (expected full, core or pipeline)" >&2
     exit 1
     ;;
 esac
@@ -54,7 +61,7 @@ export DATA_NODE_REV_PROXY_NGINX_CONFIG="./subdomains.nginx.conf"
 CERT_DOMAINS="localhost, fhir.localhost, auth.localhost, flare.localhost, torch.localhost, terminology.localhost, dimp.localhost, flattener.localhost, validator.localhost" \
   "$DATA_NODE_DIR/generate-cert.sh"
 
-if [ "$DATA_NODE_PROFILE" = "full" ]; then
+if [ "$DATA_NODE_PROFILE" != "core" ]; then
   # fhir-flattener needs a flatteningLookup.json - not checked into git, has to be fetched
   (cd "$DATA_NODE_DIR/aether" && ./get_flattening_lookup.sh)
 fi

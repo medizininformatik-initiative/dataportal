@@ -61,9 +61,9 @@ jobs:
       run: pytest tests/node tests/pipeline --ignore=tests/pipeline/test_dup_pipeline_profiles.py
 
   test-dup-pipeline-profiles:
-    # One pipeline run per DSE profile, 4 in parallel. Separate from test-data-node-e2e,
-    # because the data node services grow during the other tests, and in one job GitHub shut
-    # the runner down (exit code 143) during these runs.
+    # One pipeline run per DSE profile, 4 in parallel. GitHub shut the runner down (exit code 143)
+    # during these runs, in test-data-node-e2e and in a separate job with the full node. This job
+    # starts only the services the example DUP pipeline uses.
     runs-on: ubuntu-latest
 
     steps:
@@ -73,7 +73,9 @@ jobs:
     - name: Install aether
       run: .github/scripts/install-aether.sh
 
-    - name: Set up Data Node
+    - name: Set up Data Node (pipeline services)
+      env:
+        DATA_NODE_PROFILE: pipeline
       run: .github/scripts/setup-data-node.sh
 
     - name: Get MII testdata
@@ -92,7 +94,20 @@ jobs:
       run: pip install -r tests/requirements.txt
 
     - name: Run DUP pipeline profile tests
-      run: pytest tests/pipeline/test_dup_pipeline_profiles.py -rA --basetemp=test-results
+      # Logs memory, disk and container usage every 30 s, so a runner shutdown shows its cause.
+      run: |
+        while sleep 30; do
+          echo "::group::resources $(date -u +%T)"
+          free -m | sed -n 2p
+          df -h / | tail -1
+          docker stats --no-stream --format '{{.Name}} {{.MemUsage}} {{.CPUPerc}}'
+          echo "::endgroup::"
+        done &
+        monitor=$!
+        status=0
+        pytest tests/pipeline/test_dup_pipeline_profiles.py -rA --basetemp=test-results || status=$?
+        kill "$monitor"
+        exit "$status"
 
     - name: Upload run summaries
       if: failure()
