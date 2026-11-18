@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: ${KC_DB_USERNAME:-keycloakdbuser}
       POSTGRES_PASSWORD: ${KC_DB_PASSWORD:-keycloakdbpw}
     healthcheck:
-      test: [ "CMD-SHELL", "sh -c 'pg_isready -U ${DB_USER} -d ${DB_NAME}'" ]
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}'" ]
       interval: 30s
       timeout: 60s
       retries: 5
