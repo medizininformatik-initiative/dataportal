@@ -13,35 +13,19 @@ ON-13 data selection offers no profiles of non-DomainResource types
 from __future__ import annotations
 
 import json
-import pathlib
 import urllib.parse
+import urllib.request
 from functools import lru_cache
 
 import pytest
 
 from feasibility import CCDL_VERSION, run_feasibility
-from helpers import portal_request, portal_token
+from helpers import PORTAL_ES_URL, assert_only_known_issues, portal_request, portal_token
 
 pytestmark = pytest.mark.smoke
 
 # Resource types that do not derive from DomainResource and that TORCH cannot extract.
 NON_DOMAIN_RESOURCES = {"Bundle", "Binary", "Parameters"}
-
-KNOWN_ISSUES_FILE = pathlib.Path(__file__).resolve().parents[1] / "golden" / "known-issues.json"
-
-
-def assert_only_known_issues(check: str, problems: list[str]) -> None:
-    """Fails on problems that are not in golden/known-issues.json, and on known issues
-    that no longer occur, so the baseline stays current."""
-    known = set(json.loads(KNOWN_ISSUES_FILE.read_text()).get(check, {}).get("items", []))
-    new, fixed = sorted(set(problems) - known), sorted(known - set(problems))
-    message = []
-    if new:
-        message.append(f"new problems ({len(new)}):\n  " + "\n  ".join(new))
-    if fixed:
-        message.append(f"fixed, remove from {KNOWN_ISSUES_FILE.name} [{check}] ({len(fixed)}):\n  " + "\n  ".join(fixed))
-    assert not message, "\n".join(message)
-
 
 def _token() -> str:
     return portal_token()
@@ -238,21 +222,35 @@ def test_molgen_module_has_a_runnable_criterion():
 TRANSLATED_TERMINOLOGIES = ("http://fhir.de/CodeSystem/bfarm/icd-10-gm", "http://snomed.info/sct")
 
 
-@pytest.mark.parametrize("terminology", TRANSLATED_TERMINOLOGIES)
-def test_icd10_and_snomed_criteria_have_english_display(terminology: str):
-    """Checks the first page of criteria of the terminology in every context."""
-    checked, missing = 0, []
-    for context in contexts():
-        hits = _get(
-            "/api/v6/terminology/entry/search",
-            searchterm="", contexts=context, terminologies=terminology, **{"page-size": 50},
-        )
-        for hit in hits["results"]:
-            checked += 1
-            if not _english(hit["display"]):
-                missing.append(f"{context}: {hit['termcode']} {hit['display']['original']}")
-    assert checked, f"no criteria of {terminology} found"
-    assert not missing, f"{len(missing)} of {checked} criteria without English display:\n" + "\n".join(missing)
+def _es_search(index: str, body: dict) -> dict:
+    request = urllib.request.Request(
+        f"{PORTAL_ES_URL}/{index}/_search",
+        data=json.dumps(body).encode(),
+        headers={"Content-Type": "application/json"},
+    )
+    with urllib.request.urlopen(request, timeout=60) as response:
+        return json.load(response)
+
+
+def test_icd10_and_snomed_criteria_have_english_display():
+    """Checks every criterion of the terminologies in the backend Elasticsearch, because
+    the search API caps its hits at 10000. A criterion without English display has an
+    empty display.en, which indexes no token."""
+    terminologies = {"terms": {"terminology": list(TRANSLATED_TERMINOLOGIES)}}
+    total = _es_search("ontology", {"size": 0, "track_total_hits": True, "query": terminologies})
+    assert total["hits"]["total"]["value"] > 0, "no ICD-10-GM or SNOMED CT criteria in Elasticsearch"
+    missing = _es_search("ontology", {
+        "size": 10000,
+        "track_total_hits": True,
+        "_source": ["termcode", "terminology", "context.code"],
+        "query": {"bool": {"filter": [terminologies], "must_not": {"wildcard": {"display.en": "?*"}}}},
+    })
+    assert missing["hits"]["total"]["value"] < 10000, "too many criteria without English display to list"
+    problems = [
+        f"{h['_source']['context']['code']}: {h['_source']['terminology']} {h['_source']['termcode']}"
+        for h in missing["hits"]["hits"]
+    ]
+    assert_only_known_issues("english-display", problems)
 
 
 # --- ON-8: umlauts in search -------------------------------------------------------------

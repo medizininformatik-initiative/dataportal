@@ -10,6 +10,7 @@ happens on top of that base setup.
 
 from __future__ import annotations
 
+import http.client
 import json
 import os
 import pathlib
@@ -38,6 +39,22 @@ PORTAL_TEST_USER = os.environ.get("PORTAL_TEST_USER", "testuser")
 PORTAL_TEST_PASSWORD = os.environ.get("PORTAL_TEST_PASSWORD", "testpassword")
 PORTAL_TEST_ROLES = ("DataportalUser", "DataportalPowerUser", "DataportalAdmin")
 
+KNOWN_ISSUES_FILE = REPO_ROOT / "tests" / "golden" / "known-issues.json"
+
+
+def assert_only_known_issues(check: str, problems: list[str]) -> None:
+    """Fails on problems that are not in golden/known-issues.json, and on known issues
+    that no longer occur, so the baseline stays current."""
+    known = set(json.loads(KNOWN_ISSUES_FILE.read_text()).get(check, {}).get("items", []))
+    new, fixed = sorted(set(problems) - known), sorted(known - set(problems))
+    message = []
+    if new:
+        message.append(f"new problems ({len(new)}):\n  " + "\n  ".join(new))
+    if fixed:
+        message.append(f"fixed, remove from {KNOWN_ISSUES_FILE.name} [{check}] ({len(fixed)}):\n  " + "\n  ".join(fixed))
+    assert not message, "\n".join(message)
+
+
 _JOB_ID_RE = re.compile(r"Job ID: (\S+)")
 
 
@@ -53,7 +70,7 @@ def wait_for_url(url: str, expect_status: int | None = 200, timeout: float = 120
                 status = response.status
         except urllib.error.HTTPError as error:
             status = error.code
-        except urllib.error.URLError as error:
+        except (urllib.error.URLError, ConnectionError, http.client.HTTPException) as error:
             last_error = error
             time.sleep(2)
             continue

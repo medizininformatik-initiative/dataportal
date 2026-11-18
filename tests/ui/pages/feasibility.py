@@ -84,13 +84,14 @@ def apply_time_period_to_all(page: Page, start: str, end: str, criteria: int) ->
     page.get_by_role("button", name=f"Apply ({criteria})").click()
 
 
-def configure_staged_criterion(page: Page, selections: list[tuple[str, str]]) -> None:
-    """Opens the criterion editor for the first staged criterion, selects each
-    (filter display, code) in the tab of that filter and closes the editor."""
+def configure_staged_criterion(page: Page, selections: list[tuple[str, str, str]]) -> None:
+    """Opens the criterion editor for the first staged criterion, searches each
+    (filter display, code, search term) in the tab of that filter, selects the row of
+    the code and closes the editor."""
     open_staged_criterion_editor(page)
-    for label, code in selections:
+    for label, code, term in selections:
         open_criterion_tab(page, label)
-        page.get_by_placeholder("Enter concept or term code").filter(visible=True).fill(code)
+        page.get_by_placeholder("Enter concept or term code").filter(visible=True).fill(term)
         row = page.locator("tbody tr").filter(visible=True).filter(
             has=page.locator("td", has_text=re.compile(rf"^\s*{re.escape(code)}\s*$"))
         )
