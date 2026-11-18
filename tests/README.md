@@ -62,10 +62,10 @@ The defect column refers to the [known defects](#known-defects) below.
 | `api/test_portal_smoke.py` | Backend is up and accepts tokens of the portal Keycloak | |
 | `api/test_feasibility_golden.py` | Feasibility counts on the MII test data through backend, CQL and Blaze, compared with `golden/feasibility.json` and an independent FHIR search | |
 | `api/test_ontology.py` | Every UI profile filter offers concepts or criteria, every UI profile runs over CQL, every data selection profile resolves, criteria sets stay in their context, umlaut search, English display of ICD-10-GM and SNOMED CT, no non-DomainResource profiles | D5, D7, D9, D24 |
-| `api/test_backend_contracts.py` | Profile search, bulk search, Elasticsearch logging, ontology version, CRTDL upgrade, CSV export of a CRTDL, error code of an invalid CCDL | D2, D3, D4 |
+| `api/test_backend_contracts.py` | Profile search, bulk search, Elasticsearch logging, ontology version, CRTDL upgrade, CSV export of a CRTDL, error code of an invalid CCDL | D4 |
 | `api/test_backend_variants.py` | Backend variants in their own container: query result expiry, soft quota 429, dispatch error with an unreachable FHIR server | D21 |
 | `api/test_availability_updater.py` | Updater reads FDE reports, updates and lowers counts, data selection availability | D19 |
-| `ui/test_login.py` | Sign-in and sign-out through the portal Keycloak, no browser errors | D1 |
+| `ui/test_login.py` | Sign-in and sign-out through the portal Keycloak, no browser errors | |
 | `ui/test_feasibility_query.py` | Build and run a query in the browser, count equals the golden value | |
 | `ui/test_criterion_filters.py` | Attribute, value and exclusion filters in the criterion editor, count equals the golden value | |
 | `ui/test_cohort_search_filters.py` | Filter dropdowns of the criteria search: order, search field, dependent options | |
@@ -108,9 +108,6 @@ the marker or entry has to be removed. Low priority defects are marked (low).
 
 | Code | Component | Defect | Tracked in |
 | --- | --- | --- | --- |
-| D1 (low) | dataportal-ui | Sends `Authorization: Bearer null` to `/backend/.settings` before login | `ui/test_login.py` |
-| D2 (low) | dataportal-backend | 500 instead of 400 for a criterion without its mandatory value filter | `api/test_backend_contracts.py` |
-| D3 (low) | dataportal-backend | CRTDL upgrade drops `"attributes": []` and then rejects the upgraded CRTDL | `api/test_backend_contracts.py` |
 | D4 | Ontology | Releases v5.2.1 and v5.2.2 stamp their indices as v5.2.0 | `api/test_backend_contracts.py` |
 | D5 | Ontology | 8 value sets referenced by data selection code filters are missing | known issue `data-selection-code-filters` |
 | D7 (low) | Ontology | Value filter of "TNM m symbol" references an empty criteria set | known issue `ui-profile-filters` |

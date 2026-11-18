@@ -16,14 +16,6 @@ def test_login_and_logout(page: Page):
     logout(page)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "dataportal-ui 7.3.4-rc4 requests /backend/.settings with 'Authorization: Bearer null' "
-        "before the token exists, the backend answers 401 and the UI logs 'CoreInitService "
-        "failed'. It retries with the token and continues. Remove this marker once fixed."
-    ),
-)
 def test_app_loads_without_console_errors(page: Page, console_errors: list[str]):
     login(page)
     page.wait_for_load_state("networkidle")

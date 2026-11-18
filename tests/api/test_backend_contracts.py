@@ -114,14 +114,6 @@ def test_upgrade_replaces_onset_date_with_recorded_date(portal_access_token: str
     assert [a["value"]["code"] for a in body["annotations"]] == ["UPGRADE-1000001"]
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "dataportal-backend 9.5.0: the upgrade drops 'attributes': [] of an attribute group "
-        "without attributes, and validation then rejects the upgraded CRTDL with "
-        "\"required property 'attributes' not found\". Remove this marker once fixed."
-    ),
-)
 def test_upgraded_crtdl_is_valid(portal_access_token: str):
     status, body = portal_request(
         "/api/v6/upgrade/crtdl", token=portal_access_token, method="POST", body=_crtdl_with_onset_date_filter()
@@ -133,14 +125,6 @@ def test_upgraded_crtdl_is_valid(portal_access_token: str):
     assert status == 200, issues
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "dataportal-backend 9.5.0: CcdlValidator throws a NullPointerException "
-        "(unitsContainErrors, valueFilter is null) and answers 500 when a criterion lacks the "
-        "mandatory value filter of its profile. Remove this marker once fixed."
-    ),
-)
 def test_missing_mandatory_value_filter_is_rejected(portal_access_token: str):
     # 'Current chronological age' (Patient) requires a quantity value filter.
     query = urllib.parse.urlencode({"searchterm": "424144002", "contexts": "Patient"})
