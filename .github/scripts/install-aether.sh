@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
-# v1.4.0 moved the DIMP anonymization config to services.dimp.anonymization_config
-# (see data-node/example-dup-project/example-project-pipeline.yml) - v1.3.0 ignores that key.
-VERSION="1.4.0"
+# The version of docs/compatibility-matrix.md. tests/pipeline/test_aether_cli.py needs
+# >= 1.6.0 (aether send, aether job stop).
+VERSION="1.6.0"
 
 curl -sLO "https://github.com/medizininformatik-initiative/aether/releases/download/v$VERSION/aether-$VERSION-linux-amd64.tar.gz"
 tar xzf "aether-$VERSION-linux-amd64.tar.gz"

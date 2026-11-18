@@ -1,0 +1,287 @@
+{
+  "description": "Feasibility golden cases on the MII test data (data-node/get-mii-testdata.sh). Each criterion names a term code and its ontology context; tests resolve it through the backend terminology API. 'expected' is the patient count. 'oracle' is the FHIR search that yields the same patients without the portal, optionally filtered by a coding in an element ('where'). 'rows' refers to the release test plan.",
+  "cases": [
+    {
+      "id": "gender-male",
+      "rows": [
+        "BE-2"
+      ],
+      "inclusion": [
+        [
+          {
+            "code": "263495000",
+            "context": "Patient",
+            "valueConcepts": [
+              "male"
+            ],
+            "oracle": {
+              "search": "Patient?gender=male"
+            }
+          }
+        ]
+      ],
+      "expected": 7
+    },
+    {
+      "id": "gender-female",
+      "rows": [
+        "BE-2"
+      ],
+      "inclusion": [
+        [
+          {
+            "code": "263495000",
+            "context": "Patient",
+            "valueConcepts": [
+              "female"
+            ],
+            "oracle": {
+              "search": "Patient?gender=female"
+            }
+          }
+        ]
+      ],
+      "expected": 4
+    },
+    {
+      "id": "leukocytes",
+      "rows": [
+        "BE-2",
+        "UI-1",
+        "UI-5"
+      ],
+      "inclusion": [
+        [
+          {
+            "code": "26464-8",
+            "context": "Laboruntersuchung",
+            "oracle": {
+              "search": "Observation?code=http://loinc.org|26464-8"
+            }
+          }
+        ]
+      ],
+      "expected": 10
+    },
+    {
+      "id": "leukocytes-interpretation-high",
+      "rows": [
+        "ON-3",
+        "BE-2"
+      ],
+      "inclusion": [
+        [
+          {
+            "code": "26464-8",
+            "context": "Laboruntersuchung",
+            "attribute": {
+              "code": "interpretation",
+              "concepts": [
+                "H"
+              ]
+            },
+            "oracle": {
+              "search": "Observation?code=http://loinc.org|26464-8",
+              "where": {
+                "interpretation": "H"
+              }
+            }
+          }
+        ]
+      ],
+      "expected": 4
+    },
+    {
+      "id": "inpatient-encounter-finished",
+      "rows": [
+        "ON-4",
+        "BE-2"
+      ],
+      "inclusion": [
+        [
+          {
+            "code": "IMP",
+            "context": "Fall",
+            "attribute": {
+              "code": "status",
+              "concepts": [
+                "finished"
+              ]
+            },
+            "oracle": {
+              "search": "Encounter?class=http://terminology.hl7.org/CodeSystem/v3-ActCode|IMP&status=finished"
+            }
+          }
+        ]
+      ],
+      "expected": 11
+    },
+    {
+      "id": "inpatient-encounter-in-progress",
+      "rows": [
+        "ON-4",
+        "BE-2"
+      ],
+      "inclusion": [
+        [
+          {
+            "code": "IMP",
+            "context": "Fall",
+            "attribute": {
+              "code": "status",
+              "concepts": [
+                "in-progress"
+              ]
+            },
+            "oracle": {
+              "search": "Encounter?class=http://terminology.hl7.org/CodeSystem/v3-ActCode|IMP&status=in-progress"
+            }
+          }
+        ]
+      ],
+      "expected": 0
+    },
+    {
+      "id": "lung-cancer-oncology-context",
+      "rows": [
+        "ON-1",
+        "BE-2"
+      ],
+      "inclusion": [
+        [
+          {
+            "code": "C34.1",
+            "context": "MII_Onkologie_Diagnose",
+            "oracle": {
+              "search": "Condition?code=http://fhir.de/CodeSystem/bfarm/icd-10-gm|C34.1"
+            }
+          }
+        ]
+      ],
+      "expected": 1
+    },
+    {
+      "id": "or-group-two-diagnoses",
+      "rows": [
+        "BE-2"
+      ],
+      "inclusion": [
+        [
+          {
+            "code": "C34.1",
+            "context": "Diagnose",
+            "oracle": {
+              "search": "Condition?code=http://fhir.de/CodeSystem/bfarm/icd-10-gm|C34.1"
+            }
+          },
+          {
+            "code": "B05.3",
+            "context": "Diagnose",
+            "oracle": {
+              "search": "Condition?code=http://fhir.de/CodeSystem/bfarm/icd-10-gm|B05.3"
+            }
+          }
+        ]
+      ],
+      "expected": 2
+    },
+    {
+      "id": "and-male-with-leukocytes",
+      "rows": [
+        "BE-2"
+      ],
+      "inclusion": [
+        [
+          {
+            "code": "263495000",
+            "context": "Patient",
+            "valueConcepts": [
+              "male"
+            ],
+            "oracle": {
+              "search": "Patient?gender=male"
+            }
+          }
+        ],
+        [
+          {
+            "code": "26464-8",
+            "context": "Laboruntersuchung",
+            "oracle": {
+              "search": "Observation?code=http://loinc.org|26464-8"
+            }
+          }
+        ]
+      ],
+      "expected": 5
+    },
+    {
+      "id": "exclusion-leukocytes-not-high",
+      "rows": [
+        "BE-2"
+      ],
+      "inclusion": [
+        [
+          {
+            "code": "26464-8",
+            "context": "Laboruntersuchung",
+            "oracle": {
+              "search": "Observation?code=http://loinc.org|26464-8"
+            }
+          }
+        ]
+      ],
+      "exclusion": [
+        [
+          {
+            "code": "26464-8",
+            "context": "Laboruntersuchung",
+            "attribute": {
+              "code": "interpretation",
+              "concepts": [
+                "H"
+              ]
+            },
+            "oracle": {
+              "search": "Observation?code=http://loinc.org|26464-8",
+              "where": {
+                "interpretation": "H"
+              }
+            }
+          }
+        ]
+      ],
+      "expected": 6
+    },
+    {
+      "id": "exclusion-leukocytes-without-lung-cancer",
+      "rows": [
+        "BE-2",
+        "UI-1"
+      ],
+      "inclusion": [
+        [
+          {
+            "code": "26464-8",
+            "context": "Laboruntersuchung",
+            "oracle": {
+              "search": "Observation?code=http://loinc.org|26464-8"
+            }
+          }
+        ]
+      ],
+      "exclusion": [
+        [
+          {
+            "code": "C34.1",
+            "context": "Diagnose",
+            "oracle": {
+              "search": "Condition?code=http://fhir.de/CodeSystem/bfarm/icd-10-gm|C34.1"
+            }
+          }
+        ]
+      ],
+      "expected": 9
+    }
+  ]
+}

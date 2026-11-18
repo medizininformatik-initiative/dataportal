@@ -1,7 +1,7 @@
 services:
   dataportal-backend:
     restart: unless-stopped
-    image: ghcr.io/medizininformatik-initiative/dataportal-backend:pr-1211
+    image: ghcr.io/medizininformatik-initiative/dataportal-backend:9.5.1
     environment:
       QUERYRESULT_DISABLE_LOG_FILE_ENCRYPTION: true
     env_file:
@@ -44,7 +44,7 @@ services:
       retries: 3
     environment:
       discovery.type: single-node
-      ES_JAVA_OPTS: -Xmx512m -Xms512m
+      ES_JAVA_OPTS: -Xmx512m -Xms512m -XX:-UseBASE64Intrinsics
       node.name: es01
       cluster.name: elasticsearch
       xpack.security.enabled: false

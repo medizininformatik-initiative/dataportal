@@ -54,7 +54,123 @@ jobs:
         python-version: "3.12"
 
     - name: Install e2e test dependencies
-      run: pip install -r .github/e2e-tests/requirements.txt
+      run: pip install -r tests/requirements.txt
 
     - name: Run e2e tests
-      run: pytest .github/e2e-tests
+      # The DUP profile runs get their own runner, see test-dup-pipeline-profiles.
+      run: pytest tests/node tests/pipeline --ignore=tests/pipeline/test_dup_pipeline_profiles.py
+
+  test-dup-pipeline-profiles:
+    # One pipeline run per DSE profile, 4 in parallel. GitHub shut the runner down (exit code 143)
+    # during these runs, in test-data-node-e2e and in a separate job with the full node. This job
+    # starts only the services the example DUP pipeline uses.
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v4
+
+    - name: Install aether
+      run: .github/scripts/install-aether.sh
+
+    - name: Set up Data Node (pipeline services)
+      env:
+        DATA_NODE_PROFILE: pipeline
+      run: .github/scripts/setup-data-node.sh
+
+    - name: Get MII testdata
+      working-directory: data-node
+      run: ./get-mii-testdata.sh
+
+    - name: Upload testdata
+      run: data-node/upload-testdata.sh
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install e2e test dependencies
+      run: pip install -r tests/requirements.txt
+
+    - name: Run DUP pipeline profile tests
+      # Logs memory, disk and container usage every 30 s, so a runner shutdown shows its cause.
+      run: |
+        while sleep 30; do
+          echo "::group::resources $(date -u +%T)"
+          free -m | sed -n 2p
+          df -h / | tail -1
+          docker stats --no-stream --format '{{.Name}} {{.MemUsage}} {{.CPUPerc}}'
+          echo "::endgroup::"
+        done &
+        monitor=$!
+        status=0
+        pytest tests/pipeline/test_dup_pipeline_profiles.py -rA --basetemp=test-results || status=$?
+        kill "$monitor"
+        exit "$status"
+
+    - name: Upload run summaries
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: dup-pipeline-profiles-results
+        path: |
+          test-results/*/summary.md
+          test-results/*/coverage.md
+          test-results/*/runs/*/aether.log
+        if-no-files-found: ignore
+
+  integration-portal:
+    # Playwright 1.60 has no browser builds for Ubuntu 26.04 (ubuntu-latest).
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install test dependencies
+      run: |
+        pip install -r tests/requirements.txt
+        python -m playwright install --with-deps chromium
+
+    - name: Set up Data Node (core services)
+      env:
+        DATA_NODE_PROFILE: core
+      run: .github/scripts/setup-data-node.sh
+
+    - name: Get MII testdata
+      working-directory: data-node
+      run: ./get-mii-testdata.sh
+
+    - name: Upload testdata
+      run: data-node/upload-testdata.sh
+
+    - name: Set up Data Portal
+      run: .github/scripts/setup-data-portal.sh
+
+    - name: Create portal test user
+      run: .github/scripts/create-portal-test-user.sh
+
+    - name: Run integration tests
+      run: >
+        pytest tests/api tests/ui -m smoke
+        --junitxml=test-results/junit.xml
+        --output=test-results/playwright
+        --tracing=retain-on-failure --video=retain-on-failure --screenshot=only-on-failure
+
+    - name: Collect container logs
+      if: failure()
+      run: .github/scripts/collect-docker-logs.sh test-results/docker-logs
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: integration-portal-results
+        path: test-results
+        if-no-files-found: ignore
