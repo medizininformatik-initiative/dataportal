@@ -22,7 +22,7 @@ import urllib.request
 import pytest
 
 from helpers import COMPOSE_PROJECT, DATA_NODE_DIR, wait_for_url
-from fde import FDE_DIR, fhir_get, run_fde
+from fde import FDE_DIR, fde_measure, fhir_get, run_fde
 from torch_client import delete_resources, env_file
 
 VALIDATOR_URL = "http://localhost:8080/validateResource"
@@ -71,12 +71,16 @@ def test_fde_measure_report_has_the_mandatory_elements(fde_report):
     assert not missing, missing
 
 
-def test_fde_pages_through_all_patients(fde_report):
-    """The first group counts patients. With 5 resources per page FDE must read every page."""
-    patients = fhir_get("Patient?_summary=count")["total"]
-    assert patients > 5
+def test_fde_pages_through_all_resources(fde_report):
+    """The initial population of the first group is the result of a FHIR search (Diagnose
+    Conditions). With 5 resources per page FDE must read every page of it."""
+    measure = json.loads(fde_measure().read_text())
+    criteria = next(p["criteria"]["expression"] for p in measure["group"][0]["population"]
+                    if p["code"]["coding"][0]["code"] == "initial-population")
+    expected = fhir_get(f"{criteria}&_summary=count")["total"]
+    assert expected > 5
     populations = {p["code"]["coding"][0]["code"]: p["count"] for p in fde_report["group"][0]["population"]}
-    assert populations["initial-population"] == patients
+    assert populations["initial-population"] == expected
 
 
 @pytest.mark.xfail(strict=True, reason="D11: FHIR_SOURCE_SERVER and FHIR_REPORT_SERVER default to "
