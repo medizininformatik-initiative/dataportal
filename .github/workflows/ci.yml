@@ -92,7 +92,7 @@ jobs:
       run: pip install -r tests/requirements.txt
 
     - name: Run DUP pipeline profile tests
-      run: pytest tests/pipeline/test_dup_pipeline_profiles.py -rA --basetemp=test-results/tmp
+      run: pytest tests/pipeline/test_dup_pipeline_profiles.py -rA --basetemp=test-results
 
     - name: Upload run summaries
       if: failure()
@@ -100,9 +100,9 @@ jobs:
       with:
         name: dup-pipeline-profiles-results
         path: |
-          test-results/tmp/*/summary.md
-          test-results/tmp/*/coverage.md
-          test-results/tmp/*/runs/*/aether.log
+          test-results/*/summary.md
+          test-results/*/coverage.md
+          test-results/*/runs/*/aether.log
         if-no-files-found: ignore
 
   integration-portal:
