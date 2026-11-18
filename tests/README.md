@@ -53,53 +53,52 @@ The cells name the test files that exercise a component. Paths are relative to `
 
 ## Test files
 
-The plan column refers to the rows of the dataportal 7.0.0 release test plan (for example
-`ON-9`, `TO-2`). The defect column refers to the [known defects](#known-defects) below.
+The defect column refers to the [known defects](#known-defects) below.
 
 ### `integration-portal`
 
-| File | Checks | Plan rows | Defects |
-| --- | --- | --- | --- |
-| `api/test_portal_smoke.py` | Backend is up and accepts tokens of the portal Keycloak | | |
-| `api/test_feasibility_golden.py` | Feasibility counts on the MII test data through backend, CQL and Blaze, compared with `golden/feasibility.json` and an independent FHIR search | B3 | |
-| `api/test_ontology.py` | Every UI profile filter offers concepts or criteria, every UI profile runs over CQL, every data selection profile resolves, criteria sets stay in their context, umlaut search, English display of ICD-10-GM and SNOMED CT, no non-DomainResource profiles | B1, B2, B4, ON-2, ON-5, ON-8, ON-9, ON-10, ON-13 | D5, D7, D9, D24 |
-| `api/test_backend_contracts.py` | Profile search, bulk search, Elasticsearch logging, ontology version, CRTDL upgrade, CSV export of a CRTDL, error code of an invalid CCDL | BE-3, BE-4, BE-8, BE-10, BE-11, UI-11 | D2, D3, D4 |
-| `api/test_backend_variants.py` | Backend variants in their own container: query result expiry, soft quota 429, dispatch error with an unreachable FHIR server | BE-5, BE-7, UI-18 | D21 |
-| `api/test_availability_updater.py` | Updater reads FDE reports, updates and lowers counts, data selection availability | AU-3, AU-4, ON-12 | D19 |
-| `ui/test_login.py` | Sign-in and sign-out through the portal Keycloak, no browser errors | C1 | D1 |
-| `ui/test_feasibility_query.py` | Build and run a query in the browser, count equals the golden value | C4, UI-1, UI-5 | |
-| `ui/test_criterion_filters.py` | Attribute, value and exclusion filters in the criterion editor, count equals the golden value | C3, UI-2 | |
-| `ui/test_cohort_search_filters.py` | Filter dropdowns of the criteria search: order, search field, dependent options | C2, UI-3 | |
-| `ui/test_cohort_editor.py` | Time period for all criteria, codes in the reference selection | UI-12 | |
-| `ui/test_bulk_search.py` | Bulk search keeps order, reports duplicates and unknown codes | UI-17 | |
-| `ui/test_saved_queries.py` | Save, reload, run and delete a data definition | C5 | |
-| `ui/test_crtdl_roundtrip.py` | Download, upload and run a CRTDL, upgrade of an ontology 4 CRTDL | C6, UI-11, UI-19 | |
-| `ui/test_data_selection.py` | Feature search, "only if referenced", warning tiles, numbered and reordered features, blocked export | C7, C8, UI-4, UI-6, UI-8, UI-9, UI-10 | |
-| `ui/test_ui_details.py` | Upload replaces the query, English labels, profile details, a code in two terminologies | UI-7, UI-13, UI-14 | |
-| `ui/test_rate_limit.py` | UI shows the soft quota error of the backend | UI-18 | D23 |
-| `ui/test_blaze_frontend.py` | Blaze frontend sign-in through the node Keycloak behind the reverse proxy | BL-2 | |
+| File | Checks | Defects |
+| --- | --- | --- |
+| `api/test_portal_smoke.py` | Backend is up and accepts tokens of the portal Keycloak | |
+| `api/test_feasibility_golden.py` | Feasibility counts on the MII test data through backend, CQL and Blaze, compared with `golden/feasibility.json` and an independent FHIR search | |
+| `api/test_ontology.py` | Every UI profile filter offers concepts or criteria, every UI profile runs over CQL, every data selection profile resolves, criteria sets stay in their context, umlaut search, English display of ICD-10-GM and SNOMED CT, no non-DomainResource profiles | D5, D7, D9, D24 |
+| `api/test_backend_contracts.py` | Profile search, bulk search, Elasticsearch logging, ontology version, CRTDL upgrade, CSV export of a CRTDL, error code of an invalid CCDL | D2, D3, D4 |
+| `api/test_backend_variants.py` | Backend variants in their own container: query result expiry, soft quota 429, dispatch error with an unreachable FHIR server | D21 |
+| `api/test_availability_updater.py` | Updater reads FDE reports, updates and lowers counts, data selection availability | D19 |
+| `ui/test_login.py` | Sign-in and sign-out through the portal Keycloak, no browser errors | D1 |
+| `ui/test_feasibility_query.py` | Build and run a query in the browser, count equals the golden value | |
+| `ui/test_criterion_filters.py` | Attribute, value and exclusion filters in the criterion editor, count equals the golden value | |
+| `ui/test_cohort_search_filters.py` | Filter dropdowns of the criteria search: order, search field, dependent options | |
+| `ui/test_cohort_editor.py` | Time period for all criteria, codes in the reference selection | |
+| `ui/test_bulk_search.py` | Bulk search keeps order, reports duplicates and unknown codes | |
+| `ui/test_saved_queries.py` | Save, reload, run and delete a data definition | |
+| `ui/test_crtdl_roundtrip.py` | Download, upload and run a CRTDL, upgrade of an ontology 4 CRTDL | |
+| `ui/test_data_selection.py` | Feature search, "only if referenced", warning tiles, numbered and reordered features, blocked export | |
+| `ui/test_ui_details.py` | Upload replaces the query, English labels, profile details, a code in two terminologies | |
+| `ui/test_rate_limit.py` | UI shows the soft quota error of the backend | D23 |
+| `ui/test_blaze_frontend.py` | Blaze frontend sign-in through the node Keycloak behind the reverse proxy | |
 
 ### `test-data-node-e2e`
 
-| File | Checks | Plan rows | Defects |
-| --- | --- | --- | --- |
-| `node/test_basic_queries.py` | FHIR search counts on the MII test data (Consent, Condition) | | |
-| `pipeline/test_blaze_auth.py` | Blaze with `OPENID_PROVIDER_ISSUER` and `OPENID_AUDIENCE`, each in its own container | BL-3 | |
-| `pipeline/test_node_services.py` | Blaze healthchecks with wget, FDE MeasureReport and paging, validator IGs, terminology package range, R5 extensions | BL-1, BL-4, BL-5, FD-1, VA-1, VA-2, VA-3 | D10, D11, D12 |
-| `pipeline/test_torch_api.py` | Task API (pause, resume, cancel), Patient.identifier, cohort size, metrics, `$evaluate-cohort`, `$translate-cql`, 405, date filter | TO-1, TO-7, TO-8, TO-11, TO-12, TO-15, ON-7 | D20 |
-| `pipeline/test_torch_consent.py` | Consent rules on crafted patients: required policies, encounter shift, permit and deny, order by date, masked references, consent switched off | TO-2 to TO-6, TO-10 | |
-| `pipeline/test_torch_extraction.py` | Extracted MII test data validates, Medikation profiles, DIMP adds no validation errors, manifest links, paging | TO-9, TO-14, ON-11, PS-4, BL-4 | D13 |
-| `pipeline/test_dimp_service.py` | DIMP called directly: decompression, remove method, request size limit, cryptoHash of references | PS-4, PS-5 | D14, D15 |
-| `pipeline/test_dimp_required_references.py` | The example DUP DIMP config never empties a required Reference | | |
-| `pipeline/test_flattener.py` | `ViewDefinition/$run`: RFC 4180 CSV, no data from one run in the next | FF-1, FF-2 | D16 |
-| `pipeline/test_aether_cli.py` | aether CLI: flattening, start checks, auth, Ctrl+C and job control, status, local import, DIMP decimals and splitting, send, config overrides | ON-6, AE-3 to AE-5, AE-7 to AE-14 | D17 |
-| `pipeline/test_dup_pipeline.py` | Example DUP pipeline run twice: each DIMP rule changes the output between an empty and the real config | | |
+| File | Checks | Defects |
+| --- | --- | --- |
+| `node/test_basic_queries.py` | FHIR search counts on the MII test data (Consent, Condition) | |
+| `pipeline/test_blaze_auth.py` | Blaze with `OPENID_PROVIDER_ISSUER` and `OPENID_AUDIENCE`, each in its own container | |
+| `pipeline/test_node_services.py` | Blaze healthchecks with wget, FDE MeasureReport and paging, validator IGs, terminology package range, R5 extensions | D10, D11, D12 |
+| `pipeline/test_torch_api.py` | Task API (pause, resume, cancel), Patient.identifier, cohort size, metrics, `$evaluate-cohort`, `$translate-cql`, 405, date filter | D20 |
+| `pipeline/test_torch_consent.py` | Consent rules on crafted patients: required policies, encounter shift, permit and deny, order by date, masked references, consent switched off | |
+| `pipeline/test_torch_extraction.py` | Extracted MII test data validates, Medikation profiles, DIMP adds no validation errors, manifest links, paging | D13 |
+| `pipeline/test_dimp_service.py` | DIMP called directly: decompression, remove method, request size limit, cryptoHash of references | D14, D15 |
+| `pipeline/test_dimp_required_references.py` | The example DUP DIMP config never empties a required Reference | |
+| `pipeline/test_flattener.py` | `ViewDefinition/$run`: RFC 4180 CSV, no data from one run in the next | D16 |
+| `pipeline/test_aether_cli.py` | aether CLI: flattening, start checks, auth, Ctrl+C and job control, status, local import, DIMP decimals and splitting, send, config overrides | D17 |
+| `pipeline/test_dup_pipeline.py` | Example DUP pipeline run twice: each DIMP rule changes the output between an empty and the real config | |
 
 ### `test-dup-pipeline-profiles`
 
-| File | Checks | Plan rows | Defects |
-| --- | --- | --- | --- |
-| `pipeline/test_dup_pipeline_profiles.py` | One generated CRTDL per data selection profile of the pinned ontology through TORCH, DIMP and fhir-flattener, 4 in parallel, failed runs retried alone. Data and CRTDLs come from `pipeline/ontology_testdata.py` | | D26 |
+| File | Checks | Defects |
+| --- | --- | --- |
+| `pipeline/test_dup_pipeline_profiles.py` | One generated CRTDL per data selection profile of the pinned ontology through TORCH, DIMP and fhir-flattener, 4 in parallel, failed runs retried alone. Data and CRTDLs come from `pipeline/ontology_testdata.py` | D26 |
 
 ## Known defects
 
