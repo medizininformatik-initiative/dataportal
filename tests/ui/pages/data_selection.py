@@ -55,12 +55,21 @@ def _row(page: Page, name: str) -> Locator:
 
 
 def add_feature(page: Page, name: str) -> None:
-    """Searches the feature by name, ticks its row and adds it to the selection."""
+    """Searches the feature by name, ticks its row and adds it to the selection. A result
+    table that is rebuilt after the click drops the tick and leaves the button disabled.
+    A disabled button means that nothing is ticked, so ticking the row again is safe."""
     search(page, name)
-    row = _row(page, name).first
-    expect(row).to_be_visible()
-    row.locator("[data-cy=checkbox]").click()
-    page.get_by_role("button", name="Add to Selection").click()
+    button = page.get_by_role("button", name="Add to Selection")
+    for _ in range(3):
+        row = _row(page, name).first
+        expect(row).to_be_visible()
+        row.locator("[data-cy=checkbox]").click()
+        try:
+            expect(button).to_be_enabled(timeout=3000)
+            break
+        except AssertionError:
+            continue
+    button.click()
 
 
 def show_selection(page: Page) -> None:
