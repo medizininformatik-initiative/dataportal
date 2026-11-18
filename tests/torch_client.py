@@ -162,7 +162,8 @@ def torch_variant(env: dict[str, str], port: int = 8096):
     subprocess.run(["docker", "rm", "-f", name], capture_output=True)
     command = [
         "docker", "run", "-d", "--name", name, "--network", f"{COMPOSE_PROJECT}_default",
-        "--add-host", "auth.localhost:host-gateway", "-p", f"127.0.0.1:{port}:8080",
+        "--add-host", "auth.localhost:host-gateway", "--add-host", "host.docker.internal:host-gateway",
+        "-p", f"127.0.0.1:{port}:8080",
         "-v", f"{DATA_NODE_DIR / 'auth'}:/app/certs", "-v", f"{output}:/app/output",
     ]
     environment = env_file(DATA_NODE_DIR / "torch" / ".env") | {

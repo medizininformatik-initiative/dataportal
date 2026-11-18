@@ -142,6 +142,34 @@ def get_portal_access_token(
         return json.load(response)
 
 
+def create_portal_user(username: str, password: str, roles: tuple[str, ...]) -> None:
+    """Creates a user in the portal Keycloak with exactly `roles`, like
+    .github/scripts/create-portal-test-user.sh does for the main test user."""
+    env = {}
+    for line in (DATA_PORTAL_DIR / "keycloak" / ".env").read_text().splitlines():
+        if "=" in line and not line.lstrip().startswith("#"):
+            key, value = line.split("=", 1)
+            env[key.strip()] = value.strip().strip('"')
+
+    def kcadm(*args: str) -> str:
+        result = subprocess.run(
+            ["docker", "compose", "-p", COMPOSE_PROJECT, "-f", str(DATA_PORTAL_DIR / "keycloak" / "docker-compose.yml"),
+             "exec", "-T", "auth", "/opt/keycloak/bin/kcadm.sh", *args, "--config", "/tmp/kcadm.config"],
+            capture_output=True, text=True,
+        )
+        result.check_returncode()
+        return result.stdout
+
+    kcadm("config", "credentials", "--server", "http://localhost:8080/auth", "--realm", "master",
+          "--user", env["KC_BOOTSTRAP_ADMIN_USERNAME"], "--password", env["KC_BOOTSTRAP_ADMIN_PASSWORD"])
+    if not kcadm("get", "users", "-r", PORTAL_REALM, "-q", "exact=true", "-q", f"username={username}", "--fields", "id").strip(" []\n"):
+        kcadm("create", "users", "-r", PORTAL_REALM, "-s", f"username={username}", "-s", "enabled=true",
+              "-s", "firstName=Test", "-s", "lastName=User", "-s", f"email={username}@example.com", "-s", "emailVerified=true")
+    kcadm("set-password", "-r", PORTAL_REALM, "--username", username, "--new-password", password)
+    for role in roles:
+        kcadm("add-roles", "-r", PORTAL_REALM, "--uusername", username, "--rolename", role)
+
+
 _PORTAL_TOKEN: dict = {}
 
 

@@ -67,25 +67,40 @@ def contexts() -> tuple:
     return tuple(v.get("label") if isinstance(v, dict) else v for v in values)
 
 
+def _es_search(index: str, body: dict) -> dict:
+    request = urllib.request.Request(
+        f"{PORTAL_ES_URL}/{index}/_search",
+        data=json.dumps(body).encode(),
+        headers={"Content-Type": "application/json"},
+    )
+    with urllib.request.urlopen(request, timeout=60) as response:
+        return json.load(response)
+
+
 @lru_cache(maxsize=None)
 def sample_criteria() -> dict[str, dict]:
-    """One selectable criterion per UI profile. Large contexts (e.g. Diagnose) use a
-    different UI profile per terminology, so the first page of each context and
-    terminology pair is sampled."""
+    """One selectable criterion per UI profile, from Elasticsearch: for each context and
+    terminology the leaf criteria (without children) in id order, then the others. The
+    search API ranks by availability, which the availability updater changes, and its
+    first page then holds broad parents that do not run (D24)."""
+    pairs = _es_search("ontology", {"size": 0, "aggs": {"context": {"terms": {"field": "context.code", "size": 500},
+                                                                    "aggs": {"terminology": {"terms": {"field": "terminology", "size": 100}}}}}})
     samples: dict[str, dict] = {}
-    for context in contexts():
-        filters = _get("/api/v6/terminology/search/filter", **{"target-filter": "terminology", "contexts": context})
-        terminologies = [v["label"] for f in filters if f["name"] == "terminology" for v in f["values"]] or [None]
-        for terminology in terminologies:
-            params = {"searchterm": "", "contexts": context, "page-size": 50}
-            if terminology:
-                params["terminologies"] = terminology
-            hits = _get("/api/v6/terminology/entry/search", **params)
-            entries = {h["id"]: h for h in hits["results"] if h["selectable"]}
-            if not entries:
+    for context in pairs["aggregations"]["context"]["buckets"]:
+        for terminology in context["terminology"]["buckets"]:
+            selectable = [{"term": {"context.code": context["key"]}}, {"term": {"terminology": terminology["key"]}},
+                          {"term": {"selectable": True}}]
+            leaves = _es_search("ontology", {"size": 50, "_source": False, "query": {"bool": {
+                "filter": selectable, "must_not": [{"exists": {"field": "children.contextualized_termcode_hash"}}]}}})
+            others = _es_search("ontology", {"size": 50, "_source": False, "query": {"bool": {"filter": selectable}}})
+            ids = sorted(h["_id"] for h in leaves["hits"]["hits"])
+            ids += sorted({h["_id"] for h in others["hits"]["hits"]} - set(ids))
+            if not ids:
                 continue
-            for data in _get("/api/v6/terminology/criteria-profile-data", ids=",".join(entries)):
-                samples.setdefault(data["uiProfileId"], {**data, "search": entries[data["id"]]})
+            data = {d["id"]: d for d in _get("/api/v6/terminology/criteria-profile-data", ids=",".join(ids))}
+            for criterion_id in ids:
+                if criterion_id in data:
+                    samples.setdefault(data[criterion_id]["uiProfileId"], data[criterion_id])
     return samples
 
 
@@ -206,6 +221,17 @@ def test_criterion_of_ui_profile_runs_with_and_without_filter(name: str):
         assert run_feasibility(filtered, _token()) <= count
 
 
+@pytest.mark.xfail(strict=True, reason="D24: a broad SNOMED CT criterion (21371007 Operation on abdominal region) "
+                   "expands to 22,746 codes, one exists per code in a 1.2 MB CQL library; Blaze 1.13.0 fails to evaluate "
+                   "it and the query gets no result")
+def test_broad_snomed_procedure_criterion_runs():
+    term_code = {"code": "21371007", "system": "http://snomed.info/sct",
+                 "version": "http://snomed.info/sct/900000000000207008/version/20240701", "display": "Operation on abdominal region"}
+    context = {"code": "Procedure", "system": "fdpg.mii.cds", "version": "1.0.0", "display": "Prozedur"}
+    ccdl = {"version": CCDL_VERSION, "display": "D24", "inclusionCriteria": [[{"termCodes": [term_code], "context": context}]]}
+    assert run_feasibility(ccdl, _token()) >= 0
+
+
 def test_molgen_module_has_a_runnable_criterion():
     """ON-2: the MolGen 2026 criteria are searchable and run."""
     hits = _get("/api/v6/terminology/entry/search", searchterm="", **{"kds-modules": "Molgen", "page-size": 50})
@@ -220,16 +246,6 @@ def test_molgen_module_has_a_runnable_criterion():
 
 # Not every concept has an English translation. Criteria of these terminologies must have one.
 TRANSLATED_TERMINOLOGIES = ("http://fhir.de/CodeSystem/bfarm/icd-10-gm", "http://snomed.info/sct")
-
-
-def _es_search(index: str, body: dict) -> dict:
-    request = urllib.request.Request(
-        f"{PORTAL_ES_URL}/{index}/_search",
-        data=json.dumps(body).encode(),
-        headers={"Content-Type": "application/json"},
-    )
-    with urllib.request.urlopen(request, timeout=60) as response:
-        return json.load(response)
 
 
 def test_icd10_and_snomed_criteria_have_english_display():

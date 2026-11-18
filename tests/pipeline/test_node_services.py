@@ -13,26 +13,20 @@ of the validator are not checked here.
 
 from __future__ import annotations
 
-import datetime
-import io
 import json
-import os
-import pathlib
 import re
 import subprocess
-import tempfile
 import urllib.error
 import urllib.request
-import zipfile
 
 import pytest
 
 from helpers import COMPOSE_PROJECT, DATA_NODE_DIR, wait_for_url
-from torch_client import FHIR_URL, delete_resources, env_file, fhir_token
+from fde import FDE_DIR, fhir_get, run_fde
+from torch_client import delete_resources, env_file
 
 VALIDATOR_URL = "http://localhost:8080/validateResource"
 PACKAGES = "/root/.fhir/packages"
-FDE_DIR = DATA_NODE_DIR / "fhir-data-evaluator"
 
 
 def container(service: str) -> str:
@@ -42,12 +36,6 @@ def container(service: str) -> str:
 def inspect(service: str) -> dict:
     result = subprocess.run(["docker", "inspect", container(service)], capture_output=True, text=True, check=True)
     return json.loads(result.stdout)[0]
-
-
-def fhir_get(path: str) -> dict:
-    request = urllib.request.Request(f"{FHIR_URL}/{path}", headers={"Authorization": f"Bearer {fhir_token()}"})
-    with urllib.request.urlopen(request, timeout=60) as response:
-        return json.load(response)
 
 
 # --- BL-1 --------------------------------------------------------------------------------
@@ -63,54 +51,10 @@ def test_blaze_healthcheck_uses_wget_and_is_healthy(service):
 # --- FD-1, BL-4, BL-5 ----------------------------------------------------------------------
 
 
-def fde_measure() -> pathlib.Path:
-    """The measure file run-fde.sh uses, downloaded the same way if missing."""
-    script = (FDE_DIR / "run-fde.sh").read_text()
-    version = re.search(r"ONTOLOGY_VERSION=\$\{ONTOLOGY_VERSION:-(\S+)\}", script).group(1)
-    measure = FDE_DIR / "measure" / f"Measure-CdsCodingAvailability.fhir_v{version}.json"
-    if not measure.exists():
-        url = f"https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/download/v{version}/availability.zip"
-        with urllib.request.urlopen(url, timeout=120) as response:
-            archive = zipfile.ZipFile(io.BytesIO(response.read()))
-        measure.write_bytes(archive.read("Measure-CdsCodingAvailability.fhir.json"))
-    return measure
-
-
 @pytest.fixture(scope="module")
 def fde_report():
-    """Runs FDE once with the data node's .env, pointed at the fhir-server service (see
-    test_fde_default_points_at_the_fhir_server) and with 5 resources per page, and returns
-    the MeasureReport it uploaded."""
-    started = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    env = env_file(FDE_DIR / ".env") | {
-        "FHIR_SOURCE_SERVER": "http://fhir-server:8080/fhir",
-        "FHIR_REPORT_SERVER": "http://fhir-server:8080/fhir",
-        "FHIR_SOURCE_PAGE_COUNT": "5",
-        "SEND_REPORT_TO_SERVER": "true",
-        "CREATE_OBFUSCATED_REPORT": "false",
-        "PROJECT_IDENTIFIER_VALUE": "fdpg-data-availability-report",
-    }
-    with tempfile.TemporaryDirectory() as tmp:
-        env_path = pathlib.Path(tmp) / "fde.env"
-        env_path.write_text("".join(f"{k}={v}\n" for k, v in env.items()))
-        output = pathlib.Path(tmp) / "output"
-        output.mkdir(mode=0o777)
-        result = subprocess.run(
-            ["docker", "compose", "-p", COMPOSE_PROJECT, "-f", str(FDE_DIR / "docker-compose.yml"),
-             "run", "--rm", "fhir-data-evaluator"],
-            env=os.environ | {"OVERRIDE_ENV": str(env_path), "FDE_INPUT_MEASURE": str(fde_measure()),
-                              "FDE_OUTPUT_DIR": str(output), "COMPOSE_IGNORE_ORPHANS": "True"},
-            capture_output=True, text=True, timeout=600,
-        )
-    assert result.returncode == 0, result.stdout[-3000:] + result.stderr[-3000:]
-    documents = fhir_get(f"DocumentReference?_lastUpdated=gt{started}&_count=50").get("entry", [])
-    reports = [
-        d["resource"] for d in documents
-        if d["resource"].get("masterIdentifier", {}).get("value") == "fdpg-data-availability-report"
-    ]
-    assert len(reports) == 1, f"expected one DocumentReference of the FDE run, found {len(reports)}"
-    document = reports[0]
-    report = fhir_get(document["content"][0]["attachment"]["url"])
+    """One FDE run with 5 resources per page (BL-4)."""
+    document, report = run_fde(FHIR_SOURCE_PAGE_COUNT="5")
     yield report
     delete_resources([document, report])
 

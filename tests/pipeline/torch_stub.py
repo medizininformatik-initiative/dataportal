@@ -81,3 +81,44 @@ def torch_stub(port: int = 8097):
     finally:
         server.shutdown()
         server.server_close()
+
+
+@contextlib.contextmanager
+def slow_fhir_server(port: int = 8099, hold: float = 300):
+    """A FHIR server for a TORCH variant that answers metadata and holds every other
+    request for `hold` seconds, so TORCH jobs stay running. It listens on all interfaces
+    because the TORCH container reaches it through host.docker.internal."""
+    with urllib.request.urlopen(f"{TORCH_URL}/fhir/metadata", timeout=30) as response:
+        metadata = response.read()
+    release = threading.Event()
+
+    class Handler(http.server.BaseHTTPRequestHandler):
+        def log_message(self, *args):
+            pass
+
+        def _handle(self):
+            length = int(self.headers.get("Content-Length") or 0)
+            if length:
+                self.rfile.read(length)
+            if self.path.startswith("/fhir/metadata"):
+                body, status = metadata, 200
+            else:
+                release.wait(hold)
+                body, status = b'{"resourceType":"OperationOutcome"}', 503
+            self.send_response(status)
+            self.send_header("Content-Type", "application/fhir+json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+        do_GET = do_POST = _handle
+
+    server = http.server.ThreadingHTTPServer(("0.0.0.0", port), Handler)
+    server.daemon_threads = True
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    try:
+        yield f"http://host.docker.internal:{port}/fhir"
+    finally:
+        release.set()
+        server.shutdown()
+        server.server_close()
