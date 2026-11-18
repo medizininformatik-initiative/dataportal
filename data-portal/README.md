@@ -125,7 +125,7 @@ This starts the following default local data portal, with the following componen
 |-----------|-------------------------------------------|-----------------------------------------------------------------|
 | GUI       | https://data-portal-domain                | https://data-portal-subdomain.my-data-portal-domain             |
 | Keycloak  | https://data-portal-domain/auth           | https://keycloak-subdomain.my-data-portal-domain                |
-| Backend   | https://data-portal-domain/backend/api/v5 | https://backend-subdomain.my-data-portal-domain/backend/api/v5  |
+| Backend   | https://data-portal-domain/backend/api/v6 | https://backend-subdomain.my-data-portal-domain/backend/api/v6  |
 
 
 ### Step 7 - Configure keycloak and add a user for the user interface

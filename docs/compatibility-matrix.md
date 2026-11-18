@@ -8,14 +8,14 @@ This matrix shows the versions of the different versions of each service require
 | Reference Service               | Service                                              | v7.0.0           | v6.3.0            |
 | --------------------------------| ---------------------------------------------------- |------------------|-------------------|
 | ontology version                | Ontology for the FDPG Data Portal                    | v5.2.2           | v4.1.0 / 4.2.0    |
-| dataportal-ui                   | Dataportal UI                                        | v7.3.2           | v6.9.1            |
-| dataportal-backend              | Dataportal Backend                                   | v9.3.1           | v8.7.0            |
+| dataportal-ui                   | Dataportal UI                                        | v7.3.4           | v6.9.1            |
+| dataportal-backend              | Dataportal Backend                                   | v9.5.2           | v8.7.0            |
 | dataportal-availability-updater | Dataportal criteria availability updater             | v0.4.2           | v0.3.0            |
 | Blaze                           | Fhir Server                                          | v1.13.0          | v1.9.0            |
 | Blaze                           | Terminology Server                                   | v1.13.0          | v1.9.0            |
 | fhir-data-evaluator (FDE)       | FHIR data Analyser                                   | v1.3.3           | v1.3.3            |
 | flare                           | FHIR Search feasibility and cohort execution service | v2.9.0           | v2.7.0            |
-| TORCH                           | FHIR Data Extractor                                  | v1.0.4           | v1.0.0-beta.4     |
+| TORCH                           | FHIR Data Extractor                                  | v1.1.0           | v1.0.0-beta.4     |
 | fhir-pseudonymizer              | FHIR DIMP service                                    | v3.1.2           | v2.26.1           |
 | mii-fhir-validator              | FHIR Validation                                      | 0.0.1-alpha.9    | 0.0.1-alpha.6     |
 | fhir-flattener                  | Webservice SqlOnFhir ViewDefinition Runner           | v0.1.0-alpha.10  | v0.1.0-alpha.7    |

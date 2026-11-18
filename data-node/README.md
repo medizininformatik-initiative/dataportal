@@ -123,14 +123,13 @@ For the reverse proxy you need to choose the configuration (variable `DATA_NODE_
           For example, `https://auth.example.org:444/`.
         - `FHIR_SERVER_KC_HTTP_RELATIVE_PATH`: set to `/`.
       - Set to `false` to use none or your existing OpenID Connect provider.
-    - `FHIR_SERVER_FRONTEND_ORIGIN`: set the domain part to the value you set for `FHIR_HOSTNAME` before and the port to the `REV_PROXY_PORT` set in [rev-proxy/.env](./rev-proxy/.env) (default `444`).
-      For example, `https://fhir.example.org:444`.
+    - `HOST_HEADER` and `PROTOCOL_HEADER`: the Blaze frontend derives its URL from these request headers (default `X-Forwarded-Host` and `X-Forwarded-Proto`). Keep the defaults with the shipped rev-proxy. The reverse proxy must accept request headers of about 6 KB.
   - Change the values for the variables `FLARE_FHIR_OAUTH_ISSUER_URI` in [flare/.env](./flare/.env) and `FHIR_SERVER_OPENID_PROVIDER_URL` in [fhir-server/.env](./fhir-server/.env)
     to the issuer url of your OpenID Connect provider.
     - When using the bundled keycloak replace the values with `https://KEYCLOAK_HOSTNAME:REV_PROXY_PORT/realms/blaze`
       where `KEYCLOAK_HOSTNAME` is the domain you set before and `REV_PROXY_PORT` is the port number set in [rev-proxy/.env](./rev-proxy/.env) (default `444`).
     - When using your own OpenID Connect provider replace the values the corresponding issuer url.
-- [./context-paths.nginx.conf](./rev-proxy/subdomains.nginx.conf) which requires only one domain/hostname and uses context paths (`/` for flare,`/fhir` for fhir-server
+- [./context-paths.nginx.conf](./rev-proxy/context-paths.nginx.conf) which requires only one domain/hostname and uses context paths (`/` for flare,`/fhir` for fhir-server
   - The domain must point to the host machine the triangle will run on.
   - Change the following variables in [fhir-server/.env](./fhir-server/.env):
     - `FHIR_SERVER_FRONTEND_KEYCLOAK_ENABLED`:
@@ -140,8 +139,7 @@ For the reverse proxy you need to choose the configuration (variable `DATA_NODE_
           For example, `https://example.org:444/auth`.
         - `FHIR_SERVER_KC_HTTP_RELATIVE_PATH`: set to `/auth`.
       - Set to `false` to use none or your existing OpenID Connect provider.
-    - `FHIR_SERVER_FRONTEND_ORIGIN`: set the domain part to your domain/hostname and the port to the `REV_PROXY_PORT` set in [rev-proxy/.env](./rev-proxy/.env) (default `444`).
-      For example, `https://example.org:444`.
+    - `HOST_HEADER` and `PROTOCOL_HEADER`: the Blaze frontend derives its URL from these request headers (default `X-Forwarded-Host` and `X-Forwarded-Proto`). Keep the defaults with the shipped rev-proxy. The reverse proxy must accept request headers of about 6 KB.
   - Change the values for the variables `FLARE_FHIR_OAUTH_ISSUER_URI` in [flare/.env](./flare/.env) and `FHIR_SERVER_OPENID_PROVIDER_URL` in [fhir-server/.env](./fhir-server/.env)
     to the issuer url of your OpenID Connect provider.
     - When using the bundled keycloak replace the values with `https://KEYCLOAK_HOSTNAME:REV_PROXY_PORT/auth/realms/blaze`

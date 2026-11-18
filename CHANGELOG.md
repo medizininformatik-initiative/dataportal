@@ -10,7 +10,7 @@ Please refer to the respective repositories for a more in depth changelog of sin
 |--|--|
 |Dataportal UI|<https://github.com/medizininformatik-initiative/dataportal-ui>|
 |Dataportal Backend|<https://github.com/medizininformatik-initiative/dataportal-backend>|
-|Dataportal Availability Updater|<https://github.com/medizininformatik-initiative/availability-updater>|
+|Dataportal Availability Updater|<https://github.com/medizininformatik-initiative/dataportal-availibility-updater>|
 |Ontology Generation|<https://github.com/medizininformatik-initiative/fhir-ontology-generator>|
 |sq2cql|<https://github.com/medizininformatik-initiative/sq2cql>|
 |DSF Feasibility Process|<https://github.com/medizininformatik-initiative/mii-process-feasibility>|
@@ -25,9 +25,7 @@ Please refer to the respective repositories for a more in depth changelog of sin
 |fhir-pseudonymizer|<https://github.com/miracum/fhir-pseudonymizer>|
 
 
-## [7.0.0] - unreleased
-
-<!-- TODO: set release date -->
+## [7.0.0] - 2026-11-18
 
 ### Overview
 
@@ -43,17 +41,25 @@ Changes in this repository:
   - data-portal: backend API contracts, ontology checks, feasibility counts against golden values, availability-updater and browser tests of the UI
   - data-node: TORCH API, extraction and consent, aether CLI, DIMP, fhir-flattener, Blaze auth and the full DUP pipeline for every DSE profile
 - Fixed the default `AVAILABILITY_REPORT_SERVER_BASE_URL` of the availability-updater (`fhir-sever` → `fhir-server`)
+- Fixed the Keycloak database healthchecks of the data-portal and the data-node, which ran `pg_isready` with an empty user and database
+- Fixed the flare certs mount, which was mounted read-write instead of read-only
 
 ### Breaking changes
 
-- postgres: The dataportal-backend database (`dataportal-postgres`) and the keycloak database (`auth-db`) are upgraded from Postgres 17 to 18. Postgres 18 cannot start on Postgres 17 data, and the volume mount moved from `/var/lib/postgresql/data` to `/var/lib/postgresql`. Existing installations have to migrate their data:
+- postgres: The dataportal-backend database (`dataportal-postgres`), the data-portal keycloak database (`auth-db`) and the data-node keycloak database (`fhir-server-keycloak-db`) are upgraded from Postgres 17 to 18. Postgres 18 cannot start on Postgres 17 data, and the volume mount moved from `/var/lib/postgresql/data` to `/var/lib/postgresql`. Existing installations have to migrate their data. The commands below run from the repository root with the default compose project `dataportal` and the default database users.
   1. Before updating, dump each database with the old version running:
-     - backend: `docker compose exec dataportal-postgres pg_dumpall -U <DATABASE_USER> > backend-dump.sql` (default user `dataportaluser`)
-     - keycloak: `docker compose exec auth-db pg_dumpall -U <KC_DB_USERNAME> > keycloak-dump.sql` (default user `keycloakdbuser`)
-  2. Stop the stacks and remove the old volumes (`dataportal-postgres-data`, `dataportal-auth-db`, with the compose project prefix)
-  3. Update and start the new version, then restore each dump:
-     - backend: `docker compose exec -T dataportal-postgres psql -U <DATABASE_USER> -d postgres < backend-dump.sql`
-     - keycloak: `docker compose exec -T auth-db psql -U <KC_DB_USERNAME> -d postgres < keycloak-dump.sql`
+     - backend: `docker compose -p dataportal -f data-portal/backend/docker-compose.yml exec dataportal-postgres pg_dumpall -U dataportaluser > backend-dump.sql`
+     - data-portal keycloak: `docker compose -p dataportal -f data-portal/keycloak/docker-compose.yml exec auth-db pg_dumpall -U keycloakdbuser > keycloak-dump.sql`
+     - data-node keycloak: `docker compose -p dataportal -f data-node/fhir-server/keycloak.docker-compose.yml exec fhir-server-keycloak-db pg_dumpall -U keycloakdbuser > node-keycloak-dump.sql`
+  2. Stop the stacks and remove the old volumes (`dataportal-postgres-data`, `dataportal_dataportal-auth-db`, `dataportal_fhir-server-keycloak-db`).
+  3. Update the repository and start only the databases, for example `docker compose -p dataportal -f data-portal/keycloak/docker-compose.yml up -d auth-db`. Do not start Keycloak or the backend yet. They would create a new schema in the empty database, and the restore would then fail.
+  4. Restore each dump:
+     - backend: `docker compose -p dataportal -f data-portal/backend/docker-compose.yml exec -T dataportal-postgres psql -U dataportaluser -d postgres < backend-dump.sql`
+     - data-portal keycloak: `docker compose -p dataportal -f data-portal/keycloak/docker-compose.yml exec -T auth-db psql -U keycloakdbuser -d postgres < keycloak-dump.sql`
+     - data-node keycloak: `docker compose -p dataportal -f data-node/fhir-server/keycloak.docker-compose.yml exec -T fhir-server-keycloak-db psql -U keycloakdbuser -d postgres < node-keycloak-dump.sql`
+     
+     The errors `role ... already exists` and `database ... already exists` are expected.
+  5. Start the stacks as usual.
 - ontology: Ontology 5.x changes the Elasticsearch artifact. Reinstall the index once with `DATAPORTAL_ES_INIT_FORCE_REINSTALL="true"`.
 - TORCH: Consent results differ from 6.0.0 - [see](https://medizininformatik-initiative.github.io/torch/implementation/consent.html)
   - Only `.8` and `.6` are evaluated and both must be in the CRTDL. Combined consent keys (e.g. `yes-yes-no-yes`) are no longer supported.
@@ -73,18 +79,16 @@ Changes in this repository:
 - FLARE: Unsupported FHIR search parameters now fail a query instead of being ignored (`FLARE_FHIR_STRICT_HANDLING`, default `true`).
 - dataportal-backend: The REST API moved to `/api/v6`. External API clients have to update their paths.
 - TORCH 1.1.0: Compartment resources without a patient reference are excluded as `PATIENT_NOT_FOUND`, resources linked to several patients as `MULTIPLE_PATIENTS`. `job-summary.json` reports both counts.
-
-<!-- TODO: add breaking changes of the final dataportal-ui release -->
+- vfps: The vfps database is upgraded from Postgres 17.5 to 18.7. It has no named volume, so the updated container starts with an empty database and existing pseudonyms are lost. If you need them, dump the database before updating with `docker compose -p dataportal -f data-node/fhir-pseudonymizer/docker-compose.vfps.yml exec postgresql pg_dumpall -U postgres > vfps-dump.sql`. After the update start only the database with `docker compose -p dataportal -f data-node/fhir-pseudonymizer/docker-compose.vfps.yml up -d postgresql`, restore with `docker compose -p dataportal -f data-node/fhir-pseudonymizer/docker-compose.vfps.yml exec -T postgresql psql -U postgres -d postgres < vfps-dump.sql` and then start the data node.
 
 ### Security
 
-- Java4Shell (CVE-2026-114938): Elasticsearch (`ES_JAVA_OPTS`) and Keycloak (`JAVA_OPTS_APPEND`) run with `-XX:-UseBASE64Intrinsics`. The dataportal-backend image sets the flag itself. If you override these variables in your own setup, add the flag there.
+- Java4Shell (CVE-2026-114938): All JVM services run with `-XX:-UseBASE64Intrinsics`. Elasticsearch sets it in `ES_JAVA_OPTS`, Keycloak in `JAVA_OPTS_APPEND`, the data-node services (Blaze, flare, TORCH, FDE, fhir-flattener, mii-fhir-validator) in `JDK_JAVA_OPTIONS`. The dataportal-backend image sets the flag itself. If you override these variables in your own setup, add the flag there.
+- nginx HTTP/2 (CVE-2026-123633, CVE-2026-123007): HTTP/2 is disabled in the data-portal and data-node proxies, because no fixed nginx-unprivileged image is published yet. Clients fall back to HTTP/1.1. [#226](https://github.com/medizininformatik-initiative/dataportal/issues/226) tracks the image update and re-enabling HTTP/2.
 
 ### Ontology
 
 This release is based on ontology version [v5.2.2](https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/tag/v5.2.2) (was [v4.0.0](https://github.com/medizininformatik-initiative/fhir-ontology-generator/releases/tag/v4.0.0)).
-
-<!-- TODO: v5.2.2 is still marked as pre-release on GitHub -->
 
 - New modules: Onkologie and MolGen 2026
 - New attributes: interpretation for laboratory values, status for encounters
@@ -97,13 +101,14 @@ This release is based on ontology version [v5.2.2](https://github.com/medizininf
 
 |Component|From|To|
 |--|--|--|
-|dataportal-ui|[v6.8.0](https://github.com/medizininformatik-initiative/dataportal-ui/releases/tag/v6.8.0)|TODO (currently 7.3.4-rc4)|
-|dataportal-backend|[v8.6.0](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v8.6.0)|[v9.5.1](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v9.5.1)|
+|dataportal-ui|[v6.8.0](https://github.com/medizininformatik-initiative/dataportal-ui/releases/tag/v6.8.0)|[v7.3.4](https://github.com/medizininformatik-initiative/dataportal-ui/releases/tag/v7.3.4)|
+|dataportal-backend|[v8.6.0](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v8.6.0)|[v9.5.2](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v9.5.2)|
 |availability-updater|[v0.3.0](https://github.com/medizininformatik-initiative/dataportal-availibility-updater/releases/tag/v0.3.0)|[v0.4.2](https://github.com/medizininformatik-initiative/dataportal-availibility-updater/releases/tag/v0.4.2)|
 |dataportal-es-init|2.0.0|3.1.0|
 |Elasticsearch|9.2.4|9.5.6|
 |Keycloak|26.3.1|26.8.2|
 |Postgres (backend and Keycloak)|17|18.7|
+|nginx (proxy)|1.27|1.31.7|
 
 **Data Node**
 
@@ -118,15 +123,17 @@ This release is based on ontology version [v5.2.2](https://github.com/medizininf
 |fhir-pseudonymizer|[v2.23.0](https://github.com/miracum/fhir-pseudonymizer/releases/tag/v2.23.0)|[v3.1.2](https://github.com/miracum/fhir-pseudonymizer/releases/tag/v3.1.2)|
 |vfps|[v1.3.6](https://github.com/miracum/vfps/releases/tag/v1.3.6)|[v1.28.0](https://github.com/miracum/vfps/releases/tag/v1.28.0)|
 |mii-fhir-validator|[0.0.1-alpha.5](https://github.com/medizininformatik-initiative/mii-fhir-validator/releases/tag/v0.0.1-alpha.5)|[0.0.1-alpha.9](https://github.com/medizininformatik-initiative/mii-fhir-validator/releases/tag/v0.0.1-alpha.9)|
+|Postgres (vfps)|17.5|18.7|
+|Keycloak (FHIR server auth)|26.3.1|26.8.2|
+|Postgres (Keycloak)|17|18.7|
+|nginx (rev-proxy)|1.27|1.31.7|
 |fhir-flattener|[0.1.0-alpha.7](https://github.com/medizininformatik-initiative/fhir-flattener/releases/tag/v0.1.0-alpha.7)|[0.1.0-alpha.10](https://github.com/medizininformatik-initiative/fhir-flattener/releases/tag/v0.1.0-alpha.10)|
 
 The full list of changes is in the release notes of each component, linked in the table.
 
 ### Highlights
 
-<!-- TODO: update the dataportal-ui highlights once its final release exists -->
-
-- **dataportal-ui:** Angular 19. Elasticsearch-based search replaces the tree in the data selection. Criteria are edited on their own page. Shortcuts lead to missing filters and unlinked references. CSV download of the data selection.
+- **dataportal-ui:** Angular 19. Elasticsearch-based search replaces the tree in the data selection. Criteria are edited on their own page. Shortcuts lead to missing filters and unlinked references. CSV download of the data selection. Collapsible criteria tiles, layout for lower screen resolutions, more robust result polling and `linux/arm64` images.
 - **dataportal-backend:** Spring Boot 4. Feature search with field descriptions and pinned profiles. sq2cql replaced by cctb-cql. The CRTDL upgrade removes filters the ontology no longer supports. Startup check that the Elasticsearch index matches the ontology version (`ELASTIC_SEARCH_ONTOLOGY_VERSION_CHECK_MODE`, default `warn`).
 - **availability-updater:** Reads the ontology 5.x layout and uses less memory. OAuth2 and basic auth for the ontology download.
 - **TORCH:** First stable release. Task API to submit, pause, cancel and delete jobs and to follow their progress. Consent calculation follows the MII consent specification and reports conflicts. Extraction-exclusion list and Prometheus metrics. Masks required elements with data-absent-reason stubs and reports resources that still violate required cardinality as job issues.
