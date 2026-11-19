@@ -25,7 +25,7 @@ Please refer to the respective repositories for a more in depth changelog of sin
 |fhir-pseudonymizer|<https://github.com/miracum/fhir-pseudonymizer>|
 
 
-## [7.0.0] - 2026-11-18
+## [7.0.0] - 2026-11-19
 
 ### Overview
 
