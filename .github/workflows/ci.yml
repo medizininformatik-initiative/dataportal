@@ -12,6 +12,11 @@ on:
     - main
     - develop
 
+# A new push to the same branch, PR or tag cancels the run that is still in progress.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   DATA_PORTAL_COMPOSE_PROJECT: test
 
