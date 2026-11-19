@@ -84,7 +84,7 @@ Changes in this repository:
 ### Security
 
 - Java4Shell (CVE-2026-114938): All JVM services run with `-XX:-UseBASE64Intrinsics`. Elasticsearch sets it in `ES_JAVA_OPTS`, Keycloak in `JAVA_OPTS_APPEND`, the data-node services (Blaze, flare, TORCH, FDE, fhir-flattener, mii-fhir-validator) in `JDK_JAVA_OPTIONS`. The dataportal-backend image sets the flag itself. If you override these variables in your own setup, add the flag there.
-- nginx HTTP/2 (CVE-2026-123633, CVE-2026-123007): HTTP/2 is disabled in the data-portal and data-node proxies, because no fixed nginx-unprivileged image is published yet. Clients fall back to HTTP/1.1. [#226](https://github.com/medizininformatik-initiative/dataportal/issues/226) tracks the image update and re-enabling HTTP/2.
+- nginx HTTP/2 (CVE-2026-123633, CVE-2026-123007): The data-portal proxy, the data-node rev-proxy and torch-nginx use nginx 1.31.9, which fixes both vulnerabilities. The image is now pulled from `ghcr.io/nginx/nginx-unprivileged`, because Docker Hub does not publish 1.31.9 yet. If your site restricts container registries, allow `ghcr.io`. The tag v7.0.0 was first published on 2026-11-18 with nginx 1.31.7 and HTTP/2 disabled, and was moved on 2026-11-19 to this fix. If you checked out v7.0.0 before, run `git fetch --tags --force` and check out v7.0.0 again - [#226](https://github.com/medizininformatik-initiative/dataportal/issues/226)
 
 ### Ontology
 
@@ -110,7 +110,7 @@ The versions of all components per release are listed in the [compatibility matr
 |Elasticsearch|9.2.4|9.5.6|
 |Keycloak|26.3.1|26.8.2|
 |Postgres (backend and Keycloak)|17|18.7|
-|nginx (proxy)|1.27|1.31.7|
+|nginx (proxy)|1.27|1.31.9|
 
 **Data Node**
 
@@ -128,7 +128,7 @@ The versions of all components per release are listed in the [compatibility matr
 |Postgres (vfps)|17.5|18.7|
 |Keycloak (FHIR server auth)|26.3.1|26.8.2|
 |Postgres (Keycloak)|17|18.7|
-|nginx (rev-proxy)|1.27|1.31.7|
+|nginx (rev-proxy)|1.27|1.31.9|
 |fhir-flattener|[0.1.0-alpha.7](https://github.com/medizininformatik-initiative/fhir-flattener/releases/tag/v0.1.0-alpha.7)|[0.1.0-alpha.10](https://github.com/medizininformatik-initiative/fhir-flattener/releases/tag/v0.1.0-alpha.10)|
 
 The full list of changes is in the release notes of each component, linked in the table.
