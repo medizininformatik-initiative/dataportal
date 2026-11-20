@@ -63,7 +63,10 @@ jobs:
 
     - name: Run e2e tests
       # The DUP profile runs get their own runner, see test-dup-pipeline-profiles.
-      run: pytest tests/node tests/pipeline --ignore=tests/pipeline/test_dup_pipeline_profiles.py
+      # The step takes about 5 minutes. It sometimes hangs, so it times out after 15 minutes
+      # and rerun-timed-out.yml re-runs the job once. -v logs the test that hung.
+      timeout-minutes: 15
+      run: pytest -v tests/node tests/pipeline --ignore=tests/pipeline/test_dup_pipeline_profiles.py
 
   test-dup-pipeline-profiles:
     # One pipeline run per DSE profile, 4 in parallel. GitHub shut the runner down (exit code 143)
