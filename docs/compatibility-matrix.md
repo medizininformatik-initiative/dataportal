@@ -9,7 +9,7 @@ This matrix shows the versions of the different versions of each service require
 | --------------------------------| ---------------------------------------------------- |------------------|-------------------|
 | ontology version                | Ontology for the FDPG Data Portal                    | v5.2.2           | v4.1.0 / 4.2.0    |
 | dataportal-ui                   | Dataportal UI                                        | v7.3.4           | v6.9.1            |
-| dataportal-backend              | Dataportal Backend                                   | v9.5.2           | v8.7.0            |
+| dataportal-backend              | Dataportal Backend                                   | v9.6.0           | v8.7.0            |
 | dataportal-availability-updater | Dataportal criteria availability updater             | v0.4.2           | v0.3.0            |
 | Blaze                           | Fhir Server                                          | v1.13.0          | v1.9.0            |
 | Blaze                           | Terminology Server                                   | v1.13.0          | v1.9.0            |
