@@ -25,7 +25,7 @@ Please refer to the respective repositories for a more in depth changelog of sin
 |fhir-pseudonymizer|<https://github.com/miracum/fhir-pseudonymizer>|
 
 
-## [7.0.0] - 2026-11-19
+## [7.0.0] - 2026-11-20
 
 ### Overview
 
@@ -43,6 +43,7 @@ Changes in this repository:
 - Fixed the default `AVAILABILITY_REPORT_SERVER_BASE_URL` of the availability-updater (`fhir-sever` → `fhir-server`)
 - Fixed the Keycloak database healthchecks of the data-portal and the data-node, which ran `pg_isready` with an empty user and database
 - Fixed the flare certs mount, which was mounted read-write instead of read-only
+- dataportal-backend 9.6.0: Listing data queries no longer fails with 500 for old entries that store a bare CCDL. The profile search with pinned profiles allocates about 1 MB instead of 32 MB per request. The backend now starts with a heap of about 1 GB. The tag v7.0.0 was moved on 2026-11-20 to include this fix. If you checked out v7.0.0 before, run `git fetch --tags --force` and check out v7.0.0 again
 
 ### Breaking changes
 
@@ -104,7 +105,7 @@ The versions of all components per release are listed in the [compatibility matr
 |Component|From|To|
 |--|--|--|
 |dataportal-ui|[v6.8.0](https://github.com/medizininformatik-initiative/dataportal-ui/releases/tag/v6.8.0)|[v7.3.4](https://github.com/medizininformatik-initiative/dataportal-ui/releases/tag/v7.3.4)|
-|dataportal-backend|[v8.6.0](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v8.6.0)|[v9.5.2](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v9.5.2)|
+|dataportal-backend|[v8.6.0](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v8.6.0)|[v9.6.0](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v9.6.0)|
 |availability-updater|[v0.3.0](https://github.com/medizininformatik-initiative/dataportal-availibility-updater/releases/tag/v0.3.0)|[v0.4.2](https://github.com/medizininformatik-initiative/dataportal-availibility-updater/releases/tag/v0.4.2)|
 |dataportal-es-init|2.0.0|3.1.0|
 |Elasticsearch|9.2.4|9.5.6|
