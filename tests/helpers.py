@@ -83,6 +83,40 @@ def wait_for_url(url: str, expect_status: int | None = 200, timeout: float = 120
     raise TimeoutError(f"{url} was not ready after {timeout}s ({last_error})")
 
 
+def wait_for_validator(url: str, profiles: dict[str, str], timeout: float = 600) -> None:
+    """Waits until the validator at `url` (its /validateResource endpoint) resolves every
+    profile of `profiles` (profile URL -> resource type). The validator answers HTTP
+    requests before it has loaded its IGs, so any HTTP status is no sign of readiness:
+    until then it reports the profile of a resource as not found."""
+    deadline = time.monotonic() + timeout
+    pending = list(profiles)
+    last_error: object = "no attempt made"
+    while time.monotonic() < deadline:
+        try:
+            for profile in list(pending):
+                probe = json.dumps({"resourceType": profiles[profile], "meta": {"profile": [profile]}}).encode()
+                request = urllib.request.Request(
+                    url, data=probe, headers={"Content-Type": "application/fhir+json", "Accept": "application/fhir+json"}
+                )
+                try:
+                    with urllib.request.urlopen(request, timeout=60) as response:
+                        issues = json.load(response)["issue"]
+                except urllib.error.HTTPError as error:
+                    issues = json.load(error)["issue"]
+                texts = [i.get("details", {}).get("text") or i.get("diagnostics", "") for i in issues]
+                unresolved = [t for t in texts if "could not be found" in t and profile in t]
+                if unresolved:
+                    last_error = unresolved[0]
+                    break
+                pending.remove(profile)
+            if not pending:
+                return
+        except (urllib.error.URLError, ConnectionError, http.client.HTTPException, ValueError, KeyError) as error:
+            last_error = error
+        time.sleep(5)
+    raise TimeoutError(f"validator {url} did not resolve {pending} after {timeout}s ({last_error})")
+
+
 def get_fhir_access_token() -> str:
     """Fetches an OAuth access token for the FHIR server (see
     data-node/get-fhir-server-access-token.sh)."""

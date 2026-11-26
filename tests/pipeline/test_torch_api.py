@@ -9,7 +9,10 @@ TO-15  405 for a wrong HTTP method
 ON-7   the data selection date filter (recorded-date of Diagnose) limits the extracted resources
 
 TO-1 needs a job that stays running: a TORCH variant reads from a FHIR server that holds
-every search (tests/pipeline/torch_stub.py slow_fhir_server).
+every search (tests/pipeline/torch_stub.py slow_fhir_server). The TO-1 tests share that job
+and run in file order: the cancel test ends the job, so it has to stay the last of them.
+
+Spec: https://medizininformatik-initiative.github.io/torch/api/task-api.html
 """
 
 from __future__ import annotations
@@ -23,7 +26,7 @@ import urllib.request
 import pytest
 
 from helpers import DATA_NODE_DIR, wait_for_url
-from torch_client import TORCH_URL, Result, condition_crtdl, extract, submit, torch_variant, wait
+from torch_client import TORCH_URL, Result, condition_crtdl, extract, fhir_search, submit, torch_variant, wait
 from torch_stub import slow_fhir_server
 
 EXAMPLE_CRTDL = DATA_NODE_DIR / "aether" / "queries" / "example-crtdl.json"
@@ -67,48 +70,63 @@ def progress(task: dict) -> dict:
 
 @pytest.fixture(scope="module")
 def running_job():
-    """A job of a TORCH variant that waits for its FHIR server: (task URL, job id)."""
+    """A job of a TORCH variant that waits for its FHIR server: (task URL, job id, TORCH URL,
+    the RUNNING_* state it reached)."""
     with slow_fhir_server() as fhir, torch_variant({"TORCH_FHIR_URL": fhir}) as torch:
         status_url = submit(condition_crtdl(None), ["s6-patient"], torch_url=torch.url)
         job = status_url.rstrip("/").rsplit("/", 1)[1]
         task_url = f"{torch.url}/fhir/Task/{job}"
         deadline = time.monotonic() + 60
-        while not business_status(call("GET", task_url)[1]).startswith("RUNNING_PROCESS"):
-            assert time.monotonic() < deadline, "the job does not reach RUNNING_PROCESS_*"
+        while not (state := business_status(call("GET", task_url)[1])).startswith("RUNNING_PROCESS"):
+            assert time.monotonic() < deadline, f"the job does not reach RUNNING_PROCESS_*, it is {state}"
             time.sleep(0.5)
-        yield task_url, job, torch.url
+        yield task_url, job, torch.url, state
 
 
 def test_running_job_can_be_paused_and_resumed(running_job):
-    task_url, _, _ = running_job
+    """$resume returns the job to the state it was paused from."""
+    task_url, _, _, state = running_job
     status, task = call("POST", f"{task_url}/$pause")
     assert (status, task["status"], business_status(task)) == (200, "on-hold", "PAUSED")
     status, task = call("POST", f"{task_url}/$resume")
-    assert (status, task["status"]) == (200, "in-progress")
+    assert (status, task["status"], business_status(task)) == (200, "in-progress", state)
 
 
 def test_priority_update_needs_the_current_version(running_job):
-    task_url, job, _ = running_job
+    task_url, job, _, _ = running_job
     body = {"resourceType": "Task", "id": job, "status": "in-progress", "intent": "order", "priority": "asap"}
     assert call("PUT", task_url, body)[0] == 428
-    # The TORCH docs name 409 for a stale version, TORCH 1.1.0 answers 412.
-    assert call("PUT", task_url, body, {"If-Match": 'W/"0"'})[0] in (409, 412)
+    # A failed If-Match is 412 Precondition Failed (RFC 9110 13.1.1), which TORCH 1.1.0
+    # answers. The TORCH Task API docs name 409 Conflict, which is a mistake of the docs.
+    assert call("PUT", task_url, body, {"If-Match": 'W/"0"'})[0] == 412
     version = call("GET", task_url)[1]["meta"]["versionId"]
     status, task = call("PUT", task_url, body, {"If-Match": f'W/"{version}"'})
     assert (status, task["priority"]) == (200, "asap")
 
 
+def search_ids(torch_url: str, query: str) -> list[str]:
+    """Task ids of a search. With handling=strict TORCH rejects parameters it does not
+    understand instead of ignoring them, so the filter is really applied."""
+    status, bundle = call("GET", f"{torch_url}/fhir/Task?{query}", headers={"Prefer": "handling=strict"})
+    assert status == 200, bundle
+    return [e["resource"]["id"] for e in bundle.get("entry", [])]
+
+
 def test_task_search_by_status_and_id(running_job):
-    _, job, torch_url = running_job
-    status, bundle = call("GET", f"{torch_url}/fhir/Task?_id={job}&status=RUNNING_PROCESS_BATCH,PAUSED")
-    assert status == 200
-    assert [e["resource"]["id"] for e in bundle.get("entry", [])] == [job]
+    _, job, torch_url, state = running_job
+    assert search_ids(torch_url, f"_id={job}&status={state},PAUSED") == [job]
+    assert search_ids(torch_url, f"_id={job}&status=COMPLETED,FAILED") == []
+    assert job in search_ids(torch_url, f"status={state}")
 
 
 def test_running_job_can_be_cancelled(running_job):
-    task_url, _, _ = running_job
+    task_url, _, _, _ = running_job
     status, task = call("POST", f"{task_url}/$cancel")
-    assert (status, task["status"]) == (200, "cancelled")
+    assert (status, task["status"], business_status(task)) == (200, "cancelled", "CANCELLED")
+    assert business_status(call("GET", task_url)[1]) == "CANCELLED"
+    # CANCELLED is final: the job cannot be paused or resumed any more. A second $cancel is
+    # a no-op in TORCH 1.1.0 (200), although the docs name 409 for it.
+    assert [call("POST", f"{task_url}/{op}")[0] for op in ("$pause", "$resume")] == [409, 409]
 
 
 def test_unknown_job_is_404():
@@ -117,8 +135,10 @@ def test_unknown_job_is_404():
     assert outcome["resourceType"] == "OperationOutcome"
 
 
-@pytest.mark.xfail(strict=True, reason="D20, torch#1391: TORCH 1.1.0 answers DELETE /fhir/Task/{id} with 204, but "
-                   "the Task stays readable and the result files stay on disk and on the file server")
+@pytest.mark.xfail(strict=True, raises=AssertionError,
+                   reason="D20, torch#1391: TORCH 1.1.0 answers DELETE /fhir/Task/{id} with 204, but the Task stays "
+                   "readable and the result files stay on disk and on the file server. TORCH only marks the job "
+                   "DELETED and removes its directory in a GC sweep (torch.gc.job-deletion-delay-ms, default 24 h)")
 def test_deleted_job_and_its_results_are_gone():
     status_url = submit(json.loads(EXAMPLE_CRTDL.read_text()))
     result = Result(wait(status_url))
@@ -154,10 +174,20 @@ def test_task_progress_matches_the_job(consent_job):
     assert numbers["batchesCompleted"] == numbers["batchesTotal"] == len(consent_job.job["batches"])
 
 
-def test_prometheus_metrics_count_extractions(consent_job):
+def extract_data_requests() -> float:
+    """Count of the Spring Boot http.server.requests metric for $extract-data, all statuses."""
     status, text = call("GET", f"{TORCH_URL}/actuator/prometheus")
     assert status == 200
-    assert 'uri="/fhir/$extract-data"' in text
+    return sum(
+        float(line.rsplit(" ", 1)[1]) for line in text.splitlines()
+        if line.startswith("http_server_requests_seconds_count{") and 'uri="/fhir/$extract-data"' in line
+    )
+
+
+def test_prometheus_metrics_count_extractions():
+    before = extract_data_requests()
+    wait(submit(json.loads(EXAMPLE_CRTDL.read_text())))
+    assert extract_data_requests() >= before + 1
 
 
 # --- TO-7 ----------------------------------------------------------------------------------
@@ -178,11 +208,11 @@ MASKED = [{"extension": [{"url": "http://hl7.org/fhir/StructureDefinition/data-a
 
 
 def test_patient_identifier_only_when_selected():
-    """PatientPseudonymisiert requires an identifier, so without selection TORCH writes a
-    masked one (data-absent-reason) instead of the values."""
+    """PatientPseudonymisiert requires an identifier (1..*), so without selection TORCH writes
+    a masked one (data-absent-reason) instead of the values (TORCH docs, Redaction)."""
     without = extract(patient_crtdl(False)).resources("Patient")
     with_identifier = extract(patient_crtdl(True)).resources("Patient")
-    assert without and all(p.get("identifier", MASKED) == MASKED for p in without)
+    assert without and all(p.get("identifier") == MASKED for p in without)
     assert any(i.get("value") for p in with_identifier for i in p.get("identifier", []))
     assert all(PATIENT_PROFILE in p["meta"]["profile"] for p in without + with_identifier)
 
@@ -195,6 +225,8 @@ def test_evaluate_cohort_matches_the_extraction_cohort():
     status, cohort = call("POST", f"{TORCH_URL}/fhir/$evaluate-cohort", crtdl, content_type="application/json")
     assert status == 200 and cohort["resourceType"] == "List"
     assert len(cohort["entry"]) == extract(crtdl).summary["Num-Cohort-Patients"]
+    # independent oracle: the example cohort is every male patient
+    assert len(cohort["entry"]) == len(fhir_search("Patient?gender=male&_elements=id&_count=1000"))
 
 
 def test_translate_cql():
@@ -202,6 +234,7 @@ def test_translate_cql():
     status, cql = call("POST", f"{TORCH_URL}/fhir/$translate-cql", cohort, content_type="application/json")
     assert status == 200
     assert "define InInitialPopulation" in cql
+    assert "'male'" in cql, "the CQL does not contain the gender criterion of the cohort"
 
 
 def test_wrong_method_is_405():
