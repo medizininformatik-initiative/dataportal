@@ -5,26 +5,26 @@ This matrix shows the versions of the different versions of each service require
 ## Versions latest
 
 
-| Reference Service               | Service                                              | v7.0.0           | v6.3.0            |
-| --------------------------------| ---------------------------------------------------- |------------------|-------------------|
-| ontology version                | Ontology for the FDPG Data Portal                    | v5.2.2           | v4.1.0 / 4.2.0    |
-| dataportal-ui                   | Dataportal UI                                        | v7.3.4           | v6.9.1            |
-| dataportal-backend              | Dataportal Backend                                   | v9.6.0           | v8.7.0            |
-| dataportal-availability-updater | Dataportal criteria availability updater             | v0.4.2           | v0.3.0            |
-| Blaze                           | Fhir Server                                          | v1.13.0          | v1.9.0            |
-| Blaze                           | Terminology Server                                   | v1.13.0          | v1.9.0            |
-| fhir-data-evaluator (FDE)       | FHIR data Analyser                                   | v1.3.3           | v1.3.3            |
-| flare                           | FHIR Search feasibility and cohort execution service | v2.9.0           | v2.7.0            |
-| TORCH                           | FHIR Data Extractor                                  | v1.1.0           | v1.0.0-beta.4     |
-| fhir-pseudonymizer              | FHIR DIMP service                                    | v3.1.2           | v2.26.1           |
-| mii-fhir-validator              | FHIR Validation                                      | 0.0.1-alpha.9    | 0.0.1-alpha.6     |
-| fhir-flattener                  | Webservice SqlOnFhir ViewDefinition Runner           | v0.1.0-alpha.10  | v0.1.0-alpha.7    |
-| aether                          | Data Use Project Pipeline Coordination Tool          | v1.6.0           | v0.10.1           |
-| DSF                             | Data sharing middleware                              | >2.1.1           | >2.0.0            |
-| mii-process-feasibility         | DSF feasibility Plugin                               | >1.0.0.11        | >1.0.0.11         |
-| mii-process-report              | DSF cds report Plugin                                | 1.1.2.0, >1.2.0.0| 1.1.2.0, >1.2.0.0 |
-| mii-process-data-transfer       | DSF data transfer Plugin                             | 1.0.3.1, >1.1.0.0| 1.0.3.1, >1.1.0.0 |
-| mii-process-data-sharing        | DSF data sharing Plugin                              | 1.0.2.1, >1.1.0.0| 1.0.2.1, >1.1.0.0 |
+| Reference Service               | Service                                              | v7.0.1           | v7.0.0           | v6.3.0            |
+| --------------------------------| ---------------------------------------------------- |------------------|------------------|-------------------|
+| ontology version                | Ontology for the FDPG Data Portal                    | v5.2.2           | v5.2.2           | v4.1.0 / 4.2.0    |
+| dataportal-ui                   | Dataportal UI                                        | v7.3.4           | v7.3.4           | v6.9.1            |
+| dataportal-backend              | Dataportal Backend                                   | v9.6.1           | v9.6.0           | v8.7.0            |
+| dataportal-availability-updater | Dataportal criteria availability updater             | v0.4.2           | v0.4.2           | v0.3.0            |
+| Blaze                           | Fhir Server                                          | v1.14.0          | v1.13.0          | v1.9.0            |
+| Blaze                           | Terminology Server                                   | v1.14.0          | v1.13.0          | v1.9.0            |
+| fhir-data-evaluator (FDE)       | FHIR data Analyser                                   | v1.3.5           | v1.3.3           | v1.3.3            |
+| flare                           | FHIR Search feasibility and cohort execution service | v2.9.1           | v2.9.0           | v2.7.0            |
+| TORCH                           | FHIR Data Extractor                                  | v1.1.1           | v1.1.0           | v1.0.0-beta.4     |
+| fhir-pseudonymizer              | FHIR DIMP service                                    | v3.1.2           | v3.1.2           | v2.26.1           |
+| mii-fhir-validator              | FHIR Validation                                      | 0.0.1-alpha.10   | 0.0.1-alpha.9    | 0.0.1-alpha.6     |
+| fhir-flattener                  | Webservice SqlOnFhir ViewDefinition Runner           | v0.1.0           | v0.1.0-alpha.10  | v0.1.0-alpha.7    |
+| aether                          | Data Use Project Pipeline Coordination Tool          | v1.6.0           | v1.6.0           | v0.10.1           |
+| DSF                             | Data sharing middleware                              | >2.1.1           | >2.1.1           | >2.0.0            |
+| mii-process-feasibility         | DSF feasibility Plugin                               | >1.0.0.11        | >1.0.0.11        | >1.0.0.11         |
+| mii-process-report              | DSF cds report Plugin                                | 1.1.2.0, >1.2.0.0| 1.1.2.0, >1.2.0.0| 1.1.2.0, >1.2.0.0 |
+| mii-process-data-transfer       | DSF data transfer Plugin                             | 1.0.3.1, >1.1.0.0| 1.0.3.1, >1.1.0.0| 1.0.3.1, >1.1.0.0 |
+| mii-process-data-sharing        | DSF data sharing Plugin                              | 1.0.2.1, >1.1.0.0| 1.0.2.1, >1.1.0.0| 1.0.2.1, >1.1.0.0 |
 
 
 

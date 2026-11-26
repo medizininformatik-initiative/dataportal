@@ -1,6 +1,6 @@
 services:
   fhir-server:
-    image: samply/blaze:1.13.0
+    image: samply/blaze:1.14.0
     healthcheck:
       test: [ "CMD", "wget", "--spider", "http://127.0.0.1:8080/health" ]
       interval: 5s
@@ -9,9 +9,6 @@ services:
       start_period: 60s
     env_file:
       - .env
-    environment:
-      # Workaround for CVE-2026-114938 (Java4Shell). Remove once the image ships a patched JDK.
-      JDK_JAVA_OPTIONS: "-XX:-UseBASE64Intrinsics"
     ports:
     - ${PORT_FHIR_SERVER_LOCALHOST:-127.0.0.1:8081}:8080
     extra_hosts:
@@ -23,7 +20,7 @@ services:
     - "${LOCAL_OPENID_CLIENT_TRUST_STORE:-../auth/trust-store.p12}:/app/trust-store.p12"
 
   fhir-server-frontend:
-    image: samply/blaze-frontend:1.13.0
+    image: samply/blaze-frontend:1.14.0
     healthcheck:
       test: ["CMD-SHELL", "wget --spider http://127.0.0.1:3000/fhir/"]
       interval: 5s

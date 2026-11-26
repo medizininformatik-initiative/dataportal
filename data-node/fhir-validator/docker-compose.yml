@@ -1,13 +1,10 @@
 services:
   fhir-validator:
-    image: ghcr.io/medizininformatik-initiative/mii-fhir-validator:0.0.1-alpha.9
+    image: ghcr.io/medizininformatik-initiative/mii-fhir-validator:0.0.1-alpha.10
     ports:
       - "8080:8080"
     env_file:
       - .env
-    environment:
-      # Workaround for CVE-2026-114938 (Java4Shell). Remove once the image ships a patched JDK.
-      JDK_JAVA_OPTIONS: "-XX:-UseBASE64Intrinsics"
     extra_hosts:
       - "terminology.localhost:host-gateway"
     volumes:

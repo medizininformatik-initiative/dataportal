@@ -62,7 +62,7 @@ TERMINOLOGY = re.compile(
 @pytest.fixture(scope="module", autouse=True)
 def _wait_for_services():
     wait_for_url("http://localhost:8086/actuator/health")
-    wait_for_url(VALIDATOR_URL, expect_status=None, timeout=600)
+    wait_for_url("http://localhost:8080/health", timeout=600)
     wait_for_url("http://localhost:8083/fhir/metadata")
 
 

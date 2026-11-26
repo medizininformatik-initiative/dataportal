@@ -16,14 +16,12 @@ services:
       - "dataportal-auth-db:/var/lib/postgresql"
 
   auth:
-    image: quay.io/keycloak/keycloak:26.8.2
+    image: quay.io/keycloak/keycloak:26.8.2-3
     command: ["start", "--import-realm"]
     restart: unless-stopped
     env_file:
       - .env
     environment:
-      # Java4Shell ( CVE-2026-114938 ) mitigation
-      JAVA_OPTS_APPEND: "-XX:-UseBASE64Intrinsics"
       KC_DB: postgres
       KC_DB_URL: "jdbc:postgresql://auth-db:5432/${KC_DB_URL_DB:-keycloakdb}"
     volumes:
