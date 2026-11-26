@@ -1,6 +1,6 @@
 services:
   terminology-server:
-    image: samply/blaze:1.13.0
+    image: samply/blaze:1.14.0
     healthcheck:
       test: ["CMD", "wget", "--spider", "http://127.0.0.1:8080/health"]
       interval: 5s
@@ -9,9 +9,6 @@ services:
       start_period: 60s
     env_file:
       - .env
-    environment:
-      # Workaround for CVE-2026-114938 (Java4Shell). Remove once the image ships a patched JDK.
-      JDK_JAVA_OPTIONS: "-XX:-UseBASE64Intrinsics"
     ports:
     - ${PORT_TERMINOLOGY_SERVER_LOCALHOST:-127.0.0.1:8082}:8080
     restart: unless-stopped

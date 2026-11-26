@@ -4,6 +4,13 @@ The tests in this directory run against a real data node and data portal, starte
 compose files of this repository with the component versions they pin. They check that the
 pinned versions work together. Unit tests of the components live in the component repositories.
 
+> [!WARNING]
+> These tests were written with AI assistance under time pressure, and their assertions have
+> not been reviewed by a person. They have found real defects, but a passing job does not
+> prove that the checked behaviour is correct, and a failing job is not always a regression.
+> The golden values and known-issues baselines were derived from runs of the current stack.
+> Review and rework are tracked in [#232](https://github.com/medizininformatik-initiative/dataportal/issues/232).
+
 Update this file when you add, move or remove a test file, or when a defect is fixed.
 
 ## CI jobs

@@ -25,6 +25,48 @@ Please refer to the respective repositories for a more in depth changelog of sin
 |fhir-pseudonymizer|<https://github.com/miracum/fhir-pseudonymizer>|
 
 
+## [7.0.1] - 2026-11-26
+
+### Overview
+
+This release updates all JVM services to images with a fixed JDK for Java4Shell (CVE-2026-114938), so the `-XX:-UseBASE64Intrinsics` workaround of 7.0.0 is removed.
+
+### Security
+
+- Java4Shell (CVE-2026-114938): All JVM services now ship a fixed JDK (17.0.21.1, 21.0.13.1 or 25.0.5.1), and the compose files no longer set `-XX:-UseBASE64Intrinsics`. If you added the flag to your own overrides, you can remove it.
+  - The arm64 images of fhir-flattener 0.1.0 and mii-fhir-validator 0.0.1-alpha.10 still contain the previous JDK (21.0.13, 17.0.21). They are not affected, because the flaw is in the x86-64 AVX-512 VBMI code path, but image scanners that match by JDK version will report the CVE for them.
+
+### Breaking changes
+
+- mii-fhir-validator 0.0.1-alpha.10: An nginx proxy in the image restricts port 8080 to `POST /validateResource`, `GET /health` and `GET /openapi.json`. All other validator endpoints are no longer reachable. `/tmp` in the container must be writable - [see](https://github.com/medizininformatik-initiative/mii-fhir-validator/releases/tag/v0.0.1-alpha.10)
+- Blaze 1.14.0 - [see](https://github.com/samply/blaze/releases/tag/v1.14.0):
+  - `$purge` on Patient purges only resources that belong to the patient, as selected by the GraphDefinition `PatientPurge`, not the whole Patient compartment.
+  - Transactions are authorized by the permissions of the caller.
+  - The Admin API no longer serves `/fhir/__admin/openapi.json`.
+
+### Updates since 7.0.0
+
+**Data Portal**
+
+|Component|From|To|
+|--|--|--|
+|dataportal-backend|[v9.6.0](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v9.6.0)|[v9.6.1](https://github.com/medizininformatik-initiative/dataportal-backend/releases/tag/v9.6.1)|
+|Elasticsearch|9.5.6|9.5.7|
+|Keycloak|26.8.2|26.8.2-3|
+
+**Data Node**
+
+|Component|From|To|
+|--|--|--|
+|FHIR Server - Blaze|[v1.13.0](https://github.com/samply/blaze/releases/tag/v1.13.0)|[v1.14.0](https://github.com/samply/blaze/releases/tag/v1.14.0)|
+|terminology server (blaze)|[v1.13.0](https://github.com/samply/blaze/releases/tag/v1.13.0)|[v1.14.0](https://github.com/samply/blaze/releases/tag/v1.14.0)|
+|TORCH|[v1.1.0](https://github.com/medizininformatik-initiative/torch/releases/tag/v1.1.0)|[v1.1.1](https://github.com/medizininformatik-initiative/torch/releases/tag/v1.1.1)|
+|FLARE|[v2.9.0](https://github.com/medizininformatik-initiative/flare/releases/tag/v2.9.0)|[v2.9.1](https://github.com/medizininformatik-initiative/flare/releases/tag/v2.9.1)|
+|FDE|[v1.3.3](https://github.com/medizininformatik-initiative/fhir-data-evaluator/releases/tag/v1.3.3)|[v1.3.5](https://github.com/medizininformatik-initiative/fhir-data-evaluator/releases/tag/v1.3.5)|
+|mii-fhir-validator|[0.0.1-alpha.9](https://github.com/medizininformatik-initiative/mii-fhir-validator/releases/tag/v0.0.1-alpha.9)|[0.0.1-alpha.10](https://github.com/medizininformatik-initiative/mii-fhir-validator/releases/tag/v0.0.1-alpha.10)|
+|fhir-flattener|[0.1.0-alpha.10](https://github.com/medizininformatik-initiative/fhir-flattener/releases/tag/v0.1.0-alpha.10)|[0.1.0](https://github.com/medizininformatik-initiative/fhir-flattener/releases/tag/v0.1.0)|
+|Keycloak (FHIR server auth)|26.8.2|26.8.2-3|
+
 ## [7.0.0] - 2026-11-20
 
 ### Overview

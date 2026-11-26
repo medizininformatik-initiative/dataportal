@@ -141,7 +141,7 @@ def ig_params() -> list[str]:
 
 @pytest.fixture(scope="module", autouse=True)
 def _wait_for_validator():
-    wait_for_url(VALIDATOR_URL, expect_status=None, timeout=600)
+    wait_for_url("http://localhost:8080/health", timeout=600)
 
 
 def test_validator_loads_every_ig_of_ig_params():

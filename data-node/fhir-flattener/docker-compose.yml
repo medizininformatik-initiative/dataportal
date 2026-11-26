@@ -1,11 +1,8 @@
 services:
   fhir-flattener:
-    image: ghcr.io/medizininformatik-initiative/fhir-flattener:0.1.0-alpha.10
+    image: ghcr.io/medizininformatik-initiative/fhir-flattener:0.1.0
     env_file:
       - .env
-    environment:
-      # Workaround for CVE-2026-114938 (Java4Shell). Remove once the image ships a patched JDK.
-      JDK_JAVA_OPTIONS: "-XX:-UseBASE64Intrinsics"
     restart: unless-stopped
     working_dir: /app
     ports:
