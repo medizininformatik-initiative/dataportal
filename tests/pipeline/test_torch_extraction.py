@@ -3,7 +3,9 @@
 TO-9   extracted resources (slices, partial copies, polymorphic references) are valid
 ON-11  the Medikation profiles of the data selection validate (Medication, MedicationAdministration)
 PS-4   DIMP (fhir-pseudonymizer 3, FHIR.NET 6) adds no validation errors
-TO-14  every NDJSON link of the manifest resolves
+TO-14  every NDJSON link of the manifest resolves to the documented bundles: one core.ndjson
+       with one Bundle without Patient, and one transaction Bundle per patient with exactly
+       one Patient (https://medizininformatik-initiative.github.io/torch/api/api.html)
 BL-4   paging: TORCH with 2 resources per page and 3 patients per batch extracts the same
 
 Terminology errors are ignored because the CI node has no terminology loaded. The other
@@ -20,14 +22,20 @@ import urllib.request
 
 import pytest
 
-from helpers import DATA_NODE_DIR, assert_only_known_issues, wait_for_url
-from torch_client import extract, torch_variant
+from helpers import DATA_NODE_DIR, assert_only_known_issues, wait_for_url, wait_for_validator
+from torch_client import PATIENT_PROFILE, extract, torch_variant
 
 VALIDATOR_URL = "http://localhost:8080/validateResource"
 DE_IDENTIFY_URL = "http://localhost:8083/fhir/$de-identify"
 DUP_YAML = DATA_NODE_DIR / "example-dup-project" / "example-project_dimp_dup_base.yaml"
 
 OBSERVATION_LAB = "https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/ObservationLab"
+# Profiles the validator has to resolve before the tests start (Person, Labor and Medikation IGs)
+PROBE_PROFILES = {
+    PATIENT_PROFILE: "Patient",
+    OBSERVATION_LAB: "Observation",
+    "https://www.medizininformatik-initiative.de/fhir/core/modul-medikation/StructureDefinition/Medication": "Medication",
+}
 
 
 def slices_crtdl() -> dict:
@@ -62,7 +70,7 @@ TERMINOLOGY = re.compile(
 @pytest.fixture(scope="module", autouse=True)
 def _wait_for_services():
     wait_for_url("http://localhost:8086/actuator/health")
-    wait_for_url(VALIDATOR_URL, expect_status=None, timeout=600)
+    wait_for_validator(VALIDATOR_URL, PROBE_PROFILES)
     wait_for_url("http://localhost:8083/fhir/metadata")
 
 
@@ -132,11 +140,19 @@ def test_dimp_adds_no_validation_errors(extractions):
 def test_every_ndjson_link_resolves(extractions):
     """TO-14."""
     for name, result in extractions.items():
-        assert result.manifest["output"], name
-        for output in result.manifest["output"]:
-            lines = [line for line in result.read(output["url"]).splitlines() if line.strip()]
-            assert lines, f"{name}: empty NDJSON {output['url']}"
-            assert all(json.loads(line)["resourceType"] == "Bundle" for line in lines)
+        outputs = [o["url"] for o in result.manifest["output"]]
+        core = [url for url in outputs if url.endswith("/core.ndjson")]
+        assert len(core) == 1, f"{name}: expected one core.ndjson in {outputs}"
+        assert len(outputs) > 1, f"{name}: no patient batch file in {outputs}"
+        for url in outputs:
+            bundles = [json.loads(line) for line in result.read(url).splitlines() if line.strip()]
+            assert bundles, f"{name}: empty NDJSON {url}"
+            assert all(b["resourceType"] == "Bundle" and b["type"] == "transaction" for b in bundles), url
+            patients = [sum(e["resource"]["resourceType"] == "Patient" for e in b.get("entry", [])) for b in bundles]
+            if url in core:
+                assert patients == [0], f"{name}: core.ndjson must hold one Bundle without Patient, got {patients}"
+            else:
+                assert set(patients) == {1}, f"{name}: every patient Bundle must hold exactly one Patient in {url}"
 
 
 def resource_keys(result) -> set[tuple[str, str]]:

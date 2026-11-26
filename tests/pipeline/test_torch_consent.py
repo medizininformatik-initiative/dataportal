@@ -1,7 +1,10 @@
 """S7: TORCH consent rules on crafted patients.
 
-TO-2  only .8 and .6 are evaluated and both are required, .45/.46 extend .6 back
-TO-3  encounter shift: only inpatient (IMP) stays, at most TORCH_ENCOUNTER_SHIFT_MAX_DAYS (7)
+TO-2  only .8 and .6 are evaluated and both are required, .45/.46 extend .6 back; today must
+      lie in the .8 period (validity gate), and permits count only from a signing event that
+      permits both .6 and .8
+TO-3  encounter shift: only inpatient (IMP) stays, at most TORCH_ENCOUNTER_SHIFT_MAX_DAYS (7),
+      exactly 7 days still shift
 TO-4  overlapping permit and deny: deny wins, listed in reports/consent-conflicts.csv
 TO-5  consents processed by dateTime, not by resource order; a retro deny resets .6
 TO-10 a reference to a resource outside consent is masked, a must-have one drops the
@@ -121,10 +124,15 @@ CASES = {
         [lambda p: consent(p, 1, "2024-03-04", provisions(PERMIT_ALL, "2024-03-04")), lambda p: encounter(p, "AMB", "2024-03-01", "2024-03-10")],
         ["2024-03-02"],
     ),
-    # TO-3c: inpatient stay that began 13 days before the consent
+    # TO-3c: inpatient stay that began 8 days before the consent, one day over the limit
     "s7-shift-long": (
-        [lambda p: consent(p, 1, "2024-03-04", provisions(PERMIT_ALL, "2024-03-04")), lambda p: encounter(p, "IMP", "2024-02-20", "2024-03-10")],
+        [lambda p: consent(p, 1, "2024-03-09", provisions(PERMIT_ALL, "2024-03-09")), lambda p: encounter(p, "IMP", "2024-03-01", "2024-03-10")],
         ["2024-03-02"],
+    ),
+    # TO-3e: inpatient stay that began exactly 7 days before the consent, still shifted
+    "s7-shift-limit": (
+        [lambda p: consent(p, 1, "2024-03-08", provisions(PERMIT_ALL, "2024-03-08")), lambda p: encounter(p, "IMP", "2024-03-01", "2024-03-10")],
+        ["2024-02-28", "2024-03-02"],
     ),
     # TO-4: .6 permit and deny overlap in one signing event
     "s7-conflict": (
@@ -149,6 +157,13 @@ CASES = {
     ),
     # TO-2, TO-6: no consent at all
     "s7-no-consent": ([], ["2024-04-01"]),
+    # TO-2: the .8 period ended before today, so the patient fails the validity gate
+    "s7-gate-expired": (
+        [lambda p: consent(p, 1, "2024-03-01", [("8", "permit", "2024-03-01", "2025-03-01"), ("6", "permit", "2024-03-01", END)])],
+        ["2024-04-01"],
+    ),
+    # TO-2: a .6 permit without a .8 permit in the same signing event counts for nothing
+    "s7-no-gate": ([lambda p: consent(p, 1, "2024-03-01", [("6", "permit", "2024-03-01", END)])], ["2024-04-01"]),
 }
 
 STANDARD = consent_inclusion("8", "6")
@@ -212,10 +227,13 @@ EXPECTED = {
     ("standard", "s7-shift-imp"): ["2024-03-02"],
     ("standard", "s7-shift-amb"): [],
     ("standard", "s7-shift-long"): [],
+    ("standard", "s7-shift-limit"): ["2024-03-02"],
     ("standard", "s7-conflict"): ["2024-04-01", "2024-07-15"],
     ("standard", "s7-order"): ["2024-04-01"],
     ("retro", "s7-retro-reset"): ["2024-08-01"],
     ("standard", "s7-no-consent"): [],
+    ("standard", "s7-gate-expired"): [],
+    ("standard", "s7-no-gate"): [],
 }
 
 
@@ -232,7 +250,8 @@ def test_retro_consent_extends_the_window_to_1900(runs):
 def test_inpatient_encounter_shifts_the_window_start(runs):
     assert final_periods(runs["standard"], "s7-shift-imp") == [("2024-03-01", END)]
     assert final_periods(runs["standard"], "s7-shift-amb") == [("2024-03-04", END)]
-    assert final_periods(runs["standard"], "s7-shift-long") == [("2024-03-04", END)]
+    assert final_periods(runs["standard"], "s7-shift-long") == [("2024-03-09", END)]
+    assert final_periods(runs["standard"], "s7-shift-limit") == [("2024-03-01", END)]
 
 
 def test_permit_deny_conflict_is_reported(runs):
@@ -245,9 +264,11 @@ def test_permit_deny_conflict_is_reported(runs):
     assert {r["Patient-ID"] for r in rows} == {"s7-conflict"}
 
 
-def test_patient_without_consent_is_excluded(runs):
+@pytest.mark.parametrize("pid", ["s7-no-consent", "s7-gate-expired", "s7-no-gate"])
+def test_patient_without_valid_consent_is_excluded(runs, pid):
     exclusions = runs["standard"].report("patient-exclusions")
-    assert ("CONSENT_FETCH", "s7-no-consent") in {(r["Stage"], r["Patient-ID"]) for r in exclusions}
+    assert ("CONSENT_FETCH", pid) in {(r["Stage"], r["Patient-ID"]) for r in exclusions}
+    assert pid not in {p["id"] for p in runs["standard"].resources("Patient")}
 
 
 def reference_crtdl(must_have: bool) -> dict:

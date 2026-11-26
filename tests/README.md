@@ -85,9 +85,9 @@ The defect column refers to the [known defects](#known-defects) below.
 | `node/test_basic_queries.py` | FHIR search counts on the MII test data (Consent, Condition) | |
 | `pipeline/test_blaze_auth.py` | Blaze with `OPENID_PROVIDER_ISSUER` and `OPENID_AUDIENCE`, each in its own container | |
 | `pipeline/test_node_services.py` | Blaze healthchecks with wget, FDE MeasureReport and paging, validator IGs, terminology package range, R5 extensions | D10, D11, D12 |
-| `pipeline/test_torch_api.py` | Task API (pause, resume, cancel), Patient.identifier, cohort size, metrics, `$evaluate-cohort`, `$translate-cql`, 405, date filter | D20 |
-| `pipeline/test_torch_consent.py` | Consent rules on crafted patients: required policies, encounter shift, permit and deny, order by date, masked references, consent switched off | |
-| `pipeline/test_torch_extraction.py` | Extracted MII test data validates, Medikation profiles, DIMP adds no validation errors, manifest links, paging | D13 |
+| `pipeline/test_torch_api.py` | Task API (pause, resume, cancel, search, priority), Patient.identifier, cohort size, metrics, `$evaluate-cohort` against a FHIR search, `$translate-cql`, 405, date filter | D20 |
+| `pipeline/test_torch_consent.py` | Consent rules on crafted patients: required policies, validity gate, encounter shift and its limit, permit and deny, order by date, masked references, consent switched off | |
+| `pipeline/test_torch_extraction.py` | Extracted MII test data validates, Medikation profiles, DIMP adds no validation errors, manifest and bundle layout, paging | D13 |
 | `pipeline/test_dimp_service.py` | DIMP called directly: decompression, remove method, request size limit, cryptoHash of references | D14, D15 |
 | `pipeline/test_dimp_required_references.py` | The example DUP DIMP config never empties a required Reference | |
 | `pipeline/test_flattener.py` | `ViewDefinition/$run`: RFC 4180 CSV, no data from one run in the next | D16 |
@@ -121,7 +121,7 @@ the marker or entry has to be removed. Low priority defects are marked (low).
 | D16 (low) | fhir-flattener | CSV without header row | `pipeline/test_flattener.py` |
 | D17 | Data node | Example `services.send.url` ends in `/fhir`, aether sends to `/fhir/fhir` | `pipeline/test_aether_cli.py` |
 | D19 | availability-updater | Nothing writes data selection availability | `api/test_availability_updater.py` |
-| D20 | TORCH | `DELETE /fhir/Task/{id}` keeps the Task and the result files ([torch#1391](https://github.com/medizininformatik-initiative/torch/issues/1391)) | `pipeline/test_torch_api.py` |
+| D20 | TORCH | `DELETE /fhir/Task/{id}` keeps the Task and the result files until a GC sweep, 24 h by default ([torch#1391](https://github.com/medizininformatik-initiative/torch/issues/1391)) | `pipeline/test_torch_api.py` |
 | D21 | dataportal-backend | Dispatch error log does not name the cause | `api/test_backend_variants.py` |
 | D23 | dataportal-ui | Ignores the 429 of the soft quota and waits without end | `ui/test_rate_limit.py` |
 | D24 | Ontology | SNOMED CT 21371007 is selectable in context Procedure, but its query never finishes ([fhir-ontology-generator#570](https://github.com/medizininformatik-initiative/fhir-ontology-generator/issues/570)) | `api/test_ontology.py` |
